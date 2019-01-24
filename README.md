@@ -4,7 +4,7 @@
 Ben Peterson
 
 # Authors:
-Conor Cook
-Malik Herring
-Hayden Phothong
-Michael Sanchez
+* Conor Cook
+* Malik Herring
+* Hayden Phothong
+* Michael Sanchez
