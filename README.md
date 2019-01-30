@@ -6,7 +6,7 @@ Ben Peterson
 # Authors:
 * Conor Cook
 * Malik Herring
-* Hayden Phothongg
+* Hayden Phothong
 * Michael Sanchez
 
 # Technologies Used
