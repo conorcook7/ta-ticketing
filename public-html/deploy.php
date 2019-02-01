@@ -6,23 +6,6 @@
 $TITLE   = 'Git Deployment Hamster';
 $VERSION = '0.11';
 
-echo <<<EOT
-<!DOCTYPE HTML>
-<html lang="en-US">
-<head>
-	<meta charset="UTF-8">
-	<title>$TITLE</title>
-</head>
-<body style="background-color: #000000; color: #FFFFFF; font-weight: bold; padding: 0 10px;">
-<pre>
-  o-o    $TITLE
- /\\"/\   v$VERSION
-(`=*=') 
- ^---^`-.
-
-
-EOT;
-
 // Check whether client is allowed to trigger an update
 
 $allowed_ips = array(
@@ -48,9 +31,7 @@ foreach ($allowed_ips as $allow) {
 }
 
 if (!$allowed) {
-	header('HTTP/1.1 403 Forbidden');
- 	echo "<span style=\"color: #ff0000\">Sorry, no hamster - better convince your parents!</span>\n";
-    echo "</pre>\n</body>\n</html>";
+    header('HTTP/1.1 404 Not Found');
     exit;
 }
 
@@ -69,17 +50,11 @@ $commands = array(
     'test -e /usr/share/update-notifier/notify-reboot-required && echo "system restart required"',
 );
 
-$output = "\n";
-
 $log = "####### ".date('Y-m-d H:i:s'). " #######\n";
 
 foreach($commands AS $command){
     // Run it
     $tmp = shell_exec("$command 2>&1");
-    // Output
-    $output .= "<span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
-    $output .= htmlentities(trim($tmp)) . "\n";
-
     $log  .= "\$ $command\n".trim($tmp)."\n";
 }
 
@@ -87,9 +62,14 @@ $log .= "\n";
 
 file_put_contents ('../deploy-log.txt',$log,FILE_APPEND);
 
-echo $output; 
-
 ?>
-</pre>
-</body>
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Error 404 - file not found</title>
+  </head>
+  <body>
+    <h1>Error 404 - file not found</h1>
+  </body>
 </html>
