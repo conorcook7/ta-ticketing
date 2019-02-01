@@ -17,6 +17,10 @@ Ben Peterson
 # Frameworks/Libraries
 
 # Project Setup
+This project is a web application that is source controlled by Boise State
+University on [GitHub](https://github.com/BoiseState/ta-ticketing). It is
+hosted on a VM (virtual machine). The GitHub repository contains a webhook
+to automatically deploy the 'master' branch to the VM.
 
 # Important Notes
 
