@@ -44,10 +44,9 @@ $commands = array(
 	'whoami',
 	'git pull',
         'git status',
-        'cd ..',
-	'git submodule sync',
-	'git submodule update',
-	'git submodule status',
+	'cd .. && git submodule sync',
+	'cd .. && git submodule update',
+	'cd .. && git submodule status',
     'test -e /usr/share/update-notifier/notify-reboot-required && echo "system restart required"',
 );
 
