@@ -13,7 +13,7 @@
   <body>
     <h1>Hello, world!</h1>
     <?php
-      for ($i = 0; $i < 0; $i++) {
+      for ($i = 0; $i < 5; $i++) {
         echo "<h1>Hello, world!</h1>";
       }
     ?>
