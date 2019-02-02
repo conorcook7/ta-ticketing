@@ -11,7 +11,7 @@
     <title>BSU TA Ticketing Service</title>
   </head>
   <body>
-    <h1>Boise State Univeristy</h1>
+    <h1>Boise State University</h1>
     <h2>TA Ticketing Service</h2>
 
     <!-- Optional JavaScript -->
