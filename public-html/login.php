@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Sign-in/title>
+    <title>Sign-in</title>
   </head>
 
   <body class="text-center">
