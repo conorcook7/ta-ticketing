@@ -13,7 +13,9 @@
   <body>
     <h1>Boise State University</h1>
     <h2>TA Ticketing Service</h2>
-    <h3>Hello !</h3>
+    
+
+    <a href="/login.php">Login Page</a>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
