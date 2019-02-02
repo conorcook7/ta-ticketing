@@ -7,7 +7,13 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link href="../public-html/signin.css" rel="stylesheet">
+
+    <!-- This link is for development    -->
+    <!-- <link href="../public-html/signin.css" rel="stylesheet"> -->
+
+    <!-- This link is for production    -->
+    <link href="/signin.css" rel="stylesheet">
+
     <title>Sign-in</title>
   </head>
 
