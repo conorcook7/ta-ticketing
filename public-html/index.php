@@ -16,6 +16,7 @@
     
 
     <a href="/login.php">Login Page</a>
+    <a href="/dashboard.php">Dashboard Page</a>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
