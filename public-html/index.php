@@ -14,7 +14,6 @@
     <h1>Boise State University</h1>
     <h2>TA Ticketing Service</h2>
     
-
     <a href="/login.php">Login Page</a>
     <br/>
     <a href="/dashboard.php">Dashboard Page</a>
