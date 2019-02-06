@@ -3,7 +3,7 @@ USE TA_Ticketing;
 
 CREATE TABLE IF NOT EXISTS Permissions (
     permission_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    permisson_level INTEGER NOT NULL UNIQUE,
+    permisson_level INT NOT NULL UNIQUE,
     permission_name VARCHAR(256) NOT NULL UNIQUE
 );
 
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS Completed_Tickets (
     available_course_id BIGINT UNSIGNED NOT NULL,
     user_id BIGINT UNSIGNED NOT NULL,
     description TEXT,
-    node_number INTEGER,
-    room_number INTEGER,
+    node_number INT,
+    room_number INT,
     completion_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE,
     FULLTEXT (description),
