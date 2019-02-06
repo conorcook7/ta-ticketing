@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS Active_Tickets (
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Completed_Tickets (
