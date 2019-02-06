@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS ta-ticketing;
+USE ta-ticketing;
+
 CREATE TABLE Permissions (
     permission_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     permisson_level INTEGER NOT NULL UNIQUE,
