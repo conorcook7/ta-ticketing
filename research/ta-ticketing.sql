@@ -1,14 +1,14 @@
 CREATE DATABASE IF NOT EXISTS ta-ticketing;
 USE ta-ticketing;
 
-CREATE TABLE Permissions (
+CREATE TABLE IF NOT EXISTS Permissions (
     permission_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     permisson_level INTEGER NOT NULL UNIQUE,
     permission_name VARCHAR(256) NOT NULL UNIQUE,
     PRIMARY KEY (permission_id)
 );
 
-CREATE TABLE Available_Courses (
+CREATE TABLE IF NOT EXISTS Available_Courses (
     available_course_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     course_name VARCHAR(256),
     course_number VARCHAR(256),
@@ -18,7 +18,7 @@ CREATE TABLE Available_Courses (
     PRIMARY KEY (available_course_id)
 );
 
-CREATE TABLE Users (
+CREATE TABLE IF NOT EXISTS Users (
     user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     permission_id BIGINT UNSIGNED NOT NULL,
     email VARCHAR(256) NOT NULL UNIQUE,
@@ -31,7 +31,7 @@ CREATE TABLE Users (
     PRIMARY KEY (user_id)
 );
 
-CREATE TABLE Teaching_Assistants (
+CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     teaching_assistant_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     user_id BIGINT UNSIGNED NOT NULL,
     start_time_past_midnight TIME NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE Teaching_Assistants (
     PRIMARY KEY (teaching_assitant_id)
 );
 
-CREATE TABLE Active_Tickets (
+CREATE TABLE IF NOT EXISTS Active_Tickets (
     active_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     available_course_id BIGINT UNSIGNED NOT NULL,
     user_id BIGINT UNSIGNED NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE Active_Tickets (
     PRIMARY KEY (active_ticket_id)
 );
 
-CREATE TABLE Completed_Tickets (
+CREATE TABLE IF NOT EXISTS Completed_Tickets (
     active_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     available_course_id BIGINT UNSIGNED NOT NULL,
     user_id BIGINT UNSIGNED NOT NULL,
