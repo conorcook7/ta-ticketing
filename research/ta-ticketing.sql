@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Permissions (
     permission_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     permisson_level INTEGER NOT NULL UNIQUE,
     permission_name VARCHAR(256) NOT NULL UNIQUE
-);
+)
 
 CREATE TABLE IF NOT EXISTS Available_Courses (
     available_course_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Available_Courses (
     section VARCHAR(256),
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE
-);
+)
 
 CREATE TABLE IF NOT EXISTS Users (
     user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Users (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE,
     FOREIGN KEY (permission_id) REFERENCES Permissions(permission_id)
-);
+)
 
 CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     teaching_assistant_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
+)
 
 CREATE TABLE IF NOT EXISTS Active_Tickets (
     active_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Active_Tickets (
     FULLTEXT (description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
-);
+)
 
 CREATE TABLE IF NOT EXISTS Completed_Tickets (
     active_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -64,5 +64,5 @@ CREATE TABLE IF NOT EXISTS Completed_Tickets (
     FULLTEXT (description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
+)
 
