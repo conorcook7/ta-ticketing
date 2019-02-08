@@ -68,7 +68,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?php if($nav == '1'){echo 'active';}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -81,7 +81,7 @@
             <a class="collapse-item" href="forgot-password.php">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.php">404 Page</a>
+            <a class="collapse-item <?php if($page == '404.php'){echo 'active';}?>" href="404.php">404 Page</a>
             <a class="collapse-item" href="blank.php">Blank Page</a>
           </div>
         </div>
