@@ -12,7 +12,7 @@
     <!-- <link href="../public-html/signin.css" rel="stylesheet"> -->
 
     <!-- This link is for production    -->
-    <link href="/signin.css" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
 
     <title>Sign-in</title>
   </head>
