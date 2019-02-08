@@ -1,4 +1,4 @@
-<?php $page = '404.php'; $nav = '1'?>
+<?php $page = '404.php'; $nav = 'pages'?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +37,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <?php include_once 'top_bar.php'; ?>
+        <?php include_once 'topbar.php'; ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->

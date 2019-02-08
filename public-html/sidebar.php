@@ -68,7 +68,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?php if($nav == '1'){echo 'active';}?>">
+      <li class="nav-item <?php if($nav == 'pages'){echo 'active';}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -82,20 +82,20 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item <?php if($page == '404.php'){echo 'active';}?>" href="404.php">404 Page</a>
-            <a class="collapse-item" href="blank.php">Blank Page</a>
+            <a class="collapse-item <?php if($page == 'blank.php'){echo 'active';}?>" href="blank.php">Blank Page</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      <li class="nav-item <?php if($nav == 'charts.php'){echo 'active';}?>">
         <a class="nav-link" href="charts.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item <?php if($nav == 'tables.php'){echo 'active';}?>">
         <a class="nav-link" href="tables.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
