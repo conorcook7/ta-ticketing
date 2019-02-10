@@ -28,7 +28,7 @@
 
 
     <!-- Start of Sidebar -->
-    <?php include_once 'sidebar.php'; ?>
+    <?php include_once 'components/sidebar.php'; ?>
     <!-- End of Sidebar -->
 
 
@@ -42,7 +42,7 @@
 
 
         <!-- Topbar -->
-        <?php include_once 'topbar.php'; ?>
+        <?php include_once 'components/topbar.php'; ?>
         <!-- End of Topbar -->
 
     
@@ -335,7 +335,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <?php include_once 'footer.php' ?>
+      <?php include_once 'components/footer.php' ?>
       <!-- End of Footer -->
 
     </div>
