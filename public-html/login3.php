@@ -24,7 +24,7 @@
                         <div class="panel-body">
 
                         <form class="form-signin form-containter" action="">
-                            <img class="mb-4" src="https://www.cludo.com/wp-content/uploads/2018/10/Boise-State-University-Logo.png" alt="" width="300" height="194">
+                            <img class="mb-4 image" src="https://www.cludo.com/wp-content/uploads/2018/10/Boise-State-University-Logo.png" alt="" width="300" height="194">
                              <h1 id="please-sign" class="h3 mb-3 font-weight-normal">Please sign in</h1>
                             <div class="form-group">
                                 <label for="inputEmail" class="sr-only">Email address</label>
