@@ -55,7 +55,6 @@ body {
 .panel{
   background: rgba(255, 255, 255, 0.7);
   margin: auto;
-  margin-right: 20px;
   width: 35%;
   min-width: 400px;
   border-radius: 25px;
