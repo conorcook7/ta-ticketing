@@ -1,6 +1,6 @@
 <?php
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
-echo "<p> user: " . $_SERVER['REMOTE_USER'];
+printr($_SERVER, 1);
 echo $hostname;
 ?>
