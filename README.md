@@ -1,5 +1,5 @@
 # TA Ticketing Project
-[http://cs481a-lxp-01.boisestate.edu/](http://cs481a-lxp-01.boisestate.edu)
+[http://taticketing.boisestate.edu/](http://taticketing.boisestate.edu)
 
 # Contact
 Ben Peterson
@@ -16,6 +16,7 @@ Ben Peterson
 * MySQL Version: 8.0.14 for Linux on x86_64 (MySQL Community Server - GPL)
 
 # Frameworks/Libraries
+* Bootstrap 4
 
 # Project Setup
 This project is a web application that is source controlled by Boise State
@@ -24,4 +25,3 @@ hosted on a VM (virtual machine). The GitHub repository contains a webhook
 to automatically deploy the 'master' branch to the VM.
 
 # Important Notes
-
