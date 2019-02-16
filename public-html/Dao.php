@@ -66,18 +66,6 @@ class Dao {
     }    
   }
   
-  public function increaseExp($username, $amount){
-    $user=$this->getUser($username);
-    $exp = ($user['exp'] + $amount);
-    $accountID = $user['accountID'];
-    $conn=$this->getConnection();
-    $query = $conn->prepare("UPDATE user SET exp = :exp WHERE accountID = :accountID");
-    $query->bindParam('exp', $exp );
-    $query->bindParam('accountID', $accountID);
-    $query->execute();
-    $this->logger->logDebu(__FUNCTION__ . " username=[{$username}] exp=[{$exp}]");
-  }
-  
   public function getUser($username){
     $conn = $this->getConnection();
     $query = $conn->prepare("SELECT * FROM user WHERE username = :username");
@@ -86,35 +74,6 @@ class Dao {
     $results = $query->fetch(PDO::FETCH_ASSOC);
     $this->logger->logDebug(__FUNCTION__ . " " . print_r($results,1));
     return $results;
-  }
-  
-  public function getToday($username){
-    $user=$this->getUser($username);
-    $accountID = $user['accountID'];
-    $date = date("Y-m-d");
-    $conn=$this->getConnection();
-    $query = $conn->prepare("SELECT * FROM schedule WHERE date = :date AND completed = :completed AND accountID = :accountID");
-    $query->bindParam('date', $date);
-    $query->bindParam('completed', false);
-    $query->bindParam('accountID', $accountID);
-    $query->execute();
-    $results = $query->fetch(PDO::FETCH_ASSOC);
-    $this->logger->logDebug(__FUNCTION__ . " " . print_r($results, 1));
-    return $results;
-  }
-  
-  public function getTimePeriod($username, $beginDate, $endDate){
-    $user=$this->getUser($username);
-    $accountID = $user['accountID'];
-    $conn=$this->getConnection();
-    $query = $conn->prepare("SELECT * FROM schedule WHERE accountID = :accountID AND date BETWEEN :beginDate and :endDate");
-    $query->bindParam('accountID', $accountID);
-    $query->bindParam(':beginDate', $beginDate);
-    $query->bindParam(':endDate', $endDate);
-    $query->execute();
-    $results = $query->fetch(PDO::FETCH_ASSOC);
-    $this->logger->logDebug(__FUNCTION__ . " " . print_r($results, 1));
-    return results;
   }
   
   public function saveUser($username, $email, $password){
@@ -128,27 +87,6 @@ class Dao {
     $this->logger->logDebug(__FUNCTION__ . " username=[{$username}] email=[{$email}]");
     $query->execute();
   }
-  
-  public function saveSchedule($title, $completionDate, $description, $username){
-    $user=$this->getUser($username);
-    $this->increaseExp($username, 5);
-    $accountID=$user['accountID'];
-    $currentGoals=$user['currentGoals'] + 1;
-    $conn = $this->getConnection();
-    $query = $conn->prepare("INSERT INTO schedule (title, completionDate, description, accountID, completed) VALUES (:title, :completionDate, :description, :accountID, :completed)");
-    $query->bindParam(':title', $title);
-    $query->bindParam(':completionDate', $completionDate);
-    $query->bindParam(':description', $description);
-    $query->bindParam(':accountID', $accountID);
-    $query->bindParam(':completed', false);
-    $this->logger->logDebug(__FUNCTION__ . " username=[{$username}] schedule title=[{$title}]");
-    $query->execute();
-    $query = $conn->prepare("UPDATE user SET currentGoals = :currentGoals WHERE accountID = :accountID");
-    $query->bindParam(':currentGoals', $currentGoals);
-    $query->bindParam(':accountID', $accountID);
-    $this->logger->logDebug(__FUNCTION__ . " username=[{$username}] Current Goals = [{$currentGoals}]");
-    $query->execute();
-  }  
   
   public function checkAccess($username) {
     $conn = $this->getConnection();
