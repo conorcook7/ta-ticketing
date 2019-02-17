@@ -8,8 +8,8 @@
  */
 class Dao {
   
-    $SUCCESS = TRUE;
-    $FAILURE = FALSE;
+    const SUCCESS = TRUE;
+    const FAILURE = FALSE;
 
     private $db = "Dummy_TA_Ticketing";
     private $user = "ta-ticketing";
@@ -75,7 +75,7 @@ class Dao {
         $query->bindParam(':email', $email);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
-        return $user
+        return $user;
     }
 
     /**
@@ -105,7 +105,7 @@ class Dao {
      */
     public function createUser($email, $password, $firstName=NULL, $lastName=NULL) {
         $exists = $this->userExists($email);
-        if (!$exists) {
+        if (!$exists && $this->verifyPassword($password)) {
             $conn = $this->getConnection();
             $query = $conn->prepare(
                 "INSERT INTO Users (permission_id, email, password, first_name, last_name) " .
@@ -151,6 +151,25 @@ class Dao {
         return $teachingAssistants;
     }
     
+    /**
+     * Verifies that the password contains the following criteria:
+     *
+     *      - Contains at least 1 upper-case letter.
+     *      - Contains at least 1 lower-case letter.
+     *      - Contains at least 1 digit.
+     * 
+     * @param $password - The password to verify.
+     * @return Returns TRUE if the password matches the criteria, else FALSE.
+     */
+    public function verifyPassword($password){
+        $regex='/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
+        if (preg_match($regex, $password)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     public function login($username, $password){
         $salt = '!@%#^^%*&;rweltkjusofd;iajg168152410';
         $password=md5($password . $salt);
@@ -180,8 +199,5 @@ class Dao {
         }
     }
     
-    public function verifyPassword($password){
-        $regex='/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
-        return preg_match($regex, $password);
-    }
+    
 }
