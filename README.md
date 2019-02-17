@@ -28,4 +28,5 @@ to automatically deploy the 'master' branch to the VM.
 # Important Notes
 
 ## PHPUnit 4.8.36
-Run unit-tests: $/path/to/vendor/bin/phpunit --bootstrap /path/to/vendor/autoload.php /path/to/tests/directory/*
+[List of assertions](https://phpunit.readthedocs.io/en/8.0/assertions.html#appendixes-assertions)
+Run Unit-Tests: $/path/to/vendor/bin/phpunit --bootstrap /path/to/vendor/autoload.php /path/to/tests/directory/*
