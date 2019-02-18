@@ -113,9 +113,9 @@ class Dao {
 
     /**
      * Checks if the user is a TA.
-     * @param $user_id - The user_id of the active user.
+     * @param $userId - The user_id of the active user.
      */
-    public function isTA($userId) {
+    public function isTeachingAssistant($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT COUNT(*) FROM Teaching_Assistants WHERE user_id = :userId;");
         $query->bindParam(":userId", $userId);
@@ -185,23 +185,71 @@ class Dao {
         return $teachingAssistants;
     }
 
-    public function createTicket() {}
+    public function createTicket() { }
 
+    /**
+     * Get all of the open tickes.
+     * @return $openTickets - The array of arrays of open tickets information.
+     */
     public function getOpenTickets() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Open_Tickets;");
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
-        $teachingAssistants = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($activeTickets,1));
-        return $teachingAssistants;
+        $openTickets = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($openTickets,1));
+        return $openTickets;
     }
 
-    public function closeTicket() {}
+    public function closeTicket() { }
+    
+    /**
+     * Get all of the closed tickes.
+     * @return $closedTickets - The array of arrays of closed tickets information.
+     */
+    public function getClosedTickets() {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT * FROM Closed_Tickets;");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $closedTickets = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($closedTickets,1));
+        return $closedTickets;
+    }
 
-    public function getClosedTickets() {}
+    public function openClosedTicket() { }
 
-    public function openClosedTicket() {}
+    public function getQueueNumber() { }
+
+    /**
+     * Get all of the available courses.
+     * @return $availableCourses - The array of arrays of available courses information.
+     */
+    public function getAvailableCourses() {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT * FROM Available_Courses;");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $availableCourses = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
+        return $availableCourses;
+    }
+
+    /**
+     * Get all of the available permission levels.
+     * @return $permissionLevels - The array of arrays of permission levels information.
+     */
+    public function getPermissionLevels() {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT * FROM Permissions;");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $permissionLevels = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($permissionLevels,1));
+        return $permissionLevels;
+    }
+
+    public function getLogs() { }
 
     // public function login($username, $password){
     //     $salt = '!@%#^^%*&;rweltkjusofd;iajg168152410';
