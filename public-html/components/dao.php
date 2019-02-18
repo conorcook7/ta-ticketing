@@ -53,6 +53,25 @@ class Dao {
     }
 
     /**
+     * Verifies that the password contains the following criteria:
+     *
+     *      - Contains at least 1 upper-case letter.
+     *      - Contains at least 1 lower-case letter.
+     *      - Contains at least 1 digit.
+     * 
+     * @param $password - The password to verify.
+     * @return Returns TRUE if the password matches the criteria, else FALSE.
+     */
+    public function verifyPassword($password){
+        $regex='/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
+        if (preg_match($regex, $password)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
      * Checks if a user exists in the database already.
      * @param $email - The email of the user to check.
      * @return Returns TRUE if the user exists, else FALSE.
@@ -84,6 +103,8 @@ class Dao {
         } else if ($userId != NULL) {
             $query = $conn->prepare("SELECT * FROM Users WHERE user_id = :userId;");
             $query->bindParam(":userId", $userId);
+        } else {
+            return Array();
         }
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
@@ -163,54 +184,52 @@ class Dao {
         //$this->logger->logDebug(__FUNCTION__ . " " . print_r($teachingAssistants,1));
         return $teachingAssistants;
     }
-    
-    /**
-     * Verifies that the password contains the following criteria:
-     *
-     *      - Contains at least 1 upper-case letter.
-     *      - Contains at least 1 lower-case letter.
-     *      - Contains at least 1 digit.
-     * 
-     * @param $password - The password to verify.
-     * @return Returns TRUE if the password matches the criteria, else FALSE.
-     */
-    public function verifyPassword($password){
-        $regex='/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
-        if (preg_match($regex, $password)) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+
+    public function createTicket() {}
+
+    public function getOpenTickets() {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT * FROM Open_Tickets;");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $teachingAssistants = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($activeTickets,1));
+        return $teachingAssistants;
     }
 
-    public function login($username, $password){
-        $salt = '!@%#^^%*&;rweltkjusofd;iajg168152410';
-        $password=md5($password . $salt);
-        $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM user where username = :username AND password = :password");
-        $query->bindParam(':username', $username);
-        $query->bindParam(':password', $password);
-        $query->execute();
-        $results=$query->fetch(PDO::FETCH_ASSOC);
-        if (is_array($results) && 0 < count($results)){
-            return true;
-        } else {
-            return false;
-        }    
-    }
+    public function closeTicket($) {}
+
+    public function getClosedTickets() {}
+
+    public function openClosedTicket() {}
+
+    // public function login($username, $password){
+    //     $salt = '!@%#^^%*&;rweltkjusofd;iajg168152410';
+    //     $password=md5($password . $salt);
+    //     $conn = $this->getConnection();
+    //     $query = $conn->prepare("SELECT * FROM user where username = :username AND password = :password");
+    //     $query->bindParam(':username', $username);
+    //     $query->bindParam(':password', $password);
+    //     $query->execute();
+    //     $results=$query->fetch(PDO::FETCH_ASSOC);
+    //     if (is_array($results) && 0 < count($results)){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }    
+    // }
     
-    public function checkAccess($username) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM user where username = :username AND access = '1'");
-        $query->bindParam(':username', $username);
-        $query->execute();
-        $results=$query->fetch(PDO::FETCH_ASSOC);
-        if (is_array($results) && 0 < count($results)){
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    
+    // public function checkAccess($username) {
+    //     $conn = $this->getConnection();
+    //     $query = $conn->prepare("SELECT * FROM user where username = :username AND access = '1'");
+    //     $query->bindParam(':username', $username);
+    //     $query->execute();
+    //     $results=$query->fetch(PDO::FETCH_ASSOC);
+    //     if (is_array($results) && 0 < count($results)){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+     
 }
