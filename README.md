@@ -17,6 +17,7 @@ Ben Peterson
 
 # Frameworks/Libraries
 * Bootstrap 4
+* PHPUnit 4.8.36
 
 # Project Setup
 This project is a web application that is source controlled by Boise State
@@ -25,3 +26,8 @@ hosted on a VM (virtual machine). The GitHub repository contains a webhook
 to automatically deploy the 'master' branch to the VM.
 
 # Important Notes
+
+## PHPUnit 4.8.36
+[List of assertions](https://phpunit.readthedocs.io/en/8.0/assertions.html#appendixes-assertions)
+
+Run Unit-Tests: $/path/to/vendor/bin/phpunit --bootstrap /path/to/vendor/autoload.php /path/to/tests/directory/*
