@@ -1,0 +1,1 @@
+../public-html/vendor/bin/phpunit --bootstrap ../public-html/vendor/autoload.php ./*.php
