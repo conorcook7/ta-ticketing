@@ -11,21 +11,26 @@ class Dao {
     const SUCCESS = TRUE;
     const FAILURE = FALSE;
 
-    private $db = "Dummy_TA_Ticketing";
+    private $db;
     private $user = "ta-ticketing";
     private $pass = "34$5iu98&7o7%76d4Ss35";
 
     protected $logger;
 
-    public function __construct () {
+    /**
+     * Constructor for the Dao object.
+     * @param $database - The database name to connect to.
+     */
+    public function __construct($database) {
         //$this->logger = new KLogger('../../ta-ticketing.log', KLogger::DEBUG);
+        $this->db = $database;
     }
   
     /**
      * Attempts to connect to the local MySQL instance with the user ta-ticketing.
      * @return $conn - The connection to the localhost MySQL database.
      */
-    public function getConnection () {
+    public function getConnection() {
         try{
             $conn = new PDO("mysql:host=localhost;dbname={$this->db}", $this->user, $this->pass);
             //$this->logger->logDebug("Established a database connection.");
@@ -33,6 +38,7 @@ class Dao {
         } catch (Exception $e) {
             echo "connection failed: " . $e->getMessage();
             //$this->logger->logFatal("The database connection failed.");
+            return $this->$FAILURE;
         }
     }
 
@@ -53,10 +59,11 @@ class Dao {
      */
     public function userExists($email){
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT COUNT(*) FROM Users where email = :email;");
+        $query = $conn->prepare("SELECT COUNT(*) FROM Users WHERE email = :email;");
         $query->bindParam(':email', $email);
         $query->execute();
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $results = $query->fetch(PDO::FETCH_ASSOC);
+        $result = $results["COUNT(*)"];
         if ($result) {
             return TRUE;
         } else {
@@ -69,10 +76,15 @@ class Dao {
      * @param $email - The email address of the user.
      * @return $user - The array of user data.
      */
-    public function getUser($email) {
+    public function getUser($email=NULL, $userId=NULL) {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Users where email = :email;");
-        $query->bindParam(':email', $email);
+        if ($email != NULL) {
+            $query = $conn->prepare("SELECT * FROM Users WHERE email = :email;");
+            $query->bindParam(":email", $email);
+        } else if ($userId != NULL) {
+            $query = $conn->prepare("SELECT * FROM Users WHERE user_id = :userId;");
+            $query->bindParam(":userId", $userId);
+        }
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
         return $user;
@@ -84,10 +96,11 @@ class Dao {
      */
     public function isTA($userId) {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT COUNT(*) FROM Teaching_Assistants where user_id = :userId;");
+        $query = $conn->prepare("SELECT COUNT(*) FROM Teaching_Assistants WHERE user_id = :userId;");
         $query->bindParam(":userId", $userId);
         $query->execute();
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $results = $query->fetch(PDO::FETCH_ASSOC);
+        $result = $results["COUNT(*)"];
         if ($result) {
             return TRUE;
         } else {
