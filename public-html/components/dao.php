@@ -283,8 +283,20 @@ class Dao {
 
     public function createAvailableCourse() { }
 
-    public function deleteAvailableCourse() {
-        
+    /**
+     * Attempts to delete a course from the database.
+     * @param $courseId - The course_id corresponding to the row to delete.
+     * @return Returns TRUE if the deletion was successful, else FALSE.
+     */
+    public function deleteAvailableCourse($courseId) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
+        $query->bindParam(":courseId", $courseId);
+        $status = $query->execute();
+        if (status) {
+            return $this->$SUCCESS;
+        }
+        return $this->$FAILURE;
     }
 
     // public function login($username, $password){
