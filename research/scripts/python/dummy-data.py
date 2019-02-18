@@ -33,12 +33,12 @@ def insert_ta(user_id, start, end):
 
 
 def insert_open_ticket(available_course_id, user_id, description, node_number, room_number):
-    return 'INSERT INTO Active_Tickets (available_course_id, user_id, description, node_number, room_number) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'.format(
+    return 'INSERT INTO Open_Tickets (available_course_id, user_id, description, node_number, room_number) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'.format(
         available_course_id, user_id, description, node_number, room_number)
 
 
 def insert_closed_ticket(available_course_id, user_id, description, node_number, room_number):
-    return 'INSERT INTO Completed_Tickets (available_course_id, user_id, description, node_number, room_number) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'.format(
+    return 'INSERT INTO Closed_Tickets (available_course_id, user_id, description, node_number, room_number) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'.format(
         available_course_id, user_id, description, node_number, room_number)
 
 

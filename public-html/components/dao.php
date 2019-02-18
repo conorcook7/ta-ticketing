@@ -197,7 +197,7 @@ class Dao {
         return $teachingAssistants;
     }
 
-    public function closeTicket($) {}
+    public function closeTicket() {}
 
     public function getClosedTickets() {}
 
