@@ -268,20 +268,55 @@ class Dao {
     public function openClosedTicket() { }
 
     /**
-     * Get all of the available courses.
-     * @return $availableCourses - The array of arrays of available courses information.
+     * Get the available course by name, number, or id.
+     * @param $courseId - The course id to search for.
+     * @param $courseNumber - The course number to search for.
+     * @param $courseName - The course name to search for.
+     * @return $availableCourse - The array of course information, else and empty array.
      */
-    public function getAvailableCourses() {
+    public function getAvailableCourse($courseId=NULL, $courseNumber=NULL, $courseName=NULL) {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Available_Courses;");
+        if ($courseId != NULL) {
+            $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_id = :courseId;");
+            $query->bindParam(":courseId", $courseId);
+
+        } else if ($courseNumber != NULL) {
+            $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_number = :courseNumber;");
+            $query->bindParam(":courseNumber", $courseNumber);
+
+        } else if ($courseName != NULL) {
+            $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_name = :courseName;");
+            $query->bindParam(":courseName", $courseName);
+
+        } else {
+            return Array();
+        }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
-        $availableCourses = $query->fetchAll();
+        $availableCourse = $query->fetch(PDO::FETCH_ASSOC);
         //$this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
-        return $availableCourses;
+        return $availableCourse;
     }
 
-    public function createAvailableCourse() { }
+    public function createAvailableCourse($courseNumber, $courseName=NULL, $courseSection=NULL) {
+        $exists = $this->userExists($email);
+        if (!$exists && $this->verifyPassword($password)) {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "INSERT INTO Users (permission_id, email, password, first_name, last_name) " .
+                "VALUES (1, :email, :hashedPassword, :firstName, :lastName);"
+            );
+            $query->bindParam(":email", $email);
+            $query->bindParam(":hashedPassword", $this->hashPassword($password));
+            $query->bindParam(":firstName", $firstName);
+            $query->bindParam(":lastName", $lastName);
+            $status = $query->execute();
+            if (status) {
+                return $this->$SUCCESS;
+            }
+        }
+        return $this->$FAILURE;
+    }
 
     /**
      * Attempts to delete a course from the database.
@@ -297,6 +332,20 @@ class Dao {
             return $this->$SUCCESS;
         }
         return $this->$FAILURE;
+    }
+
+    /**
+     * Get all of the available courses.
+     * @return $availableCourses - The array of arrays of available courses information.
+     */
+    public function getAvailableCourses() {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT * FROM Available_Courses;");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $availableCourses = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
+        return $availableCourses;
     }
 
     // public function login($username, $password){
