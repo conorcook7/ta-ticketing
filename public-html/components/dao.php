@@ -71,6 +71,8 @@ class Dao {
         }
     }
 
+    public function getLogs() { }
+    
     /**
      * Checks if a user exists in the database already.
      * @param $email - The email of the user to check.
@@ -112,24 +114,6 @@ class Dao {
     }
 
     /**
-     * Checks if the user is a TA.
-     * @param $userId - The user_id of the active user.
-     */
-    public function isTeachingAssistant($userId) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT COUNT(*) FROM Teaching_Assistants WHERE user_id = :userId;");
-        $query->bindParam(":userId", $userId);
-        $query->execute();
-        $results = $query->fetch(PDO::FETCH_ASSOC);
-        $result = $results["COUNT(*)"];
-        if ($result) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
-
-    /**
      * Create a user if they do not exist in the database.
      * @param $email - The email address of the user to create.
      * @param $password - The raw password of the user to create.
@@ -158,6 +142,24 @@ class Dao {
     }
 
     /**
+     * Delete a user from the database.
+     * @param $email - The email address of the user to delete from the database.
+     * @return Returns TRUE if the user was deleted, else FALSE.
+     */
+    public function deleteUser($email) {
+        if ($this->userExists($email)) {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("DELETE FROM Users WHERE email = :email;");
+            $query->bindParam(":email", $email);
+            $status = $query->execute();
+            if (status) {
+                return $this->$SUCCESS;
+            }
+        }
+        return $this->$FAILURE;
+    }
+
+    /**
      * Returns all of the users.
      * @return $users - All of the users from the Users table.
      */
@@ -169,6 +171,26 @@ class Dao {
         $users = $query->fetchAll();
         //$this->logger->logDebug(__FUNCTION__ . " " . print_r($users,1));
         return $users;
+    }
+
+    public function getQueueNumber() { }
+
+    /**
+     * Checks if the user is a TA.
+     * @param $userId - The user_id of the active user.
+     */
+    public function isTeachingAssistant($userId) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT COUNT(*) FROM Teaching_Assistants WHERE user_id = :userId;");
+        $query->bindParam(":userId", $userId);
+        $query->execute();
+        $results = $query->fetch(PDO::FETCH_ASSOC);
+        $result = $results["COUNT(*)"];
+        if ($result) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /**
@@ -185,7 +207,29 @@ class Dao {
         return $teachingAssistants;
     }
 
-    public function createTicket() { }
+    public function createTeachingAssistant() { }
+
+    public function deleteTeachingAssistant() { }
+
+    public function getAvailableTeachingAssistants() { }
+
+    /**
+     * Get all of the available permission levels.
+     * @return $permissionLevels - The array of arrays of permission levels information.
+     */
+    public function getPermissionLevels() {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT * FROM Permissions;");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $permissionLevels = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($permissionLevels,1));
+        return $permissionLevels;
+    }
+
+    public function createPermissionsLevel() { }
+
+    public function deletePermissionsLevel() { }
 
     /**
      * Get all of the open tickes.
@@ -200,6 +244,10 @@ class Dao {
         //$this->logger->logDebug(__FUNCTION__ . " " . print_r($openTickets,1));
         return $openTickets;
     }
+
+    public function createTicket() { }
+
+    public function deleteTicket() { }
 
     public function closeTicket() { }
     
@@ -219,8 +267,6 @@ class Dao {
 
     public function openClosedTicket() { }
 
-    public function getQueueNumber() { }
-
     /**
      * Get all of the available courses.
      * @return $availableCourses - The array of arrays of available courses information.
@@ -235,21 +281,11 @@ class Dao {
         return $availableCourses;
     }
 
-    /**
-     * Get all of the available permission levels.
-     * @return $permissionLevels - The array of arrays of permission levels information.
-     */
-    public function getPermissionLevels() {
-        $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Permissions;");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $permissionLevels = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($permissionLevels,1));
-        return $permissionLevels;
-    }
+    public function createAvailableCourse() { }
 
-    public function getLogs() { }
+    public function deleteAvailableCourse() {
+        
+    }
 
     // public function login($username, $password){
     //     $salt = '!@%#^^%*&;rweltkjusofd;iajg168152410';
