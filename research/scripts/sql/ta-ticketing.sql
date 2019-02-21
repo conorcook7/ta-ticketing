@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS Available_Courses (
 CREATE TABLE IF NOT EXISTS Users (
     user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     permission_id BIGINT UNSIGNED NOT NULL,
+    online TINYINT(1) UNSIGNED NOT NULL,
     email VARCHAR(256) NOT NULL UNIQUE,
     password VARCHAR(512) NOT NULL,
     first_name VARCHAR(32),
@@ -41,7 +42,8 @@ CREATE TABLE IF NOT EXISTS Teaching_Assistants (
 CREATE TABLE IF NOT EXISTS Open_Tickets (
     open_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     available_course_id BIGINT UNSIGNED NOT NULL,
-    user_id BIGINT UNSIGNED NOT NULL,
+    creator_user_id BIGINT UNSIGNED NOT NULL,
+    opener_user_id BIGINT UNSIGNED DEFAULT NULL,
     description TEXT,
     node_number INTEGER,
     room_number INTEGER,
@@ -49,13 +51,15 @@ CREATE TABLE IF NOT EXISTS Open_Tickets (
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (opener_user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Closed_Tickets (
     closed_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     available_course_id BIGINT UNSIGNED NOT NULL,
-    user_id BIGINT UNSIGNED NOT NULL,
+    creator_user_id BIGINT UNSIGNED NOT NULL,
+    closer_user_id BIGINT UNSIGNED NOT NULL,
     description TEXT,
     node_number INT,
     room_number INT,
@@ -63,6 +67,7 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (closer_user_id) REFERENCES Users(user_id)
 );
 

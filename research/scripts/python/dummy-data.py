@@ -5,41 +5,100 @@ import os
 import sys
 
 __date__ = '16 February 2019'
-__authors__ = [
-    'Hayden Phothong'
-]
+__authors__ = ['Hayden Phothong']
 
 
 def insert_permission(level, name):
-    return 'INSERT INTO Permissions (permission_level, permission_name) VALUES(\'{}\', \'{}\');\n'.format(
-        level, name)
+    return (
+        'INSERT INTO Permissions (permission_level, permission_name) VALUES('
+        '\'{}\', \'{}\');\n'
+    ).format(
+        level,
+        name
+    )
 
 
 def insert_course(course_name):
     course_number = course_name.split('cs')[1]
     section = str(random.randint(1, 20)).zfill(3)
-    return 'INSERT INTO Available_Courses (course_name, course_number, section) VALUES(\'{}\', \'{}\', \'{}\');\n'.format(
-        course_name, course_number, section)
+    return (
+        'INSERT INTO Available_Courses (course_name, course_number, section)'
+        ' VALUES(\'{}\', \'{}\', \'{}\');\n'
+    ).format(
+        course_name,
+        course_number,
+        section
+    )
 
 
-def insert_user(permission_id, email, password, first_name, last_name):
-    return 'INSERT INTO Users (permission_id, email, password, first_name, last_name) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'.format(
-        permission_id, email, password, first_name, last_name)
+def insert_user(permission_id, online, email, password, first_name, last_name):
+    return (
+        'INSERT INTO Users(permission_id, online, email, password, first_name,'
+        'last_name) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'
+    ).format(
+        permission_id,
+        online,
+        email,
+        password,
+        first_name,
+        last_name
+    )
 
 
 def insert_ta(user_id, start, end):
-    return 'INSERT INTO Teaching_Assistants (user_id, start_time_past_midnight, end_time_past_midnight) VALUES(\'{}\', \'{}\', \'{}\');\n'.format(
-        user_id, start, end)
+    return (
+        'INSERT INTO Teaching_Assistants (user_id, start_time_past_midnight, '
+        'end_time_past_midnight) VALUES(\'{}\', \'{}\', \'{}\');\n'
+    ).format(
+        user_id,
+        start,
+        end
+    )
 
 
-def insert_open_ticket(available_course_id, user_id, description, node_number, room_number):
-    return 'INSERT INTO Open_Tickets (available_course_id, user_id, description, node_number, room_number) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'.format(
-        available_course_id, user_id, description, node_number, room_number)
+def insert_open_ticket(available_course_id, user_id, opener_id, description,
+                       node_number, room_number):
+    if opener_id is not None:
+        return (
+            'INSERT INTO Open_Tickets (available_course_id, creator_user_id,'
+            'opener_user_id, description, node_number, room_number) VALUES('
+            '\'{}\', \'{}\', {}, \'{}\', \'{}\', \'{}\');\n'
+        ).format(
+            available_course_id,
+            user_id,
+            opener_id,
+            description,
+            node_number,
+            room_number
+        )
+    else:
+        return (
+            'INSERT INTO Open_Tickets (available_course_id, creator_user_id,'
+            'description, node_number, room_number) VALUES('
+            '\'{}\', {}, \'{}\', \'{}\', \'{}\');\n'
+        ).format(
+            available_course_id,
+            user_id,
+            description,
+            node_number,
+            room_number
+        )
 
 
-def insert_closed_ticket(available_course_id, user_id, description, node_number, room_number):
-    return 'INSERT INTO Closed_Tickets (available_course_id, user_id, description, node_number, room_number) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'.format(
-        available_course_id, user_id, description, node_number, room_number)
+def insert_closed_ticket(available_course_id, user_id, closer_id, description,
+                         node_number, room_number):
+    return (
+        'INSERT INTO Closed_Tickets (available_course_id, creator_user_id,'
+        'closer_user_id, description, node_number, room_number) VALUES('
+        '\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'
+    ).format(
+        available_course_id,
+        user_id,
+        closer_id,
+        description,
+        node_number,
+        room_number
+    )
 
 
 if __name__ == '__main__':
@@ -122,8 +181,8 @@ if __name__ == '__main__':
         last_name = names[random.randint(0, num_names - 1)]
         email = '{}{}@example.boisestate.edu'.format(first_name, last_name)
         password = '{}.{}.{}'.format(first_name, last_name, permission)
-
-        sql_script.write(insert_user(permission, email,
+        active = random.randint(0, 1)
+        sql_script.write(insert_user(permission, active, email,
                                      password, first_name, last_name))
 
     sql_script.write('\n')
@@ -152,7 +211,7 @@ if __name__ == '__main__':
         contents = lorem_file.readlines()
         contents = [content.strip() for content in contents]
 
-    # Active tickets
+    # Open tickets
     for i in range(10000):
         available_course_id = random.randint(1, len(courses))
         user_id = random.randint(1, len(names))
@@ -164,12 +223,22 @@ if __name__ == '__main__':
         )
         node_number = random.randint(1, 500)
         room_number = random.randint(1, 900)
+
+        # Generate valid TA user id or NULL
+        try:
+            random_index = random.randint(
+                0, (2 * len(teaching_assistants) - 1))
+            ta_id = teaching_assistants[random_index]
+        except IndexError:
+            ta_id = None
+
+        # Insert the data
         sql_script.write(insert_open_ticket(
-            available_course_id, user_id, description, node_number, room_number))
+            available_course_id, user_id, ta_id, description, node_number, room_number))
 
     sql_script.write('\n')
 
-    # Completed tickets
+    # Closed tickets
     for i in range(10000):
         available_course_id = random.randint(1, len(courses))
         user_id = random.randint(1, len(names))
@@ -181,5 +250,11 @@ if __name__ == '__main__':
         )
         node_number = random.randint(1, 500)
         room_number = random.randint(1, 900)
+
+        # Generate valid TA user id
+        ta_index = random.randint(0, len(teaching_assistants) - 1)
+        ta_id = teaching_assistants[ta_index]
+
+        # Insert the data
         sql_script.write(insert_closed_ticket(
-            available_course_id, user_id, description, node_number, room_number))
+            available_course_id, user_id, ta_id, description, node_number, room_number))
