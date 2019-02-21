@@ -4,7 +4,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon">
-          <img src="img/bsu_logo.png" alt="" id="logo">
+          <img src="../img/bsu_logo.png" alt="" id="logo">
         </div>
         <div class="sidebar-brand-text mx-2">Boise State</div>
       </a>

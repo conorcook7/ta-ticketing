@@ -8,15 +8,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
-    <!-- This link is for development    -->
-    <!-- <link href="../public-html/signin.css" rel="stylesheet"> -->
-
-    <!-- This link is for production    -->
-    <link href="signin.css" rel="stylesheet">
+    <link href="../css/signin.css" rel="stylesheet">
 
     <title>Sign-in</title>
   </head>
-   <body class="text-center" style="background-image: url(img/bsu_canvas.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+   <body class="text-center" style="background-image: url(../img/bsu_canvas.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-12 col-lg-12 col-md-12">
@@ -44,8 +40,6 @@
                 </div>  
             </div>
         </div>
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
