@@ -3,3 +3,7 @@
 
 # Vim Backups
 *.*~
+
+# Visual Studio files
+*.vs
+*.vscode
