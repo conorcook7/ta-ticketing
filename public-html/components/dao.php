@@ -441,9 +441,75 @@ class Dao {
         }
     }
 
-    public function deleteTicket() { }
+    /**
+     * Deletes a ticket from the open tickets table
+     * 
+     * @param $openTicketId - The open ticket id that is to be deleted.
+     * @return Returns TRUE if the deletion was successful, else FALSE.
+     */
+    public function deleteTicket($openTicketId) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "DELETE FROM Open_Tickets WHERE open_ticket_id = :openTicketId;"
+        );
+        $query->bindParam(":openTicketId", $openTicketId);
+        if ($query->execute()) {
+            return $this->$SUCCESS;
+        }
+        return $this->$FAILURE;
+    }
 
-    public function closeTicket() { }
+    /**
+     * Moves a ticket from the open ticket table to the closed ticket table.
+     * 
+     * @param $openTicketId - The ticket id that is to be moved.
+     * @param $closerUserId - The user id that closed the ticket.
+     * @return Returns TRUE if the ticket was closed, else FALSE.
+     */
+    public function closeTicket($openTicketId, $closerUserId) {
+        $conn = $this->getConnection();
+        
+        // Get the ticket data to insert into the closed tickets table.
+        $query = $conn->prepare(
+            "SELECT * FROM Open_Tickets WHERE open_ticket_id = :openTicketId;"
+        );
+        $query->bindParam(":openTicketId", $openTicketId);
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        if (!$query->execute()) {
+            return $this->$FAILURE;
+        }
+        $ticket = $query->fetch();
+        if (!isset($ticket)) {
+            return $this->$FAILURE;
+        }
+
+        // Insert the ticket data into the closed tickets table.
+        $query = $conn->prepare(
+            "INSERT INTO Closed_Tickets (available_course_id, creator_user_id,
+             node_number, closer_user_id, description, room_number) VALUES (
+             :availableCourseId, :userId, :nodeNumber, :closerUserId,
+             :description, :roomNumber);"
+        );
+        $query->bindParam(":availableCourseId", $ticket["availableCourseId"]);
+        $query->bindParam(":userId", $ticket["creator_user_id"]);
+        $query->bindParam(":nodeNumber", $ticket["node_number"]);
+        $query->bindParam(":closerUserId", $closerUserId);
+        $query->bindParam(":description", $ticket["description"]);
+        $query->bindParam(":roomNumber", $ticket["room_number"]);
+        if (!$query->execute()) {
+            return $this->$FAILURE;
+        }
+        
+        // Delete the open ticket from the open ticket table.
+        $query = $conn->prepare(
+            "DELETE FROM Open_Tickets WHERE open_ticket_id = :openTicketId;"
+        );
+        $query->bindParam(":openTicketId", $openTicketId);
+        if ($query->execute()) {
+            return $this->$SUCCESS;
+        }
+        return $this->$FAILURE;
+    }
     
     /**
      * Get all of the closed tickes.
