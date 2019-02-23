@@ -585,6 +585,7 @@ class Dao {
      * @return $availableCourse - The array of course information, else and empty array.
      */
     public function getAvailableCourse($courseId=NULL, $courseNumber=NULL, $courseName=NULL) {
+        assert($courseId !== NULL || $courseNumber !== NULL || $courseName !== NULL);
         $conn = $this->getConnection();
         if ($courseId != NULL) {
             $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_id = :courseId;");
