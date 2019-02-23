@@ -363,7 +363,35 @@ class Dao {
         }
     }
 
-    public function deletePermissionsLevel() { }
+    /**
+     * Delete a permission based on id or name.
+     * 
+     * @param $permissionId - The id of the permission to delete.
+     * @param $permissionName - The name of the permission to delete.
+     * @return Returns TRUE if the deletion was successful, else FALSE.
+     */
+    public function deletePermissionsLevel($permissionId=NULL, $permissionName=NULL) {
+        assert($permissionId !== NULL || $permissionName !== NULL);
+        $conn = $this->getConnection();
+        if ($permissionId !== NULL) {
+            $query = $conn->prepare(
+                "DELETE FROM Permissions WHERE permission_id = :permissionId"
+            );
+            $query->bindParam(":permissionId", $permissionId);
+        } else if ($permissionName !== NULL) {
+            $query = $conn->prepare(
+                "DELETE FROM Permissions WHERE permission_name = :permissionName"
+            );
+            $query->bindParam(":permissionName", $permissionName);
+        } else {
+            return $this->$FAILURE;
+        }
+        if ($query->execute()) {
+            return $this->$SUCCESS;
+        } else {
+            return $this->$FAILURE;
+        }
+    }
 
     /**
      * Get all of the open tickes.
