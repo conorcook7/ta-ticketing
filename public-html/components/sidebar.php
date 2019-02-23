@@ -2,7 +2,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../pages/index.php">
         <div class="sidebar-brand-icon">
           <img src="../img/bsu_logo.png" alt="" id="logo">
         </div>
@@ -14,7 +14,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link" href="../pages/index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -36,8 +36,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item <?php if($page == 'buttons.php'){echo 'active';}?>" href="buttons.php">Buttons</a>
-            <a class="collapse-item <?php if($page == 'cards.php'){echo 'active';}?>" href="cards.php">Cards</a>
+            <a class="collapse-item <?php if($page == 'buttons.php'){echo 'active';}?>" href="../examples/buttons.php">Buttons</a>
+            <a class="collapse-item <?php if($page == 'cards.php'){echo 'active';}?>" href="../examples/cards.php">Cards</a>
           </div>
         </div>
       </li>
@@ -51,10 +51,10 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item <?php if($page == 'utilities-color.php'){echo 'active';}?>" href="utilities-color.php">Colors</a>
-            <a class="collapse-item <?php if($page == 'utilities-border.php'){echo 'active';}?>" href="utilities-border.php">Borders</a>
-            <a class="collapse-item <?php if($page == 'utilities-animation.php'){echo 'active';}?>" href="utilities-animation.php">Animations</a>
-            <a class="collapse-item <?php if($page == 'utilities-other.php'){echo 'active';}?>" href="utilities-other.php">Other</a>
+            <a class="collapse-item <?php if($page == 'utilities-color.php'){echo 'active';}?>" href="../examples/utilities-color.php">Colors</a>
+            <a class="collapse-item <?php if($page == 'utilities-border.php'){echo 'active';}?>" href="../examples/utilities-border.php">Borders</a>
+            <a class="collapse-item <?php if($page == 'utilities-animation.php'){echo 'active';}?>" href="../examples/utilities-animation.php">Animations</a>
+            <a class="collapse-item <?php if($page == 'utilities-other.php'){echo 'active';}?>" href="../examples/utilities-other.php">Other</a>
           </div>
         </div>
       </li>
@@ -76,27 +76,26 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login3.php">Login</a>
-            <a class="collapse-item" href="register.php">Register</a>
-            <a class="collapse-item" href="forgot-password.php">Forgot Password</a>
+            <a class="collapse-item" href="../pages/login.php">Login</a>
+            <a class="collapse-item" href="../examples/forgot-password.php">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item <?php if($page == '404.php'){echo 'active';}?>" href="404.php">404 Page</a>
-            <a class="collapse-item <?php if($page == 'blank.php'){echo 'active';}?>" href="blank.php">Blank Page</a>
+            <a class="collapse-item <?php if($page == '404.php'){echo 'active';}?>" href="../examples/404.php">404 Page</a>
+            <a class="collapse-item <?php if($page == 'blank.php'){echo 'active';}?>" href="../examples/blank.php">Blank Page</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item <?php if($nav == 'charts.php'){echo 'active';}?>">
-        <a class="nav-link" href="charts.php">
+        <a class="nav-link" href="../examples/charts.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item <?php if($nav == 'tables.php'){echo 'active';}?>">
-        <a class="nav-link" href="tables.php">
+        <a class="nav-link" href="../examples/tables.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
