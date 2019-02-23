@@ -2,7 +2,7 @@
     require_once "config.php";
     
     if (isset($_SESSION["access_token"])) {
-        header("Location: auth/google-oauth/index.php");
+        header("Location: ../../pages/google-index.php");
         exit();
     }
 
