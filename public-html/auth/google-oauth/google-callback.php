@@ -27,5 +27,5 @@
     $_SESSION['user']['gender'] = $userData['gender'];
 
     // Redirect the user to index page.
-    header("Location: index.php");
+    header("Location: ../../pages/google-index.php");
     exit();
