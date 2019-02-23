@@ -1,5 +1,6 @@
 """Creates dummy data for TA Ticketing project."""
 
+import datetime
 import random
 import os
 import sys
@@ -57,48 +58,63 @@ def insert_ta(user_id, start, end):
 
 
 def insert_open_ticket(available_course_id, user_id, opener_id, description,
-                       node_number, room_number):
+                       node_number, room_number, update_date):
     if opener_id is not None:
         return (
             'INSERT INTO Open_Tickets (available_course_id, creator_user_id,'
-            'opener_user_id, description, node_number, room_number) VALUES('
-            '\'{}\', \'{}\', {}, \'{}\', \'{}\', \'{}\');\n'
+            'opener_user_id, description, node_number, room_number, '
+            'update_date) VALUES(\'{}\', \'{}\', {}, \'{}\', \'{}\', \'{}\', '
+            '\'{}\');\n'
         ).format(
             available_course_id,
             user_id,
             opener_id,
             description,
             node_number,
-            room_number
+            room_number,
+            update_date
         )
     else:
         return (
             'INSERT INTO Open_Tickets (available_course_id, creator_user_id,'
-            'description, node_number, room_number) VALUES('
-            '\'{}\', {}, \'{}\', \'{}\', \'{}\');\n'
+            'description, node_number, room_number, update_date) VALUES('
+            '\'{}\', {}, \'{}\', \'{}\', \'{}\', \'{}\');\n'
         ).format(
             available_course_id,
             user_id,
             description,
             node_number,
-            room_number
+            room_number,
+            update_date
         )
 
 
 def insert_closed_ticket(available_course_id, user_id, closer_id, description,
-                         node_number, room_number):
+                         node_number, room_number, update_date):
     return (
         'INSERT INTO Closed_Tickets (available_course_id, creator_user_id,'
-        'closer_user_id, description, node_number, room_number) VALUES('
-        '\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'
+        'closer_user_id, description, node_number, room_number, update_date) '
+        'VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'
     ).format(
         available_course_id,
         user_id,
         closer_id,
         description,
         node_number,
-        room_number
+        room_number,
+        update_date
     )
+
+
+def get_random_date():
+    """Generate a random date and time."""
+    year = 2019
+    month = random.randint(4, 12)
+    day = random.randint(1, 28)
+    hour = random.randint(0, 23)
+    minute = random.randint(0, 59)
+    second = random.randint(0, 59)
+    return datetime.datetime(year, month, day, hour, minute, second)
 
 
 if __name__ == '__main__':
@@ -236,7 +252,14 @@ if __name__ == '__main__':
 
         # Insert the data
         sql_script.write(insert_open_ticket(
-            available_course_id, user_id, ta_id, description, node_number, room_number))
+            available_course_id,
+            user_id,
+            ta_id,
+            description,
+            node_number,
+            room_number,
+            get_random_date()
+        ))
 
     sql_script.write('\n')
 
@@ -259,4 +282,11 @@ if __name__ == '__main__':
 
         # Insert the data
         sql_script.write(insert_closed_ticket(
-            available_course_id, user_id, ta_id, description, node_number, room_number))
+            available_course_id,
+            user_id,
+            ta_id,
+            description,
+            node_number,
+            room_number,
+            get_random_date()
+        ))
