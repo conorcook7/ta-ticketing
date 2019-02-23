@@ -407,7 +407,39 @@ class Dao {
         return $openTickets;
     }
 
-    public function createTicket() { }
+    /**
+     * Create a new open ticket to store in the database.
+     * 
+     * @param $availableCourseId - The course id that was selected.
+     * @param $userId - The user id that created the ticket.
+     * @param $nodeNumber - The node number where the ticket was created.
+     * @param $openerUserId - The user id of the person who re-openned the ticket.
+     * @param $description - The description that was typed in the ticket.
+     * @param $roomNumber - The room number that the ticket was submitted from.
+     * @return Returns TRUE if the creation was successful, else FALSE.
+     */
+    public function createTicket($availableCourseId, $userId, $nodeNumber,
+                                 $openerUserId=NULL, $description=NULL,
+                                 $roomNumber=NULL) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "INSERT INTO Open_Tickets (available_course_id, creator_user_id,
+             node_number, opener_user_id, description, room_number) VALUES (
+             :availableCourseId, :userId, :nodeNumber, :openerUserId,
+             :description, :roomNumber);"
+        );
+        $query->bindParam(":availableCourseId", $availableCourseId);
+        $query->bindParam(":userId", $userId);
+        $query->bindParam(":nodeNumber", $nodeNumber);
+        $query->bindParam(":openerUserId", $openerUserId);
+        $query->bindParam(":description", $description);
+        $query->bindParam(":roomNumber", $roomNumber);
+        if ($query->execute()) {
+            return $this->$SUCCESS;
+        } else {
+            return $this->$FAILURE;
+        }
+    }
 
     public function deleteTicket() { }
 
