@@ -209,11 +209,15 @@ class Dao {
 
     /**
      * Checks if the user is a TA.
+     * 
      * @param $userId - The user_id of the active user.
      */
     public function isTeachingAssistant($userId) {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT COUNT(*) FROM Teaching_Assistants WHERE user_id = :userId;");
+        $query = $conn->prepare(
+            "SELECT COUNT(*) FROM Teaching_Assistants
+            WHERE user_id = :userId;"
+        );
         $query->bindParam(":userId", $userId);
         $query->execute();
         $results = $query->fetch(PDO::FETCH_ASSOC);
@@ -227,11 +231,15 @@ class Dao {
 
     /**
      * Returns all of the teaching assistants with information about them.
+     * 
      * @return $teachingAssistants - The array of arrays for each teaching assistant.
      */
     public function getTeachingAssistants() {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Teaching_Assistants JOIN Users ON Teaching_Assistants.user_id = Users.user_id;");
+        $query = $conn->prepare(
+            "SELECT * FROM Teaching_Assistants JOIN Users
+             ON Teaching_Assistants.user_id = Users.user_id;"
+        );
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $teachingAssistants = $query->fetchAll();
@@ -239,7 +247,39 @@ class Dao {
         return $teachingAssistants;
     }
 
-    public function createTeachingAssistant() { }
+    /**
+     * Create a new teaching assistant based on an existing user.
+     * 
+     * @param $userId - The user id of the student to add to the TAs.
+     * @param $startTime - The start time past midnight for the TA to work.
+     * @param $endTime - The end time past midnight for the TA to stop work.
+     * @return Returns TRUE if the creation was successful, else FALSE.
+     */
+    public function createTeachingAssistant($userId, $startTime, $endTime) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "INSERT INTO Teaching_Assistants (user_id,
+             start_time_past_midnight, end_time_past_midnight) VALUES (
+             :userId, :startTime, :endTime)"
+        );
+        $query->bindParam(":userId", $userId);
+        $query->bindParam(":startTime", $startTime);
+        $query->bindParam(":endTime", $endTime);
+        if ($query->execute()) {
+            $query = $conn->prepare(
+                "UPDATE TABLE Users SET permission_id = 2 
+                 WHERE user_id = :userId"
+            );
+            $query->bindParam(":userId", $userId);
+            if ($query->execute()) {
+                return $this->$SUCCESS;
+            } else {
+                return $this->$FAILURE;
+            }
+        } else {
+            return $this->$FAILURE;
+        }
+    }
 
     public function deleteTeachingAssistant() { }
 
