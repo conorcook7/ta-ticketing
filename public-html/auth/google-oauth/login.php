@@ -32,15 +32,8 @@
                             <img class="mb-4 image" src="https://www.cludo.com/wp-content/uploads/2018/10/Boise-State-University-Logo.png" alt="" width="300" height="194">
                              <h1 id="please-sign" class="h3 mb-3 font-weight-normal">Please sign in</h1>
                             <div class="form-group">
-                                <label for="inputEmail" class="sr-only">Email address</label>
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword" class="sr-only">Password</label>
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <button onclick="window.location = '<?php echo $loginUrl ?>';" class="btn btn-lg btn-primary btn-block" type="button"><i class="fas fa-sign-in-alt"></i>     Sign in</button>
+                                <a href="<?php echo $loginUrl ?>">Google Login Link</a>
+                                <button onclick="window.location = '<?php echo $loginUrl ?>';" class="btn btn-lg btn-primary btn-block" type="button"><i class="fas fa-sign-in-alt"></i>Google Sign In</button>
                             </div>
                              <p id="please-sign" class="mt-5 mb-3">&copy; Boise State University 2019</p>
                          </form>
