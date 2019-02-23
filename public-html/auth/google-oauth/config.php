@@ -12,5 +12,5 @@ require_once __DIR__.'/../../vendor/autoload.php';
     $client->setApplicationName('TA Ticketing');
     $client->setClientId($clientId);
     $client->setClientSecret($clientSecret);
-    $client->setRedirectUri('http://132.178.215.87/auth/google-oauth/google-callback.php');
+    $client->setRedirectUri('http://taticketing.boisestate.edu/auth/google-oauth/google-callback.php');
     $client->addScope('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
