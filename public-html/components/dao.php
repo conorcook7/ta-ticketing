@@ -281,7 +281,34 @@ class Dao {
         }
     }
 
-    public function deleteTeachingAssistant() { }
+    /**
+     * Delete a teaching assistant and change the user permissions to user status.
+     * 
+     * @param $userId - The user id of the person to remove from TAs.
+     * @return Return TRUE if the delete was successful, else FALSE.
+     */
+    public function deleteTeachingAssistant($userId) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "UPDATE TABLE Users SET permission_id = 1
+             WHERE user_id = :userId"
+        );
+        $query->bindParam(":userId", $userId);
+        if ($query->execute()) {
+            $query = $conn->prepare(
+                "DELETE FROM Teaching_Assistants
+                 WHERE user_id = :userId;"
+            );
+            $query->bindParam(":userId", $userId);
+            if ($query->execute()) {
+                return $this->$SUCCESS;
+            } else {
+                return $this->$FAILURE;
+            }
+        } else {
+            return $this->$FAILURE;
+        }
+    }
 
     public function getAvailableTeachingAssistants() { }
 
