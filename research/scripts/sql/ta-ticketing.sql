@@ -3,7 +3,6 @@ USE TA_Ticketing;
 
 CREATE TABLE IF NOT EXISTS Permissions (
     permission_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-    permission_level INT NOT NULL UNIQUE,
     permission_name VARCHAR(256) NOT NULL UNIQUE
 );
 

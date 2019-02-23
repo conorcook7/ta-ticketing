@@ -9,12 +9,11 @@ __date__ = '16 February 2019'
 __authors__ = ['Hayden Phothong']
 
 
-def insert_permission(level, name):
+def insert_permission(name):
     return (
-        'INSERT INTO Permissions (permission_level, permission_name) VALUES('
-        '\'{}\', \'{}\');\n'
+        'INSERT INTO Permissions (permission_name) VALUES('
+        '\'{}\');\n'
     ).format(
-        level,
         name
     )
 
@@ -158,9 +157,9 @@ if __name__ == '__main__':
     sql_script.write('\n')
 
     # Insert permissions
-    sql_script.write(insert_permission(1, 'USER'))
-    sql_script.write(insert_permission(2, 'TA'))
-    sql_script.write(insert_permission(3, 'ADMIN'))
+    sql_script.write(insert_permission('USER'))
+    sql_script.write(insert_permission('TA'))
+    sql_script.write(insert_permission('ADMIN'))
     sql_script.write('\n')
 
     # Insert courses
