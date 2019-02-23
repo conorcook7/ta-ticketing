@@ -342,7 +342,26 @@ class Dao {
         return $permissionLevels;
     }
 
-    public function createPermissionsLevel() { }
+    /**
+     * Attempts to create a permission level. The method will fail if the
+     * permisson name already exists in the database.
+     * 
+     * @param $permissionName - The unique permission name to add to the database.
+     * @return Returns TRUE if the creation was successful, else FALSE.
+     */
+    public function createPermissionsLevel($permissionName) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "INSERT INTO Permissions (permission_name)
+             VALUES (:permissionName);"
+        );
+        $query->bindParam(":permissionName", $permissionName);
+        if ($query->execute()) {
+            return $this->$SUCCESS;
+        } else {
+            return $this->$FAILURE;
+        }
+    }
 
     public function deletePermissionsLevel() { }
 
