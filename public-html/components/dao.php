@@ -525,7 +525,57 @@ class Dao {
         return $closedTickets;
     }
 
-    public function openClosedTicket() { }
+    /**
+     * Opens a closed ticket by moving it from the closed table to the open ticket table.
+     * 
+     * @param $closedTicketId - The ticket id to be opened again.
+     * @param $openerTicketId - The person that opened the ticket again.
+     * @return Returns TRUE if the ticket was able to be opened again, else FALSE.
+     */
+    public function openClosedTicket($closedTicketId, $openerUserId) {
+        $conn = $this->getConnection();
+        
+        // Get the ticket data to insert into the closed tickets table.
+        $query = $conn->prepare(
+            "SELECT * FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId;"
+        );
+        $query->bindParam(":closedTicketId", $closedTicketId);
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        if (!$query->execute()) {
+            return $this->$FAILURE;
+        }
+        $ticket = $query->fetch();
+        if (!isset($ticket)) {
+            return $this->$FAILURE;
+        }
+
+        // Insert the ticket data into the closed tickets table.
+        $query = $conn->prepare(
+            "INSERT INTO Open_Tickets (available_course_id, creator_user_id,
+             node_number, opener_user_id, description, room_number) VALUES (
+             :availableCourseId, :userId, :nodeNumber, :openerUserId,
+             :description, :roomNumber);"
+        );
+        $query->bindParam(":availableCourseId", $ticket["availableCourseId"]);
+        $query->bindParam(":userId", $ticket["creator_user_id"]);
+        $query->bindParam(":nodeNumber", $ticket["node_number"]);
+        $query->bindParam(":openerUserId", $openerUserId);
+        $query->bindParam(":description", $ticket["description"]);
+        $query->bindParam(":roomNumber", $ticket["room_number"]);
+        if (!$query->execute()) {
+            return $this->$FAILURE;
+        }
+        
+        // Delete the open ticket from the open ticket table.
+        $query = $conn->prepare(
+            "DELETE FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId;"
+        );
+        $query->bindParam(":closedTicketId", $closedTicketId);
+        if ($query->execute()) {
+            return $this->$SUCCESS;
+        }
+        return $this->$FAILURE;
+    }
 
     /**
      * Get the available course by name, number, or id.
