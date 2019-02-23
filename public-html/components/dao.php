@@ -609,22 +609,24 @@ class Dao {
         return $availableCourse;
     }
 
+    /**
+     * Creates an available course to select from in the UI.
+     * 
+     * @param $courseNumber - The string version of the course number.
+     * @param $courseName - The name of the course.
+     * @param $courseSection - The section of the course.
+     */
     public function createAvailableCourse($courseNumber, $courseName=NULL, $courseSection=NULL) {
-        $exists = $this->userExists($email);
-        if (!$exists && $this->verifyPassword($password)) {
-            $conn = $this->getConnection();
-            $query = $conn->prepare(
-                "INSERT INTO Users (permission_id, email, password, first_name, last_name) " .
-                "VALUES (1, :email, :hashedPassword, :firstName, :lastName);"
-            );
-            $query->bindParam(":email", $email);
-            $query->bindParam(":hashedPassword", $this->hashPassword($password));
-            $query->bindParam(":firstName", $firstName);
-            $query->bindParam(":lastName", $lastName);
-            $status = $query->execute();
-            if (status) {
-                return $this->$SUCCESS;
-            }
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "INSERT INTO Available_Courses (course_number, course_name, section)
+             VALUES (:courseNumber, :courseName, :courseSection);"
+        );
+        $query->bindParam(":courseNumber", $courseNumber);
+        $query->bindParam(":courseName", $courseName);
+        $query->bindParam(":courseSection", $courseSection);
+        if ($query->execute()) {
+            return $this->$SUCCESS;
         }
         return $this->$FAILURE;
     }
