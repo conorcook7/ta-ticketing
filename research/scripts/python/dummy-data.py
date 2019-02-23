@@ -124,8 +124,10 @@ if __name__ == '__main__':
         CREATE DATABASE Dummy_TA_Ticketing;
         USE Dummy_TA_Ticketing;
 
-        CREATE USER IF NOT EXISTS 'ta-ticketing'@'localhost' IDENTIFIED BY '34$5iu98&7o7%76d4Ss35';
-        GRANT ALL PRIVILEGES ON TA_Ticketing.* TO 'ta-ticketing'@'localhost' WITH GRANT OPTION;
+        DROP USER IF EXISTS 'ta-ticketing'@'localhost';
+        CREATE USER 'ta-ticketing'@'localhost' IDENTIFIED WITH
+        mysql_native_password BY '34$5iu98&7o7%76d4Ss35';
+        GRANT ALL PRIVILEGES ON Dummy_TA_Ticketing.* TO 'ta-ticketing'@'localhost' WITH GRANT OPTION;
         """
     )
 

@@ -8,8 +8,8 @@
  */
 class Dao {
   
-    const SUCCESS = TRUE;
-    const FAILURE = FALSE;
+    private const SUCCESS = TRUE;
+    private const FAILURE = FALSE;
 
     private $db;
     private $user = "ta-ticketing";
@@ -19,6 +19,7 @@ class Dao {
 
     /**
      * Constructor for the Dao object.
+     * 
      * @param $database - The database name to connect to.
      */
     public function __construct($database) {
@@ -28,11 +29,12 @@ class Dao {
   
     /**
      * Attempts to connect to the local MySQL instance with the user ta-ticketing.
+     * 
      * @return $conn - The connection to the localhost MySQL database.
      */
     public function getConnection() {
         try{
-            $conn = new PDO("mysql:host=localhost;dbname={$this->db}", $this->user, $this->pass);
+            $conn = new PDO("mysql:host=127.0.0.1;dbname={$this->db}", $this->user, $this->pass);
             //$this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
@@ -44,6 +46,7 @@ class Dao {
 
     /**
      * Hashes the password with a salt using the MD5 encryption method.
+     * 
      * @param $password - The password to hash.
      * @return Returns the hashed password.
      */
@@ -75,6 +78,7 @@ class Dao {
     
     /**
      * Checks if a user exists in the database already.
+     * 
      * @param $email - The email of the user to check.
      * @return Returns TRUE if the user exists, else FALSE.
      */
@@ -94,6 +98,7 @@ class Dao {
 
     /**
      * Returns the user with the specific email address.
+     * 
      * @param $email - The email address of the user.
      * @return $user - The array of user data.
      */
@@ -115,6 +120,7 @@ class Dao {
 
     /**
      * Create a user if they do not exist in the database.
+     * 
      * @param $email - The email address of the user to create.
      * @param $password - The raw password of the user to create.
      * @param $firstName - The first name of the user if given, else NULL.
@@ -143,6 +149,7 @@ class Dao {
 
     /**
      * Delete a user from the database.
+     * 
      * @param $email - The email address of the user to delete from the database.
      * @return Returns TRUE if the user was deleted, else FALSE.
      */
@@ -173,7 +180,30 @@ class Dao {
         return $users;
     }
 
-    public function getQueueNumber() { }
+    /**
+     * Returns the place in line that the user currently is.
+     * 
+     * @param $userId - The user ID of the user to check for.
+     * @return Returns the place the user currently is, else -1.
+     */
+    public function getQueueNumber($userId) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "SELECT Users.user_id, Users.first_name, MAX(Open_Tickets.update_date)
+             FROM Users JOIN Open_Tickets ON Users.user_id = Open_Tickets.creator_user_id
+             WHERE Users.online = 1 GROUP BY Users.user_id
+             ORDER BY MAX(Open_Tickets.update_date) ASC;"
+        );
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $openTicketOrder = $query->fetchAll();
+        for ($i = 0; $i < count($openTicketOrder); $i++) {
+            if ($openTicketOrder[$i]["user_id"] == $userId) {
+                return ($i + 1);
+            }
+        }
+        return -1;
+    }
 
     /**
      * Checks if the user is a TA.

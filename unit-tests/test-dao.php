@@ -10,8 +10,7 @@ final class DaoTest extends TestCase {
         $this->dao = new Dao("Dummy_TA_Ticketing");
         $this->correctEmails = [
             "CooperHazel@example.boisestate.edu",
-            "ClaireHannah@example.boisestate.edu",
-            "EliEzra@example.boisestate.edu"
+            "EzraCooper@example.boisestate.edu"
         ];
         $this->incorrectEmails = [
             "HaydenPhothong@u.boisestate.edu",
@@ -49,18 +48,20 @@ final class DaoTest extends TestCase {
         $email = "CooperHazel@example.boisestate.edu";
         $user = $this->dao->getUser($email);
 
-        $this->assertSame($user["user_id"], "7");
+        $this->assertSame($user["user_id"], "5");
         $this->assertSame($user["permission_id"], "2");
+        $this->assertSame($user["online"], "0");
         $this->assertSame($user["email"], "CooperHazel@example.boisestate.edu");
         $this->assertSame($user["password"], "Cooper.Hazel.2");
         $this->assertSame($user["first_name"], "Cooper");
         $this->assertSame($user["last_name"], "Hazel");
 
-        $userId = "7";
+        $userId = "5";
         $user = $this->dao->getUser($email);
         
-        $this->assertSame($user["user_id"], "7");
+        $this->assertSame($user["user_id"], "5");
         $this->assertSame($user["permission_id"], "2");
+        $this->assertSame($user["online"], "0");
         $this->assertSame($user["email"], "CooperHazel@example.boisestate.edu");
         $this->assertSame($user["password"], "Cooper.Hazel.2");
         $this->assertSame($user["first_name"], "Cooper");
@@ -72,5 +73,11 @@ final class DaoTest extends TestCase {
         $this->assertEmpty($user);
 
         $this->assertEmpty($this->dao->getUser());
+    }
+
+    public function testGetQueueNumber() {
+        $placeInLine = $this->dao->getQueueNumber(195);
+        
+        $this->assertSame($placeInLine, 102);
     }
 }
