@@ -12,5 +12,5 @@ require_once __DIR__.'/../../vendor/autoload.php';
     $client->setApplicationName('TA Ticketing');
     $client->setClientId($clientId);
     $client->setClientSecret($clientSecret);
-    $client->setRedirectUri('http://localhost:8080/auth/google-oauth/google-callback.php');
+    $client->setRedirectUri('http://localhost/auth/google-oauth/google-callback.php');
     $client->addScope('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
