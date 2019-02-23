@@ -189,10 +189,12 @@ class Dao {
     public function getQueueNumber($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "SELECT Users.user_id, Users.first_name, MAX(Open_Tickets.update_date)
-             FROM Users JOIN Open_Tickets ON Users.user_id = Open_Tickets.creator_user_id
-             WHERE Users.online = 1 GROUP BY Users.user_id
-             ORDER BY MAX(Open_Tickets.update_date) ASC;"
+            "SELECT Users.user_id, Users.first_name, MIN(Open_Tickets.update_date)
+             FROM Users INNER JOIN Open_Tickets
+             ON Users.user_id = Open_Tickets.creator_user_id
+             WHERE Users.online = 1
+             GROUP BY Users.user_id
+             ORDER BY MIN(Open_Tickets.update_date) ASC;"
         );
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
