@@ -633,6 +633,7 @@ class Dao {
 
     /**
      * Attempts to delete a course from the database.
+     * 
      * @param $courseId - The course_id corresponding to the row to delete.
      * @return Returns TRUE if the deletion was successful, else FALSE.
      */
@@ -640,8 +641,7 @@ class Dao {
         $conn = $this->getConnection();
         $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
         $query->bindParam(":courseId", $courseId);
-        $status = $query->execute();
-        if (status) {
+        if ($query->execute()) {
             return $this->$SUCCESS;
         }
         return $this->$FAILURE;
@@ -649,6 +649,7 @@ class Dao {
 
     /**
      * Get all of the available courses.
+     * 
      * @return $availableCourses - The array of arrays of available courses information.
      */
     public function getAvailableCourses() {
