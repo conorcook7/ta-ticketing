@@ -310,7 +310,23 @@ class Dao {
         }
     }
 
-    public function getAvailableTeachingAssistants() { }
+    /**
+     * Get all of the teaching assistants online right now.
+     * 
+     * @return $availableTeachingAssistants - The TAs online right now.
+     */
+    public function getAvailableTeachingAssistants() {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "SELECT * FROM Teaching_Assistants INNER JOIN Users
+             ON Teaching_Assistants.user_id = Users.user_id
+             WHERE Users.online = 1;"
+        );
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $availableTeachingAssistants = $query->fetchAll();
+        return $availableTeachingAssistants;
+    }
 
     /**
      * Get all of the available permission levels.
