@@ -1,6 +1,6 @@
 <?php
 
-    require_once __DIR__."config.php";
+    require_once __DIR__."/config.php";
 
     if (isset($_SESSION["access_token"])) {
         $client->setAccessToken($_SESSION["access_token"]);
