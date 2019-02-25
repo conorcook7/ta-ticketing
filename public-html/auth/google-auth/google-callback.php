@@ -6,7 +6,7 @@
         $client->setAccessToken($_SESSION["access_token"]);
 
     } else if (isset($_GET["code"])) {
-        $token = $client->fetchAcessTokenWithAuthCode($_GET["code"]);
+        $token = $client->fetchAccessTokenWithAuthCode($_GET["code"]);
         $_SESSION["access_token"] = $token;
 
     } else {
@@ -24,7 +24,7 @@
     $_SESSION['user']['picture'] = $userData['picture'];
     $_SESSION['user']['gender'] = $userData['gender'];
 
-    echo "<pre>" . var_dump($userData);
+    echo "<pre>" . var_dump($userData); 
 
     // Redirect the user to index page.
     // header("Location: ../../pages/google-index.php");
