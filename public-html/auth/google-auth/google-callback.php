@@ -21,10 +21,10 @@
         $_SESSION["access_token"] = $token;
     }
 
-
+    echo "<pre>" . print_r($_SESSION, 1) . "</pre>"; 
     // Store user data in the session.
-    $google_oauth = new \Google_Service_Oauth2($client);
-    $userData = $google_oauth->userinfo_v2_me->get();
+    // $google_oauth = new Google_Service_Oauth2($client);
+    // $userData = $google_oauth->userinfo_v2_me->get();
     // $_SESSION['user']['id'] = $userData['id'];
     // $_SESSION['user']['email'] = $userData['email'];
     // $_SESSION['user']['familyName'] = $userData['familyName'];
@@ -32,7 +32,7 @@
     // $_SESSION['user']['picture'] = $userData['picture'];
     // $_SESSION['user']['gender'] = $userData['gender'];
 
-    echo "<pre>" . print_r($userData, 1) . "</pre>"; 
+    // echo "<pre>" . print_r($userData, 1) . "</pre>"; 
 
     // Redirect the user to index page.
     // header("Location: ../../pages/google-index.php");
