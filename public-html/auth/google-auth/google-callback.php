@@ -10,7 +10,7 @@
         $_SESSION["access_token"] = $token;
 
     } else {
-        header("Location: login.php");
+        header("Location: ../../pages/google-index.php");
         exit();
     }
 
