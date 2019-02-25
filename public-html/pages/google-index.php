@@ -2,7 +2,7 @@
     session_start();
 
     if (!isset($_SESSION["access_token"])) {
-        header("Location: ../auth/google-oauth/login.php");
+        header("Location: ../auth/google-auth/login.php");
         exit();
     }
 ?>
