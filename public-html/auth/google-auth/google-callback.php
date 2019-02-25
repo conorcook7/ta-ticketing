@@ -14,8 +14,6 @@
         exit();
     }
 
-    
-
     // Store user data in the session.
     $google_oauth = new Google_Service_Oauth2($client);
     $userData = $google_oauth->userinfo_v2_me->get();
@@ -26,6 +24,8 @@
     $_SESSION['user']['picture'] = $userData['picture'];
     $_SESSION['user']['gender'] = $userData['gender'];
 
+    echo "<pre>" . var_dump($userData);
+
     // Redirect the user to index page.
-    header("Location: ../../pages/google-index.php");
-    exit();
+    // header("Location: ../../pages/google-index.php");
+    // exit();
