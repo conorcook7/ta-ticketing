@@ -24,7 +24,7 @@
     $_SESSION['user']['picture'] = $userData['picture'];
     $_SESSION['user']['gender'] = $userData['gender'];
 
-    echo "<pre>" . var_dump($userData); 
+    echo "<pre>" . print_r($userData, 1) . "</pre>"; 
 
     // Redirect the user to index page.
     // header("Location: ../../pages/google-index.php");
