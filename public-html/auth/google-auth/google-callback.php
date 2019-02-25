@@ -23,7 +23,7 @@
 
 
     // Store user data in the session.
-    $google_oauth = new Google_Service_Oauth2($client);
+    $google_oauth = new \Google_Service_Oauth2($client);
     $userData = $google_oauth->userinfo_v2_me->get();
     // $_SESSION['user']['id'] = $userData['id'];
     // $_SESSION['user']['email'] = $userData['email'];
