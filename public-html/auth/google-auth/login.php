@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__."config.php";
+    require_once __DIR__."/config.php";
     
     if (isset($_SESSION["access_token"])) {
         header("Location: " . __DIR__ . "../../pages/google-index.php");
