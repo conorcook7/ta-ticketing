@@ -41,7 +41,7 @@
               <td><?php echo $user['permission_id']; ?></td>
               <td><?php echo $user['user_id']; ?></td>
             </tr>
-          <?php $count += 1}; ?>
+          <?php $count += 1;} ?>
           </tbody>
         </table>
       </div>
