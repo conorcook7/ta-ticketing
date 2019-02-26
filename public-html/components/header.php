@@ -1,7 +1,7 @@
 <?php 
     session_start();
     require_once 'Dao.php';
-    $dao = new Dao();
+    $dao = new Dao("Dummy_TA_Ticketing");
 ?>
 <!DOCTYPE html>
 <html lang="en">
