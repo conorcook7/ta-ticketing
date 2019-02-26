@@ -19,16 +19,31 @@
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
-        <?php
-        echo "<tr><th>Name</th><th>Email</th><th>Permission Level</th><th>User ID</th></tr>";
-        $users = $dao->getUsers();
-        foreach($users as $user) {
-            print   "<tr><td>" . htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']). "</td>" .
-                    "<td>" . htmlspecialchars($user['email']) . "</td>" .
-                    "<td>" . $user['permission_id'] . "</td>" .
-                    "<td>" . $user['user_id'] . "</td></tr>";
-        } ?>
-      
+        
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Permission Level</th>
+            <th scope="col">User ID</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php
+            $users = $dao->getUsers();
+            $count = 1
+            foreach($users as $user) { ?>
+            <tr>
+              <th scope="row"><?php echo $count ?></th>
+              <td><?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']) ?></td>
+              <td><?php echo htmlspecialchars($user['email']) ?></td>
+              <td><?php $user['permission_id'] ?></td>
+              <td><?php $user['user_id'] ?></td>
+            </tr>
+          <?php $count += 1} ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
