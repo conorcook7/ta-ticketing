@@ -34,7 +34,7 @@ class Dao {
      */
     public function getConnection() {
         try{
-            $conn = new PDO("mysql:host=127.0.0.1;dbname={$this->db}", $this->user, $this->pass);
+            $conn = new PDO("mysql:host=132.178.215.87;dbname={$this->db}", $this->user, $this->pass);
             //$this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
