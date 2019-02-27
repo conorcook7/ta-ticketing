@@ -2,7 +2,7 @@
 //modal?
 require_once '../components/dao.php';
 
-$dao = new Dao('Dummy_TA-Ticketing');
+$dao = new Dao();
 $users = $dao->getUsers();
 $availableTAs = $dao->getAvailableTeachingAssistants();
 $allOpenTickets = $dao->getOpenTickets();
