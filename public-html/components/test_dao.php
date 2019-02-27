@@ -532,7 +532,7 @@ class Dao {
      * @param $closedTicketId - The ticket id to be opened again.
      * @param $openerTicketId - The person that opened the ticket again.
      * @return Returns TRUE if the ticket was able to be opened again, else FALSE.
-     */ /**
+     */
     public function openClosedTicket($closedTicketId, $openerUserId) {
         $conn = $this->getConnection();
         
@@ -584,7 +584,7 @@ class Dao {
      * @param $courseNumber - The course number to search for.
      * @param $courseName - The course name to search for.
      * @return $availableCourse - The array of course information, else and empty array.
-     */ /**
+     */
     public function getAvailableCourse($courseId=NULL, $courseNumber=NULL, $courseName=NULL) {
         assert($courseId !== NULL || $courseNumber !== NULL || $courseName !== NULL);
         $conn = $this->getConnection();
@@ -616,7 +616,7 @@ class Dao {
      * @param $courseNumber - The string version of the course number.
      * @param $courseName - The name of the course.
      * @param $courseSection - The section of the course.
-     */ /**
+     */
     public function createAvailableCourse($courseNumber, $courseName=NULL, $courseSection=NULL) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
