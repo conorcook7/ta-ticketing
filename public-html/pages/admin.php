@@ -1,6 +1,6 @@
 <?php 
   require_once '../components/header.php';
-  require_once '../components/Dao.php'; ?>
+  require_once '../components/dao.php'; ?>
 
 <body id="page-top">
 
