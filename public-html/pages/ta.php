@@ -1,12 +1,15 @@
 <?php
 //modal?
 require_once '../components/dao.php';
-
-$dao = new Dao();
+try{
+$dao = new Dao('Dummy_TA-Ticketing');
 $users = $dao->getUsers();
 $availableTAs = $dao->getAvailableTeachingAssistants();
 $allOpenTickets = $dao->getOpenTickets();
 $availableCourses = $dao->getAvailableCourses();
+}catch(Exception $e) {
+    echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
