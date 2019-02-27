@@ -7,9 +7,8 @@
  * The user is only created in the Dummy_TA_Ticketing database, it will have to be added manually to the production DB.
  */
 class Dao {
- /** 
-    private const SUCCESS = TRUE;*/
-    private const FAILURE = FALSE;
+    private SUCCESS = TRUE;
+    private FAILURE = FALSE;
 
     private $db;
     private $user = "ta-ticketing";
