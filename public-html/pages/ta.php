@@ -1,5 +1,4 @@
 <?php
-//modal?
 require_once '../components/dao.php';
 try{
 $dao = new Dao('Dummy_TA-Ticketing');
@@ -9,6 +8,7 @@ $allOpenTickets = $dao->getOpenTickets();
 $availableCourses = $dao->getAvailableCourses();
 }catch(Exception $e) {
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
+    exit(0);
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ $availableCourses = $dao->getAvailableCourses();
 
 
     <!-- Start of Sidebar -->
-    <?php include_once '../components/sidebar.php'; '../handlers/ta-handler.php'; ?>
+    <?php include_once '../components/sidebar.php';?>
     <!-- End of Sidebar -->
 
 
@@ -94,10 +94,6 @@ $availableCourses = $dao->getAvailableCourses();
                   <tbody>
                   <?php 
                     foreach ($allOpenTickets as $allOpens) {
-                        // if ($allOpens['id'] == 4) 
-                        //     echo $allOpens['value'];
-
-                        // }
                     ?><tr>
                       <td><?php echo $allOpens['open_ticket_id']?></td>
                       <td><?php echo $allOpens['creator_user_id']?></td>
@@ -132,6 +128,10 @@ $availableCourses = $dao->getAvailableCourses();
                             </button></th>
                     </tr>
                     <?php
+                    //quick fix to speed up rendering while developing
+                    if($allOpens['open_ticket_id'] == "500"){
+                        break;
+                    }
                     }?>
                   </tbody>
                 </table>
