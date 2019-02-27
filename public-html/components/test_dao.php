@@ -50,7 +50,7 @@ class Dao {
      * 
      * @param $password - The password to hash.
      * @return Returns the hashed password.
-     */ /**
+     */
     private function hashPassword($password) {
         $salt = '!@%#^^%*&;rweltkjusofd;iajg168152410';
         return md5($password . $salt);
@@ -65,7 +65,7 @@ class Dao {
      * 
      * @param $password - The password to verify.
      * @return Returns TRUE if the password matches the criteria, else FALSE.
-     */ /**
+     */
     public function verifyPassword($password){
         $regex='/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
         if (preg_match($regex, $password)) {
@@ -82,7 +82,7 @@ class Dao {
      * 
      * @param $email - The email of the user to check.
      * @return Returns TRUE if the user exists, else FALSE.
-     */ /**
+     */
     public function userExists($email){
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT COUNT(*) FROM Users WHERE email = :email;");
@@ -102,7 +102,7 @@ class Dao {
      * 
      * @param $email - The email address of the user.
      * @return $user - The array of user data.
-     */ /**
+     */
     public function getUser($email=NULL, $userId=NULL) {
         $conn = $this->getConnection();
         if ($email != NULL) {
@@ -127,7 +127,7 @@ class Dao {
      * @param $firstName - The first name of the user if given, else NULL.
      * @param $lastName - The last name of the user if given, else NULL.
      * @return Returns TRUE if the user was created, else FALSE
-     */ /**
+     */
     public function createUser($email, $password, $firstName=NULL, $lastName=NULL) {
         $exists = $this->userExists($email);
         if (!$exists && $this->verifyPassword($password)) {
@@ -153,7 +153,7 @@ class Dao {
      * 
      * @param $email - The email address of the user to delete from the database.
      * @return Returns TRUE if the user was deleted, else FALSE.
-     */ /**
+     */
     public function deleteUser($email) {
         if ($this->userExists($email)) {
             $conn = $this->getConnection();
@@ -170,7 +170,7 @@ class Dao {
     /**
      * Returns all of the users.
      * @return $users - All of the users from the Users table.
-     */ /**
+     */
     public function getUsers(){
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Users;");
