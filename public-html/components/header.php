@@ -1,7 +1,5 @@
 <?php 
     session_start();
-    require_once 'Dao.php';
-    $dao = new Dao("TA_Ticketing");
 ?>
 <!DOCTYPE html>
 <html lang="en">
