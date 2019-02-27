@@ -26,7 +26,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include_once '../components/sidebar.php'; ?>
+    <!-- <?php include_once '../components/sidebar.php'; ?> -->
     <!-- End of Sidebar -->
 
 
@@ -37,7 +37,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <?php include_once '../components/topbar.php'; ?>
+        <!-- <?php include_once '../components/topbar.php'; ?> -->
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
