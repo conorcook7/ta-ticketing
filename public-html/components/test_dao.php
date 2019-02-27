@@ -6,8 +6,8 @@
  * The data access object (Dao) for the website. This object uses a standard user for the local mysql instance.
  * The user is only created in the Dummy_TA_Ticketing database, it will have to be added manually to the production DB.
  */
-class Dao {
-  
+class Dao {}
+ /** 
     private const SUCCESS = TRUE;
     private const FAILURE = FALSE;
 
@@ -22,7 +22,7 @@ class Dao {
      * Constructor for the Dao object.
      * 
      * @param $database - The database name to connect to.
-     */
+     */ /**
     public function __construct($database) {
         //$this->logger = new KLogger('../../ta-ticketing.log', KLogger::DEBUG);
         $this->db = $database;
@@ -32,7 +32,7 @@ class Dao {
      * Attempts to connect to the local MySQL instance with the user ta-ticketing.
      * 
      * @return $conn - The connection to the localhost MySQL database.
-     */
+     */ /**
     public function getConnection() {
         try{
             $conn = new PDO("mysql:host=127.0.0.1;dbname={$this->db}", $this->user, $this->pass);
@@ -50,7 +50,7 @@ class Dao {
      * 
      * @param $password - The password to hash.
      * @return Returns the hashed password.
-     */
+     */ /**
     private function hashPassword($password) {
         $salt = '!@%#^^%*&;rweltkjusofd;iajg168152410';
         return md5($password . $salt);
@@ -65,7 +65,7 @@ class Dao {
      * 
      * @param $password - The password to verify.
      * @return Returns TRUE if the password matches the criteria, else FALSE.
-     */
+     */ /**
     public function verifyPassword($password){
         $regex='/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/';
         if (preg_match($regex, $password)) {
@@ -82,7 +82,7 @@ class Dao {
      * 
      * @param $email - The email of the user to check.
      * @return Returns TRUE if the user exists, else FALSE.
-     */
+     */ /**
     public function userExists($email){
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT COUNT(*) FROM Users WHERE email = :email;");
@@ -102,7 +102,7 @@ class Dao {
      * 
      * @param $email - The email address of the user.
      * @return $user - The array of user data.
-     */
+     */ /**
     public function getUser($email=NULL, $userId=NULL) {
         $conn = $this->getConnection();
         if ($email != NULL) {
@@ -127,7 +127,7 @@ class Dao {
      * @param $firstName - The first name of the user if given, else NULL.
      * @param $lastName - The last name of the user if given, else NULL.
      * @return Returns TRUE if the user was created, else FALSE
-     */
+     */ /**
     public function createUser($email, $password, $firstName=NULL, $lastName=NULL) {
         $exists = $this->userExists($email);
         if (!$exists && $this->verifyPassword($password)) {
@@ -153,7 +153,7 @@ class Dao {
      * 
      * @param $email - The email address of the user to delete from the database.
      * @return Returns TRUE if the user was deleted, else FALSE.
-     */
+     */ /**
     public function deleteUser($email) {
         if ($this->userExists($email)) {
             $conn = $this->getConnection();
@@ -170,7 +170,7 @@ class Dao {
     /**
      * Returns all of the users.
      * @return $users - All of the users from the Users table.
-     */
+     */ /**
     public function getUsers(){
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Users;");
@@ -186,7 +186,7 @@ class Dao {
      * 
      * @param $userId - The user ID of the user to check for.
      * @return Returns the place the user currently is, else -1.
-     */
+     */ /**
     public function getQueueNumber($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -212,7 +212,7 @@ class Dao {
      * Checks if the user is a TA.
      * 
      * @param $userId - The user_id of the active user.
-     */
+     */ /**
     public function isTeachingAssistant($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -234,7 +234,7 @@ class Dao {
      * Returns all of the teaching assistants with information about them.
      * 
      * @return $teachingAssistants - The array of arrays for each teaching assistant.
-     */
+     */ /**
     public function getTeachingAssistants() {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -255,7 +255,7 @@ class Dao {
      * @param $startTime - The start time past midnight for the TA to work.
      * @param $endTime - The end time past midnight for the TA to stop work.
      * @return Returns TRUE if the creation was successful, else FALSE.
-     */
+     */ /**
     public function createTeachingAssistant($userId, $startTime, $endTime) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -287,7 +287,7 @@ class Dao {
      * 
      * @param $userId - The user id of the person to remove from TAs.
      * @return Return TRUE if the delete was successful, else FALSE.
-     */
+     */ /**
     public function deleteTeachingAssistant($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -315,7 +315,7 @@ class Dao {
      * Get all of the teaching assistants online right now.
      * 
      * @return $availableTeachingAssistants - The TAs online right now.
-     */
+     */ /**
     public function getAvailableTeachingAssistants() {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -332,7 +332,7 @@ class Dao {
     /**
      * Get all of the available permission levels.
      * @return $permissionLevels - The array of arrays of permission levels information.
-     */
+     */ /**
     public function getPermissionLevels() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Permissions;");
@@ -349,7 +349,7 @@ class Dao {
      * 
      * @param $permissionName - The unique permission name to add to the database.
      * @return Returns TRUE if the creation was successful, else FALSE.
-     */
+     */ /**
     public function createPermissionsLevel($permissionName) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -370,7 +370,7 @@ class Dao {
      * @param $permissionId - The id of the permission to delete.
      * @param $permissionName - The name of the permission to delete.
      * @return Returns TRUE if the deletion was successful, else FALSE.
-     */
+     */ /**
     public function deletePermissionsLevel($permissionId=NULL, $permissionName=NULL) {
         assert($permissionId !== NULL || $permissionName !== NULL);
         $conn = $this->getConnection();
@@ -397,7 +397,7 @@ class Dao {
     /**
      * Get all of the open tickes.
      * @return $openTickets - The array of arrays of open tickets information.
-     */
+     */ /**
     public function getOpenTickets() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Open_Tickets;");
@@ -418,7 +418,7 @@ class Dao {
      * @param $description - The description that was typed in the ticket.
      * @param $roomNumber - The room number that the ticket was submitted from.
      * @return Returns TRUE if the creation was successful, else FALSE.
-     */
+     */ /**
     public function createTicket($availableCourseId, $userId, $nodeNumber,
                                  $openerUserId=NULL, $description=NULL,
                                  $roomNumber=NULL) {
@@ -447,7 +447,7 @@ class Dao {
      * 
      * @param $openTicketId - The open ticket id that is to be deleted.
      * @return Returns TRUE if the deletion was successful, else FALSE.
-     */
+     */ /**
     public function deleteTicket($openTicketId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -466,7 +466,7 @@ class Dao {
      * @param $openTicketId - The ticket id that is to be moved.
      * @param $closerUserId - The user id that closed the ticket.
      * @return Returns TRUE if the ticket was closed, else FALSE.
-     */
+     */ /**
     public function closeTicket($openTicketId, $closerUserId) {
         $conn = $this->getConnection();
         
@@ -515,7 +515,7 @@ class Dao {
     /**
      * Get all of the closed tickes.
      * @return $closedTickets - The array of arrays of closed tickets information.
-     */
+     */ /**
     public function getClosedTickets() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Closed_Tickets;");
@@ -532,7 +532,7 @@ class Dao {
      * @param $closedTicketId - The ticket id to be opened again.
      * @param $openerTicketId - The person that opened the ticket again.
      * @return Returns TRUE if the ticket was able to be opened again, else FALSE.
-     */
+     */ /**
     public function openClosedTicket($closedTicketId, $openerUserId) {
         $conn = $this->getConnection();
         
@@ -584,7 +584,7 @@ class Dao {
      * @param $courseNumber - The course number to search for.
      * @param $courseName - The course name to search for.
      * @return $availableCourse - The array of course information, else and empty array.
-     */
+     */ /**
     public function getAvailableCourse($courseId=NULL, $courseNumber=NULL, $courseName=NULL) {
         assert($courseId !== NULL || $courseNumber !== NULL || $courseName !== NULL);
         $conn = $this->getConnection();
@@ -616,7 +616,7 @@ class Dao {
      * @param $courseNumber - The string version of the course number.
      * @param $courseName - The name of the course.
      * @param $courseSection - The section of the course.
-     */
+     */ /**
     public function createAvailableCourse($courseNumber, $courseName=NULL, $courseSection=NULL) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -637,7 +637,7 @@ class Dao {
      * 
      * @param $courseId - The course_id corresponding to the row to delete.
      * @return Returns TRUE if the deletion was successful, else FALSE.
-     */
+     */ /**
     public function deleteAvailableCourse($courseId) {
         $conn = $this->getConnection();
         $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
@@ -652,7 +652,7 @@ class Dao {
      * Get all of the available courses.
      * 
      * @return $availableCourses - The array of arrays of available courses information.
-     */
+     */ /**
     public function getAvailableCourses() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Available_Courses;");
@@ -692,5 +692,5 @@ class Dao {
     //     }
     // }
      
-}
+} */
 ?>
