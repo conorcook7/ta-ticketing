@@ -22,7 +22,7 @@ class Dao {
      * Constructor for the Dao object.
      * 
      * @param $database - The database name to connect to.
-     */ /**
+     */
     public function __construct($database) {
         //$this->logger = new KLogger('../../ta-ticketing.log', KLogger::DEBUG);
         $this->db = $database;
