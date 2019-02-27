@@ -186,7 +186,7 @@ class Dao {
      * 
      * @param $userId - The user ID of the user to check for.
      * @return Returns the place the user currently is, else -1.
-     */ /**
+     */
     public function getQueueNumber($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -212,7 +212,7 @@ class Dao {
      * Checks if the user is a TA.
      * 
      * @param $userId - The user_id of the active user.
-     */ /**
+     */
     public function isTeachingAssistant($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -234,7 +234,7 @@ class Dao {
      * Returns all of the teaching assistants with information about them.
      * 
      * @return $teachingAssistants - The array of arrays for each teaching assistant.
-     */ /**
+     */
     public function getTeachingAssistants() {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -255,7 +255,7 @@ class Dao {
      * @param $startTime - The start time past midnight for the TA to work.
      * @param $endTime - The end time past midnight for the TA to stop work.
      * @return Returns TRUE if the creation was successful, else FALSE.
-     */ /**
+     */
     public function createTeachingAssistant($userId, $startTime, $endTime) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -287,7 +287,7 @@ class Dao {
      * 
      * @param $userId - The user id of the person to remove from TAs.
      * @return Return TRUE if the delete was successful, else FALSE.
-     */ /**
+     */
     public function deleteTeachingAssistant($userId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
