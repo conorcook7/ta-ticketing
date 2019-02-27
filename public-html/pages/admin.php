@@ -30,18 +30,9 @@
           </tr>
           </thead>
           <tbody>
-         <!-- <?php
-            $users = $dao->getUsers();
-            $count = 1;
-            foreach($users as $user) { ?>
             <tr>
-              <th scope="row"><?php echo $count; ?></th>
-              <td><?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']); ?></td>
-              <td><?php echo htmlspecialchars($user['email']); ?></td>
-              <td><?php echo $user['permission_id']; ?></td>
-              <td><?php echo $user['user_id']; ?></td>
+              <td>test</td>
             </tr>
-          <?php $count += 1;} ?> -->
           </tbody>
         </table>
       </div>
