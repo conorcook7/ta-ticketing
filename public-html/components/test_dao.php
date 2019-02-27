@@ -418,7 +418,7 @@ class Dao {
      * @param $description - The description that was typed in the ticket.
      * @param $roomNumber - The room number that the ticket was submitted from.
      * @return Returns TRUE if the creation was successful, else FALSE.
-     */ /**
+     */
     public function createTicket($availableCourseId, $userId, $nodeNumber,
                                  $openerUserId=NULL, $description=NULL,
                                  $roomNumber=NULL) {
@@ -447,7 +447,7 @@ class Dao {
      * 
      * @param $openTicketId - The open ticket id that is to be deleted.
      * @return Returns TRUE if the deletion was successful, else FALSE.
-     */ /**
+     */
     public function deleteTicket($openTicketId) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -466,7 +466,7 @@ class Dao {
      * @param $openTicketId - The ticket id that is to be moved.
      * @param $closerUserId - The user id that closed the ticket.
      * @return Returns TRUE if the ticket was closed, else FALSE.
-     */ /**
+     */
     public function closeTicket($openTicketId, $closerUserId) {
         $conn = $this->getConnection();
         
@@ -515,7 +515,7 @@ class Dao {
     /**
      * Get all of the closed tickes.
      * @return $closedTickets - The array of arrays of closed tickets information.
-     */ /**
+     */
     public function getClosedTickets() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Closed_Tickets;");
