@@ -13,9 +13,8 @@ class Dao {
 
     private $db;
     //private $host = '132.178.215.87';
-    private $user = "ta-ticketing";
+    private $user = "ta-ticketing";*/
     private $pass = "34$5iu98&7o7%76d4Ss35";
-    */
     protected $logger;
 
     /**
