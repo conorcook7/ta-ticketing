@@ -8,11 +8,10 @@
  */
 class Dao {
   
-    private const SUCCESS = TRUE;
-    private const FAILURE = FALSE;
+    private $SUCCESS = TRUE;
+    private $FAILURE = FALSE;
 
     private $db;
-    //private $host = '132.178.215.87';
     private $user = "ta-ticketing";
     private $pass = "34$5iu98&7o7%76d4Ss35";
 
@@ -41,7 +40,7 @@ class Dao {
         } catch (Exception $e) {
             echo "connection failed: " . $e->getMessage();
             //$this->logger->logFatal("The database connection failed.");
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
     }
 
@@ -142,10 +141,10 @@ class Dao {
             $query->bindParam(":lastName", $lastName);
             $status = $query->execute();
             if (status) {
-                return $this->$SUCCESS;
+                return $this->SUCCESS;
             }
         }
-        return $this->$FAILURE;
+        return $this->FAILURE;
     }
 
     /**
@@ -161,10 +160,10 @@ class Dao {
             $query->bindParam(":email", $email);
             $status = $query->execute();
             if (status) {
-                return $this->$SUCCESS;
+                return $this->SUCCESS;
             }
         }
-        return $this->$FAILURE;
+        return $this->FAILURE;
     }
 
     /**
@@ -273,12 +272,12 @@ class Dao {
             );
             $query->bindParam(":userId", $userId);
             if ($query->execute()) {
-                return $this->$SUCCESS;
+                return $this->SUCCESS;
             } else {
-                return $this->$FAILURE;
+                return $this->FAILURE;
             }
         } else {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
     }
 
@@ -302,12 +301,12 @@ class Dao {
             );
             $query->bindParam(":userId", $userId);
             if ($query->execute()) {
-                return $this->$SUCCESS;
+                return $this->SUCCESS;
             } else {
-                return $this->$FAILURE;
+                return $this->FAILURE;
             }
         } else {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
     }
 
@@ -358,9 +357,9 @@ class Dao {
         );
         $query->bindParam(":permissionName", $permissionName);
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         } else {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
     }
 
@@ -385,12 +384,12 @@ class Dao {
             );
             $query->bindParam(":permissionName", $permissionName);
         } else {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         } else {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
     }
 
@@ -436,9 +435,9 @@ class Dao {
         $query->bindParam(":description", $description);
         $query->bindParam(":roomNumber", $roomNumber);
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         } else {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
     }
 
@@ -455,9 +454,9 @@ class Dao {
         );
         $query->bindParam(":openTicketId", $openTicketId);
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         }
-        return $this->$FAILURE;
+        return $this->FAILURE;
     }
 
     /**
@@ -477,11 +476,11 @@ class Dao {
         $query->bindParam(":openTicketId", $openTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         if (!$query->execute()) {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
         $ticket = $query->fetch();
         if (!isset($ticket)) {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
 
         // Insert the ticket data into the closed tickets table.
@@ -498,7 +497,7 @@ class Dao {
         $query->bindParam(":description", $ticket["description"]);
         $query->bindParam(":roomNumber", $ticket["room_number"]);
         if (!$query->execute()) {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
         
         // Delete the open ticket from the open ticket table.
@@ -507,9 +506,9 @@ class Dao {
         );
         $query->bindParam(":openTicketId", $openTicketId);
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         }
-        return $this->$FAILURE;
+        return $this->FAILURE;
     }
     
     /**
@@ -543,11 +542,11 @@ class Dao {
         $query->bindParam(":closedTicketId", $closedTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         if (!$query->execute()) {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
         $ticket = $query->fetch();
         if (!isset($ticket)) {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
 
         // Insert the ticket data into the closed tickets table.
@@ -564,7 +563,7 @@ class Dao {
         $query->bindParam(":description", $ticket["description"]);
         $query->bindParam(":roomNumber", $ticket["room_number"]);
         if (!$query->execute()) {
-            return $this->$FAILURE;
+            return $this->FAILURE;
         }
         
         // Delete the open ticket from the open ticket table.
@@ -573,9 +572,9 @@ class Dao {
         );
         $query->bindParam(":closedTicketId", $closedTicketId);
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         }
-        return $this->$FAILURE;
+        return $this->FAILURE;
     }
 
     /**
@@ -627,9 +626,9 @@ class Dao {
         $query->bindParam(":courseName", $courseName);
         $query->bindParam(":courseSection", $courseSection);
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         }
-        return $this->$FAILURE;
+        return $this->FAILURE;
     }
 
     /**
@@ -643,9 +642,9 @@ class Dao {
         $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
         $query->bindParam(":courseId", $courseId);
         if ($query->execute()) {
-            return $this->$SUCCESS;
+            return $this->SUCCESS;
         }
-        return $this->$FAILURE;
+        return $this->FAILURE;
     }
 
     /**
