@@ -8,9 +8,9 @@
  */
 class Dao {
  /** 
-    private const SUCCESS = TRUE;
+    private const SUCCESS = TRUE;*/
     private const FAILURE = FALSE;
-*/
+
     private $db;
     private $user = "ta-ticketing";
     private $pass = "34$5iu98&7o7%76d4Ss35";
