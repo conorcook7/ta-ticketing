@@ -637,7 +637,7 @@ class Dao {
      * 
      * @param $courseId - The course_id corresponding to the row to delete.
      * @return Returns TRUE if the deletion was successful, else FALSE.
-     */ /**
+     */
     public function deleteAvailableCourse($courseId) {
         $conn = $this->getConnection();
         $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
