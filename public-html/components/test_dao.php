@@ -315,7 +315,7 @@ class Dao {
      * Get all of the teaching assistants online right now.
      * 
      * @return $availableTeachingAssistants - The TAs online right now.
-     */ /**
+     */
     public function getAvailableTeachingAssistants() {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -332,7 +332,7 @@ class Dao {
     /**
      * Get all of the available permission levels.
      * @return $permissionLevels - The array of arrays of permission levels information.
-     */ /**
+     */
     public function getPermissionLevels() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Permissions;");
@@ -349,7 +349,7 @@ class Dao {
      * 
      * @param $permissionName - The unique permission name to add to the database.
      * @return Returns TRUE if the creation was successful, else FALSE.
-     */ /**
+     */
     public function createPermissionsLevel($permissionName) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
@@ -370,7 +370,7 @@ class Dao {
      * @param $permissionId - The id of the permission to delete.
      * @param $permissionName - The name of the permission to delete.
      * @return Returns TRUE if the deletion was successful, else FALSE.
-     */ /**
+     */
     public function deletePermissionsLevel($permissionId=NULL, $permissionName=NULL) {
         assert($permissionId !== NULL || $permissionName !== NULL);
         $conn = $this->getConnection();
@@ -397,7 +397,7 @@ class Dao {
     /**
      * Get all of the open tickes.
      * @return $openTickets - The array of arrays of open tickets information.
-     */ /**
+     */
     public function getOpenTickets() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Open_Tickets;");
