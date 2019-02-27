@@ -6,7 +6,7 @@
  * The data access object (Dao) for the website. This object uses a standard user for the local mysql instance.
  * The user is only created in the Dummy_TA_Ticketing database, it will have to be added manually to the production DB.
  */
-class Dao {}
+class Dao {
  /** 
     private const SUCCESS = TRUE;
     private const FAILURE = FALSE;
@@ -637,7 +637,7 @@ class Dao {}
      * 
      * @param $courseId - The course_id corresponding to the row to delete.
      * @return Returns TRUE if the deletion was successful, else FALSE.
-     */ /**
+     */
     public function deleteAvailableCourse($courseId) {
         $conn = $this->getConnection();
         $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
@@ -652,7 +652,7 @@ class Dao {}
      * Get all of the available courses.
      * 
      * @return $availableCourses - The array of arrays of available courses information.
-     */ /**
+     */
     public function getAvailableCourses() {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Available_Courses;");
@@ -692,5 +692,5 @@ class Dao {}
     //     }
     // }
      
-} */
+}
 ?>
