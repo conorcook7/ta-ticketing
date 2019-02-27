@@ -32,7 +32,7 @@ class Dao {
      * Attempts to connect to the local MySQL instance with the user ta-ticketing.
      * 
      * @return $conn - The connection to the localhost MySQL database.
-     */ /**
+     */
     public function getConnection() {
         try{
             $conn = new PDO("mysql:host=127.0.0.1;dbname={$this->db}", $this->user, $this->pass);
