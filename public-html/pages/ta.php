@@ -1,7 +1,7 @@
 <?php
 require_once '../components/dao.php';
 try{
-$dao = new Dao('Dummy_TA-Ticketing');
+$dao = new Dao('Dummy_TA_Ticketing');
 $users = $dao->getUsers();
 $availableTAs = $dao->getAvailableTeachingAssistants();
 $allOpenTickets = $dao->getOpenTickets();
