@@ -76,6 +76,7 @@ $availableCourses = $dao->getAvailableCourses();
                     <tr>
                       <th>Queue #</th>
                       <th>Student Name</th>
+                      <th>Node</th>
                       <th>Course</th>
                       <th>Description</th>
                       <th>Action</th>
@@ -96,8 +97,9 @@ $availableCourses = $dao->getAvailableCourses();
                     foreach ($allOpenTickets as $allOpens) {
                     ?><tr>
                       <td><?php echo $allOpens['open_ticket_id']?></td>
-                      <td><?php echo $allOpens['creator_user_id']?></td>
-                      <td><?php echo $allOpens['available_course_id']?></td>
+                      <td><?php echo $allOpens['first_name'], " ", $allOpens['last_name']?></td>
+                      <td><?php echo $allOpens['node_number']?></td>
+                      <td><?php echo $allOpens['course_number']?></td>
                       <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
