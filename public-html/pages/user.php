@@ -54,7 +54,7 @@
 				foreach($tas as $ta){?>
 				<tr>
 					<td><?php echo htmlspecialchars($ta['first_name']) . " " . htmlspecialchars($ta['last_name']); ?></td>
-					<td><?php echo htmlspechialchars($ta['email']); ?></td>
+					<td><?php echo htmlspecialchars($ta['email']); ?></td>
 				<tr>
 			<?php } ?>
 		  </tbody>
