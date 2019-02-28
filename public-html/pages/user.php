@@ -28,7 +28,7 @@
           <tr>
             <th scope="col">Course Name</th>
             <th scope="col">Course Number</th>
-          </tr
+          </tr>
 		  </thead>
 		  <tbody>
 			<?php
@@ -38,7 +38,7 @@
           <td><?php echo htmlspecialchars($course['course_name']); ?></td>
 					<td><?php echo htmlspecialchars($course['course_number']); ?></td>
 				</tr>
-			<?php} ?>
+			<?php } ?>
 		  </tbody>
 		</table><br />
 		<table class = "table">
