@@ -8,8 +8,8 @@
  */
 class Dao {
   
-    private $SUCCESS = 1;
-    private $FAILURE = 0;
+    private $SUCCESS = TRUE;
+    private $FAILURE = FALSE;
 
     private $db;
     private $user = "ta-ticketing";
