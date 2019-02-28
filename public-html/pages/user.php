@@ -33,34 +33,30 @@
 		  <tbody>
 			<?php
 				$courses = $dao->getAvailableCourses();
-				$count = 1;
 				foreach($courses as $course){?>
 				<tr>
-					<th scope="row"><?php echo count; ?></th>
-        			<td><?php echo htmlspecialchars($course['course_name']); ?></td>
+          <td><?php echo htmlspecialchars($course['course_name']); ?></td>
 					<td><?php echo htmlspecialchars($course['course_number']); ?></td>
 				</tr>
-			<?php $count +=1;} ?>
+			<?php} ?>
 		  </tbody>
 		</table><br />
 		<table class = "table">
 		  <thead>
 		  <tr>
 		  	<th scope = "col">Name</th>
-			<th scope = "col">Email</th>
+			  <th scope = "col">Email</th>
 		  </tr>
 		  </thead>
 		  <tbody>
 			<?php
 				$tas = $dao->getAvailableTeachingAssistants();
-				$count = 1;
 				foreach($tas as $ta){?>
 				<tr>
-					<th scope = "row"><?php echo count; ?></th>
 					<td><?php echo htmlspecialchars($ta['first_name']) . " " . htmlspecialchars($ta['last_name']); ?></td>
 					<td><?php echo htmlspechialchars($ta['email']); ?></td>
 				<tr>
-			<?php $count += 1;} ?>
+			<?php } ?>
 		  </tbody>
 		</table>
 	 </div>
