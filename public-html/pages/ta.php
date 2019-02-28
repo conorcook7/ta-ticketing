@@ -75,6 +75,7 @@ $availableCourses = $dao->getAvailableCourses();
                   <thead>
                     <tr>
                       <th>Queue #</th>
+                      <!-- <th>Ticket ID</th> -->
                       <th>Student Name</th>
                       <th>Node</th>
                       <th>Course</th>
@@ -94,12 +95,18 @@ $availableCourses = $dao->getAvailableCourses();
                   </tfoot> -->
                   <tbody>
                   <?php 
-                    foreach ($allOpenTickets as $allOpens) {
-                    ?><tr>
-                      <td><?php echo $allOpens['open_ticket_id']?></td>
-                      <td><?php echo $allOpens['first_name'], " ", $allOpens['last_name']?></td>
-                      <td><?php echo $allOpens['node_number']?></td>
-                      <td><?php echo $allOpens['course_number']?></td>
+                    $max = sizeof($allOpenTickets);
+                    $queue = 0;
+                    for ($index = 0; $index <= $max; $index++) {
+                      if($allOpenTickets[$index]['online'] == 1){
+                        $queue++;
+                   ?>
+                      <tr>
+                      <td><?php echo $queue?></td>
+                      <!-- <td><?php //echo $allOpenTickets[$index]['open_ticket_id']?></td> -->
+                      <td><?php echo $allOpenTickets[$index]['first_name'], " ", $allOpenTickets[$index]['last_name']?></td>
+                      <td><?php echo $allOpenTickets[$index]['node_number']?></td>
+                      <td><?php echo $allOpenTickets[$index]['course_number']?></td>
                       <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -116,7 +123,7 @@ $availableCourses = $dao->getAvailableCourses();
                                             <span aria-hidden="true">&times;</span>
                                          </button>
                                         </div>
-                                        <div class="modal-body"><?php echo $allOpens['description']?>
+                                        <div class="modal-body"><?php echo $allOpenTickets[$index]['description']?>
                                          </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -130,11 +137,7 @@ $availableCourses = $dao->getAvailableCourses();
                             </button></th>
                     </tr>
                     <?php
-                    //quick fix to speed up rendering while developing
-                    if($allOpens['open_ticket_id'] == "500"){
-                        break;
-                    }
-                    }?>
+                    }}?>
                   </tbody>
                 </table>
               </div>
