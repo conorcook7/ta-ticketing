@@ -4,7 +4,7 @@ ini_set("display_errors","On");
 
 require_once '../components/dao.php';
 
-$dao = new Dao('Dummy_TA-Ticketing');
+$dao = new Dao('Dummy_TA_Ticketing');
 $users = $dao->getUsers();
 $availableTAs = $dao->getAvailableTeachingAssistants();
 $allOpenTickets = $dao->getOpenTickets();
@@ -13,12 +13,12 @@ $availableCourses = $dao->getAvailableCourses();
 //getSpecificOpens
 //closeTicket
 
-
+echo sizeof($allOpenTickets);
 // print_r($allOpenTickets);
-foreach($allOpenTickets as $opens){
-    echo $opens['open_ticket_id'] ,"<br>";
-    echo $opens['opener_user_id']  ,"<br>";
-}
+// foreach($allOpenTickets as $opens){
+//     echo $opens['open_ticket_id'] ,"<br>";
+//     echo $opens['opener_user_id']  ,"<br>";
+// }
 
 // if(!empty($users)){
 //     echo "Users has data <br>";
