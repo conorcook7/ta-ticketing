@@ -1,12 +1,12 @@
 <?php
 
-    require "../../../vendor/autoload.php";
+    require "../../vendor/autoload.php";
 
     // Step 1: Set up the google client
     $googleClient = new Google_Client();
     $googleClient->setClientId("153288048540-sogdggkb32ugai855a0uffo0d7h2hqnq.apps.googleusercontent.com");
     $googleClient->setClientSecret("ZyXV3mVUVs89rDkuq8RjFaH4");
-    $googleClient->setRedirectUri("http://localhost:8080/google.php");
+    $googleClient->setRedirectUri("http://taticketing.boisestate.edu/auth/google-auth/google.php");
     $googleClient->setScopes("email profile");
 
     // Step 2: Create the authorization url
