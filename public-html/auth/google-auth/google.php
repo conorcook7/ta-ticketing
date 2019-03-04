@@ -39,6 +39,4 @@
     }
 
     // Step 5: If payload is set then redirect to index.php, else redirect to login.
-    if (isset($payload)) {
-        echo "<pre>" . print_r($payload, 1) . "</pre>";
-    }
+    echo "<pre>" . print_r($payload, 1) . "</pre>";
