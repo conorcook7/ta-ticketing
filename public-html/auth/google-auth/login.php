@@ -11,7 +11,7 @@
         $_SESSION["access_token"] = $token;
 
     } else {
-        header("Location: " . $loginUrl);
+        header("Location: " . $client->createAuthUrl());
         exit();
     }
 
