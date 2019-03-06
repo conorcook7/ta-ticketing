@@ -105,6 +105,7 @@ class Dao {
      * @return $user - The array of user data.
      */
     public function getUser($email=NULL, $userId=NULL) {
+        assert($email !== NULL || $userId !== NULL);
         $conn = $this->getConnection();
         if ($email !== NULL) {
             $query = $conn->prepare(
