@@ -250,7 +250,7 @@ class Dao {
         $conn = $this->getConnection();
         $query = $conn->prepare(
             "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
-             ON Teaching_Assistants.user_id = Users.user_id;"
+             ON TA.user_id = U.user_id;"
         );
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
