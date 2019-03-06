@@ -106,10 +106,18 @@ class Dao {
     public function getUser($email=NULL, $userId=NULL) {
         $conn = $this->getConnection();
         if ($email != NULL) {
-            $query = $conn->prepare("SELECT * FROM Users WHERE email = :email;");
+            $query = $conn->prepare(
+                "SELECT * FROM Users as U JOIN Permissions as P
+                 ON U.permission_id = P.permission_id
+                 WHERE email = :email;"
+            );
             $query->bindParam(":email", $email);
         } else if ($userId != NULL) {
-            $query = $conn->prepare("SELECT * FROM Users WHERE user_id = :userId;");
+            $query = $conn->prepare(
+                "SELECT * FROM Users as U JOIN Permissions as P
+                 ON U.permission_id = P.permission_id
+                 WHERE user_id = :userId;"
+            );
             $query->bindParam(":userId", $userId);
         } else {
             return Array();
