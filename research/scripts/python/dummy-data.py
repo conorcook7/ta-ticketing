@@ -45,12 +45,13 @@ def insert_user(permission_id, online, email, password, first_name, last_name):
     )
 
 
-def insert_ta(user_id, start, end):
+def insert_ta(user_id, available_course_id, start, end):
     return (
-        'INSERT INTO Teaching_Assistants (user_id, start_time_past_midnight, '
-        'end_time_past_midnight) VALUES(\'{}\', \'{}\', \'{}\');\n'
+        'INSERT INTO Teaching_Assistants (user_id, available_course_id, start_time_past_midnight, '
+        'end_time_past_midnight) VALUES(\'{}\', \'{}\', \'{}\', \'{}\');\n'
     ).format(
         user_id,
+        available_course_id,
         start,
         end
     )
@@ -217,9 +218,10 @@ if __name__ == '__main__':
             str(random.randint(0, 59)).zfill(2),
             str(random.randint(0, 59)).zfill(2)
         )
+        course_taught = random.randint(1, len(courses))
 
         sql_script.write(
-            insert_ta(user_id, start_time_past_midnight, end_time_past_midnight))
+            insert_ta(user_id, course_taught, start_time_past_midnight, end_time_past_midnight))
 
     sql_script.write('\n')
 
