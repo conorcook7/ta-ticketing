@@ -252,18 +252,20 @@ class Dao {
      * Create a new teaching assistant based on an existing user.
      * 
      * @param $userId - The user id of the student to add to the TAs.
+     * @param $courseId - The course id of the class the TA is hired for.
      * @param $startTime - The start time past midnight for the TA to work.
      * @param $endTime - The end time past midnight for the TA to stop work.
      * @return Returns TRUE if the creation was successful, else FALSE.
      */
-    public function createTeachingAssistant($userId, $startTime, $endTime) {
+    public function createTeachingAssistant($userId, $courseId, $startTime, $endTime) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "INSERT INTO Teaching_Assistants (user_id,
+            "INSERT INTO Teaching_Assistants (user_id, available_course_id,
              start_time_past_midnight, end_time_past_midnight) VALUES (
-             :userId, :startTime, :endTime)"
+             :userId, :courseId, :startTime, :endTime)"
         );
         $query->bindParam(":userId", $userId);
+        $query->bindParam(":courseId", $courseId);
         $query->bindParam(":startTime", $startTime);
         $query->bindParam(":endTime", $endTime);
         if ($query->execute()) {
