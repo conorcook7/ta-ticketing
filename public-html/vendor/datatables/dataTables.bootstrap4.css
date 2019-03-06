@@ -1,3 +1,21 @@
+.center{
+  text-align: center;
+}
+.courseInfo{
+  width: 13%;
+}
+.description{
+  width: 16%;
+}
+.action{
+  width: 15%;
+}
+.nodeInfo{
+  width: 10%;
+}
+.queue{
+  width: 10%;
+}
 table.dataTable {
   clear: both;
   margin-top: 6px !important;

@@ -400,7 +400,7 @@ class Dao {
      */
     public function getOpenTickets() {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT open_ticket_id, course_number, OT.update_date, first_name, last_name, node_number, online, 
+        $query = $conn->prepare("SELECT open_ticket_id, course_name, OT.update_date, first_name, last_name, node_number, online, 
         description FROM Open_Tickets OT JOIN Available_Courses AC ON OT.available_course_id=AC.available_course_id
         JOIN Users U ON OT.creator_user_id=U.user_id ORDER BY OT.update_date;");
         $query->setFetchMode(PDO::FETCH_ASSOC);

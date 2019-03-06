@@ -52,13 +52,13 @@ require_once '../components/header.php';
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Queue #</th>
+                      <th class = "queue">Queue #</th>
                       <!-- <th>Ticket ID</th> -->
-                      <th>Student Name</th>
-                      <th>Node</th>
-                      <th>Course</th>
-                      <th>Description</th>
-                      <th>Action</th>
+                      <th class="center">Student Name</th>
+                      <th class="center nodeInfo">Node</th>
+                      <th class="center courseInfo">Course</th>
+                      <th class="center description">Description</th>
+                      <th class="center action">Action</th>
                     </tr>
                   </thead>
                   <!-- <tfoot>
@@ -80,14 +80,14 @@ require_once '../components/header.php';
                         $queue++;
                    ?>
                       <tr>
-                      <td><?php echo $queue?></td>
+                      <td class="center"><?php echo $queue?></td>
                       <!-- <td><?php //echo $allOpenTickets[$index]['open_ticket_id']?></td> -->
-                      <td><?php echo $allOpenTickets[$index]['first_name'], " ", $allOpenTickets[$index]['last_name']?></td>
-                      <td><?php echo $allOpenTickets[$index]['node_number']?></td>
-                      <td><?php echo $allOpenTickets[$index]['course_number']?></td>
-                      <td>
+                      <td class="center"><?php echo $allOpenTickets[$index]['first_name'], " ", $allOpenTickets[$index]['last_name']?></td>
+                      <td class="center"><?php echo $allOpenTickets[$index]['node_number']?></td>
+                      <td class="center"><?php echo strtoupper($allOpenTickets[$index]['course_name'])?></td>
+                      <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                                 More Info
                             </button>
 
@@ -110,12 +110,16 @@ require_once '../components/header.php';
                                  </div>
                              </div>
                       </td>
-                      <th><button type="button" class="btn btn-primary">
-                                Submit
+                      <th class="center"><button type="button" class="btn btn-block btn-danger"">
+                                Close Ticket
                             </button></th>
                     </tr>
                     <?php
-                    }}?>
+                    }
+                    if($index == 500){
+                      break;
+                    }
+                    }?>
                   </tbody>
                 </table>
               </div>
