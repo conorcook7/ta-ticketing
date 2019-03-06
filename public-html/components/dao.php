@@ -107,14 +107,14 @@ class Dao {
         $conn = $this->getConnection();
         if ($email != NULL) {
             $query = $conn->prepare(
-                "SELECT * FROM Users as U JOIN Permissions as P
+                "SELECT * FROM Users AS U JOIN Permissions AS P
                  ON U.permission_id = P.permission_id
                  WHERE email = :email;"
             );
             $query->bindParam(":email", $email);
         } else if ($userId != NULL) {
             $query = $conn->prepare(
-                "SELECT * FROM Users as U JOIN Permissions as P
+                "SELECT * FROM Users AS U JOIN Permissions AS P
                  ON U.permission_id = P.permission_id
                  WHERE user_id = :userId;"
             );
@@ -182,7 +182,7 @@ class Dao {
     public function getUsers(){
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "SELECT * FROM Users as U JOIN Permissions as P
+            "SELECT * FROM Users AS U JOIN Permissions AS P
              ON U.permission_id = P.permission_id;"
         );
         $query->setFetchMode(PDO::FETCH_ASSOC);
@@ -249,7 +249,7 @@ class Dao {
     public function getTeachingAssistants() {
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "SELECT * FROM Teaching_Assistants JOIN Users
+            "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
              ON Teaching_Assistants.user_id = Users.user_id;"
         );
         $query->setFetchMode(PDO::FETCH_ASSOC);
