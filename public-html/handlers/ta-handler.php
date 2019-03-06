@@ -5,33 +5,8 @@ ini_set("display_errors","On");
 require_once '../components/dao.php';
 
 $dao = new Dao('Dummy_TA_Ticketing');
-$users = $dao->getUsers();
-$availableTAs = $dao->getAvailableTeachingAssistants();
-$allOpenTickets = $dao->getOpenTickets();
-$availableCourses = $dao->getAvailableCourses();
-//getOnlineTAs
-//getSpecificOpens
-//closeTicket
 
-echo sizeof($allOpenTickets);
-// print_r($allOpenTickets);
-// foreach($allOpenTickets as $opens){
-//     echo $opens['open_ticket_id'] ,"<br>";
-//     echo $opens['opener_user_id']  ,"<br>";
-// }
+$closeTicket = $dao->closeTicket($_POST["open_ticket_id_input"] ,$_POST["closer_id_input"]);
 
-// if(!empty($users)){
-//     echo "Users has data <br>";
-// }
-// if(!empty($availableTAs)){
-//     echo "Available TAS has data<br>";
-// }
-// if(!empty($allOpenTickets)){
-//     echo "All Open tickets has data<br>";
-// }
-// if(!empty($availableCourses)){
-//     echo "Available Courses has data<br>";
-// }
-
-
-// print_r($users);
+header("Location: ../pages/ta.php");
+exit;

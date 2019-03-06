@@ -3,8 +3,10 @@ require_once '../components/dao.php';
 try{
 $dao = new Dao('Dummy_TA_Ticketing');
 $users = $dao->getUsers();
+$my_ta_id = 1;
 $availableTAs = $dao->getAvailableTeachingAssistants();
 $allOpenTickets = $dao->getOpenTickets();
+// $myTickets = $dao->getMyOpenTickets();
 $availableCourses = $dao->getAvailableCourses();
 }catch(Exception $e) {
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
@@ -80,12 +82,14 @@ require_once '../components/header.php';
                         $queue++;
                    ?>
                       <tr>
-                      <td class="center"><?php echo $queue?></td>
-                      <!-- <td><?php //echo $allOpenTickets[$index]['open_ticket_id']?></td> -->
-                      <td class="center"><?php echo $allOpenTickets[$index]['first_name'], " ", $allOpenTickets[$index]['last_name']?></td>
-                      <td class="center"><?php echo $allOpenTickets[$index]['node_number']?></td>
-                      <td class="center"><?php echo strtoupper($allOpenTickets[$index]['course_name'])?></td>
-                      <td class="center">
+                      <form method="POST" action="../handlers/ta-handler.php"> 
+                        <input type='hidden' name='open_ticket_id_input' value="<?php echo $allOpenTickets[$index]['open_ticket_id'];?>"/>
+                        <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
+                        <td class="center"><?php echo $queue?></td>
+                        <td class="center"><?php echo $allOpenTickets[$index]['first_name'], " ", $allOpenTickets[$index]['last_name']?></td>
+                        <td class="center"><?php echo $allOpenTickets[$index]['node_number']?></td>
+                        <td class="center"><?php echo strtoupper($allOpenTickets[$index]['course_name'])?></td>
+                        <td class="center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                                 More Info
@@ -100,7 +104,7 @@ require_once '../components/header.php';
                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                          </button>
-                                        </div>
+                                         </div>
                                         <div class="modal-body"><?php echo $allOpenTickets[$index]['description']?>
                                          </div>
                                         <div class="modal-footer">
@@ -109,11 +113,14 @@ require_once '../components/header.php';
                                      </div>
                                  </div>
                              </div>
-                      </td>
-                      <th class="center"><button type="button" class="btn btn-block btn-danger"">
+                            </td>
+                          <th class="center">
+                            <button type="submit" class="btn btn-block btn-danger">
                                 Close Ticket
-                            </button></th>
-                    </tr>
+                            </button>
+                           </th>
+                          </form> 
+                        </tr>
                     <?php
                     }
                     if($index == 500){

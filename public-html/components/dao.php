@@ -411,6 +411,24 @@ class Dao {
     }
 
     /**
+     * Gets all open tickets for the corresponding TA
+     * 
+     * TODO
+     * Need to implement 
+     */
+    // public function getMyOpenTickets($teaching_assistant_id) {
+    //     $conn = $this->getConnection();
+    //     $query = $conn->prepare("SELECT open_ticket_id, course_name, OT.update_date, first_name, last_name, node_number, online, 
+    //     description FROM Open_Tickets OT JOIN Available_Courses AC ON OT.available_course_id=AC.available_course_id
+    //     JOIN Users U ON OT.creator_user_id=U.user_id ORDER BY OT.update_date;");
+    //     $query->setFetchMode(PDO::FETCH_ASSOC);
+    //     $query->execute();
+    //     $myTickets = $query->fetchAll();
+    //     //$this->logger->logDebug(__FUNCTION__ . " " . print_r($openTickets,1));
+    //     return $myTickets;
+    // }
+
+    /**
      * Create a new open ticket to store in the database.
      * 
      * @param $availableCourseId - The course id that was selected.
@@ -493,7 +511,7 @@ class Dao {
              :availableCourseId, :userId, :nodeNumber, :closerUserId,
              :description, :roomNumber);"
         );
-        $query->bindParam(":availableCourseId", $ticket["availableCourseId"]);
+        $query->bindParam(":availableCourseId", $ticket["available_course_id"]);
         $query->bindParam(":userId", $ticket["creator_user_id"]);
         $query->bindParam(":nodeNumber", $ticket["node_number"]);
         $query->bindParam(":closerUserId", $closerUserId);
