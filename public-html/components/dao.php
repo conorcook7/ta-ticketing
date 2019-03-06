@@ -1,6 +1,6 @@
 <?php
 
-//require_once 'KLogger.php';
+require_once 'KLogger.php';
 
 /**
  * The data access object (Dao) for the website. This object uses a standard user for the local mysql instance.
@@ -23,7 +23,7 @@ class Dao {
      * @param $database - The database name to connect to.
      */
     public function __construct($database) {
-        //$this->logger = new KLogger('../../ta-ticketing.log', KLogger::DEBUG);
+        $this->logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
         $this->db = $database;
     }
   
@@ -34,13 +34,12 @@ class Dao {
      */
     public function getConnection() {
         try{
-          //132.178.215.87
             $conn = new PDO("mysql:host=localhost;dbname={$this->db}", $this->user, $this->pass);
-            //$this->logger->logDebug("Established a database connection.");
+            $this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
             echo "connection failed: " . $e->getMessage();
-            //$this->logger->logFatal("The database connection failed.");
+            $this->logger->logFatal("The database connection failed.");
             return $this->FAILURE;
         }
     }
@@ -91,8 +90,10 @@ class Dao {
         $results = $query->fetch(PDO::FETCH_ASSOC);
         $result = $results["COUNT(*)"];
         if ($result) {
+            $this->logger->logDebug("User was found.");
             return TRUE;
         } else {
+            $this->logger->logDebug("User unable to be found.");
             return FALSE;
         }
     }
@@ -105,14 +106,14 @@ class Dao {
      */
     public function getUser($email=NULL, $userId=NULL) {
         $conn = $this->getConnection();
-        if ($email != NULL) {
+        if ($email !== NULL) {
             $query = $conn->prepare(
                 "SELECT * FROM Users AS U JOIN Permissions AS P
                  ON U.permission_id = P.permission_id
                  WHERE email = :email;"
             );
             $query->bindParam(":email", $email);
-        } else if ($userId != NULL) {
+        } else if ($userId !== NULL) {
             $query = $conn->prepare(
                 "SELECT * FROM Users AS U JOIN Permissions AS P
                  ON U.permission_id = P.permission_id
@@ -188,7 +189,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $users = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($users,1));
+        $this->logger->logDebug(__FUNCTION__);
         return $users;
     }
 
@@ -255,7 +256,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $teachingAssistants = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($teachingAssistants,1));
+        $this->logger->logDebug(__FUNCTION__ . " " . print_r($teachingAssistants,1));
         return $teachingAssistants;
     }
 
@@ -352,7 +353,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $permissionLevels = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($permissionLevels,1));
+        $this->logger->logDebug(__FUNCTION__ . " " . print_r($permissionLevels,1));
         return $permissionLevels;
     }
 
@@ -419,7 +420,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $openTickets = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($openTickets,1));
+        $this->logger->logDebug(__FUNCTION__ . ": First open ticket: " . print_r($openTickets[0],1));
         return $openTickets;
     }
 
@@ -555,7 +556,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $closedTickets = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($closedTickets,1));
+        $this->logger->logDebug(__FUNCTION__ . ": First closed ticket: " . print_r($closedTickets[0],1));
         return $closedTickets;
     }
 
@@ -639,7 +640,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $availableCourse = $query->fetch(PDO::FETCH_ASSOC);
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
+        $this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
         return $availableCourse;
     }
 
@@ -692,7 +693,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $availableCourses = $query->fetchAll();
-        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
+        $this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
         return $availableCourses;
     }
 
