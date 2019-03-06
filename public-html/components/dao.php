@@ -181,7 +181,10 @@ class Dao {
      */
     public function getUsers(){
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Users;");
+        $query = $conn->prepare(
+            "SELECT * FROM Users as U JOIN Permissions as P
+             ON U.permission_id = P.permission_id;"
+        );
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $users = $query->fetchAll();
