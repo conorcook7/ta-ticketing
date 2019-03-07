@@ -20,12 +20,13 @@
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
-
-		<table class="table">
+    <div class="card-body">
+      <div class="table-responsive">
+		    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
-            <th scope="col">Course Name</th>
-            <th scope="col">Course Number</th>
+            <th class="center">Course Name</th>
+            <th  class="center description">Course Description</th>
           </tr>
 		  </thead>
 		  <tbody>
@@ -33,12 +34,37 @@
 				$courses = $dao->getAvailableCourses();
 				foreach($courses as $course){?>
 				<tr>
-          <td><?php echo htmlspecialchars($course['course_name']); ?></td>
-					<td><?php echo htmlspecialchars($course['course_number']); ?></td>
+          <td class="center"><?php echo htmlspecialchars($course['course_name']); ?></td>
+          <td class="center">
+            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                More Info
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                         <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                         </button>
+                         </div>
+                        <div class="modal-body"><?php echo 'Test Text'?>
+                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+           </td>
 				</tr>
 			<?php } ?>
 		  </tbody>
 		</table><br />
+  </div>
+</div>
 		<table class = "table">
 		  <thead>
 		  <tr>
@@ -60,3 +86,4 @@
 	 </div>
 	</div>
  </div>
+ <?php require_once '../components/footer.php'; ?>

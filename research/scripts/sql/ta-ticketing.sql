@@ -31,11 +31,13 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     teaching_assistant_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,
+    available_course_id BIGINT UNSIGNED NOT NULL,
     start_time_past_midnight TIME NOT NULL,
     end_time_past_midnight TIME NOT NULL,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id)
 );
 
 CREATE TABLE IF NOT EXISTS Open_Tickets (
