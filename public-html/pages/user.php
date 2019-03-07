@@ -20,8 +20,9 @@
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
-
-		<table "table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <div class="card-body">
+      <div class="table-responsive">
+		    <table "table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
             <th class="center">Course Name</th>
@@ -62,6 +63,8 @@
 			<?php } ?>
 		  </tbody>
 		</table><br />
+  </div>
+</div>
 		<table class = "table">
 		  <thead>
 		  <tr>
