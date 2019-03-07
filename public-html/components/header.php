@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+    // session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@
   <link href="../css/sb-admin-2.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
-  <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">

@@ -11,8 +11,8 @@ require_once '../components/dao.php';
 
       $myTickets = $dao->getMyOpenTickets($my_course_id);
       
-      $availableTAs = $dao->getAvailableTeachingAssistants();
-      $availableCourses = $dao->getAvailableCourses();
+      // $availableTAs = $dao->getAvailableTeachingAssistants();
+      // $availableCourses = $dao->getAvailableCourses();
 
   }catch(Exception $e) {
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
@@ -20,9 +20,6 @@ require_once '../components/dao.php';
   }
 require_once '../components/header.php';
 ?>
-
-
-<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -49,9 +46,6 @@ require_once '../components/header.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-
-
 
 
 
@@ -240,15 +234,15 @@ require_once '../components/header.php';
           <!-- End of All open tickets -->
 
 
-
-
-
         </div>
         <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
 
+     <!-- Footer -->
+     <?php include_once '../components/footer.php' ?>
+     <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
@@ -280,7 +274,7 @@ require_once '../components/header.php';
     </div>
   </div>
 
-<!-- Footer -->
-<?php include_once '../components/footer.php' ?>
-<!-- End of Footer -->
+<!-- Scripts -->
+<?php include_once '../components/scripts.php' ?>
+<!-- End of Scripts -->
 
