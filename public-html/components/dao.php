@@ -395,12 +395,13 @@ class Dao {
     }
 
     /**
-     * Get all of the open tickes.
+     * Get all of the open ticket.
+     * 
      * @return $openTickets - The array of arrays of open tickets information.
      */
     public function getOpenTickets() {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT open_ticket_id, course_name, OT.update_date, first_name, last_name, node_number, online, 
+        $query = $conn->prepare("SELECT open_ticket_id, course_name, OT.update_date, OT.available_course_id, first_name, last_name, node_number, online, 
         description FROM Open_Tickets OT JOIN Available_Courses AC ON OT.available_course_id=AC.available_course_id
         JOIN Users U ON OT.creator_user_id=U.user_id ORDER BY OT.update_date;");
         $query->setFetchMode(PDO::FETCH_ASSOC);
@@ -412,21 +413,20 @@ class Dao {
 
     /**
      * Gets all open tickets for the corresponding TA
-     * 
-     * TODO
-     * Need to implement 
+     * @return $myTickets - open tickets for that specific TA
      */
-    // public function getMyOpenTickets($teaching_assistant_id) {
-    //     $conn = $this->getConnection();
-    //     $query = $conn->prepare("SELECT open_ticket_id, course_name, OT.update_date, first_name, last_name, node_number, online, 
-    //     description FROM Open_Tickets OT JOIN Available_Courses AC ON OT.available_course_id=AC.available_course_id
-    //     JOIN Users U ON OT.creator_user_id=U.user_id ORDER BY OT.update_date;");
-    //     $query->setFetchMode(PDO::FETCH_ASSOC);
-    //     $query->execute();
-    //     $myTickets = $query->fetchAll();
-    //     //$this->logger->logDebug(__FUNCTION__ . " " . print_r($openTickets,1));
-    //     return $myTickets;
-    // }
+    public function getMyOpenTickets($teaching_assistant_id) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT open_ticket_id, course_name, OT.update_date, first_name, last_name, node_number, online, 
+        description FROM Open_Tickets OT JOIN Available_Courses AC ON OT.available_course_id=AC.available_course_id
+        JOIN Users U ON OT.creator_user_id=U.user_id WHERE OT.available_course_id = :ta_course_input ORDER BY OT.update_date;");
+        $query->bindParam(":ta_course_input", $teaching_assistant_id);
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $myTickets = $query->fetchAll();
+        //$this->logger->logDebug(__FUNCTION__ . " " . print_r($openTickets,1));
+        return $myTickets;
+    }
 
     /**
      * Create a new open ticket to store in the database.

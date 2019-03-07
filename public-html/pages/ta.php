@@ -1,17 +1,23 @@
 <?php
 require_once '../components/dao.php';
-try{
-$dao = new Dao('Dummy_TA_Ticketing');
-$users = $dao->getUsers();
-$my_ta_id = 1;
-$availableTAs = $dao->getAvailableTeachingAssistants();
-$allOpenTickets = $dao->getOpenTickets();
-// $myTickets = $dao->getMyOpenTickets();
-$availableCourses = $dao->getAvailableCourses();
-}catch(Exception $e) {
+  try{
+      $dao = new Dao('Dummy_TA_Ticketing');
+      $users = $dao->getUsers();
+
+      $my_ta_id = 1; //need a function for this
+      $my_course_id = 1; //need a function for this
+
+      $allOpenTickets = $dao->getOpenTickets();
+
+      $myTickets = $dao->getMyOpenTickets($my_course_id);
+      
+      $availableTAs = $dao->getAvailableTeachingAssistants();
+      $availableCourses = $dao->getAvailableCourses();
+
+  }catch(Exception $e) {
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
     exit(0);
-}
+  }
 require_once '../components/header.php';
 ?>
 
@@ -44,14 +50,113 @@ require_once '../components/header.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <!-- DataTales Example -->
+
+
+
+
+
+
+          <!-- MY Open Tickets Table -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Open Tickets</h6>
+              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th class = "queue">Queue #</th>
+                      <!-- <th>Ticket ID</th> -->
+                      <th class="center">Student Name</th>
+                      <th class="center nodeInfo">Node</th>
+                      <th class="center courseInfo">Course</th>
+                      <th class="center description">Description</th>
+                      <th class="center action">Action</th>
+                    </tr>
+                  </thead>
+                  <!-- <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Position</th>
+                      <th>Office</th>
+                      <th>Age</th>
+                      <th>Start date</th>
+                      <th>Salary</th>
+                    </tr>
+                  </tfoot> -->
+                  <tbody>
+                  <?php 
+                    $max1 = sizeof($myTickets);
+                    $queue1 = 0;
+                    for ($index = 0; $index <= $max1; $index++) {
+                      if($myTickets[$index]['online'] == 1){
+                        $queue1++;
+                   ?>
+                      <tr>
+                      <form method="POST" action="../handlers/ta-handler.php"> 
+                        <input type='hidden' name='my_open_ticket_id_input' value="<?php echo $myTickets[$index]['open_ticket_id'];?>"/>
+                        <input type='hidden' name='my_closer_id_input' value="<?php echo "$my_ta_id";?>"/>
+                        <td class="center"><?php echo $queue1?></td>
+                        <td class="center"><?php echo $myTickets[$index]['first_name'], " ", $myTickets[$index]['last_name']?></td>
+                        <td class="center"><?php echo $myTickets[$index]['node_number']?></td>
+                        <td class="center"><?php echo strtoupper($myTickets[$index]['course_name'])?></td>
+                        <td class="center">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                More Info
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                         </button>
+                                         </div>
+                                        <div class="modal-body"><?php echo $myTickets[$index]['description']?>
+                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                            </td>
+                          <th class="center">
+                            <button type="submit" class="btn btn-block btn-danger">
+                                Close Ticket
+                            </button>
+                           </th>
+                          </form> 
+                        </tr>
+                    <?php
+                    }
+                    if($index == 500){
+                      break;
+                    }
+                    }?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- End of MY open tickets -->
+
+
+
+
+            <!-- All Open Tickets Table -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">All Open Tickets</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th class = "queue">Queue #</th>
@@ -132,7 +237,12 @@ require_once '../components/header.php';
               </div>
             </div>
           </div>
-          
+          <!-- End of All open tickets -->
+
+
+
+
+
         </div>
         <!-- /.container-fluid -->
 
