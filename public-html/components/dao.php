@@ -547,19 +547,24 @@ class Dao {
     }
     
     /**
-     * Get all of the closed tickes.
+     * NEED TO FINISH
+     * 
+     * Get all of the closed tickets.
+     * 
      * @return $closedTickets - The array of arrays of closed tickets information.
      */
     public function getClosedTickets() {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Closed_Tickets;");
+        $query = $conn->prepare("SELECT closed_ticket_id, course_name, CT.update_date, CT.available_course_id, first_name, last_name,
+         permission_id, description FROM Closed_Tickets CT JOIN Available_Courses AC ON CT.available_course_id=AC.available_course_id
+        JOIN Users U ON CT.creator_user_id=U.user_id ORDER BY CT.update_date;");
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $closedTickets = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__ . ": First closed ticket: " . print_r($closedTickets[0],1));
+        $this->logger->logDebug(__FUNCTION__ . ": First closed ticket: " . print_r($openTickets[0],1));
         return $closedTickets;
     }
-
+    
     /**
      * Opens a closed ticket by moving it from the closed table to the open ticket table.
      * 
