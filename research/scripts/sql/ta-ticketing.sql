@@ -72,3 +72,11 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     FOREIGN KEY (closer_user_id) REFERENCES Users(user_id)
 );
 
+CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
+    faq_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+    admin_user_id BIGINT UNSIGNED NOT NULL,
+    question TEXT,
+    answer TEXT,
+    FULLTEXT (question),
+    FOREIGN KEY (admin_user_id) REFERENCES Users(user_id)
+);
