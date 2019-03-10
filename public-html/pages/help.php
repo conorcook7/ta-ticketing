@@ -27,9 +27,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Help</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
-
 
           <!-- Submitting a ticket overview -->
           <div class="card shadow mb-4">
@@ -54,7 +52,7 @@
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
+                    <div class="col mr-2 mb-4">
                       <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 1</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">New Ticket Button</div>
                     </div>
@@ -62,6 +60,7 @@
                       <i class="fas fa-plus-square fa-2x text-gray-300"></i>
                     </div>
                   </div>
+                  <p>Create a new ticket with the "New Ticket" button on your dashboard.</p>
                 </div>
               </div>
             </div>
@@ -71,7 +70,7 @@
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
+                    <div class="col mr-2 mb-4">
                       <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 2</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">Fill in Information</div>
                     </div>
@@ -79,6 +78,9 @@
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
                     </div>
                   </div>
+                  <p>Write about your issue so that the teaching assistant can start to become
+                  familiar with your problem.
+                  </p>
                 </div>
               </div>
             </div>
@@ -88,7 +90,7 @@
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
+                    <div class="col mr-2 mb-4">
                       <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 3</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">Wait for Assistance</div>
                     </div>
@@ -96,6 +98,9 @@
                       <i class="fas fa-clock fa-2x text-gray-300"></i>
                     </div>
                   </div>
+                  <p>Continue working on other part of the homework, while a teaching assistant
+                  becomes available.
+                  </p>
                 </div>
               </div>
             </div>
