@@ -77,6 +77,8 @@ CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
     admin_user_id BIGINT UNSIGNED NOT NULL,
     question TEXT,
     answer TEXT,
+    create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (question),
     FOREIGN KEY (admin_user_id) REFERENCES Users(user_id)
 );
