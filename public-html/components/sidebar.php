@@ -105,10 +105,16 @@
 
       <!-- Help Page -->
       <li class="nav-item <?php if ($nav == 'help') { echo 'active'; }?>">
-        <a class="nav-link" href="../pages/help.php">
-            <i class="fas fa-fw fa-question"></i>
-            <span>Help</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHelpPages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-question"></i>
+          <span>Help</span>
         </a>
+        <div id="collapseHelpPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item <?php if($page == 'help.php'){echo 'active';}?>" href="../pages/help.php">Create a ticket</a>
+            <a class="collapse-item" href="../examples/forgot-password.php">FAQs</a>
+          </div>
+        </div>
       </li>
 
       <!-- About Page -->
