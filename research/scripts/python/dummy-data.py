@@ -106,6 +106,17 @@ def insert_closed_ticket(available_course_id, user_id, closer_id, description,
     )
 
 
+def insert_faq(question, answer, admin_id):
+    return (
+        'INSERT INTO Frequently_Asked_Questions (admin_user_id, question, '
+        'answer) VALUES (\'{}\', \'{}\', \'{}\');\n'
+    ).format(
+        admin_id,
+        question,
+        answer
+    )
+
+
 def get_random_date():
     """Generate a random date and time."""
     year = 2019
@@ -291,3 +302,17 @@ if __name__ == '__main__':
             room_number,
             get_random_date()
         ))
+
+    # Insert FAQs
+    sql_script.write(insert_faq(
+        question='What happens when I leave the lab?',
+        answer=(
+            'Your tickets will be saved and removed from the queue when you '
+            'leave the website. However, when you return to the lab, your '
+            'ticket will be queued again.'
+        ),
+        admin_id=admins[0]
+    ))
+
+    # Close the script file
+    sql_script.close()
