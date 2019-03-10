@@ -13,9 +13,9 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item <?php if($nav == 'dashboard'){echo 'active';}?>">
         <a class="nav-link" href="../pages/index.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-home"></i>
           <span>Dashboard</span></a>
       </li>
 
@@ -101,7 +101,26 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider my-0">
+
+      <!-- Help Page -->
+      <li class="nav-item <?php if ($nav == 'help') { echo 'active'; }?>">
+        <a class="nav-link" href="../pages/help.php">
+            <i class="fas fa-fw fa-question"></i>
+            <span>Help</span>
+        </a>
+      </li>
+
+      <!-- About Page -->
+      <li class="nav-item <?php if ($nav == 'about') { echo 'active'; }?>">
+        <a class="nav-link" href="../pages/about.php">
+            <i class="fas fa-fw fa-info"></i>
+            <span>About</span>
+        </a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider"> 
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">

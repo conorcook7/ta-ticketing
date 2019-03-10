@@ -1,7 +1,7 @@
 <?php
   require_once '../components/header.php';
-  $page = 'index.php';
-  $nav = 'dashboard';
+  $page = 'about.php';
+  $nav = 'about';
 ?>
 
   <!-- Page Wrapper -->
