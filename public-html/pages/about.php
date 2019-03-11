@@ -93,14 +93,17 @@
             <div class="col-xl-6 col-md-6 mb-4">
               <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="row no-gutters align-items-center mb-4">
                     <div class="col mr-2">
                       <div class="text-l font-weight-bold text-danger text-uppercase mb-1">Conor Cook</div>
-                      <a href="mailto: conorcook@u.boisestate.edu">
+                      <a ref="mailto: conorcook@u.boisestate.edu">
                         <span class="text-m mb-0 font-weight-bold text-gray-800">conorcook@u.boisestate.edu</span>
                       </a>
                     </div>
                   </div>
+                  <p>
+                  Bio
+                  </p>
                 </div>
               </div>
             </div>
@@ -109,7 +112,7 @@
             <div class="col-xl-6 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="row no-gutters align-items-center mb-4">
                     <div class="col mr-2">
                       <div class="text-l font-weight-bold text-success text-uppercase mb-1">Malik Herring</div>
                       <a href="mailto: malikherring@u.boisestate.edu">
@@ -117,6 +120,9 @@
                       </a>
                     </div>
                   </div>
+                  <p>
+                  Bio
+                  </p>
                 </div>
               </div>
             </div>
@@ -129,7 +135,7 @@
             <div class="col-xl-6 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="row no-gutters align-items-center mb-4">
                     <div class="col mr-2">
                       <div class="text-l font-weight-bold text-info text-uppercase mb-1">Hayden Phothong</div>
                       <a href="mailto: haydenphothong@u.boisestate.edu">
@@ -137,6 +143,11 @@
                       </a>
                     </div>
                   </div>
+                  <p>
+                    Hello! My role in creating this website was mostly back-end development.
+                    I helped create the database schema and helped with complex SQL queries.
+                    However, I did help create the page you are looking at now!
+                  </p>
                 </div>
               </div>
             </div>
@@ -145,14 +156,18 @@
             <div class="col-xl-6 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
+                  <div class="row no-gutters align-items-center mb-4">
                     <div class="col mr-2">
                       <div class="text-l font-weight-bold text-warning text-uppercase mb-1">Michael Sanchez</div>
                       <a href="mailto: michaelsanchez563@u.boisestate.edu">
                         <span class="text-m mb-0 font-weight-bold text-gray-800">michaelsanchez563@u.boisestate.edu</span>
                       </a>
                     </div>
+                    
                   </div>
+                  <p>
+                  Bio
+                  </p>
                 </div>
               </div>
             </div>
