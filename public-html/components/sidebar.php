@@ -30,7 +30,7 @@
         Interface
       </div>
 
-      <!-- Nav Item - Components Collapse Menu -->
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item <?php if($nav == 'components'){echo 'active';}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -108,8 +108,6 @@
           </div>
         </div>
       </li>
-
-      <?php 
 
       <!-- Nav Item - Charts -->
       <li class="nav-item <?php if($nav == 'charts.php'){echo 'active';}?>">
