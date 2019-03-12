@@ -121,7 +121,9 @@
                     </div>
                   </div>
                   <p>
-                  Bio
+                  Hey, good on you for looking into who made this page. A lot of my parts into this was 
+                  with creating the Admin page that only admins can see. I also assisted with debugging 
+                  and outside the box solutions to most problems.
                   </p>
                 </div>
               </div>
