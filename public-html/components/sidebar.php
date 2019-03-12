@@ -30,7 +30,7 @@
         Interface
       </div>
 
-      <?php include_once '../components/admin/admin-sidebar.php'?>
+      <?php require_once '../components/admin/admin-sidebar.php'?>
 
       <!-- Nav Item - Components Collapse Menu -->
       <li class="nav-item <?php if($nav == 'components'){echo 'active';}?>">
