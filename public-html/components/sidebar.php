@@ -30,8 +30,6 @@
         Interface
       </div>
 
-      <?php include_once '../components/admin/admin-sidebar.php'?>
-
       <!-- Nav Item - Components Collapse Menu -->
       <li class="nav-item <?php if($nav == 'components'){echo 'active';}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
