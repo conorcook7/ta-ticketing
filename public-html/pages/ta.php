@@ -317,7 +317,7 @@ require_once '../components/header.php';
               </div>
             </div>
           </div>
-          <!-- End of Closed tickets -->
+          <!-- End of Closed tickets. -->
 
 
 
