@@ -1,5 +1,10 @@
 <?php 
     session_start();
+
+    if (!isset($_SESSION["user"])) {
+        header("Location: " . $_SERVER["HTTP_HOST"] . "/auth/google-auth/google.php");
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
