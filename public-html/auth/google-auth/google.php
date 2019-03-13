@@ -12,12 +12,12 @@
     $googleClient = new Google_Client();
     $googleClient->setClientId("153288048540-sogdggkb32ugai855a0uffo0d7h2hqnq.apps.googleusercontent.com");
     $googleClient->setClientSecret("ZyXV3mVUVs89rDkuq8RjFaH4");
-    
-    if ($_SERVER["HTTP_HOST"] == "taticketing.boisestate.edu") {
-        $googleClient->setRedirectUri("https://taticketing.boisestate.edu/auth/google-auth/google.php");
-    } else {
-        $googleClient->setRedirectUri("http://" . $_SERVER["HTTP_HOST"] . "/auth/google-auth/google.php");
-    }
+    $googleClient->setRedirectUri(generateUrl("/auth/google-auth/google.php"));
+    // if ($_SERVER["HTTP_HOST"] == "taticketing.boisestate.edu") {
+    //     $googleClient->setRedirectUri("https://taticketing.boisestate.edu/auth/google-auth/google.php");
+    // } else {
+    //     $googleClient->setRedirectUri("http://" . $_SERVER["HTTP_HOST"] . "/auth/google-auth/google.php");
+    // }
     
     $googleClient->setScopes("email profile");
 
@@ -65,7 +65,7 @@
                 $logger->logDebug(__FUNCTION__ . ": Google OAuth payload contains data");
 
                 // Check payload email for boisestate
-                $splitEmail = explode("@", $_SESSION["user"]["email"]);
+                $splitEmail = explode("@", $payload["email"]);
                 $emailDomain = $splitEmail[1];
                 if ($emailDomain != "u.boisestate.edu" && $emailDomain != "boisestate.edu") {
                     header("Location: ./google.php");
