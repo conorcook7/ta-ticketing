@@ -39,7 +39,7 @@
                 $_SESSION["user"]["picture"] = $payload["picture"];
 
                 // Redirect to the dashboard
-                header("Location: taticketing.boisestate.edu/");
+                header("Location: ../../pages/index.php");
             }
 
         } catch (Exception $e) {
