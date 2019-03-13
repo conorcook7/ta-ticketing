@@ -4,6 +4,9 @@
      * Generates a url with the current protocol and host. It then appends
      * the given $path and returns the combined url.
      * 
+     * This method is necessary to dynamically generate the URL for online
+     * and offline services.
+     * 
      * @param $path - The path to append to the hostname
      * @return $combinedPath - The generated url with combined $path.
      */
