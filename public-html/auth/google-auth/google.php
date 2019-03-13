@@ -83,6 +83,7 @@
                         $user = $dao->getUser($_SESSION["user"]["email"]);
                         $_SESSION["user"]["id"] = $user["user_id"];
                         $_SESSION["user"]["permission"] = $user["permission_name"];
+                        echo print_r($_SESSION);
                     }
                 }
                 
@@ -100,8 +101,8 @@
                 }
 
                 // Redirect to the dashboard
-                header("Location: ../../pages/index.php");
-                exit();
+                //header("Location: ../../pages/index.php");
+                //exit();
             }
 
         } catch (Exception $e) {
