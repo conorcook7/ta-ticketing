@@ -77,14 +77,6 @@
                         $logger->logError("Unable to create user with dao method.");
                         header("Location: ./google.php");
                         exit();
-
-                    } else {
-                        echo "<h1>made it to get user</h1>";
-                        $this->logger->logDebug(__FUNCTION__ . "made it to getUser() dao method.");
-                        $user = $dao->getUser($_SESSION["user"]["email"]);
-                        $_SESSION["user"]["id"] = $user["user_id"];
-                        $_SESSION["user"]["permission"] = $user["permission_name"];
-                        echo "<pre>" . print_r($_SESSION) . "</pre>";
                     }
                 }
                 
@@ -101,9 +93,13 @@
                     exit();
                 }
 
+                // Get user information
+                $user = $dao->getUser($_SESSION["user"]["email"]);
+                $_SESSION["user"]["permission"] = $user["permission_name"];
+
                 // Redirect to the dashboard
-                //header("Location: ../../pages/index.php");
-                //exit();
+                header("Location: ../../pages/index.php");
+                exit();
             }
 
         } catch (Exception $e) {
@@ -114,5 +110,5 @@
 
     }
 
-    //header("Location: ./google.php");
-    //exit();
+    header("Location: ./google.php");
+    exit();
