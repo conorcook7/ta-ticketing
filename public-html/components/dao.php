@@ -90,10 +90,10 @@ class Dao {
         $results = $query->fetch(PDO::FETCH_ASSOC);
         $result = $results["COUNT(*)"];
         if ($result) {
-            $this->logger->logDebug("User was found.");
+            $this->logger->logDebug(__FUNCTION__ . "User was found.");
             return TRUE;
         } else {
-            $this->logger->logDebug("User unable to be found.");
+            $this->logger->logDebug(__FUNCTION__ . "User unable to be found.");
             return FALSE;
         }
     }
@@ -121,6 +121,7 @@ class Dao {
             );
             $query->bindParam(":userId", $userId);
         } else {
+            $this->logger->logError(__FUNCTION__ . "email and user_id are NULL");
             return Array();
         }
         try {
@@ -129,10 +130,11 @@ class Dao {
                 $user = $query->fetch(PDO::FETCH_ASSOC);
                 return $user;
             } else {
+                $this->logger->logError(__FUNCTION__ . "Query returned bad status upon completion");
                 return Array();
             }
         } catch (Exception $e) {
-            $this->logger->logError($e->getMessage());
+            $this->logger->logError(__FUNCTION__ . $e->getMessage());
             return Array();
         }
         
@@ -217,7 +219,7 @@ class Dao {
             $status = $query->execute();
             return $status;
         } catch (Exception $e) {
-            $this->logger->logError($e->getMessage());
+            $this->logger->logError(__FUNCTION__ . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -238,7 +240,7 @@ class Dao {
             $status = $query->execute();
             return $status;
         } catch (Exception $e) {
-            $this->logger->logError($e->getMessage());
+            $this->logger->logError(__FUNCTION__ . $e->getMessage());
             return $this->FAILURE;
         }
     }
