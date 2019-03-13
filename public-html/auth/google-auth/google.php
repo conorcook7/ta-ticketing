@@ -30,11 +30,17 @@
 
         try {
             date_default_timezone_set("America/Boise");
-            
             $payload = $googleClient->verifyIdToken();
-            
-            // Step 5: If payload is set then redirect to index.php, else redirect to login.
-            echo "<pre>" . print_r($payload, 1) . "</pre>";
+            if (isset($payload)) {
+                $_SESSION["user"]["email"] = $payload["email"];
+                $_SESSION["user"]["given_name"] = $payload["given_name"];
+                $_SESSION["user"]["family_name"] = $payload["family_name"];
+                $_SESSION["user"]["name"] = $payload["name"];
+                $_SESSION["user"]["picture"] = $payload["picture"];
+
+                // Redirect to the dashboard
+                header("Location: taticketing.boisestate.edu/");
+            }
 
         } catch (Exception $e) {
             echo "Payload Error: ";
