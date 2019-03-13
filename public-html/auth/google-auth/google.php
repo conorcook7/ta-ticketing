@@ -79,6 +79,7 @@
                         exit();
 
                     } else {
+                        $this->logger->logDebug(__FUNCTION__ . "made it to getUser() dao method.");
                         $user = $dao->getUser($_SESSION["user"]["email"]);
                         $_SESSION["user"]["id"] = $user["user_id"];
                         $_SESSION["user"]["permission"] = $user["permission_name"];
