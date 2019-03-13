@@ -20,7 +20,7 @@
     $dao = new Dao("Dummy_TA_Ticketing");
     try {
         $count = 0;
-        while (!$dao->setUserOffline && $count < 5) {
+        while (!$dao->setUserOffline($_SESSION["user"]["email"]) && $count < 5) {
             $count++;
         }
         
