@@ -13,7 +13,8 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a
             class="btn btn-primary"
-            href="<?php echo $_SERVER['HTTP_HOST'] . '/handlers/logout-handler.php';?>"
+            href="<?php echo strtolower($_SERVER['SERVER_PROTOCOL']) . $_SERVER['HTTP_HOST'] .
+                            '/handlers/logout-handler.php';?>"
           >Logout</a>
         </div>
       </div>
