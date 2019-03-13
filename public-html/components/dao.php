@@ -138,7 +138,7 @@ class Dao {
      */
     public function createUser($email, $firstName=NULL, $lastName=NULL) {
         $exists = $this->userExists($email);
-        if (!$exists && $this->verifyPassword($password)) {
+        if (!$exists) {
             $conn = $this->getConnection();
             $query = $conn->prepare(
                 "INSERT INTO Users (email, first_name, last_name) " .
