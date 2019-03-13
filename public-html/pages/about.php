@@ -7,8 +7,6 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php require_once '../components/topbar.php'; ?>
-
     <!-- Start of Sidebar -->
     <?php include_once '../components/sidebar.php'; ?>
     <!-- End of Sidebar -->
@@ -17,6 +15,10 @@
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
+    
+      <!-- Topbar -->
+      <?php include_once '../components/topbar.php'; ?>
+      <!-- End of Topbar -->
 
       <!-- Main Content -->
       <div id="content">
