@@ -116,7 +116,7 @@
                 $_SESSION["user"]["permission"] = $user["permission_name"];
 
                 // Redirect to the dashboard
-                header("Location: ../../pages/index.php");
+                header("Location: ../../pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");
                 exit();
             }
 
