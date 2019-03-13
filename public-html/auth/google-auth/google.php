@@ -3,6 +3,7 @@
 
     require_once "../google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
     require_once "../../components/KLogger.php";
+    require_once "../../components/dao.php";
 
     $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
 
@@ -53,6 +54,7 @@
             $logger->logDebug("Google client was verified");
 
             if (isset($payload)) {
+                // Setup session from payload
                 $logger->logDebug("Google OAuth payload contains data");
                 $_SESSION["user"]["email"] = $payload["email"];
                 $_SESSION["user"]["givenName"] = $payload["given_name"];
@@ -60,6 +62,21 @@
                 $_SESSION["user"]["name"] = $payload["name"];
                 $_SESSION["user"]["picture"] = $payload["picture"];
                 $_SESSION["user"]["accessToken"] = $accessToken;
+
+                // Database setup for user
+                $dao = new Dao("Dummy_TA_Ticketing");
+
+                // If the user is not in the database
+                if (!$dao->userExists($_SESSION["user"]["email"])) {
+                    $dao->createUser(
+                        $_SESSION["user"]["email"],
+                        $_SESSION["user"]["givenName"],
+                        $_SESSION["user"]["familyName"]
+                    );
+                }
+                
+                // Set the user to online
+                $dao->setUserOnline($_SESSION["user"]["email"]);
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/index.php");
