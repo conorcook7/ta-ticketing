@@ -1,7 +1,11 @@
 <?php
     require_once "../auth/google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
+    require_once "../../components/dao.php";
+    require_once "../../components/KLogger.php";
 
     session_start();
+
+    $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
 
     // Revoke Google OAuth
     $googleClient = new Google_Client();
@@ -11,6 +15,22 @@
     $googleClient->setScopes("email profile");
     $googleClient->setAccessToken($_SESSION["user"]["accessToken"]);
     $googleClient->revokeToken();
+
+    // Set the user to offline
+    $dao = new Dao("Dummy_TA_Ticketing");
+    try {
+        $count = 0;
+        while (!$dao->setUserOffline && $count < 5) {
+            $count++;
+        }
+        
+        if ($count >= 5) {
+            $logger->logError("Unable to set user to offline");
+        }
+
+    } catch (Exception $e) {
+        $logger->logError($e->getMessage());
+    }
 
     // Unset the user
     unset($_SESSION["user"]);
