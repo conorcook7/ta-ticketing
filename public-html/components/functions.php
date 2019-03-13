@@ -19,7 +19,7 @@
         }
 
         // Combine path
-        $combinedPath = $protocol . "://" . $host;
+        $combinedPath = $protocol . $host;
         if ($path[0] == "/") {
             $combinedPath .= $path;
         } else {
