@@ -68,15 +68,30 @@
 
                 // If the user is not in the database
                 if (!$dao->userExists($_SESSION["user"]["email"])) {
-                    $dao->createUser(
+                    $querySuccessful = $dao->createUser(
                         $_SESSION["user"]["email"],
                         $_SESSION["user"]["givenName"],
                         $_SESSION["user"]["familyName"]
                     );
+                    if (!$querySuccessful) {
+                        $logger->logError("Unable to create user with dao method.");
+                        header("Location: ./google.php");
+                        exit();
+                    }
                 }
                 
                 // Set the user to online
-                $dao->setUserOnline($_SESSION["user"]["email"]);
+                $count = 0;
+                while (!$dao->setUserOnline($_SESSION["user"]["email"]) && $count < 5) {
+                    $logger->logError("Unable to set the user to online with dao method.");
+                    $count++;
+                }
+
+                // Redirect if the user could not be set to online
+                if ($count == 5) {
+                    header("Location: ./google.php");
+                    exit();
+                }
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/index.php");
