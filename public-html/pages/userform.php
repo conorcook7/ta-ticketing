@@ -32,13 +32,14 @@
               </div>
             </div>
             </form>
-          <form method = "post" action = "userformhandler.php">
-          <div class = "card-body">
-          
-          </div>
-          </fom>
+            <form method = "post" action = "userformhandler.php">
+            <div class = "card-body">
+
+            </div>
+            </form>
         </div>
       </div>
     </div>
  </div>
+</div>
 <?php require_once '../components/footer.php';require_once '../components/scripts.php'; ?>
