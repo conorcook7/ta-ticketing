@@ -122,7 +122,7 @@ class Dao {
                 return Array();
             }
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . " " . $e->getMessage());
             return Array();
         }
         
