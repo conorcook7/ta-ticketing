@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -17,7 +21,12 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item <?php if($nav == 'dashboard'){echo 'active';}?>">
-        <a class="nav-link" href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/pages/index.php';?>">
+        <a
+          class="nav-link"
+          href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/pages/' .
+                            strtolower($_SESSION['user']['permission']) . '.php';
+                ?>"
+        >
           <i class="fas fa-fw fa-home"></i>
           <span>Dashboard</span></a>
       </li>
