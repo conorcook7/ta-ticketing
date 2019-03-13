@@ -3,6 +3,9 @@
 // Forked from https://gist.github.com/1809044
 // Available from https://gist.github.com/nichtich/5290675#file-deploy-php
 
+// Set the timezone
+date_default_timezone_set("America/Boise");
+
 $TITLE   = 'Git Deployment Hamster';
 $VERSION = '0.11';
 
