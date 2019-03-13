@@ -2,9 +2,6 @@
   require_once '../components/header.php';
   $page = 'index.php';
   $nav = 'dashboard';
-
-  // TODO: Remove this!
-  echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
 ?>
 
   <!-- Page Wrapper -->
