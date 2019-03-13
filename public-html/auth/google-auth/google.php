@@ -11,7 +11,7 @@
     $googleClient = new Google_Client();
     $googleClient->setClientId("153288048540-sogdggkb32ugai855a0uffo0d7h2hqnq.apps.googleusercontent.com");
     $googleClient->setClientSecret("ZyXV3mVUVs89rDkuq8RjFaH4");
-    $googleClient->setRedirectUri("https://taticketing.boisestate.edu/auth/google-auth/google.php");
+    $googleClient->setRedirectUri($_SERVER["HTTP_HOST"] . "/auth/google-auth/google.php");
     $googleClient->setScopes("email profile");
 
     $logger->logDebug(__FUNCTION__ . ": Google client created");
@@ -56,6 +56,16 @@
             if (isset($payload)) {
                 // Setup session from payload
                 $logger->logDebug(__FUNCTION__ . ": Google OAuth payload contains data");
+
+                // Check payload email for boisestate
+                $splitEmail = explode("@", $_SESSION["user"]["email"]);
+                $emailDomain = $splitEmail[1];
+                if ($emailDomain != "u.boisestate.edu" && $emailDomain != "boisestate.edu") {
+                    header("Location: ./google.php");
+                    exit();
+                }
+
+                // Setup session from payload
                 $_SESSION["user"]["email"] = $payload["email"];
                 $_SESSION["user"]["given_name"] = $payload["given_name"];
                 $_SESSION["user"]["family_name"] = $payload["family_name"];
