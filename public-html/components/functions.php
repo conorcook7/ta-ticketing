@@ -8,13 +8,15 @@
      * @return $combinedPath - The generated url with combined $path.
      */
     function generateUrl($path) {
-        // Generate protocol
-        $protocol = strtolower($_SERVER["SERVER_PROTOCOL"]);
-        $protocol = explode("/", $protocol);
-        $protocol = $protocol[0];
-
         // Generate host
         $host = $_SERVER["HTTP_HOST"];
+
+        // Generate protocol
+        if ($host == "taticketing.boisestate.edu") {
+            $protocol = "https://";
+        } else {
+            $protocol = "http://";
+        }
 
         // Combine path
         $combinedPath = $protocol . "://" . $host;
