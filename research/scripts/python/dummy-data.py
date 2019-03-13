@@ -31,15 +31,14 @@ def insert_course(course_name):
     )
 
 
-def insert_user(permission_id, online, email, password, first_name, last_name):
+def insert_user(permission_id, online, email, first_name, last_name):
     return (
-        'INSERT INTO Users(permission_id, online, email, password, first_name,'
-        'last_name) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'
+        'INSERT INTO Users(permission_id, online, email, first_name,'
+        'last_name) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'
     ).format(
         permission_id,
         online,
         email,
-        password,
         first_name,
         last_name
     )
@@ -209,10 +208,9 @@ if __name__ == '__main__':
         first_name = names[random.randint(0, num_names - 1)]
         last_name = names[random.randint(0, num_names - 1)]
         email = '{}{}@example.boisestate.edu'.format(first_name, last_name)
-        password = '{}.{}.{}'.format(first_name, last_name, permission)
         active = random.randint(0, 1)
         sql_script.write(insert_user(permission, active, email,
-                                     password, first_name, last_name))
+                                     first_name, last_name))
 
     sql_script.write('\n')
 
