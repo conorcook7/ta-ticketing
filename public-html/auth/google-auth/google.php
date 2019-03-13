@@ -30,6 +30,9 @@
 
         try {
             $payload = $googleClient->verifyIdToken();
+            
+            // Step 5: If payload is set then redirect to index.php, else redirect to login.
+            echo "<pre>" . print_r($payload, 1) . "</pre>";
 
         } catch (Exception $e) {
             echo "Payload Error: ";
@@ -39,6 +42,3 @@
     } else {
         $payload = NULL;
     }
-
-    // Step 5: If payload is set then redirect to index.php, else redirect to login.
-    echo "<pre>" . print_r($payload, 1) . "</pre>";
