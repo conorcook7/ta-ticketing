@@ -132,21 +132,19 @@ class Dao {
      * Create a user if they do not exist in the database.
      * 
      * @param $email - The email address of the user to create.
-     * @param $password - The raw password of the user to create.
      * @param $firstName - The first name of the user if given, else NULL.
      * @param $lastName - The last name of the user if given, else NULL.
      * @return Returns TRUE if the user was created, else FALSE
      */
-    public function createUser($email, $password, $firstName=NULL, $lastName=NULL) {
+    public function createUser($email, $firstName=NULL, $lastName=NULL) {
         $exists = $this->userExists($email);
         if (!$exists && $this->verifyPassword($password)) {
             $conn = $this->getConnection();
             $query = $conn->prepare(
-                "INSERT INTO Users (permission_id, email, password, first_name, last_name) " .
-                "VALUES (1, :email, :hashedPassword, :firstName, :lastName);"
+                "INSERT INTO Users (email, first_name, last_name) " .
+                "VALUES (:email, :firstName, :lastName);"
             );
             $query->bindParam(":email", $email);
-            $query->bindParam(":hashedPassword", $this->hashPassword($password));
             $query->bindParam(":firstName", $firstName);
             $query->bindParam(":lastName", $lastName);
             $status = $query->execute();
@@ -191,6 +189,46 @@ class Dao {
         $users = $query->fetchAll();
         $this->logger->logDebug(__FUNCTION__);
         return $users;
+    }
+
+    /**
+     * Sets the online flag to 1 (online) for the user.
+     * 
+     * @param $userEmail - The email address of the user to change to online.
+     * @return Returns TRUE if the update was successful, else FALSE.
+     */
+    public function setUserOnline($userEmail) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "UPDATE TABLE Users SET online = 1 WHERE email = :email;"
+        );
+        $query->bindParam(":email", $userEmail);
+        if ($query->execute()) {
+            return $this->SUCCESS;
+        } else {
+            $this->logger->logError("Unable to set the user to online.");
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Sets the online flag to 0 (offline) fo rthe user.
+     * 
+     * @param $userEmail - The email address of the user to change to offline.
+     * @return Returns TRUE if the update was successful, else FALSE.
+     */
+    public function setUserOffline($userEmail) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "UPDATE TABLE Users SET online = 0 WHERE email = :email;"
+        );
+        $query->bindParam(":email", $userEmail);
+        if ($query->execute()) {
+            return $this->SUCCESS;
+        } else {
+            $this->logger->logError("Unable to set the user to offline.");
+            return $this->FAILURE;
+        }
     }
 
     /**
