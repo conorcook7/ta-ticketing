@@ -36,12 +36,14 @@
         try {
             date_default_timezone_set("America/Boise");
             $payload = $googleClient->verifyIdToken();
+
             if (isset($payload)) {
                 $_SESSION["user"]["email"] = $payload["email"];
-                $_SESSION["user"]["given_name"] = $payload["given_name"];
-                $_SESSION["user"]["family_name"] = $payload["family_name"];
+                $_SESSION["user"]["givenName"] = $payload["given_name"];
+                $_SESSION["user"]["familyName"] = $payload["family_name"];
                 $_SESSION["user"]["name"] = $payload["name"];
                 $_SESSION["user"]["picture"] = $payload["picture"];
+                $_SESSION["user"]["accessToken"] = $accessToken;
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/index.php");
