@@ -113,5 +113,5 @@
 
     }
 
-    header("Location: ./google.php");
-    exit();
+    //header("Location: ./google.php");
+    //exit();
