@@ -106,14 +106,14 @@ class Dao {
      */
     public function getUser($email=NULL, $userId=NULL) {
         $conn = $this->getConnection();
-        if ($email !== NULL) {
+        if ($email != NULL) {
             $query = $conn->prepare(
                 "SELECT * FROM Users AS U JOIN Permissions AS P
                  ON U.permission_id = P.permission_id
                  WHERE email = :email;"
             );
             $query->bindParam(":email", $email);
-        } else if ($userId !== NULL) {
+        } else if ($userId != NULL) {
             $query = $conn->prepare(
                 "SELECT * FROM Users AS U JOIN Permissions AS P
                  ON U.permission_id = P.permission_id
@@ -123,9 +123,19 @@ class Dao {
         } else {
             return Array();
         }
-        $query->execute();
-        $user = $query->fetch(PDO::FETCH_ASSOC);
-        return $user;
+        try {
+            $status = $query->execute();
+            if ($status) {
+                $user = $query->fetch(PDO::FETCH_ASSOC);
+                return $user;
+            } else {
+                return Array();
+            }
+        } catch (Exception $e) {
+            $this->logger->logError($e->getMessage());
+            return Array();
+        }
+        
     }
 
     /**
