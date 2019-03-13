@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    require_once "functions.php";
+    require_once "server-functions.php";
 
     if (!isset($_SESSION["user"])) {
         header("Location: " . generateUrl("/auth/google-auth/google.php"));

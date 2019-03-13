@@ -1,5 +1,5 @@
 <?php
-    require_once "functions.php";
+    require_once "server-functions.php";
 ?>
 
 <!-- Logout Modal-->

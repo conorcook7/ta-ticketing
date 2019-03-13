@@ -2,7 +2,7 @@
   session_start();
   $page = '404.php';
   $nav = 'pages';
-  require_once "../components/functions.php";
+  require_once "../components/server-functions.php";
 ?>
 
 <!DOCTYPE html>
