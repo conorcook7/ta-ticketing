@@ -3,6 +3,5 @@
     "phpunit/phpunit": "^4"
   },
   "require": {
-    "google/apiclient": "2.1.0"
   }
 }
