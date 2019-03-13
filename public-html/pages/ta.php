@@ -272,11 +272,8 @@ require_once '../components/header.php';
                     for ($index = 0; $index <= $max3; $index++) {
                    ?>
                       <tr>
-                      <form method="POST" action="../handlers/ta-handler.php"> 
-                        <input type='hidden' name='open_ticket_id_input' value="<?php echo $closedTickets[$index]['open_ticket_id'];?>"/>
-                        <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
-                        <td class="center"><?php echo $closedTickets[$index]['first_name'], " ", $closedTickets[$index]['last_name']?></td>
-                        <td class="center"><?php echo $closedTickets[$index]['first_name'], " ", $closedTickets[$index]['last_name']?></td>
+                        <td class="center"><?php echo $closedTickets[$index]['student_first_name'], " ", $closedTickets[$index]['student_first_name']?></td>
+                        <td class="center"><?php echo $closedTickets[$index]['ta_first_name'], " ", $closedTickets[$index]['ta_last_name']?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['course_name'])?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['update_date'])?></td>
                         <td class="center">
@@ -309,7 +306,6 @@ require_once '../components/header.php';
                                 Close Ticket
                             </button> -->
                            </th>
-                          </form> 
                         </tr>
                     <?php
                     if($index == 500){
@@ -321,7 +317,7 @@ require_once '../components/header.php';
               </div>
             </div>
           </div>
-          <!-- End of Closed tickets -->
+          <!-- End of Closed tickets. -->
 
 
 
