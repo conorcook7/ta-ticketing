@@ -14,10 +14,30 @@
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
-
-        <button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Course Name
-        </button>
+        <div class="container-fluid">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Help Submission Form</h6>
+            </div>
+            <form method = "post">
+            <div class="card-body">
+              <button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName'>
+                Course Name
+              </button>
+              <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                <?php$courses = $dao->getAvailableCourses();
+				        foreach($courses as $course){?>
+                <option class="dropdown-item"><?php echo htmlspecialchars($course['course_name']); ?></option>
+                <?php } ?>
+              </div>
+            </div>
+            </form>
+          <form method = "post" action = "userformhandler.php">
+          <div class = "card-body">
+          
+          </div>
+          </fom>
+        </div>
       </div>
     </div>
  </div>
