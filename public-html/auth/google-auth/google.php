@@ -80,6 +80,7 @@
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/index.php");
+                exit();
             }
 
         } catch (Exception $e) {
