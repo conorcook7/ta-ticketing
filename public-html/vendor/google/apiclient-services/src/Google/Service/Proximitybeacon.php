@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -51,7 +51,6 @@ class Google_Service_Proximitybeacon extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://proximitybeacon.googleapis.com/';
     $this->servicePath = '';
-    $this->batchPath = 'batch';
     $this->version = 'v1beta1';
     $this->serviceName = 'proximitybeacon';
 
@@ -117,20 +116,6 @@ class Google_Service_Proximitybeacon extends Google_Service
                   'type' => 'string',
                 ),
               ),
-            ),'delete' => array(
-              'path' => 'v1beta1/{+beaconName}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'beaconName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'projectId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
             ),'get' => array(
               'path' => 'v1beta1/{+beaconName}',
               'httpMethod' => 'GET',
@@ -153,15 +138,15 @@ class Google_Service_Proximitybeacon extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
                 'projectId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -282,13 +267,13 @@ class Google_Service_Proximitybeacon extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
                 'alertFilter' => array(
                   'location' => 'query',

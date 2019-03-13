@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,24 +17,26 @@
 
 class Google_Service_ShoppingContent_OrdersShipLineItemsRequest extends Google_Collection
 {
-  protected $collection_key = 'shipmentInfos';
+  protected $collection_key = 'lineItems';
+  public $carrier;
   protected $lineItemsType = 'Google_Service_ShoppingContent_OrderShipmentLineItemShipment';
   protected $lineItemsDataType = 'array';
   public $operationId;
-  public $shipmentGroupId;
-  protected $shipmentInfosType = 'Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo';
-  protected $shipmentInfosDataType = 'array';
+  public $shipmentId;
+  public $trackingId;
 
-  /**
-   * @param Google_Service_ShoppingContent_OrderShipmentLineItemShipment
-   */
+  public function setCarrier($carrier)
+  {
+    $this->carrier = $carrier;
+  }
+  public function getCarrier()
+  {
+    return $this->carrier;
+  }
   public function setLineItems($lineItems)
   {
     $this->lineItems = $lineItems;
   }
-  /**
-   * @return Google_Service_ShoppingContent_OrderShipmentLineItemShipment
-   */
   public function getLineItems()
   {
     return $this->lineItems;
@@ -47,26 +49,20 @@ class Google_Service_ShoppingContent_OrdersShipLineItemsRequest extends Google_C
   {
     return $this->operationId;
   }
-  public function setShipmentGroupId($shipmentGroupId)
+  public function setShipmentId($shipmentId)
   {
-    $this->shipmentGroupId = $shipmentGroupId;
+    $this->shipmentId = $shipmentId;
   }
-  public function getShipmentGroupId()
+  public function getShipmentId()
   {
-    return $this->shipmentGroupId;
+    return $this->shipmentId;
   }
-  /**
-   * @param Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo
-   */
-  public function setShipmentInfos($shipmentInfos)
+  public function setTrackingId($trackingId)
   {
-    $this->shipmentInfos = $shipmentInfos;
+    $this->trackingId = $trackingId;
   }
-  /**
-   * @return Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo
-   */
-  public function getShipmentInfos()
+  public function getTrackingId()
   {
-    return $this->shipmentInfos;
+    return $this->trackingId;
   }
 }

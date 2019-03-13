@@ -2,13 +2,11 @@
 
 # Google APIs Client Library for PHP #
 
+## Description ##
 The Google API Client Library enables you to work with Google APIs such as Google+, Drive, or YouTube on your server.
 
-These client libraries are officially supported by Google.  However, the libraries are considered complete and are in maintenance mode. This means that we will address critical bugs and security issues but will not add any new features.
-
-## Google Cloud Platform
-
-For Google Cloud Platform APIs such as Datastore, Cloud Storage or Pub/Sub, we recommend using [GoogleCloudPlatform/google-cloud-php](https://github.com/GoogleCloudPlatform/google-cloud-php) which is under active development.
+## Beta ##
+This library is in Beta. We're comfortable enough with the stability and features of the library that we want you to build real production applications on it. We will make an effort to support the public and protected surface of the library and maintain backwards compatibility in the future. While we are still in Beta, we reserve the right to make incompatible changes.
 
 ## Requirements ##
 * [PHP 5.4.0 or higher](http://www.php.net/)
@@ -114,17 +112,13 @@ foreach ($results as $item) {
     ```php
     if (isset($_GET['code'])) {
         $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+        $client->setAccessToken($token);
     }
     ```
 
 ### Authentication with Service Accounts ###
 
 > An example of this can be seen in [`examples/service-account.php`](examples/service-account.php).
-
-Some APIs
-(such as the [YouTube Data API](https://developers.google.com/youtube/v3/)) do
-not support service accounts. Check with the specific API documentation if API
-calls return unexpected 401 or 403 errors.
 
 1. Follow the instructions to [Create a Service Account](https://developers.google.com/api-client-library/php/auth/service-accounts#creatinganaccount)
 1. Download the JSON credentials
@@ -182,7 +176,7 @@ Using this library, the same call would look something like this:
 
 ```php
 // create the datastore service class
-$datastore = new Google_Service_Datastore($client);
+$datastore = new Google_Service_Datastore($client)
 
 // build the query - this maps directly to the JSON
 $query = new Google_Service_Datastore_Query([
@@ -209,7 +203,7 @@ However, as each property of the JSON API has a corresponding generated class, t
 
 ```php
 // create the datastore service class
-$datastore = new Google_Service_Datastore($client);
+$datastore = new Google_Service_Datastore($client)
 
 // build the query
 $request = new Google_Service_Datastore_RunQueryRequest();
@@ -265,21 +259,14 @@ $response = $httpClient->get('https://www.googleapis.com/plus/v1/people/me');
 It is recommended to use another caching library to improve performance. This can be done by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) compatible library to the client:
 
 ```php
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
-use Cache\Adapter\Filesystem\FilesystemCachePool;
-
-$filesystemAdapter = new Local(__DIR__.'/');
-$filesystem        = new Filesystem($filesystemAdapter);
-
-$cache = new FilesystemCachePool($filesystem);
+$cache = new Stash\Pool(new Stash\Driver\FileSystem);
 $client->setCache($cache);
 ```
 
-In this example we use [PHP Cache](http://www.php-cache.com/). Add this to your project with composer:
+In this example we use [StashPHP](http://www.stashphp.com/). Add this to your project with composer:
 
 ```
-composer require cache/filesystem-adapter
+composer require tedivm/stash
 ```
 
 ### Updating Tokens ###
@@ -353,7 +340,7 @@ $opt_params = array(
 
 ### How do I set a field to null? ###
 
-The library strips out nulls from the objects sent to the Google APIs as its the default value of all of the uninitialized properties. To work around this, set the field you want to null to `Google_Model::NULL_VALUE`. This is a placeholder that will be replaced with a true null when sent over the wire.
+The library strips out nulls from the objects sent to the Google APIs as its the default value of all of the uninitialised properties. To work around this, set the field you want to null to `Google_Model::NULL_VALUE`. This is a placeholder that will be replaced with a true null when sent over the wire.
 
 ## Code Quality ##
 

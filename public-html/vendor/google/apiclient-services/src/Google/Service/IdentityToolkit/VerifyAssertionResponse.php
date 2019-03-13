@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -34,7 +34,6 @@ class Google_Service_IdentityToolkit_VerifyAssertionResponse extends Google_Coll
   public $fullName;
   public $idToken;
   public $inputEmail;
-  public $isNewUser;
   public $kind;
   public $language;
   public $lastName;
@@ -185,14 +184,6 @@ class Google_Service_IdentityToolkit_VerifyAssertionResponse extends Google_Coll
   public function getInputEmail()
   {
     return $this->inputEmail;
-  }
-  public function setIsNewUser($isNewUser)
-  {
-    $this->isNewUser = $isNewUser;
-  }
-  public function getIsNewUser()
-  {
-    return $this->isNewUser;
   }
   public function setKind($kind)
   {

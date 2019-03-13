@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -21,18 +21,11 @@ class Google_Service_Clouderrorreporting_ListEventsResponse extends Google_Colle
   protected $errorEventsType = 'Google_Service_Clouderrorreporting_ErrorEvent';
   protected $errorEventsDataType = 'array';
   public $nextPageToken;
-  public $timeRangeBegin;
 
-  /**
-   * @param Google_Service_Clouderrorreporting_ErrorEvent
-   */
   public function setErrorEvents($errorEvents)
   {
     $this->errorEvents = $errorEvents;
   }
-  /**
-   * @return Google_Service_Clouderrorreporting_ErrorEvent
-   */
   public function getErrorEvents()
   {
     return $this->errorEvents;
@@ -44,13 +37,5 @@ class Google_Service_Clouderrorreporting_ListEventsResponse extends Google_Colle
   public function getNextPageToken()
   {
     return $this->nextPageToken;
-  }
-  public function setTimeRangeBegin($timeRangeBegin)
-  {
-    $this->timeRangeBegin = $timeRangeBegin;
-  }
-  public function getTimeRangeBegin()
-  {
-    return $this->timeRangeBegin;
   }
 }

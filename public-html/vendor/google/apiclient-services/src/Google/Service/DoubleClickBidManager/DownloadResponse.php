@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,7 @@ class Google_Service_DoubleClickBidManager_DownloadResponse extends Google_Model
 {
   public $adGroups;
   public $ads;
-  public $campaigns;
   public $insertionOrders;
-  public $inventorySources;
   public $lineItems;
 
   public function setAdGroups($adGroups)
@@ -40,14 +38,6 @@ class Google_Service_DoubleClickBidManager_DownloadResponse extends Google_Model
   {
     return $this->ads;
   }
-  public function setCampaigns($campaigns)
-  {
-    $this->campaigns = $campaigns;
-  }
-  public function getCampaigns()
-  {
-    return $this->campaigns;
-  }
   public function setInsertionOrders($insertionOrders)
   {
     $this->insertionOrders = $insertionOrders;
@@ -55,14 +45,6 @@ class Google_Service_DoubleClickBidManager_DownloadResponse extends Google_Model
   public function getInsertionOrders()
   {
     return $this->insertionOrders;
-  }
-  public function setInventorySources($inventorySources)
-  {
-    $this->inventorySources = $inventorySources;
-  }
-  public function getInventorySources()
-  {
-    return $this->inventorySources;
   }
   public function setLineItems($lineItems)
   {

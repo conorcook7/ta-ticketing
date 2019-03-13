@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,19 +17,22 @@
 
 class Google_Service_YouTube_ChannelContentDetails extends Google_Model
 {
+  public $googlePlusUserId;
   protected $relatedPlaylistsType = 'Google_Service_YouTube_ChannelContentDetailsRelatedPlaylists';
   protected $relatedPlaylistsDataType = '';
 
-  /**
-   * @param Google_Service_YouTube_ChannelContentDetailsRelatedPlaylists
-   */
+  public function setGooglePlusUserId($googlePlusUserId)
+  {
+    $this->googlePlusUserId = $googlePlusUserId;
+  }
+  public function getGooglePlusUserId()
+  {
+    return $this->googlePlusUserId;
+  }
   public function setRelatedPlaylists(Google_Service_YouTube_ChannelContentDetailsRelatedPlaylists $relatedPlaylists)
   {
     $this->relatedPlaylists = $relatedPlaylists;
   }
-  /**
-   * @return Google_Service_YouTube_ChannelContentDetailsRelatedPlaylists
-   */
   public function getRelatedPlaylists()
   {
     return $this->relatedPlaylists;

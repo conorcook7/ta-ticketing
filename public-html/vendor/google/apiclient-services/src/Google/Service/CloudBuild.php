@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,11 +19,11 @@
  * Service definition for CloudBuild (v1).
  *
  * <p>
- * Creates and manages builds on Google Cloud Platform.</p>
+ * Builds container images in the cloud.</p>
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://cloud.google.com/cloud-build/docs/" target="_blank">Documentation</a>
+ * <a href="https://cloud.google.com/container-builder/docs/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -48,7 +48,6 @@ class Google_Service_CloudBuild extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://cloudbuild.googleapis.com/';
     $this->servicePath = '';
-    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'cloudbuild';
 
@@ -58,17 +57,7 @@ class Google_Service_CloudBuild extends Google_Service
         'operations',
         array(
           'methods' => array(
-            'cancel' => array(
-              'path' => 'v1/{+name}:cancel',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
+            'get' => array(
               'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
@@ -87,15 +76,15 @@ class Google_Service_CloudBuild extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
                 'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -159,6 +148,10 @@ class Google_Service_CloudBuild extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
                 'filter' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -166,25 +159,6 @@ class Google_Service_CloudBuild extends Google_Service
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'retry' => array(
-              'path' => 'v1/projects/{projectId}/builds/{id}:retry',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ),
               ),
             ),
@@ -250,21 +224,6 @@ class Google_Service_CloudBuild extends Google_Service
             ),'patch' => array(
               'path' => 'v1/projects/{projectId}/triggers/{triggerId}',
               'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'triggerId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'run' => array(
-              'path' => 'v1/projects/{projectId}/triggers/{triggerId}:run',
-              'httpMethod' => 'POST',
               'parameters' => array(
                 'projectId' => array(
                   'location' => 'path',

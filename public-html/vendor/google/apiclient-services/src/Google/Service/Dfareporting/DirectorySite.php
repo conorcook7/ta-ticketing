@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,6 +19,11 @@ class Google_Service_Dfareporting_DirectorySite extends Google_Collection
 {
   protected $collection_key = 'interstitialTagFormats';
   public $active;
+  protected $contactAssignmentsType = 'Google_Service_Dfareporting_DirectorySiteContactAssignment';
+  protected $contactAssignmentsDataType = 'array';
+  public $countryId;
+  public $currencyId;
+  public $description;
   public $id;
   protected $idDimensionValueType = 'Google_Service_Dfareporting_DimensionValue';
   protected $idDimensionValueDataType = '';
@@ -26,6 +31,7 @@ class Google_Service_Dfareporting_DirectorySite extends Google_Collection
   public $interstitialTagFormats;
   public $kind;
   public $name;
+  public $parentId;
   protected $settingsType = 'Google_Service_Dfareporting_DirectorySiteSettings';
   protected $settingsDataType = '';
   public $url;
@@ -38,6 +44,38 @@ class Google_Service_Dfareporting_DirectorySite extends Google_Collection
   {
     return $this->active;
   }
+  public function setContactAssignments($contactAssignments)
+  {
+    $this->contactAssignments = $contactAssignments;
+  }
+  public function getContactAssignments()
+  {
+    return $this->contactAssignments;
+  }
+  public function setCountryId($countryId)
+  {
+    $this->countryId = $countryId;
+  }
+  public function getCountryId()
+  {
+    return $this->countryId;
+  }
+  public function setCurrencyId($currencyId)
+  {
+    $this->currencyId = $currencyId;
+  }
+  public function getCurrencyId()
+  {
+    return $this->currencyId;
+  }
+  public function setDescription($description)
+  {
+    $this->description = $description;
+  }
+  public function getDescription()
+  {
+    return $this->description;
+  }
   public function setId($id)
   {
     $this->id = $id;
@@ -46,16 +84,10 @@ class Google_Service_Dfareporting_DirectorySite extends Google_Collection
   {
     return $this->id;
   }
-  /**
-   * @param Google_Service_Dfareporting_DimensionValue
-   */
   public function setIdDimensionValue(Google_Service_Dfareporting_DimensionValue $idDimensionValue)
   {
     $this->idDimensionValue = $idDimensionValue;
   }
-  /**
-   * @return Google_Service_Dfareporting_DimensionValue
-   */
   public function getIdDimensionValue()
   {
     return $this->idDimensionValue;
@@ -92,16 +124,18 @@ class Google_Service_Dfareporting_DirectorySite extends Google_Collection
   {
     return $this->name;
   }
-  /**
-   * @param Google_Service_Dfareporting_DirectorySiteSettings
-   */
+  public function setParentId($parentId)
+  {
+    $this->parentId = $parentId;
+  }
+  public function getParentId()
+  {
+    return $this->parentId;
+  }
   public function setSettings(Google_Service_Dfareporting_DirectorySiteSettings $settings)
   {
     $this->settings = $settings;
   }
-  /**
-   * @return Google_Service_Dfareporting_DirectorySiteSettings
-   */
   public function getSettings()
   {
     return $this->settings;

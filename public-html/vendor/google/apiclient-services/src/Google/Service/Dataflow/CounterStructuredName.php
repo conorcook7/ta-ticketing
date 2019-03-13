@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,13 +19,11 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
 {
   public $componentStepName;
   public $executionStepName;
-  public $inputIndex;
   public $name;
-  public $origin;
-  public $originNamespace;
-  public $originalRequestingStepName;
   public $originalStepName;
+  public $otherOrigin;
   public $portion;
+  public $standardOrigin;
   public $workerId;
 
   public function setComponentStepName($componentStepName)
@@ -44,14 +42,6 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
   {
     return $this->executionStepName;
   }
-  public function setInputIndex($inputIndex)
-  {
-    $this->inputIndex = $inputIndex;
-  }
-  public function getInputIndex()
-  {
-    return $this->inputIndex;
-  }
   public function setName($name)
   {
     $this->name = $name;
@@ -59,30 +49,6 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
   public function getName()
   {
     return $this->name;
-  }
-  public function setOrigin($origin)
-  {
-    $this->origin = $origin;
-  }
-  public function getOrigin()
-  {
-    return $this->origin;
-  }
-  public function setOriginNamespace($originNamespace)
-  {
-    $this->originNamespace = $originNamespace;
-  }
-  public function getOriginNamespace()
-  {
-    return $this->originNamespace;
-  }
-  public function setOriginalRequestingStepName($originalRequestingStepName)
-  {
-    $this->originalRequestingStepName = $originalRequestingStepName;
-  }
-  public function getOriginalRequestingStepName()
-  {
-    return $this->originalRequestingStepName;
   }
   public function setOriginalStepName($originalStepName)
   {
@@ -92,6 +58,14 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
   {
     return $this->originalStepName;
   }
+  public function setOtherOrigin($otherOrigin)
+  {
+    $this->otherOrigin = $otherOrigin;
+  }
+  public function getOtherOrigin()
+  {
+    return $this->otherOrigin;
+  }
   public function setPortion($portion)
   {
     $this->portion = $portion;
@@ -99,6 +73,14 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
   public function getPortion()
   {
     return $this->portion;
+  }
+  public function setStandardOrigin($standardOrigin)
+  {
+    $this->standardOrigin = $standardOrigin;
+  }
+  public function getStandardOrigin()
+  {
+    return $this->standardOrigin;
   }
   public function setWorkerId($workerId)
   {

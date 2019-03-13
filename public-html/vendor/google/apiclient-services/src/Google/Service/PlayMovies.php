@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -35,6 +35,9 @@ class Google_Service_PlayMovies extends Google_Service
       "https://www.googleapis.com/auth/playmovies_partner.readonly";
 
   public $accounts_avails;
+  public $accounts_components;
+  public $accounts_components_type;
+  public $accounts_experienceLocales;
   public $accounts_orders;
   public $accounts_storeInfos;
   public $accounts_storeInfos_country;
@@ -82,21 +85,20 @@ class Google_Service_PlayMovies extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pphNames' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
                 ),
-                'altId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'studioNames' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'territories' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
@@ -105,23 +107,207 @@ class Google_Service_PlayMovies extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'territories' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'altId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'videoIds' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
                 ),
-                'pageToken' => array(
+                'altIds' => array(
                   'location' => 'query',
                   'type' => 'string',
+                  'repeated' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->accounts_components = new Google_Service_PlayMovies_Resource_AccountsComponents(
+        $this,
+        $this->serviceName,
+        'components',
+        array(
+          'methods' => array(
+            'list' => array(
+              'path' => 'v1/accounts/{accountId}/components',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'accountId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'altIds' => array(
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pphNames' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
+                ),
+                'studioNames' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'titleLevelEidr' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'editLevelEidr' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'status' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'customId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'inventoryId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'presentationId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'playableSequenceId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'elId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'altCutId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'filename' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->accounts_components_type = new Google_Service_PlayMovies_Resource_AccountsComponentsType(
+        $this,
+        $this->serviceName,
+        'type',
+        array(
+          'methods' => array(
+            'get' => array(
+              'path' => 'v1/accounts/{accountId}/components/{componentId}/type/{type}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'accountId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'componentId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'type' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->accounts_experienceLocales = new Google_Service_PlayMovies_Resource_AccountsExperienceLocales(
+        $this,
+        $this->serviceName,
+        'experienceLocales',
+        array(
+          'methods' => array(
+            'get' => array(
+              'path' => 'v1/accounts/{accountId}/experienceLocales/{elId}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'accountId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'elId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'list' => array(
+              'path' => 'v1/accounts/{accountId}/experienceLocales',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'accountId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pphNames' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'studioNames' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'titleLevelEidr' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'editLevelEidr' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'status' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'customId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'altCutId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),
@@ -158,7 +344,20 @@ class Google_Service_PlayMovies extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'status' => array(
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pphNames' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'studioNames' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
@@ -167,29 +366,16 @@ class Google_Service_PlayMovies extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'studioNames' => array(
+                'status' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
                 'customId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
                 'videoIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pphNames' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
@@ -218,15 +404,23 @@ class Google_Service_PlayMovies extends Google_Service
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'mids' => array(
+                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
-                  'repeated' => true,
                 ),
                 'pphNames' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
+                ),
+                'studioNames' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'videoId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
                 'countries' => array(
                   'location' => 'query',
@@ -237,7 +431,12 @@ class Google_Service_PlayMovies extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'studioNames' => array(
+                'videoIds' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'mids' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
@@ -246,19 +445,6 @@ class Google_Service_PlayMovies extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
-                ),
-                'videoIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'videoId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),

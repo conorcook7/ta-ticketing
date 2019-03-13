@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,7 +26,7 @@
 class Google_Service_Calendar_Resource_CalendarList extends Google_Service_Resource
 {
   /**
-   * Removes a calendar from the user's calendar list. (calendarList.delete)
+   * Deletes an entry on the user's calendar list. (calendarList.delete)
    *
    * @param string $calendarId Calendar identifier. To retrieve calendar IDs call
    * the calendarList.list method. If you want to access the primary calendar of
@@ -40,7 +40,7 @@ class Google_Service_Calendar_Resource_CalendarList extends Google_Service_Resou
     return $this->call('delete', array($params));
   }
   /**
-   * Returns a calendar from the user's calendar list. (calendarList.get)
+   * Returns an entry on the user's calendar list. (calendarList.get)
    *
    * @param string $calendarId Calendar identifier. To retrieve calendar IDs call
    * the calendarList.list method. If you want to access the primary calendar of
@@ -55,8 +55,7 @@ class Google_Service_Calendar_Resource_CalendarList extends Google_Service_Resou
     return $this->call('get', array($params), "Google_Service_Calendar_CalendarListEntry");
   }
   /**
-   * Inserts an existing calendar into the user's calendar list.
-   * (calendarList.insert)
+   * Adds an entry to the user's calendar list. (calendarList.insert)
    *
    * @param Google_Service_Calendar_CalendarListEntry $postBody
    * @param array $optParams Optional parameters.
@@ -74,8 +73,7 @@ class Google_Service_Calendar_Resource_CalendarList extends Google_Service_Resou
     return $this->call('insert', array($params), "Google_Service_Calendar_CalendarListEntry");
   }
   /**
-   * Returns the calendars on the user's calendar list.
-   * (calendarList.listCalendarList)
+   * Returns entries on the user's calendar list. (calendarList.listCalendarList)
    *
    * @param array $optParams Optional parameters.
    *
@@ -111,8 +109,8 @@ class Google_Service_Calendar_Resource_CalendarList extends Google_Service_Resou
     return $this->call('list', array($params), "Google_Service_Calendar_CalendarList");
   }
   /**
-   * Updates an existing calendar on the user's calendar list. This method
-   * supports patch semantics. (calendarList.patch)
+   * Updates an entry on the user's calendar list. This method supports patch
+   * semantics. (calendarList.patch)
    *
    * @param string $calendarId Calendar identifier. To retrieve calendar IDs call
    * the calendarList.list method. If you want to access the primary calendar of
@@ -133,8 +131,7 @@ class Google_Service_Calendar_Resource_CalendarList extends Google_Service_Resou
     return $this->call('patch', array($params), "Google_Service_Calendar_CalendarListEntry");
   }
   /**
-   * Updates an existing calendar on the user's calendar list.
-   * (calendarList.update)
+   * Updates an entry on the user's calendar list. (calendarList.update)
    *
    * @param string $calendarId Calendar identifier. To retrieve calendar IDs call
    * the calendarList.list method. If you want to access the primary calendar of

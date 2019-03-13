@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,39 +15,17 @@
  * the License.
  */
 
-class Google_Service_Container_Operation extends Google_Collection
+class Google_Service_Container_Operation extends Google_Model
 {
-  protected $collection_key = 'nodepoolConditions';
-  protected $clusterConditionsType = 'Google_Service_Container_StatusCondition';
-  protected $clusterConditionsDataType = 'array';
   public $detail;
-  public $endTime;
-  public $location;
   public $name;
-  protected $nodepoolConditionsType = 'Google_Service_Container_StatusCondition';
-  protected $nodepoolConditionsDataType = 'array';
   public $operationType;
   public $selfLink;
-  public $startTime;
   public $status;
   public $statusMessage;
   public $targetLink;
   public $zone;
 
-  /**
-   * @param Google_Service_Container_StatusCondition
-   */
-  public function setClusterConditions($clusterConditions)
-  {
-    $this->clusterConditions = $clusterConditions;
-  }
-  /**
-   * @return Google_Service_Container_StatusCondition
-   */
-  public function getClusterConditions()
-  {
-    return $this->clusterConditions;
-  }
   public function setDetail($detail)
   {
     $this->detail = $detail;
@@ -56,22 +34,6 @@ class Google_Service_Container_Operation extends Google_Collection
   {
     return $this->detail;
   }
-  public function setEndTime($endTime)
-  {
-    $this->endTime = $endTime;
-  }
-  public function getEndTime()
-  {
-    return $this->endTime;
-  }
-  public function setLocation($location)
-  {
-    $this->location = $location;
-  }
-  public function getLocation()
-  {
-    return $this->location;
-  }
   public function setName($name)
   {
     $this->name = $name;
@@ -79,20 +41,6 @@ class Google_Service_Container_Operation extends Google_Collection
   public function getName()
   {
     return $this->name;
-  }
-  /**
-   * @param Google_Service_Container_StatusCondition
-   */
-  public function setNodepoolConditions($nodepoolConditions)
-  {
-    $this->nodepoolConditions = $nodepoolConditions;
-  }
-  /**
-   * @return Google_Service_Container_StatusCondition
-   */
-  public function getNodepoolConditions()
-  {
-    return $this->nodepoolConditions;
   }
   public function setOperationType($operationType)
   {
@@ -109,14 +57,6 @@ class Google_Service_Container_Operation extends Google_Collection
   public function getSelfLink()
   {
     return $this->selfLink;
-  }
-  public function setStartTime($startTime)
-  {
-    $this->startTime = $startTime;
-  }
-  public function getStartTime()
-  {
-    return $this->startTime;
   }
   public function setStatus($status)
   {

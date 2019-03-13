@@ -314,5 +314,35 @@ if __name__ == '__main__':
         admin_id=admins[0]
     ))
 
+    sql_script.write(insert_faq(
+        question='What happens when there are not any TAs?',
+        answer=(
+            'Your ticket will be stored for when the next TA starts '
+            'his/her shift. Teaching assistants are required to '
+            'correspond to the spcific course you need help with. '
+        ),
+        admin_id=admins[0]
+    ))
+
+    sql_script.write(insert_faq(
+        question='Who do I contact if my information is wrong?',
+        answer=(
+            'Benjamin Perterson, IT Systems Engineer at Boise State University. '
+            'You can contact him at BenjaminPeterson@boisestate.edu. More '
+            'information can be found on the about page under \"Sponsor\".'
+        ),
+        admin_id=admins[0]
+    ))
+
+    sql_script.write(insert_faq(
+        question='Where do I find information about TAs?',
+        answer=(
+            'The information is located on the Users Dashboard'
+            'You can contact him at BenjaminPeterson@boisestate.edu. More '
+            'information can be found on the about page under \"Sponsor\".'
+        ),
+        admin_id=admins[0]
+    ))
+
     # Close the script file
     sql_script.close()

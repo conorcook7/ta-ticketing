@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,38 +17,19 @@
 
 class Google_Service_ShoppingContent_Account extends Google_Collection
 {
-  protected $collection_key = 'youtubeChannelLinks';
-  protected $adsLinksType = 'Google_Service_ShoppingContent_AccountAdsLink';
-  protected $adsLinksDataType = 'array';
+  protected $collection_key = 'users';
   public $adultContent;
-  protected $businessInformationType = 'Google_Service_ShoppingContent_AccountBusinessInformation';
-  protected $businessInformationDataType = '';
-  protected $googleMyBusinessLinkType = 'Google_Service_ShoppingContent_AccountGoogleMyBusinessLink';
-  protected $googleMyBusinessLinkDataType = '';
+  protected $adwordsLinksType = 'Google_Service_ShoppingContent_AccountAdwordsLink';
+  protected $adwordsLinksDataType = 'array';
   public $id;
   public $kind;
   public $name;
+  public $reviewsUrl;
   public $sellerId;
   protected $usersType = 'Google_Service_ShoppingContent_AccountUser';
   protected $usersDataType = 'array';
   public $websiteUrl;
-  protected $youtubeChannelLinksType = 'Google_Service_ShoppingContent_AccountYouTubeChannelLink';
-  protected $youtubeChannelLinksDataType = 'array';
 
-  /**
-   * @param Google_Service_ShoppingContent_AccountAdsLink
-   */
-  public function setAdsLinks($adsLinks)
-  {
-    $this->adsLinks = $adsLinks;
-  }
-  /**
-   * @return Google_Service_ShoppingContent_AccountAdsLink
-   */
-  public function getAdsLinks()
-  {
-    return $this->adsLinks;
-  }
   public function setAdultContent($adultContent)
   {
     $this->adultContent = $adultContent;
@@ -57,33 +38,13 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   {
     return $this->adultContent;
   }
-  /**
-   * @param Google_Service_ShoppingContent_AccountBusinessInformation
-   */
-  public function setBusinessInformation(Google_Service_ShoppingContent_AccountBusinessInformation $businessInformation)
+  public function setAdwordsLinks($adwordsLinks)
   {
-    $this->businessInformation = $businessInformation;
+    $this->adwordsLinks = $adwordsLinks;
   }
-  /**
-   * @return Google_Service_ShoppingContent_AccountBusinessInformation
-   */
-  public function getBusinessInformation()
+  public function getAdwordsLinks()
   {
-    return $this->businessInformation;
-  }
-  /**
-   * @param Google_Service_ShoppingContent_AccountGoogleMyBusinessLink
-   */
-  public function setGoogleMyBusinessLink(Google_Service_ShoppingContent_AccountGoogleMyBusinessLink $googleMyBusinessLink)
-  {
-    $this->googleMyBusinessLink = $googleMyBusinessLink;
-  }
-  /**
-   * @return Google_Service_ShoppingContent_AccountGoogleMyBusinessLink
-   */
-  public function getGoogleMyBusinessLink()
-  {
-    return $this->googleMyBusinessLink;
+    return $this->adwordsLinks;
   }
   public function setId($id)
   {
@@ -109,6 +70,14 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   {
     return $this->name;
   }
+  public function setReviewsUrl($reviewsUrl)
+  {
+    $this->reviewsUrl = $reviewsUrl;
+  }
+  public function getReviewsUrl()
+  {
+    return $this->reviewsUrl;
+  }
   public function setSellerId($sellerId)
   {
     $this->sellerId = $sellerId;
@@ -117,16 +86,10 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   {
     return $this->sellerId;
   }
-  /**
-   * @param Google_Service_ShoppingContent_AccountUser
-   */
   public function setUsers($users)
   {
     $this->users = $users;
   }
-  /**
-   * @return Google_Service_ShoppingContent_AccountUser
-   */
   public function getUsers()
   {
     return $this->users;
@@ -138,19 +101,5 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   public function getWebsiteUrl()
   {
     return $this->websiteUrl;
-  }
-  /**
-   * @param Google_Service_ShoppingContent_AccountYouTubeChannelLink
-   */
-  public function setYoutubeChannelLinks($youtubeChannelLinks)
-  {
-    $this->youtubeChannelLinks = $youtubeChannelLinks;
-  }
-  /**
-   * @return Google_Service_ShoppingContent_AccountYouTubeChannelLink
-   */
-  public function getYoutubeChannelLinks()
-  {
-    return $this->youtubeChannelLinks;
   }
 }

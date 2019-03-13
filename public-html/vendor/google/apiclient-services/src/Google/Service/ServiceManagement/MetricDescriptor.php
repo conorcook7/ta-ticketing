@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,8 +22,6 @@ class Google_Service_ServiceManagement_MetricDescriptor extends Google_Collectio
   public $displayName;
   protected $labelsType = 'Google_Service_ServiceManagement_LabelDescriptor';
   protected $labelsDataType = 'array';
-  protected $metadataType = 'Google_Service_ServiceManagement_MetricDescriptorMetadata';
-  protected $metadataDataType = '';
   public $metricKind;
   public $name;
   public $type;
@@ -46,33 +44,13 @@ class Google_Service_ServiceManagement_MetricDescriptor extends Google_Collectio
   {
     return $this->displayName;
   }
-  /**
-   * @param Google_Service_ServiceManagement_LabelDescriptor
-   */
   public function setLabels($labels)
   {
     $this->labels = $labels;
   }
-  /**
-   * @return Google_Service_ServiceManagement_LabelDescriptor
-   */
   public function getLabels()
   {
     return $this->labels;
-  }
-  /**
-   * @param Google_Service_ServiceManagement_MetricDescriptorMetadata
-   */
-  public function setMetadata(Google_Service_ServiceManagement_MetricDescriptorMetadata $metadata)
-  {
-    $this->metadata = $metadata;
-  }
-  /**
-   * @return Google_Service_ServiceManagement_MetricDescriptorMetadata
-   */
-  public function getMetadata()
-  {
-    return $this->metadata;
   }
   public function setMetricKind($metricKind)
   {

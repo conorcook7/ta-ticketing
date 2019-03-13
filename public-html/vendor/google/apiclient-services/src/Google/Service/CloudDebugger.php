@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,7 +24,7 @@
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://cloud.google.com/debugger" target="_blank">Documentation</a>
+ * <a href="http://cloud.google.com/debugger" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -34,7 +34,7 @@ class Google_Service_CloudDebugger extends Google_Service
   /** View and manage your data across Google Cloud Platform services. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
-  /** Use Stackdriver Debugger. */
+  /** Manage cloud debugger. */
   const CLOUD_DEBUGGER =
       "https://www.googleapis.com/auth/cloud_debugger";
 
@@ -53,7 +53,6 @@ class Google_Service_CloudDebugger extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://clouddebugger.googleapis.com/';
     $this->servicePath = '';
-    $this->batchPath = 'batch';
     $this->version = 'v2';
     $this->serviceName = 'clouddebugger';
 
@@ -128,13 +127,13 @@ class Google_Service_CloudDebugger extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'clientVersion' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'includeInactive' => array(
                   'location' => 'query',
                   'type' => 'boolean',
+                ),
+                'clientVersion' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),
@@ -194,6 +193,22 @@ class Google_Service_CloudDebugger extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'includeAllUsers' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
+                'includeInactive' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
+                'action.value' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'stripResults' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
                 'waitToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -201,22 +216,6 @@ class Google_Service_CloudDebugger extends Google_Service
                 'clientVersion' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-                'action.value' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'includeInactive' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'includeAllUsers' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'stripResults' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ),
               ),
             ),'set' => array(

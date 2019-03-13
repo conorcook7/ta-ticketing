@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,23 +17,14 @@
 
 class Google_Service_Logging_LogSink extends Google_Model
 {
-  public $createTime;
   public $destination;
+  public $endTime;
   public $filter;
-  public $includeChildren;
   public $name;
   public $outputVersionFormat;
-  public $updateTime;
+  public $startTime;
   public $writerIdentity;
 
-  public function setCreateTime($createTime)
-  {
-    $this->createTime = $createTime;
-  }
-  public function getCreateTime()
-  {
-    return $this->createTime;
-  }
   public function setDestination($destination)
   {
     $this->destination = $destination;
@@ -42,6 +33,14 @@ class Google_Service_Logging_LogSink extends Google_Model
   {
     return $this->destination;
   }
+  public function setEndTime($endTime)
+  {
+    $this->endTime = $endTime;
+  }
+  public function getEndTime()
+  {
+    return $this->endTime;
+  }
   public function setFilter($filter)
   {
     $this->filter = $filter;
@@ -49,14 +48,6 @@ class Google_Service_Logging_LogSink extends Google_Model
   public function getFilter()
   {
     return $this->filter;
-  }
-  public function setIncludeChildren($includeChildren)
-  {
-    $this->includeChildren = $includeChildren;
-  }
-  public function getIncludeChildren()
-  {
-    return $this->includeChildren;
   }
   public function setName($name)
   {
@@ -74,13 +65,13 @@ class Google_Service_Logging_LogSink extends Google_Model
   {
     return $this->outputVersionFormat;
   }
-  public function setUpdateTime($updateTime)
+  public function setStartTime($startTime)
   {
-    $this->updateTime = $updateTime;
+    $this->startTime = $startTime;
   }
-  public function getUpdateTime()
+  public function getStartTime()
   {
-    return $this->updateTime;
+    return $this->startTime;
   }
   public function setWriterIdentity($writerIdentity)
   {

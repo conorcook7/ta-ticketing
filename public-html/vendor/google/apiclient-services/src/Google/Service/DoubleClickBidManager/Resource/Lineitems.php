@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,8 +26,7 @@
 class Google_Service_DoubleClickBidManager_Resource_Lineitems extends Google_Service_Resource
 {
   /**
-   * Retrieves line items in CSV format. TrueView line items are not supported.
-   * (lineitems.downloadlineitems)
+   * Retrieves line items in CSV format. (lineitems.downloadlineitems)
    *
    * @param Google_Service_DoubleClickBidManager_DownloadLineItemsRequest $postBody
    * @param array $optParams Optional parameters.
@@ -40,8 +39,7 @@ class Google_Service_DoubleClickBidManager_Resource_Lineitems extends Google_Ser
     return $this->call('downloadlineitems', array($params), "Google_Service_DoubleClickBidManager_DownloadLineItemsResponse");
   }
   /**
-   * Uploads line items in CSV format. TrueView line items are not supported.
-   * (lineitems.uploadlineitems)
+   * Uploads line items in CSV format. (lineitems.uploadlineitems)
    *
    * @param Google_Service_DoubleClickBidManager_UploadLineItemsRequest $postBody
    * @param array $optParams Optional parameters.

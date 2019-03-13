@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,8 +19,8 @@
  * Service definition for ServiceControl (v1).
  *
  * <p>
- * Provides control plane functionality to managed services, such as logging,
- * monitoring, and status checks.</p>
+ * Google Service Control provides control plane functionality to managed
+ * services, such as logging, monitoring, and status checks.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -50,7 +50,6 @@ class Google_Service_ServiceControl extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://servicecontrol.googleapis.com/';
     $this->servicePath = '';
-    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'servicecontrol';
 
@@ -60,17 +59,7 @@ class Google_Service_ServiceControl extends Google_Service
         'services',
         array(
           'methods' => array(
-            'allocateQuota' => array(
-              'path' => 'v1/services/{serviceName}:allocateQuota',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'serviceName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'check' => array(
+            'check' => array(
               'path' => 'v1/services/{serviceName}:check',
               'httpMethod' => 'POST',
               'parameters' => array(

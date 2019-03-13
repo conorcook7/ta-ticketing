@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,7 +22,6 @@ class Google_Service_Books_Notification extends Google_Collection
         "docId" => "doc_id",
         "docType" => "doc_type",
         "dontShowNotification" => "dont_show_notification",
-        "isDocumentMature" => "is_document_mature",
         "notificationType" => "notification_type",
         "pcampaignId" => "pcampaign_id",
         "showNotificationSettingsAction" => "show_notification_settings_action",
@@ -33,15 +32,12 @@ class Google_Service_Books_Notification extends Google_Collection
   public $docType;
   public $dontShowNotification;
   public $iconUrl;
-  public $isDocumentMature;
   public $kind;
-  public $notificationGroup;
   public $notificationType;
   public $pcampaignId;
   public $reason;
   public $showNotificationSettingsAction;
   public $targetUrl;
-  public $timeToExpireMs;
   public $title;
 
   public function setBody($body)
@@ -92,14 +88,6 @@ class Google_Service_Books_Notification extends Google_Collection
   {
     return $this->iconUrl;
   }
-  public function setIsDocumentMature($isDocumentMature)
-  {
-    $this->isDocumentMature = $isDocumentMature;
-  }
-  public function getIsDocumentMature()
-  {
-    return $this->isDocumentMature;
-  }
   public function setKind($kind)
   {
     $this->kind = $kind;
@@ -107,14 +95,6 @@ class Google_Service_Books_Notification extends Google_Collection
   public function getKind()
   {
     return $this->kind;
-  }
-  public function setNotificationGroup($notificationGroup)
-  {
-    $this->notificationGroup = $notificationGroup;
-  }
-  public function getNotificationGroup()
-  {
-    return $this->notificationGroup;
   }
   public function setNotificationType($notificationType)
   {
@@ -155,14 +135,6 @@ class Google_Service_Books_Notification extends Google_Collection
   public function getTargetUrl()
   {
     return $this->targetUrl;
-  }
-  public function setTimeToExpireMs($timeToExpireMs)
-  {
-    $this->timeToExpireMs = $timeToExpireMs;
-  }
-  public function getTimeToExpireMs()
-  {
-    return $this->timeToExpireMs;
   }
   public function setTitle($title)
   {

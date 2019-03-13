@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,11 +17,18 @@
 
 class Google_Service_Dfareporting_DirectorySiteSettings extends Google_Model
 {
+  protected $internal_gapi_mappings = array(
+        "dfpSettings" => "dfp_settings",
+        "instreamVideoPlacementAccepted" => "instream_video_placement_accepted",
+  );
   public $activeViewOptOut;
   protected $dfpSettingsType = 'Google_Service_Dfareporting_DfpSettings';
   protected $dfpSettingsDataType = '';
   public $instreamVideoPlacementAccepted;
   public $interstitialPlacementAccepted;
+  public $nielsenOcrOptOut;
+  public $verificationTagOptOut;
+  public $videoActiveViewOptOut;
 
   public function setActiveViewOptOut($activeViewOptOut)
   {
@@ -31,16 +38,10 @@ class Google_Service_Dfareporting_DirectorySiteSettings extends Google_Model
   {
     return $this->activeViewOptOut;
   }
-  /**
-   * @param Google_Service_Dfareporting_DfpSettings
-   */
   public function setDfpSettings(Google_Service_Dfareporting_DfpSettings $dfpSettings)
   {
     $this->dfpSettings = $dfpSettings;
   }
-  /**
-   * @return Google_Service_Dfareporting_DfpSettings
-   */
   public function getDfpSettings()
   {
     return $this->dfpSettings;
@@ -60,5 +61,29 @@ class Google_Service_Dfareporting_DirectorySiteSettings extends Google_Model
   public function getInterstitialPlacementAccepted()
   {
     return $this->interstitialPlacementAccepted;
+  }
+  public function setNielsenOcrOptOut($nielsenOcrOptOut)
+  {
+    $this->nielsenOcrOptOut = $nielsenOcrOptOut;
+  }
+  public function getNielsenOcrOptOut()
+  {
+    return $this->nielsenOcrOptOut;
+  }
+  public function setVerificationTagOptOut($verificationTagOptOut)
+  {
+    $this->verificationTagOptOut = $verificationTagOptOut;
+  }
+  public function getVerificationTagOptOut()
+  {
+    return $this->verificationTagOptOut;
+  }
+  public function setVideoActiveViewOptOut($videoActiveViewOptOut)
+  {
+    $this->videoActiveViewOptOut = $videoActiveViewOptOut;
+  }
+  public function getVideoActiveViewOptOut()
+  {
+    return $this->videoActiveViewOptOut;
   }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,11 +26,11 @@
 class Google_Service_Pubsub_Resource_ProjectsTopicsSubscriptions extends Google_Service_Resource
 {
   /**
-   * Lists the names of the subscriptions on this topic.
+   * Lists the name of the subscriptions for this topic.
    * (subscriptions.listProjectsTopicsSubscriptions)
    *
    * @param string $topic The name of the topic that subscriptions are attached
-   * to. Format is `projects/{project}/topics/{topic}`.
+   * to.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Maximum number of subscription names to return.

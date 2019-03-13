@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,8 +17,9 @@
 
 class Google_Service_ShoppingContent_Datafeed extends Google_Collection
 {
-  protected $collection_key = 'targets';
+  protected $collection_key = 'intendedDestinations';
   public $attributeLanguage;
+  public $contentLanguage;
   public $contentType;
   protected $fetchScheduleType = 'Google_Service_ShoppingContent_DatafeedFetchSchedule';
   protected $fetchScheduleDataType = '';
@@ -26,10 +27,10 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   protected $formatType = 'Google_Service_ShoppingContent_DatafeedFormat';
   protected $formatDataType = '';
   public $id;
+  public $intendedDestinations;
   public $kind;
   public $name;
-  protected $targetsType = 'Google_Service_ShoppingContent_DatafeedTarget';
-  protected $targetsDataType = 'array';
+  public $targetCountry;
 
   public function setAttributeLanguage($attributeLanguage)
   {
@@ -39,6 +40,14 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   {
     return $this->attributeLanguage;
   }
+  public function setContentLanguage($contentLanguage)
+  {
+    $this->contentLanguage = $contentLanguage;
+  }
+  public function getContentLanguage()
+  {
+    return $this->contentLanguage;
+  }
   public function setContentType($contentType)
   {
     $this->contentType = $contentType;
@@ -47,16 +56,10 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   {
     return $this->contentType;
   }
-  /**
-   * @param Google_Service_ShoppingContent_DatafeedFetchSchedule
-   */
   public function setFetchSchedule(Google_Service_ShoppingContent_DatafeedFetchSchedule $fetchSchedule)
   {
     $this->fetchSchedule = $fetchSchedule;
   }
-  /**
-   * @return Google_Service_ShoppingContent_DatafeedFetchSchedule
-   */
   public function getFetchSchedule()
   {
     return $this->fetchSchedule;
@@ -69,16 +72,10 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   {
     return $this->fileName;
   }
-  /**
-   * @param Google_Service_ShoppingContent_DatafeedFormat
-   */
   public function setFormat(Google_Service_ShoppingContent_DatafeedFormat $format)
   {
     $this->format = $format;
   }
-  /**
-   * @return Google_Service_ShoppingContent_DatafeedFormat
-   */
   public function getFormat()
   {
     return $this->format;
@@ -90,6 +87,14 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   public function getId()
   {
     return $this->id;
+  }
+  public function setIntendedDestinations($intendedDestinations)
+  {
+    $this->intendedDestinations = $intendedDestinations;
+  }
+  public function getIntendedDestinations()
+  {
+    return $this->intendedDestinations;
   }
   public function setKind($kind)
   {
@@ -107,18 +112,12 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   {
     return $this->name;
   }
-  /**
-   * @param Google_Service_ShoppingContent_DatafeedTarget
-   */
-  public function setTargets($targets)
+  public function setTargetCountry($targetCountry)
   {
-    $this->targets = $targets;
+    $this->targetCountry = $targetCountry;
   }
-  /**
-   * @return Google_Service_ShoppingContent_DatafeedTarget
-   */
-  public function getTargets()
+  public function getTargetCountry()
   {
-    return $this->targets;
+    return $this->targetCountry;
   }
 }

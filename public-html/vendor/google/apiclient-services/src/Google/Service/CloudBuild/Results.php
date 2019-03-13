@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,21 +18,10 @@
 class Google_Service_CloudBuild_Results extends Google_Collection
 {
   protected $collection_key = 'images';
-  public $artifactManifest;
   public $buildStepImages;
-  public $buildStepOutputs;
   protected $imagesType = 'Google_Service_CloudBuild_BuiltImage';
   protected $imagesDataType = 'array';
-  public $numArtifacts;
 
-  public function setArtifactManifest($artifactManifest)
-  {
-    $this->artifactManifest = $artifactManifest;
-  }
-  public function getArtifactManifest()
-  {
-    return $this->artifactManifest;
-  }
   public function setBuildStepImages($buildStepImages)
   {
     $this->buildStepImages = $buildStepImages;
@@ -41,34 +30,12 @@ class Google_Service_CloudBuild_Results extends Google_Collection
   {
     return $this->buildStepImages;
   }
-  public function setBuildStepOutputs($buildStepOutputs)
-  {
-    $this->buildStepOutputs = $buildStepOutputs;
-  }
-  public function getBuildStepOutputs()
-  {
-    return $this->buildStepOutputs;
-  }
-  /**
-   * @param Google_Service_CloudBuild_BuiltImage
-   */
   public function setImages($images)
   {
     $this->images = $images;
   }
-  /**
-   * @return Google_Service_CloudBuild_BuiltImage
-   */
   public function getImages()
   {
     return $this->images;
-  }
-  public function setNumArtifacts($numArtifacts)
-  {
-    $this->numArtifacts = $numArtifacts;
-  }
-  public function getNumArtifacts()
-  {
-    return $this->numArtifacts;
   }
 }

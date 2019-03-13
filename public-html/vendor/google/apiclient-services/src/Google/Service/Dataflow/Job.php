@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,7 +20,6 @@ class Google_Service_Dataflow_Job extends Google_Collection
   protected $collection_key = 'tempFiles';
   public $clientRequestId;
   public $createTime;
-  public $createdFromSnapshotId;
   public $currentState;
   public $currentStateTime;
   protected $environmentType = 'Google_Service_Dataflow_Environment';
@@ -28,23 +27,14 @@ class Google_Service_Dataflow_Job extends Google_Collection
   protected $executionInfoType = 'Google_Service_Dataflow_JobExecutionInfo';
   protected $executionInfoDataType = '';
   public $id;
-  protected $jobMetadataType = 'Google_Service_Dataflow_JobMetadata';
-  protected $jobMetadataDataType = '';
   public $labels;
-  public $location;
   public $name;
-  protected $pipelineDescriptionType = 'Google_Service_Dataflow_PipelineDescription';
-  protected $pipelineDescriptionDataType = '';
   public $projectId;
   public $replaceJobId;
   public $replacedByJobId;
   public $requestedState;
-  protected $stageStatesType = 'Google_Service_Dataflow_ExecutionStageState';
-  protected $stageStatesDataType = 'array';
-  public $startTime;
   protected $stepsType = 'Google_Service_Dataflow_Step';
   protected $stepsDataType = 'array';
-  public $stepsLocation;
   public $tempFiles;
   public $transformNameMapping;
   public $type;
@@ -65,14 +55,6 @@ class Google_Service_Dataflow_Job extends Google_Collection
   {
     return $this->createTime;
   }
-  public function setCreatedFromSnapshotId($createdFromSnapshotId)
-  {
-    $this->createdFromSnapshotId = $createdFromSnapshotId;
-  }
-  public function getCreatedFromSnapshotId()
-  {
-    return $this->createdFromSnapshotId;
-  }
   public function setCurrentState($currentState)
   {
     $this->currentState = $currentState;
@@ -89,30 +71,18 @@ class Google_Service_Dataflow_Job extends Google_Collection
   {
     return $this->currentStateTime;
   }
-  /**
-   * @param Google_Service_Dataflow_Environment
-   */
   public function setEnvironment(Google_Service_Dataflow_Environment $environment)
   {
     $this->environment = $environment;
   }
-  /**
-   * @return Google_Service_Dataflow_Environment
-   */
   public function getEnvironment()
   {
     return $this->environment;
   }
-  /**
-   * @param Google_Service_Dataflow_JobExecutionInfo
-   */
   public function setExecutionInfo(Google_Service_Dataflow_JobExecutionInfo $executionInfo)
   {
     $this->executionInfo = $executionInfo;
   }
-  /**
-   * @return Google_Service_Dataflow_JobExecutionInfo
-   */
   public function getExecutionInfo()
   {
     return $this->executionInfo;
@@ -125,20 +95,6 @@ class Google_Service_Dataflow_Job extends Google_Collection
   {
     return $this->id;
   }
-  /**
-   * @param Google_Service_Dataflow_JobMetadata
-   */
-  public function setJobMetadata(Google_Service_Dataflow_JobMetadata $jobMetadata)
-  {
-    $this->jobMetadata = $jobMetadata;
-  }
-  /**
-   * @return Google_Service_Dataflow_JobMetadata
-   */
-  public function getJobMetadata()
-  {
-    return $this->jobMetadata;
-  }
   public function setLabels($labels)
   {
     $this->labels = $labels;
@@ -147,14 +103,6 @@ class Google_Service_Dataflow_Job extends Google_Collection
   {
     return $this->labels;
   }
-  public function setLocation($location)
-  {
-    $this->location = $location;
-  }
-  public function getLocation()
-  {
-    return $this->location;
-  }
   public function setName($name)
   {
     $this->name = $name;
@@ -162,20 +110,6 @@ class Google_Service_Dataflow_Job extends Google_Collection
   public function getName()
   {
     return $this->name;
-  }
-  /**
-   * @param Google_Service_Dataflow_PipelineDescription
-   */
-  public function setPipelineDescription(Google_Service_Dataflow_PipelineDescription $pipelineDescription)
-  {
-    $this->pipelineDescription = $pipelineDescription;
-  }
-  /**
-   * @return Google_Service_Dataflow_PipelineDescription
-   */
-  public function getPipelineDescription()
-  {
-    return $this->pipelineDescription;
   }
   public function setProjectId($projectId)
   {
@@ -209,49 +143,13 @@ class Google_Service_Dataflow_Job extends Google_Collection
   {
     return $this->requestedState;
   }
-  /**
-   * @param Google_Service_Dataflow_ExecutionStageState
-   */
-  public function setStageStates($stageStates)
-  {
-    $this->stageStates = $stageStates;
-  }
-  /**
-   * @return Google_Service_Dataflow_ExecutionStageState
-   */
-  public function getStageStates()
-  {
-    return $this->stageStates;
-  }
-  public function setStartTime($startTime)
-  {
-    $this->startTime = $startTime;
-  }
-  public function getStartTime()
-  {
-    return $this->startTime;
-  }
-  /**
-   * @param Google_Service_Dataflow_Step
-   */
   public function setSteps($steps)
   {
     $this->steps = $steps;
   }
-  /**
-   * @return Google_Service_Dataflow_Step
-   */
   public function getSteps()
   {
     return $this->steps;
-  }
-  public function setStepsLocation($stepsLocation)
-  {
-    $this->stepsLocation = $stepsLocation;
-  }
-  public function getStepsLocation()
-  {
-    return $this->stepsLocation;
   }
   public function setTempFiles($tempFiles)
   {

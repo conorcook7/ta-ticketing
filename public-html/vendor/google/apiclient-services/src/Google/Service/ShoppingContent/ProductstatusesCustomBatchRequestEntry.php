@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,12 +15,9 @@
  * the License.
  */
 
-class Google_Service_ShoppingContent_ProductstatusesCustomBatchRequestEntry extends Google_Collection
+class Google_Service_ShoppingContent_ProductstatusesCustomBatchRequestEntry extends Google_Model
 {
-  protected $collection_key = 'destinations';
   public $batchId;
-  public $destinations;
-  public $includeAttributes;
   public $merchantId;
   public $method;
   public $productId;
@@ -32,22 +29,6 @@ class Google_Service_ShoppingContent_ProductstatusesCustomBatchRequestEntry exte
   public function getBatchId()
   {
     return $this->batchId;
-  }
-  public function setDestinations($destinations)
-  {
-    $this->destinations = $destinations;
-  }
-  public function getDestinations()
-  {
-    return $this->destinations;
-  }
-  public function setIncludeAttributes($includeAttributes)
-  {
-    $this->includeAttributes = $includeAttributes;
-  }
-  public function getIncludeAttributes()
-  {
-    return $this->includeAttributes;
   }
   public function setMerchantId($merchantId)
   {

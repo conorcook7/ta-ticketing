@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -31,7 +31,7 @@
  */
 class Google_Service_Drive extends Google_Service
 {
-  /** See, edit, create, and delete all of your Google Drive files. */
+  /** View and manage the files in your Google Drive. */
   const DRIVE =
       "https://www.googleapis.com/auth/drive";
   /** View and manage its own configuration data in your Google Drive. */
@@ -49,7 +49,7 @@ class Google_Service_Drive extends Google_Service
   /** View the photos, videos and albums in your Google Photos. */
   const DRIVE_PHOTOS_READONLY =
       "https://www.googleapis.com/auth/drive.photos.readonly";
-  /** See and download all your Google Drive files. */
+  /** View the files in your Google Drive. */
   const DRIVE_READONLY =
       "https://www.googleapis.com/auth/drive.readonly";
   /** Modify your Google Apps Script scripts' behavior. */
@@ -64,7 +64,6 @@ class Google_Service_Drive extends Google_Service
   public $permissions;
   public $replies;
   public $revisions;
-  public $teamdrives;
   
   /**
    * Constructs the internal representation of the Drive service.
@@ -76,7 +75,6 @@ class Google_Service_Drive extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'drive/v3/';
-    $this->batchPath = 'batch/drive/v3';
     $this->version = 'v3';
     $this->serviceName = 'drive';
 
@@ -103,16 +101,7 @@ class Google_Service_Drive extends Google_Service
             'getStartPageToken' => array(
               'path' => 'changes/startPageToken',
               'httpMethod' => 'GET',
-              'parameters' => array(
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'teamDriveId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
+              'parameters' => array(),
             ),'list' => array(
               'path' => 'changes',
               'httpMethod' => 'GET',
@@ -122,15 +111,7 @@ class Google_Service_Drive extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'includeCorpusRemovals' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'includeRemoved' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'includeTeamDriveItems' => array(
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
@@ -143,14 +124,6 @@ class Google_Service_Drive extends Google_Service
                   'type' => 'boolean',
                 ),
                 'spaces' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'teamDriveId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -164,15 +137,7 @@ class Google_Service_Drive extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'includeCorpusRemovals' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'includeRemoved' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'includeTeamDriveItems' => array(
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
@@ -185,14 +150,6 @@ class Google_Service_Drive extends Google_Service
                   'type' => 'boolean',
                 ),
                 'spaces' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'teamDriveId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -337,10 +294,6 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
               ),
             ),'create' => array(
               'path' => 'files',
@@ -358,10 +311,6 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'useContentAsIndexableText' => array(
                   'location' => 'query',
                   'type' => 'boolean',
@@ -375,10 +324,6 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ),
               ),
             ),'emptyTrash' => array(
@@ -426,26 +371,14 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
               ),
             ),'list' => array(
               'path' => 'files',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'corpora' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'corpus' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-                'includeTeamDriveItems' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ),
                 'orderBy' => array(
                   'location' => 'query',
@@ -464,14 +397,6 @@ class Google_Service_Drive extends Google_Service
                   'type' => 'string',
                 ),
                 'spaces' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'teamDriveId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -501,10 +426,6 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'useContentAsIndexableText' => array(
                   'location' => 'query',
                   'type' => 'boolean',
@@ -520,10 +441,6 @@ class Google_Service_Drive extends Google_Service
                   'required' => true,
                 ),
                 'acknowledgeAbuse' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'supportsTeamDrives' => array(
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
@@ -555,15 +472,7 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'transferOwnership' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'useDomainAdminAccess' => array(
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
@@ -582,14 +491,6 @@ class Google_Service_Drive extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'useDomainAdminAccess' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
               ),
             ),'get' => array(
               'path' => 'files/{fileId}/permissions/{permissionId}',
@@ -605,14 +506,6 @@ class Google_Service_Drive extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'useDomainAdminAccess' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
               ),
             ),'list' => array(
               'path' => 'files/{fileId}/permissions',
@@ -622,22 +515,6 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'useDomainAdminAccess' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ),
               ),
             ),'update' => array(
@@ -658,15 +535,7 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
-                'supportsTeamDrives' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'transferOwnership' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'useDomainAdminAccess' => array(
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
@@ -862,85 +731,6 @@ class Google_Service_Drive extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->teamdrives = new Google_Service_Drive_Resource_Teamdrives(
-        $this,
-        $this->serviceName,
-        'teamdrives',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'teamdrives',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'teamdrives/{teamDriveId}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'teamDriveId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'teamdrives/{teamDriveId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'teamDriveId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'useDomainAdminAccess' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'teamdrives',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'q' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'useDomainAdminAccess' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-              ),
-            ),'update' => array(
-              'path' => 'teamdrives/{teamDriveId}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'teamDriveId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'useDomainAdminAccess' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ),
               ),
             ),

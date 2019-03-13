@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,47 +15,21 @@
  * the License.
  */
 
-class Google_Service_Dfareporting_LandingPage extends Google_Collection
+class Google_Service_Dfareporting_LandingPage extends Google_Model
 {
-  protected $collection_key = 'deepLinks';
-  public $advertiserId;
-  public $archived;
-  protected $deepLinksType = 'Google_Service_Dfareporting_DeepLink';
-  protected $deepLinksDataType = 'array';
+  public $default;
   public $id;
   public $kind;
   public $name;
   public $url;
 
-  public function setAdvertiserId($advertiserId)
+  public function setDefault($default)
   {
-    $this->advertiserId = $advertiserId;
+    $this->default = $default;
   }
-  public function getAdvertiserId()
+  public function getDefault()
   {
-    return $this->advertiserId;
-  }
-  public function setArchived($archived)
-  {
-    $this->archived = $archived;
-  }
-  public function getArchived()
-  {
-    return $this->archived;
-  }
-  /**
-   * @param Google_Service_Dfareporting_DeepLink
-   */
-  public function setDeepLinks($deepLinks)
-  {
-    $this->deepLinks = $deepLinks;
-  }
-  /**
-   * @return Google_Service_Dfareporting_DeepLink
-   */
-  public function getDeepLinks()
-  {
-    return $this->deepLinks;
+    return $this->default;
   }
   public function setId($id)
   {

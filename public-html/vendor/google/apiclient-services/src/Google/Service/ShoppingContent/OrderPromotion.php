@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,124 +17,70 @@
 
 class Google_Service_ShoppingContent_OrderPromotion extends Google_Collection
 {
-  protected $collection_key = 'appliedItems';
-  protected $applicableItemsType = 'Google_Service_ShoppingContent_OrderPromotionItem';
-  protected $applicableItemsDataType = 'array';
-  protected $appliedItemsType = 'Google_Service_ShoppingContent_OrderPromotionItem';
-  protected $appliedItemsDataType = 'array';
-  public $funder;
-  public $merchantPromotionId;
-  protected $priceValueType = 'Google_Service_ShoppingContent_Price';
-  protected $priceValueDataType = '';
-  public $shortTitle;
-  public $subtype;
-  protected $taxValueType = 'Google_Service_ShoppingContent_Price';
-  protected $taxValueDataType = '';
-  public $title;
-  public $type;
+  protected $collection_key = 'benefits';
+  protected $benefitsType = 'Google_Service_ShoppingContent_OrderPromotionBenefit';
+  protected $benefitsDataType = 'array';
+  public $effectiveDates;
+  public $genericRedemptionCode;
+  public $id;
+  public $longTitle;
+  public $productApplicability;
+  public $redemptionChannel;
 
-  /**
-   * @param Google_Service_ShoppingContent_OrderPromotionItem
-   */
-  public function setApplicableItems($applicableItems)
+  public function setBenefits($benefits)
   {
-    $this->applicableItems = $applicableItems;
+    $this->benefits = $benefits;
   }
-  /**
-   * @return Google_Service_ShoppingContent_OrderPromotionItem
-   */
-  public function getApplicableItems()
+  public function getBenefits()
   {
-    return $this->applicableItems;
+    return $this->benefits;
   }
-  /**
-   * @param Google_Service_ShoppingContent_OrderPromotionItem
-   */
-  public function setAppliedItems($appliedItems)
+  public function setEffectiveDates($effectiveDates)
   {
-    $this->appliedItems = $appliedItems;
+    $this->effectiveDates = $effectiveDates;
   }
-  /**
-   * @return Google_Service_ShoppingContent_OrderPromotionItem
-   */
-  public function getAppliedItems()
+  public function getEffectiveDates()
   {
-    return $this->appliedItems;
+    return $this->effectiveDates;
   }
-  public function setFunder($funder)
+  public function setGenericRedemptionCode($genericRedemptionCode)
   {
-    $this->funder = $funder;
+    $this->genericRedemptionCode = $genericRedemptionCode;
   }
-  public function getFunder()
+  public function getGenericRedemptionCode()
   {
-    return $this->funder;
+    return $this->genericRedemptionCode;
   }
-  public function setMerchantPromotionId($merchantPromotionId)
+  public function setId($id)
   {
-    $this->merchantPromotionId = $merchantPromotionId;
+    $this->id = $id;
   }
-  public function getMerchantPromotionId()
+  public function getId()
   {
-    return $this->merchantPromotionId;
+    return $this->id;
   }
-  /**
-   * @param Google_Service_ShoppingContent_Price
-   */
-  public function setPriceValue(Google_Service_ShoppingContent_Price $priceValue)
+  public function setLongTitle($longTitle)
   {
-    $this->priceValue = $priceValue;
+    $this->longTitle = $longTitle;
   }
-  /**
-   * @return Google_Service_ShoppingContent_Price
-   */
-  public function getPriceValue()
+  public function getLongTitle()
   {
-    return $this->priceValue;
+    return $this->longTitle;
   }
-  public function setShortTitle($shortTitle)
+  public function setProductApplicability($productApplicability)
   {
-    $this->shortTitle = $shortTitle;
+    $this->productApplicability = $productApplicability;
   }
-  public function getShortTitle()
+  public function getProductApplicability()
   {
-    return $this->shortTitle;
+    return $this->productApplicability;
   }
-  public function setSubtype($subtype)
+  public function setRedemptionChannel($redemptionChannel)
   {
-    $this->subtype = $subtype;
+    $this->redemptionChannel = $redemptionChannel;
   }
-  public function getSubtype()
+  public function getRedemptionChannel()
   {
-    return $this->subtype;
-  }
-  /**
-   * @param Google_Service_ShoppingContent_Price
-   */
-  public function setTaxValue(Google_Service_ShoppingContent_Price $taxValue)
-  {
-    $this->taxValue = $taxValue;
-  }
-  /**
-   * @return Google_Service_ShoppingContent_Price
-   */
-  public function getTaxValue()
-  {
-    return $this->taxValue;
-  }
-  public function setTitle($title)
-  {
-    $this->title = $title;
-  }
-  public function getTitle()
-  {
-    return $this->title;
-  }
-  public function setType($type)
-  {
-    $this->type = $type;
-  }
-  public function getType()
-  {
-    return $this->type;
+    return $this->redemptionChannel;
   }
 }

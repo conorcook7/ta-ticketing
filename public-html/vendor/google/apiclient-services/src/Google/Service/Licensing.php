@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +19,7 @@
  * Service definition for Licensing (v1).
  *
  * <p>
- * Views and manages licenses for your domain.</p>
+ * Licensing API to view and manage license for your domain.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -30,7 +30,7 @@
  */
 class Google_Service_Licensing extends Google_Service
 {
-  /** View and manage G Suite licenses for your domain. */
+  /** View and manage Google Apps licenses for your domain. */
   const APPS_LICENSING =
       "https://www.googleapis.com/auth/apps.licensing";
 
@@ -46,7 +46,6 @@ class Google_Service_Licensing extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'apps/licensing/v1/product/';
-    $this->batchPath = 'batch/licensing/v1';
     $this->version = 'v1';
     $this->serviceName = 'licensing';
 

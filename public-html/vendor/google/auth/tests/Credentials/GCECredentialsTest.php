@@ -20,9 +20,8 @@ namespace Google\Auth\Tests;
 use Google\Auth\Credentials\GCECredentials;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 
-class GCECredentialsOnGCETest extends TestCase
+class GCECredentialsOnGCETest extends \PHPUnit_Framework_TestCase
 {
     public function testIsFalseOnClientErrorStatus()
     {
@@ -57,27 +56,21 @@ class GCECredentialsOnGCETest extends TestCase
     }
 }
 
-class GCECredentialsOnAppEngineFlexibleTest extends TestCase
+class GCECredentialsOnAppEngineFlexibleTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsFalseByDefault()
     {
         $this->assertFalse(GCECredentials::onAppEngineFlexible());
     }
 
-    public function testIsTrueWhenGaeInstanceHasAefPrefix()
+    public function testIsTrueWhenGaeVmIsTrue()
     {
-        putenv('GAE_INSTANCE=aef-default-20180313t154438');
+        $_SERVER['GAE_VM'] = 'true';
         $this->assertTrue(GCECredentials::onAppEngineFlexible());
-    }
-
-    protected function tearDown()
-    {
-        // removes it if assigned
-        putenv('GAE_INSTANCE');
     }
 }
 
-class GCECredentialsGetCacheKeyTest extends TestCase
+class GCECredentialsGetCacheKeyTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldNotBeEmpty()
     {
@@ -86,7 +79,7 @@ class GCECredentialsGetCacheKeyTest extends TestCase
     }
 }
 
-class GCECredentialsFetchAuthTokenTest extends TestCase
+class GCECredentialsFetchAuthTokenTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldBeEmptyIfNotOnGCE()
     {

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -30,7 +30,7 @@
  */
 class Google_Service_Groupssettings extends Google_Service
 {
-  /** View and manage the settings of a G Suite group. */
+  /** View and manage the settings of a Google Apps Group. */
   const APPS_GROUPS_SETTINGS =
       "https://www.googleapis.com/auth/apps.groups.settings";
 
@@ -46,7 +46,6 @@ class Google_Service_Groupssettings extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'groups/v1/groups/';
-    $this->batchPath = 'batch/groupssettings/v1';
     $this->version = 'v1';
     $this->serviceName = 'groupssettings';
 

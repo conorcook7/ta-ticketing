@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -30,7 +30,7 @@
  */
 class Google_Service_Tasks extends Google_Service
 {
-  /** Create, edit, organize, and delete all your tasks. */
+  /** Manage your tasks. */
   const TASKS =
       "https://www.googleapis.com/auth/tasks";
   /** View your tasks. */
@@ -50,7 +50,6 @@ class Google_Service_Tasks extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'tasks/v1/';
-    $this->batchPath = 'batch/tasks/v1';
     $this->version = 'v1';
     $this->serviceName = 'tasks';
 

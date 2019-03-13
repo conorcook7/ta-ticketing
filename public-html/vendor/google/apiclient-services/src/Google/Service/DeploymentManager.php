@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -59,7 +59,6 @@ class Google_Service_DeploymentManager extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'deploymentmanager/v2/projects/';
-    $this->batchPath = 'batch/deploymentmanager/v2';
     $this->version = 'v2';
     $this->serviceName = 'deploymentmanager';
 
@@ -97,10 +96,6 @@ class Google_Service_DeploymentManager extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'deletePolicy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -142,10 +137,6 @@ class Google_Service_DeploymentManager extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'createPolicy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'preview' => array(
                   'location' => 'query',
                   'type' => 'boolean',
@@ -167,10 +158,6 @@ class Google_Service_DeploymentManager extends Google_Service
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
                 'pageToken' => array(
                   'location' => 'query',
@@ -328,10 +315,6 @@ class Google_Service_DeploymentManager extends Google_Service
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -378,10 +361,6 @@ class Google_Service_DeploymentManager extends Google_Service
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
                 'pageToken' => array(
                   'location' => 'query',
@@ -440,10 +419,6 @@ class Google_Service_DeploymentManager extends Google_Service
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -475,10 +450,6 @@ class Google_Service_DeploymentManager extends Google_Service
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
                 'pageToken' => array(
                   'location' => 'query',

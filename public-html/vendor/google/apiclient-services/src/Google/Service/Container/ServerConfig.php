@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,8 @@ class Google_Service_Container_ServerConfig extends Google_Collection
 {
   protected $collection_key = 'validNodeVersions';
   public $defaultClusterVersion;
-  public $defaultImageType;
-  public $validImageTypes;
-  public $validMasterVersions;
+  public $defaultImageFamily;
+  public $validImageFamilies;
   public $validNodeVersions;
 
   public function setDefaultClusterVersion($defaultClusterVersion)
@@ -32,29 +31,21 @@ class Google_Service_Container_ServerConfig extends Google_Collection
   {
     return $this->defaultClusterVersion;
   }
-  public function setDefaultImageType($defaultImageType)
+  public function setDefaultImageFamily($defaultImageFamily)
   {
-    $this->defaultImageType = $defaultImageType;
+    $this->defaultImageFamily = $defaultImageFamily;
   }
-  public function getDefaultImageType()
+  public function getDefaultImageFamily()
   {
-    return $this->defaultImageType;
+    return $this->defaultImageFamily;
   }
-  public function setValidImageTypes($validImageTypes)
+  public function setValidImageFamilies($validImageFamilies)
   {
-    $this->validImageTypes = $validImageTypes;
+    $this->validImageFamilies = $validImageFamilies;
   }
-  public function getValidImageTypes()
+  public function getValidImageFamilies()
   {
-    return $this->validImageTypes;
-  }
-  public function setValidMasterVersions($validMasterVersions)
-  {
-    $this->validMasterVersions = $validMasterVersions;
-  }
-  public function getValidMasterVersions()
-  {
-    return $this->validMasterVersions;
+    return $this->validImageFamilies;
   }
   public function setValidNodeVersions($validNodeVersions)
   {

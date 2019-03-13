@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -29,7 +29,6 @@ class Google_Service_Appengine_Instance extends Google_Model
   public $startTime;
   public $vmDebugEnabled;
   public $vmId;
-  public $vmIp;
   public $vmName;
   public $vmStatus;
   public $vmZoneName;
@@ -129,14 +128,6 @@ class Google_Service_Appengine_Instance extends Google_Model
   public function getVmId()
   {
     return $this->vmId;
-  }
-  public function setVmIp($vmIp)
-  {
-    $this->vmIp = $vmIp;
-  }
-  public function getVmIp()
-  {
-    return $this->vmIp;
   }
   public function setVmName($vmName)
   {

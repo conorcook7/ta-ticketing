@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,7 +26,6 @@ class Google_Service_Groupssettings_Groups extends Google_Model
   public $defaultMessageDenyNotificationText;
   public $description;
   public $email;
-  public $favoriteRepliesOnTop;
   public $includeCustomFooter;
   public $includeInGlobalAddressList;
   public $isArchived;
@@ -42,22 +41,11 @@ class Google_Service_Groupssettings_Groups extends Google_Model
   public $showInGroupDirectory;
   public $spamModerationLevel;
   public $whoCanAdd;
-  public $whoCanAddReferences;
-  public $whoCanAssignTopics;
   public $whoCanContactOwner;
-  public $whoCanEnterFreeFormTags;
   public $whoCanInvite;
   public $whoCanJoin;
   public $whoCanLeaveGroup;
-  public $whoCanMarkDuplicate;
-  public $whoCanMarkFavoriteReplyOnAnyTopic;
-  public $whoCanMarkFavoriteReplyOnOwnTopic;
-  public $whoCanMarkNoResponseNeeded;
-  public $whoCanModifyTagsAndCategories;
   public $whoCanPostMessage;
-  public $whoCanTakeTopics;
-  public $whoCanUnassignTopic;
-  public $whoCanUnmarkFavoriteReplyOnAnyTopic;
   public $whoCanViewGroup;
   public $whoCanViewMembership;
 
@@ -132,14 +120,6 @@ class Google_Service_Groupssettings_Groups extends Google_Model
   public function getEmail()
   {
     return $this->email;
-  }
-  public function setFavoriteRepliesOnTop($favoriteRepliesOnTop)
-  {
-    $this->favoriteRepliesOnTop = $favoriteRepliesOnTop;
-  }
-  public function getFavoriteRepliesOnTop()
-  {
-    return $this->favoriteRepliesOnTop;
   }
   public function setIncludeCustomFooter($includeCustomFooter)
   {
@@ -261,22 +241,6 @@ class Google_Service_Groupssettings_Groups extends Google_Model
   {
     return $this->whoCanAdd;
   }
-  public function setWhoCanAddReferences($whoCanAddReferences)
-  {
-    $this->whoCanAddReferences = $whoCanAddReferences;
-  }
-  public function getWhoCanAddReferences()
-  {
-    return $this->whoCanAddReferences;
-  }
-  public function setWhoCanAssignTopics($whoCanAssignTopics)
-  {
-    $this->whoCanAssignTopics = $whoCanAssignTopics;
-  }
-  public function getWhoCanAssignTopics()
-  {
-    return $this->whoCanAssignTopics;
-  }
   public function setWhoCanContactOwner($whoCanContactOwner)
   {
     $this->whoCanContactOwner = $whoCanContactOwner;
@@ -284,14 +248,6 @@ class Google_Service_Groupssettings_Groups extends Google_Model
   public function getWhoCanContactOwner()
   {
     return $this->whoCanContactOwner;
-  }
-  public function setWhoCanEnterFreeFormTags($whoCanEnterFreeFormTags)
-  {
-    $this->whoCanEnterFreeFormTags = $whoCanEnterFreeFormTags;
-  }
-  public function getWhoCanEnterFreeFormTags()
-  {
-    return $this->whoCanEnterFreeFormTags;
   }
   public function setWhoCanInvite($whoCanInvite)
   {
@@ -317,46 +273,6 @@ class Google_Service_Groupssettings_Groups extends Google_Model
   {
     return $this->whoCanLeaveGroup;
   }
-  public function setWhoCanMarkDuplicate($whoCanMarkDuplicate)
-  {
-    $this->whoCanMarkDuplicate = $whoCanMarkDuplicate;
-  }
-  public function getWhoCanMarkDuplicate()
-  {
-    return $this->whoCanMarkDuplicate;
-  }
-  public function setWhoCanMarkFavoriteReplyOnAnyTopic($whoCanMarkFavoriteReplyOnAnyTopic)
-  {
-    $this->whoCanMarkFavoriteReplyOnAnyTopic = $whoCanMarkFavoriteReplyOnAnyTopic;
-  }
-  public function getWhoCanMarkFavoriteReplyOnAnyTopic()
-  {
-    return $this->whoCanMarkFavoriteReplyOnAnyTopic;
-  }
-  public function setWhoCanMarkFavoriteReplyOnOwnTopic($whoCanMarkFavoriteReplyOnOwnTopic)
-  {
-    $this->whoCanMarkFavoriteReplyOnOwnTopic = $whoCanMarkFavoriteReplyOnOwnTopic;
-  }
-  public function getWhoCanMarkFavoriteReplyOnOwnTopic()
-  {
-    return $this->whoCanMarkFavoriteReplyOnOwnTopic;
-  }
-  public function setWhoCanMarkNoResponseNeeded($whoCanMarkNoResponseNeeded)
-  {
-    $this->whoCanMarkNoResponseNeeded = $whoCanMarkNoResponseNeeded;
-  }
-  public function getWhoCanMarkNoResponseNeeded()
-  {
-    return $this->whoCanMarkNoResponseNeeded;
-  }
-  public function setWhoCanModifyTagsAndCategories($whoCanModifyTagsAndCategories)
-  {
-    $this->whoCanModifyTagsAndCategories = $whoCanModifyTagsAndCategories;
-  }
-  public function getWhoCanModifyTagsAndCategories()
-  {
-    return $this->whoCanModifyTagsAndCategories;
-  }
   public function setWhoCanPostMessage($whoCanPostMessage)
   {
     $this->whoCanPostMessage = $whoCanPostMessage;
@@ -364,30 +280,6 @@ class Google_Service_Groupssettings_Groups extends Google_Model
   public function getWhoCanPostMessage()
   {
     return $this->whoCanPostMessage;
-  }
-  public function setWhoCanTakeTopics($whoCanTakeTopics)
-  {
-    $this->whoCanTakeTopics = $whoCanTakeTopics;
-  }
-  public function getWhoCanTakeTopics()
-  {
-    return $this->whoCanTakeTopics;
-  }
-  public function setWhoCanUnassignTopic($whoCanUnassignTopic)
-  {
-    $this->whoCanUnassignTopic = $whoCanUnassignTopic;
-  }
-  public function getWhoCanUnassignTopic()
-  {
-    return $this->whoCanUnassignTopic;
-  }
-  public function setWhoCanUnmarkFavoriteReplyOnAnyTopic($whoCanUnmarkFavoriteReplyOnAnyTopic)
-  {
-    $this->whoCanUnmarkFavoriteReplyOnAnyTopic = $whoCanUnmarkFavoriteReplyOnAnyTopic;
-  }
-  public function getWhoCanUnmarkFavoriteReplyOnAnyTopic()
-  {
-    return $this->whoCanUnmarkFavoriteReplyOnAnyTopic;
   }
   public function setWhoCanViewGroup($whoCanViewGroup)
   {

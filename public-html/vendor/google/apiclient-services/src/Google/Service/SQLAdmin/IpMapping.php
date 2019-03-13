@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +19,6 @@ class Google_Service_SQLAdmin_IpMapping extends Google_Model
 {
   public $ipAddress;
   public $timeToRetire;
-  public $type;
 
   public function setIpAddress($ipAddress)
   {
@@ -36,13 +35,5 @@ class Google_Service_SQLAdmin_IpMapping extends Google_Model
   public function getTimeToRetire()
   {
     return $this->timeToRetire;
-  }
-  public function setType($type)
-  {
-    $this->type = $type;
-  }
-  public function getType()
-  {
-    return $this->type;
   }
 }

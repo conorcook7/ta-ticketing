@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,8 +17,6 @@
 
 class Google_Service_YouTubeAnalytics_GroupItem extends Google_Model
 {
-  protected $errorsType = 'Google_Service_YouTubeAnalytics_Errors';
-  protected $errorsDataType = '';
   public $etag;
   public $groupId;
   public $id;
@@ -26,20 +24,6 @@ class Google_Service_YouTubeAnalytics_GroupItem extends Google_Model
   protected $resourceType = 'Google_Service_YouTubeAnalytics_GroupItemResource';
   protected $resourceDataType = '';
 
-  /**
-   * @param Google_Service_YouTubeAnalytics_Errors
-   */
-  public function setErrors(Google_Service_YouTubeAnalytics_Errors $errors)
-  {
-    $this->errors = $errors;
-  }
-  /**
-   * @return Google_Service_YouTubeAnalytics_Errors
-   */
-  public function getErrors()
-  {
-    return $this->errors;
-  }
   public function setEtag($etag)
   {
     $this->etag = $etag;
@@ -72,16 +56,10 @@ class Google_Service_YouTubeAnalytics_GroupItem extends Google_Model
   {
     return $this->kind;
   }
-  /**
-   * @param Google_Service_YouTubeAnalytics_GroupItemResource
-   */
   public function setResource(Google_Service_YouTubeAnalytics_GroupItemResource $resource)
   {
     $this->resource = $resource;
   }
-  /**
-   * @return Google_Service_YouTubeAnalytics_GroupItemResource
-   */
   public function getResource()
   {
     return $this->resource;

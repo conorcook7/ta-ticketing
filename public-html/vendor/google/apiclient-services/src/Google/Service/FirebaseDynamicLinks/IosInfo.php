@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -23,7 +23,6 @@ class Google_Service_FirebaseDynamicLinks_IosInfo extends Google_Model
   public $iosFallbackLink;
   public $iosIpadBundleId;
   public $iosIpadFallbackLink;
-  public $iosMinimumVersion;
 
   public function setIosAppStoreId($iosAppStoreId)
   {
@@ -72,13 +71,5 @@ class Google_Service_FirebaseDynamicLinks_IosInfo extends Google_Model
   public function getIosIpadFallbackLink()
   {
     return $this->iosIpadFallbackLink;
-  }
-  public function setIosMinimumVersion($iosMinimumVersion)
-  {
-    $this->iosMinimumVersion = $iosMinimumVersion;
-  }
-  public function getIosMinimumVersion()
-  {
-    return $this->iosMinimumVersion;
   }
 }

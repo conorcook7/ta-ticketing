@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,8 +19,6 @@ class Google_Service_Dataflow_ReportWorkItemStatusRequest extends Google_Collect
 {
   protected $collection_key = 'workItemStatuses';
   public $currentWorkerTime;
-  public $location;
-  public $unifiedWorkerRequest;
   protected $workItemStatusesType = 'Google_Service_Dataflow_WorkItemStatus';
   protected $workItemStatusesDataType = 'array';
   public $workerId;
@@ -33,32 +31,10 @@ class Google_Service_Dataflow_ReportWorkItemStatusRequest extends Google_Collect
   {
     return $this->currentWorkerTime;
   }
-  public function setLocation($location)
-  {
-    $this->location = $location;
-  }
-  public function getLocation()
-  {
-    return $this->location;
-  }
-  public function setUnifiedWorkerRequest($unifiedWorkerRequest)
-  {
-    $this->unifiedWorkerRequest = $unifiedWorkerRequest;
-  }
-  public function getUnifiedWorkerRequest()
-  {
-    return $this->unifiedWorkerRequest;
-  }
-  /**
-   * @param Google_Service_Dataflow_WorkItemStatus
-   */
   public function setWorkItemStatuses($workItemStatuses)
   {
     $this->workItemStatuses = $workItemStatuses;
   }
-  /**
-   * @return Google_Service_Dataflow_WorkItemStatus
-   */
   public function getWorkItemStatuses()
   {
     return $this->workItemStatuses;

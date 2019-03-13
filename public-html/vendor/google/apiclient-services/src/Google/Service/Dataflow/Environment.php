@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -21,7 +21,6 @@ class Google_Service_Dataflow_Environment extends Google_Collection
   public $clusterManagerApiService;
   public $dataset;
   public $experiments;
-  public $flexResourceSchedulingGoal;
   public $internalExperiments;
   public $sdkPipelineOptions;
   public $serviceAccountEmail;
@@ -54,14 +53,6 @@ class Google_Service_Dataflow_Environment extends Google_Collection
   public function getExperiments()
   {
     return $this->experiments;
-  }
-  public function setFlexResourceSchedulingGoal($flexResourceSchedulingGoal)
-  {
-    $this->flexResourceSchedulingGoal = $flexResourceSchedulingGoal;
-  }
-  public function getFlexResourceSchedulingGoal()
-  {
-    return $this->flexResourceSchedulingGoal;
   }
   public function setInternalExperiments($internalExperiments)
   {
@@ -111,16 +102,10 @@ class Google_Service_Dataflow_Environment extends Google_Collection
   {
     return $this->version;
   }
-  /**
-   * @param Google_Service_Dataflow_WorkerPool
-   */
   public function setWorkerPools($workerPools)
   {
     $this->workerPools = $workerPools;
   }
-  /**
-   * @return Google_Service_Dataflow_WorkerPool
-   */
   public function getWorkerPools()
   {
     return $this->workerPools;

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,7 +26,10 @@
 class Google_Service_Genomics_Resource_Callsets extends Google_Service_Resource
 {
   /**
-   * Creates a new call set. (callsets.create)
+   * Creates a new call set. For the definitions of call sets and other genomics
+   * resources, see [Fundamentals of Google
+   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * (callsets.create)
    *
    * @param Google_Service_Genomics_CallSet $postBody
    * @param array $optParams Optional parameters.
@@ -39,7 +42,10 @@ class Google_Service_Genomics_Resource_Callsets extends Google_Service_Resource
     return $this->call('create', array($params), "Google_Service_Genomics_CallSet");
   }
   /**
-   * Deletes a call set. (callsets.delete)
+   * Deletes a call set. For the definitions of call sets and other genomics
+   * resources, see [Fundamentals of Google
+   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * (callsets.delete)
    *
    * @param string $callSetId The ID of the call set to be deleted.
    * @param array $optParams Optional parameters.
@@ -52,7 +58,10 @@ class Google_Service_Genomics_Resource_Callsets extends Google_Service_Resource
     return $this->call('delete', array($params), "Google_Service_Genomics_GenomicsEmpty");
   }
   /**
-   * Gets a call set by ID. (callsets.get)
+   * Gets a call set by ID. For the definitions of call sets and other genomics
+   * resources, see [Fundamentals of Google
+   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * (callsets.get)
    *
    * @param string $callSetId The ID of the call set.
    * @param array $optParams Optional parameters.
@@ -65,8 +74,9 @@ class Google_Service_Genomics_Resource_Callsets extends Google_Service_Resource
     return $this->call('get', array($params), "Google_Service_Genomics_CallSet");
   }
   /**
-   * Updates a call set.
-   *
+   * Updates a call set. For the definitions of call sets and other genomics
+   * resources, see [Fundamentals of Google
+   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
    * This method supports patch semantics. (callsets.patch)
    *
    * @param string $callSetId The ID of the call set to be updated.
@@ -85,8 +95,9 @@ class Google_Service_Genomics_Resource_Callsets extends Google_Service_Resource
     return $this->call('patch', array($params), "Google_Service_Genomics_CallSet");
   }
   /**
-   * Gets a list of call sets matching the criteria.
-   *
+   * Gets a list of call sets matching the criteria. For the definitions of call
+   * sets and other genomics resources, see [Fundamentals of Google
+   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
    * Implements [GlobalAllianceApi.searchCallSets](https://github.com/ga4gh/schema
    * s/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L178).
    * (callsets.search)

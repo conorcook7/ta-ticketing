@@ -57,26 +57,23 @@
     },
     {
         "name": "firebase/php-jwt",
-        "version": "v5.0.0",
-        "version_normalized": "5.0.0.0",
+        "version": "v4.0.0",
+        "version_normalized": "4.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/firebase/php-jwt.git",
-            "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
+            "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
-            "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+            "url": "https://api.github.com/repos/firebase/php-jwt/zipball/dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
+            "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "require-dev": {
-            "phpunit/phpunit": " 4.8.35"
-        },
-        "time": "2017-06-27T22:17:23+00:00",
+        "time": "2016-07-18T04:51:16+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -105,32 +102,32 @@
     },
     {
         "name": "google/apiclient",
-        "version": "v2.2.2",
-        "version_normalized": "2.2.2.0",
+        "version": "v2.1.0",
+        "version_normalized": "2.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/googleapis/google-api-php-client.git",
-            "reference": "4e0fd83510e579043e10e565528b323b7c2b3c81"
+            "reference": "f4a8ef0642cdbea0a07f6966158337bab846d4de"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/4e0fd83510e579043e10e565528b323b7c2b3c81",
-            "reference": "4e0fd83510e579043e10e565528b323b7c2b3c81",
+            "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/f4a8ef0642cdbea0a07f6966158337bab846d4de",
+            "reference": "f4a8ef0642cdbea0a07f6966158337bab846d4de",
             "shasum": ""
         },
         "require": {
-            "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
-            "google/apiclient-services": "~0.13",
-            "google/auth": "^1.0",
-            "guzzlehttp/guzzle": "~5.3.1|~6.0",
+            "firebase/php-jwt": "~2.0|~3.0|~4.0",
+            "google/apiclient-services": "^0.8",
+            "google/auth": "^0.11",
+            "guzzlehttp/guzzle": "~5.2|~6.0",
             "guzzlehttp/psr7": "^1.2",
             "monolog/monolog": "^1.17",
             "php": ">=5.4",
-            "phpseclib/phpseclib": "~0.3.10|~2.0"
+            "phpseclib/phpseclib": "~2.0"
         },
         "require-dev": {
             "cache/filesystem-adapter": "^0.3.2",
-            "phpunit/phpunit": "~4.8.36",
+            "phpunit/phpunit": "~4",
             "squizlabs/php_codesniffer": "~2.3",
             "symfony/css-selector": "~2.1",
             "symfony/dom-crawler": "~2.1"
@@ -138,7 +135,7 @@
         "suggest": {
             "cache/filesystem-adapter": "For caching certs and tokens (using Google_Client::setCache)"
         },
-        "time": "2018-06-20T15:52:20+00:00",
+        "time": "2016-11-02T14:28:02+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -166,26 +163,23 @@
     },
     {
         "name": "google/apiclient-services",
-        "version": "v0.86",
-        "version_normalized": "0.86.0.0",
+        "version": "v0.8",
+        "version_normalized": "0.8.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/googleapis/google-api-php-client-services.git",
-            "reference": "84496e256a7cac3a7817db7ba534829a370a3201"
+            "reference": "26bcd71cb4fcf78020ec24052ddfb28550e01bc8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/84496e256a7cac3a7817db7ba534829a370a3201",
-            "reference": "84496e256a7cac3a7817db7ba534829a370a3201",
+            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/26bcd71cb4fcf78020ec24052ddfb28550e01bc8",
+            "reference": "26bcd71cb4fcf78020ec24052ddfb28550e01bc8",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4"
         },
-        "require-dev": {
-            "phpunit/phpunit": "~4.8"
-        },
-        "time": "2019-02-20T02:10:11+00:00",
+        "time": "2016-10-18T01:01:16+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -205,37 +199,38 @@
     },
     {
         "name": "google/auth",
-        "version": "v1.4.0",
-        "version_normalized": "1.4.0.0",
+        "version": "v0.11.1",
+        "version_normalized": "0.11.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/googleapis/google-auth-library-php.git",
-            "reference": "196237248e636a3554a7d9e4dfddeb97f450ab5c"
+            "reference": "a240674b08a09949fd5597f7590b3ed83663a12d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/196237248e636a3554a7d9e4dfddeb97f450ab5c",
-            "reference": "196237248e636a3554a7d9e4dfddeb97f450ab5c",
+            "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/a240674b08a09949fd5597f7590b3ed83663a12d",
+            "reference": "a240674b08a09949fd5597f7590b3ed83663a12d",
             "shasum": ""
         },
         "require": {
-            "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
-            "guzzlehttp/guzzle": "~5.3.1|~6.0",
-            "guzzlehttp/psr7": "^1.2",
+            "firebase/php-jwt": "~2.0|~3.0|~4.0",
+            "guzzlehttp/guzzle": "~5.3|~6.0",
+            "guzzlehttp/psr7": "~1.2",
             "php": ">=5.4",
             "psr/cache": "^1.0",
             "psr/http-message": "^1.0"
         },
         "require-dev": {
             "friendsofphp/php-cs-fixer": "^1.11",
-            "guzzlehttp/promises": "0.1.1|^1.3",
-            "phpunit/phpunit": "^4.8.36|^5.7",
-            "sebastian/comparator": ">=1.2.3"
+            "phpunit/phpunit": "3.7.*"
         },
-        "time": "2018-09-17T20:29:21+00:00",
+        "time": "2016-11-02T14:59:14+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
+            "classmap": [
+                "src/"
+            ],
             "psr-4": {
                 "Google\\Auth\\": "src"
             }
@@ -681,17 +676,17 @@
     },
     {
         "name": "phpseclib/phpseclib",
-        "version": "2.0.14",
-        "version_normalized": "2.0.14.0",
+        "version": "2.0.15",
+        "version_normalized": "2.0.15.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phpseclib/phpseclib.git",
-            "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478"
+            "reference": "11cf67cf78dc4acb18dc9149a57be4aee5036ce0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/8ebfcadbf30524aeb75b2c446bc2519d5b321478",
-            "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/11cf67cf78dc4acb18dc9149a57be4aee5036ce0",
+            "reference": "11cf67cf78dc4acb18dc9149a57be4aee5036ce0",
             "shasum": ""
         },
         "require": {
@@ -709,7 +704,7 @@
             "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
             "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
         },
-        "time": "2019-01-27T19:37:29+00:00",
+        "time": "2019-03-10T16:53:45+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

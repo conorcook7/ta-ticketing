@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +19,8 @@
  * Service definition for Kgsearch (v1).
  *
  * <p>
- * Searches the Google Knowledge Graph for entities.</p>
+ * Knowledge Graph Search API allows developers to search the Google Knowledge
+ * Graph for entities.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -44,7 +45,6 @@ class Google_Service_Kgsearch extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://kgsearch.googleapis.com/';
     $this->servicePath = '';
-    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'kgsearch';
 
@@ -58,27 +58,19 @@ class Google_Service_Kgsearch extends Google_Service
               'path' => 'v1/entities:search',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'languages' => array(
+                'query' => array(
                   'location' => 'query',
                   'type' => 'string',
-                  'repeated' => true,
                 ),
                 'ids' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
                 ),
-                'limit' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'prefix' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'query' => array(
+                'languages' => array(
                   'location' => 'query',
                   'type' => 'string',
+                  'repeated' => true,
                 ),
                 'types' => array(
                   'location' => 'query',
@@ -88,6 +80,14 @@ class Google_Service_Kgsearch extends Google_Service
                 'indent' => array(
                   'location' => 'query',
                   'type' => 'boolean',
+                ),
+                'prefix' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
+                'limit' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                 ),
               ),
             ),

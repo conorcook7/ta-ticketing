@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -49,10 +49,8 @@ class Google_Service_Compute extends Google_Service
   const DEVSTORAGE_READ_WRITE =
       "https://www.googleapis.com/auth/devstorage.read_write";
 
-  public $acceleratorTypes;
   public $addresses;
   public $autoscalers;
-  public $backendBuckets;
   public $backendServices;
   public $diskTypes;
   public $disks;
@@ -69,39 +67,22 @@ class Google_Service_Compute extends Google_Service
   public $instanceGroups;
   public $instanceTemplates;
   public $instances;
-  public $interconnectAttachments;
-  public $interconnectLocations;
-  public $interconnects;
-  public $licenseCodes;
   public $licenses;
   public $machineTypes;
   public $networks;
-  public $nodeGroups;
-  public $nodeTemplates;
-  public $nodeTypes;
   public $projects;
-  public $regionAutoscalers;
-  public $regionBackendServices;
-  public $regionCommitments;
-  public $regionDiskTypes;
-  public $regionDisks;
-  public $regionInstanceGroupManagers;
-  public $regionInstanceGroups;
   public $regionOperations;
   public $regions;
   public $routers;
   public $routes;
-  public $securityPolicies;
   public $snapshots;
   public $sslCertificates;
-  public $sslPolicies;
   public $subnetworks;
   public $targetHttpProxies;
   public $targetHttpsProxies;
   public $targetInstances;
   public $targetPools;
   public $targetSslProxies;
-  public $targetTcpProxies;
   public $targetVpnGateways;
   public $urlMaps;
   public $vpnTunnels;
@@ -118,97 +99,9 @@ class Google_Service_Compute extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'compute/v1/projects/';
-    $this->batchPath = 'batch/compute/v1';
     $this->version = 'v1';
     $this->serviceName = 'compute';
 
-    $this->acceleratorTypes = new Google_Service_Compute_Resource_AcceleratorTypes(
-        $this,
-        $this->serviceName,
-        'acceleratorTypes',
-        array(
-          'methods' => array(
-            'aggregatedList' => array(
-              'path' => '{project}/aggregated/acceleratorTypes',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/zones/{zone}/acceleratorTypes/{acceleratorType}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'acceleratorType' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/zones/{zone}/acceleratorTypes',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
     $this->addresses = new Google_Service_Compute_Resource_Addresses(
         $this,
         $this->serviceName,
@@ -260,10 +153,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/regions/{region}/addresses/{address}',
@@ -298,10 +187,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -390,10 +275,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/zones/{zone}/autoscalers/{autoscaler}',
@@ -429,10 +310,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'list' => array(
               'path' => '{project}/zones/{zone}/autoscalers',
@@ -482,10 +359,7 @@ class Google_Service_Compute extends Google_Service
                 'autoscaler' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
+                  'required' => true,
                 ),
               ),
             ),'update' => array(
@@ -503,175 +377,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
                 'autoscaler' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->backendBuckets = new Google_Service_Compute_Resource_BackendBuckets(
-        $this,
-        $this->serviceName,
-        'backendBuckets',
-        array(
-          'methods' => array(
-            'addSignedUrlKey' => array(
-              'path' => '{project}/global/backendBuckets/{backendBucket}/addSignedUrlKey',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendBucket' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/global/backendBuckets/{backendBucket}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendBucket' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'deleteSignedUrlKey' => array(
-              'path' => '{project}/global/backendBuckets/{backendBucket}/deleteSignedUrlKey',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendBucket' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'keyName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/global/backendBuckets/{backendBucket}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendBucket' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/global/backendBuckets',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/global/backendBuckets',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/global/backendBuckets/{backendBucket}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendBucket' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'update' => array(
-              'path' => '{project}/global/backendBuckets/{backendBucket}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendBucket' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -686,52 +391,7 @@ class Google_Service_Compute extends Google_Service
         'backendServices',
         array(
           'methods' => array(
-            'addSignedUrlKey' => array(
-              'path' => '{project}/global/backendServices/{backendService}/addSignedUrlKey',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'aggregatedList' => array(
-              'path' => '{project}/aggregated/backendServices',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
+            'delete' => array(
               'path' => '{project}/global/backendServices/{backendService}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
@@ -744,34 +404,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'deleteSignedUrlKey' => array(
-              'path' => '{project}/global/backendServices/{backendService}/deleteSignedUrlKey',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'keyName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -813,10 +445,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'list' => array(
               'path' => '{project}/global/backendServices',
@@ -858,29 +486,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setSecurityPolicy' => array(
-              'path' => '{project}/global/backendServices/{backendService}/setSecurityPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'update' => array(
               'path' => '{project}/global/backendServices/{backendService}',
@@ -895,10 +500,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -1043,14 +644,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'guestFlush' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'delete' => array(
               'path' => '{project}/zones/{zone}/disks/{disk}',
@@ -1070,10 +663,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -1096,26 +685,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
               ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/zones/{zone}/disks/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),'insert' => array(
               'path' => '{project}/zones/{zone}/disks',
               'httpMethod' => 'POST',
@@ -1129,10 +698,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
                 'sourceImage' => array(
                   'location' => 'query',
@@ -1189,74 +754,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/zones/{zone}/disks/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setLabels' => array(
-              'path' => '{project}/zones/{zone}/disks/{resource}/setLabels',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/zones/{zone}/disks/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
               ),
             ),
           )
@@ -1282,10 +779,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/firewalls/{firewall}',
@@ -1310,10 +803,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -1356,10 +845,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'update' => array(
               'path' => '{project}/global/firewalls/{firewall}',
@@ -1374,10 +859,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -1435,10 +916,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/regions/{region}/forwardingRules/{forwardingRule}',
@@ -1473,10 +950,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -1529,10 +1002,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),
           )
@@ -1558,10 +1027,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/addresses/{address}',
@@ -1586,10 +1051,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -1642,10 +1103,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/forwardingRules/{forwardingRule}',
@@ -1670,10 +1127,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -1715,10 +1168,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -1837,10 +1286,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/healthChecks/{healthCheck}',
@@ -1865,10 +1310,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -1911,10 +1352,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'update' => array(
               'path' => '{project}/global/healthChecks/{healthCheck}',
@@ -1929,10 +1366,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -1959,10 +1392,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/httpHealthChecks/{httpHealthCheck}',
@@ -1987,10 +1416,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -2033,10 +1458,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'update' => array(
               'path' => '{project}/global/httpHealthChecks/{httpHealthCheck}',
@@ -2051,10 +1472,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -2081,10 +1498,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/httpsHealthChecks/{httpsHealthCheck}',
@@ -2109,10 +1522,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -2155,10 +1564,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'update' => array(
               'path' => '{project}/global/httpsHealthChecks/{httpsHealthCheck}',
@@ -2173,10 +1578,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -2203,10 +1604,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'deprecate' => array(
               'path' => '{project}/global/images/{image}/deprecate',
@@ -2221,10 +1618,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -2257,21 +1650,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
               ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/global/images/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),'insert' => array(
               'path' => '{project}/global/images',
               'httpMethod' => 'POST',
@@ -2280,14 +1658,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'forceCreate' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -2314,51 +1684,6 @@ class Google_Service_Compute extends Google_Service
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/global/images/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setLabels' => array(
-              'path' => '{project}/global/images/{resource}/setLabels',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/global/images/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ),
               ),
             ),
@@ -2389,10 +1714,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'aggregatedList' => array(
@@ -2440,10 +1761,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'deleteInstances' => array(
               'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
@@ -2463,10 +1780,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -2502,10 +1815,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -2558,46 +1867,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'order_by' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'recreateInstances' => array(
               'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
@@ -2617,10 +1886,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'resize' => array(
@@ -2647,10 +1912,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'integer',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setInstanceTemplate' => array(
               'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
@@ -2671,10 +1932,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setTargetPools' => array(
               'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
@@ -2694,10 +1951,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -2728,10 +1981,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'aggregatedList' => array(
@@ -2779,10 +2028,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/zones/{zone}/instanceGroups/{instanceGroup}',
@@ -2817,10 +2062,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -2909,10 +2150,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setNamedPorts' => array(
               'path' => '{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts',
@@ -2932,10 +2169,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -2962,10 +2195,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/instanceTemplates/{instanceTemplate}',
@@ -2982,21 +2211,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
               ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/global/instanceTemplates/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),'insert' => array(
               'path' => '{project}/global/instanceTemplates',
               'httpMethod' => 'POST',
@@ -3005,10 +2219,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -3035,36 +2245,6 @@ class Google_Service_Compute extends Google_Service
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/global/instanceTemplates/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/global/instanceTemplates/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ),
               ),
             ),
@@ -3100,10 +2280,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'aggregatedList' => array(
@@ -3151,14 +2327,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'forceAttach' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'delete' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}',
@@ -3178,10 +2346,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'deleteAccessConfig' => array(
@@ -3213,10 +2377,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'detachDisk' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}/detachDisk',
@@ -3242,10 +2402,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}',
@@ -3262,26 +2418,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
                 'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/zones/{zone}/instances/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -3310,10 +2446,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'start' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'insert' => array(
               'path' => '{project}/zones/{zone}/instances',
@@ -3329,14 +2461,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'sourceInstanceTemplate' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'list' => array(
               'path' => '{project}/zones/{zone}/instances',
@@ -3348,42 +2472,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
                 'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'listReferrers' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/referrers',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -3424,38 +2512,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setDeletionProtection' => array(
-              'path' => '{project}/zones/{zone}/instances/{resource}/setDeletionProtection',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'deletionProtection' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setDiskAutoDelete' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
@@ -3486,78 +2542,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/zones/{zone}/instances/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setLabels' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/setLabels',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setMachineResources' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/setMachineResources',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setMachineType' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}/setMachineType',
@@ -3577,10 +2561,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'setMetadata' => array(
@@ -3602,34 +2582,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setMinCpuPlatform' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/setMinCpuPlatform',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setScheduling' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}/setScheduling',
@@ -3650,61 +2602,9 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setServiceAccount' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/setServiceAccount',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setTags' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}/setTags',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'simulateMaintenanceEvent' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/simulateMaintenanceEvent',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'project' => array(
@@ -3742,10 +2642,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'startWithEncryptionKey' => array(
               'path' => '{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
@@ -3765,10 +2661,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'stop' => array(
@@ -3790,451 +2682,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/zones/{zone}/instances/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'updateAccessConfig' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/updateAccessConfig',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'networkInterface' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'updateNetworkInterface' => array(
-              'path' => '{project}/zones/{zone}/instances/{instance}/updateNetworkInterface',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instance' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'networkInterface' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->interconnectAttachments = new Google_Service_Compute_Resource_InterconnectAttachments(
-        $this,
-        $this->serviceName,
-        'interconnectAttachments',
-        array(
-          'methods' => array(
-            'aggregatedList' => array(
-              'path' => '{project}/aggregated/interconnectAttachments',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnectAttachment' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnectAttachment' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/regions/{region}/interconnectAttachments',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/interconnectAttachments',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnectAttachment' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->interconnectLocations = new Google_Service_Compute_Resource_InterconnectLocations(
-        $this,
-        $this->serviceName,
-        'interconnectLocations',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{project}/global/interconnectLocations/{interconnectLocation}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnectLocation' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/global/interconnectLocations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->interconnects = new Google_Service_Compute_Resource_Interconnects(
-        $this,
-        $this->serviceName,
-        'interconnects',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => '{project}/global/interconnects/{interconnect}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnect' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/global/interconnects/{interconnect}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnect' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getDiagnostics' => array(
-              'path' => '{project}/global/interconnects/{interconnect}/getDiagnostics',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnect' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/global/interconnects',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/global/interconnects',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/global/interconnects/{interconnect}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interconnect' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->licenseCodes = new Google_Service_Compute_Resource_LicenseCodes(
-        $this,
-        $this->serviceName,
-        'licenseCodes',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{project}/global/licenseCodes/{licenseCode}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'licenseCode' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/global/licenseCodes/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
               ),
             ),
           )
@@ -4246,26 +2693,7 @@ class Google_Service_Compute extends Google_Service
         'licenses',
         array(
           'methods' => array(
-            'delete' => array(
-              'path' => '{project}/global/licenses/{license}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'license' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
+            'get' => array(
               'path' => '{project}/global/licenses/{license}',
               'httpMethod' => 'GET',
               'parameters' => array(
@@ -4275,91 +2703,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
                 'license' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/global/licenses/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/global/licenses',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/global/licenses',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/global/licenses/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/global/licenses/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -4462,26 +2805,7 @@ class Google_Service_Compute extends Google_Service
         'networks',
         array(
           'methods' => array(
-            'addPeering' => array(
-              'path' => '{project}/global/networks/{network}/addPeering',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'network' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
+            'delete' => array(
               'path' => '{project}/global/networks/{network}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
@@ -4494,10 +2818,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -4524,653 +2844,12 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'list' => array(
               'path' => '{project}/global/networks',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/global/networks/{network}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'network' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'removePeering' => array(
-              'path' => '{project}/global/networks/{network}/removePeering',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'network' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'switchToCustomMode' => array(
-              'path' => '{project}/global/networks/{network}/switchToCustomMode',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'network' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->nodeGroups = new Google_Service_Compute_Resource_NodeGroups(
-        $this,
-        $this->serviceName,
-        'nodeGroups',
-        array(
-          'methods' => array(
-            'addNodes' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{nodeGroup}/addNodes',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'aggregatedList' => array(
-              'path' => '{project}/aggregated/nodeGroups',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{nodeGroup}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'deleteNodes' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{nodeGroup}/deleteNodes',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{nodeGroup}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'initialNodeCount' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'listNodes' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{nodeGroup}/listNodes',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setNodeTemplate' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{nodeGroup}/setNodeTemplate',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/zones/{zone}/nodeGroups/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->nodeTemplates = new Google_Service_Compute_Resource_NodeTemplates(
-        $this,
-        $this->serviceName,
-        'nodeTemplates',
-        array(
-          'methods' => array(
-            'aggregatedList' => array(
-              'path' => '{project}/aggregated/nodeTemplates',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/regions/{region}/nodeTemplates/{nodeTemplate}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeTemplate' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/regions/{region}/nodeTemplates/{nodeTemplate}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeTemplate' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/regions/{region}/nodeTemplates/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/regions/{region}/nodeTemplates',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/nodeTemplates',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/regions/{region}/nodeTemplates/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/regions/{region}/nodeTemplates/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->nodeTypes = new Google_Service_Compute_Resource_NodeTypes(
-        $this,
-        $this->serviceName,
-        'nodeTypes',
-        array(
-          'methods' => array(
-            'aggregatedList' => array(
-              'path' => '{project}/aggregated/nodeTypes',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/zones/{zone}/nodeTypes/{nodeType}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'nodeType' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/zones/{zone}/nodeTypes',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -5202,63 +2881,7 @@ class Google_Service_Compute extends Google_Service
         'projects',
         array(
           'methods' => array(
-            'disableXpnHost' => array(
-              'path' => '{project}/disableXpnHost',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'disableXpnResource' => array(
-              'path' => '{project}/disableXpnResource',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'enableXpnHost' => array(
-              'path' => '{project}/enableXpnHost',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'enableXpnResource' => array(
-              'path' => '{project}/enableXpnResource',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
+            'get' => array(
               'path' => '{project}',
               'httpMethod' => 'GET',
               'parameters' => array(
@@ -5266,68 +2889,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-              ),
-            ),'getXpnHost' => array(
-              'path' => '{project}/getXpnHost',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getXpnResources' => array(
-              'path' => '{project}/getXpnResources',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'order_by' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'listXpnHosts' => array(
-              'path' => '{project}/listXpnHosts',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'order_by' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'moveDisk' => array(
@@ -5339,10 +2900,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'moveInstance' => array(
               'path' => '{project}/moveInstance',
@@ -5352,10 +2909,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'setCommonInstanceMetadata' => array(
@@ -5367,24 +2920,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setDefaultNetworkTier' => array(
-              'path' => '{project}/setDefaultNetworkTier',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setUsageExportBucket' => array(
               'path' => '{project}/setUsageExportBucket',
@@ -5394,1133 +2929,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->regionAutoscalers = new Google_Service_Compute_Resource_RegionAutoscalers(
-        $this,
-        $this->serviceName,
-        'regionAutoscalers',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => '{project}/regions/{region}/autoscalers/{autoscaler}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'autoscaler' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/regions/{region}/autoscalers/{autoscaler}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'autoscaler' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/regions/{region}/autoscalers',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/autoscalers',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/regions/{region}/autoscalers',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'autoscaler' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'update' => array(
-              'path' => '{project}/regions/{region}/autoscalers',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'autoscaler' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->regionBackendServices = new Google_Service_Compute_Resource_RegionBackendServices(
-        $this,
-        $this->serviceName,
-        'regionBackendServices',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => '{project}/regions/{region}/backendServices/{backendService}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/regions/{region}/backendServices/{backendService}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getHealth' => array(
-              'path' => '{project}/regions/{region}/backendServices/{backendService}/getHealth',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/regions/{region}/backendServices',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/backendServices',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/regions/{region}/backendServices/{backendService}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'update' => array(
-              'path' => '{project}/regions/{region}/backendServices/{backendService}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'backendService' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->regionCommitments = new Google_Service_Compute_Resource_RegionCommitments(
-        $this,
-        $this->serviceName,
-        'regionCommitments',
-        array(
-          'methods' => array(
-            'aggregatedList' => array(
-              'path' => '{project}/aggregated/commitments',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/regions/{region}/commitments/{commitment}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'commitment' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/regions/{region}/commitments',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/commitments',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->regionDiskTypes = new Google_Service_Compute_Resource_RegionDiskTypes(
-        $this,
-        $this->serviceName,
-        'regionDiskTypes',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{project}/regions/{region}/diskTypes/{diskType}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'diskType' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/diskTypes',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->regionDisks = new Google_Service_Compute_Resource_RegionDisks(
-        $this,
-        $this->serviceName,
-        'regionDisks',
-        array(
-          'methods' => array(
-            'createSnapshot' => array(
-              'path' => '{project}/regions/{region}/disks/{disk}/createSnapshot',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'disk' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/regions/{region}/disks/{disk}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'disk' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/regions/{region}/disks/{disk}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'disk' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/regions/{region}/disks',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'sourceImage' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/disks',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'resize' => array(
-              'path' => '{project}/regions/{region}/disks/{disk}/resize',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'disk' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setLabels' => array(
-              'path' => '{project}/regions/{region}/disks/{resource}/setLabels',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/regions/{region}/disks/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->regionInstanceGroupManagers = new Google_Service_Compute_Resource_RegionInstanceGroupManagers(
-        $this,
-        $this->serviceName,
-        'regionInstanceGroupManagers',
-        array(
-          'methods' => array(
-            'abandonInstances' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'deleteInstances' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'listManagedInstances' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'order_by' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'recreateInstances' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'resize' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'size' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setInstanceTemplate' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setTargetPools' => array(
-              'path' => '{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroupManager' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->regionInstanceGroups = new Google_Service_Compute_Resource_RegionInstanceGroups(
-        $this,
-        $this->serviceName,
-        'regionInstanceGroups',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{project}/regions/{region}/instanceGroups/{instanceGroup}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/regions/{region}/instanceGroups',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'listInstances' => array(
-              'path' => '{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setNamedPorts' => array(
-              'path' => '{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceGroup' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -6710,10 +3118,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/regions/{region}/routers/{router}',
@@ -6733,42 +3137,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-              ),
-            ),'getNatMappingInfo' => array(
-              'path' => '{project}/regions/{region}/routers/{router}/getNatMappingInfo',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'router' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'getRouterStatus' => array(
@@ -6804,10 +3172,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -6859,10 +3223,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'preview' => array(
@@ -6904,10 +3264,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),
           )
@@ -6933,10 +3289,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/routes/{route}',
@@ -6962,10 +3314,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'list' => array(
               'path' => '{project}/global/routes',
@@ -6991,181 +3339,6 @@ class Google_Service_Compute extends Google_Service
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->securityPolicies = new Google_Service_Compute_Resource_SecurityPolicies(
-        $this,
-        $this->serviceName,
-        'securityPolicies',
-        array(
-          'methods' => array(
-            'addRule' => array(
-              'path' => '{project}/global/securityPolicies/{securityPolicy}/addRule',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'securityPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/global/securityPolicies/{securityPolicy}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'securityPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/global/securityPolicies/{securityPolicy}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'securityPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getRule' => array(
-              'path' => '{project}/global/securityPolicies/{securityPolicy}/getRule',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'securityPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'priority' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/global/securityPolicies',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/global/securityPolicies',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/global/securityPolicies/{securityPolicy}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'securityPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patchRule' => array(
-              'path' => '{project}/global/securityPolicies/{securityPolicy}/patchRule',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'securityPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'priority' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'removeRule' => array(
-              'path' => '{project}/global/securityPolicies/{securityPolicy}/removeRule',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'securityPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'priority' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
                 ),
               ),
             ),
@@ -7192,10 +3365,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/snapshots/{snapshot}',
@@ -7207,21 +3376,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
                 'snapshot' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/global/snapshots/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -7253,51 +3407,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                 ),
               ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/global/snapshots/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setLabels' => array(
-              'path' => '{project}/global/snapshots/{resource}/setLabels',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/global/snapshots/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),
           )
         )
@@ -7322,10 +3431,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/sslCertificates/{sslCertificate}',
@@ -7351,10 +3456,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'list' => array(
               'path' => '{project}/global/sslCertificates',
@@ -7378,135 +3479,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                 ),
                 'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->sslPolicies = new Google_Service_Compute_Resource_SslPolicies(
-        $this,
-        $this->serviceName,
-        'sslPolicies',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => '{project}/global/sslPolicies/{sslPolicy}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'sslPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/global/sslPolicies/{sslPolicy}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'sslPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/global/sslPolicies',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/global/sslPolicies',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'listAvailableFeatures' => array(
-              'path' => '{project}/global/sslPolicies/listAvailableFeatures',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/global/sslPolicies/{sslPolicy}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'sslPolicy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -7566,34 +3538,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'expandIpCidrRange' => array(
-              'path' => '{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'subnetwork' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/regions/{region}/subnetworks/{subnetwork}',
@@ -7615,26 +3559,6 @@ class Google_Service_Compute extends Google_Service
                   'required' => true,
                 ),
               ),
-            ),'getIamPolicy' => array(
-              'path' => '{project}/regions/{region}/subnetworks/{resource}/getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),'insert' => array(
               'path' => '{project}/regions/{region}/subnetworks',
               'httpMethod' => 'POST',
@@ -7648,10 +3572,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -7685,120 +3605,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                 ),
               ),
-            ),'listUsable' => array(
-              'path' => '{project}/aggregated/subnetworks/listUsable',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/regions/{region}/subnetworks/{subnetwork}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'subnetwork' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => '{project}/regions/{region}/subnetworks/{resource}/setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setPrivateIpGoogleAccess' => array(
-              'path' => '{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'subnetwork' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => '{project}/regions/{region}/subnetworks/{resource}/testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'region' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),
           )
         )
@@ -7822,10 +3628,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -7851,10 +3653,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -7897,10 +3695,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),
           )
@@ -7926,10 +3720,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/targetHttpsProxies/{targetHttpsProxy}',
@@ -7954,10 +3744,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -7986,25 +3772,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                 ),
               ),
-            ),'setQuicOverride' => array(
-              'path' => '{project}/global/targetHttpsProxies/{targetHttpsProxy}/setQuicOverride',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'targetHttpsProxy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
             ),'setSslCertificates' => array(
               'path' => '{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
               'httpMethod' => 'POST',
@@ -8018,29 +3785,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setSslPolicy' => array(
-              'path' => '{project}/global/targetHttpsProxies/{targetHttpsProxy}/setSslPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'targetHttpsProxy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'setUrlMap' => array(
@@ -8056,10 +3800,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -8117,10 +3857,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/zones/{zone}/targetInstances/{targetInstance}',
@@ -8155,10 +3891,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -8221,10 +3953,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'addInstance' => array(
               'path' => '{project}/regions/{region}/targetPools/{targetPool}/addInstance',
@@ -8244,10 +3972,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'aggregatedList' => array(
@@ -8294,10 +4018,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'get' => array(
@@ -8354,10 +4074,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'list' => array(
               'path' => '{project}/regions/{region}/targetPools',
@@ -8409,10 +4125,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'removeInstance' => array(
               'path' => '{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
@@ -8432,10 +4144,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'setBackup' => array(
@@ -8460,10 +4168,6 @@ class Google_Service_Compute extends Google_Service
                 'failoverRatio' => array(
                   'location' => 'query',
                   'type' => 'number',
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -8490,10 +4194,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/targetSslProxies/{targetSslProxy}',
@@ -8518,10 +4218,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -8564,10 +4260,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setProxyHeader' => array(
               'path' => '{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader',
@@ -8583,10 +4275,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'setSslCertificates' => array(
               'path' => '{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates',
@@ -8601,151 +4289,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setSslPolicy' => array(
-              'path' => '{project}/global/targetSslProxies/{targetSslProxy}/setSslPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'targetSslProxy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->targetTcpProxies = new Google_Service_Compute_Resource_TargetTcpProxies(
-        $this,
-        $this->serviceName,
-        'targetTcpProxies',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => '{project}/global/targetTcpProxies/{targetTcpProxy}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'targetTcpProxy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/global/targetTcpProxies/{targetTcpProxy}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'targetTcpProxy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => '{project}/global/targetTcpProxies',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/global/targetTcpProxies',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setBackendService' => array(
-              'path' => '{project}/global/targetTcpProxies/{targetTcpProxy}/setBackendService',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'targetTcpProxy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setProxyHeader' => array(
-              'path' => '{project}/global/targetTcpProxies/{targetTcpProxy}/setProxyHeader',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'targetTcpProxy' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
@@ -8803,10 +4346,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
@@ -8841,10 +4380,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -8902,10 +4437,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/global/urlMaps/{urlMap}',
@@ -8931,10 +4462,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'invalidateCache' => array(
               'path' => '{project}/global/urlMaps/{urlMap}/invalidateCache',
@@ -8949,10 +4476,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(
@@ -8995,10 +4518,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'update' => array(
               'path' => '{project}/global/urlMaps/{urlMap}',
@@ -9013,10 +4532,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'validate' => array(
@@ -9089,10 +4604,6 @@ class Google_Service_Compute extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => '{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
@@ -9127,10 +4638,6 @@ class Google_Service_Compute extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'requestId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'list' => array(

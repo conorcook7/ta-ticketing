@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,9 +15,8 @@
  * the License.
  */
 
-class Google_Service_CloudBuild_BuildTrigger extends Google_Collection
+class Google_Service_CloudBuild_BuildTrigger extends Google_Model
 {
-  protected $collection_key = 'includedFiles';
   protected $buildType = 'Google_Service_CloudBuild_Build';
   protected $buildDataType = '';
   public $createTime;
@@ -25,22 +24,13 @@ class Google_Service_CloudBuild_BuildTrigger extends Google_Collection
   public $disabled;
   public $filename;
   public $id;
-  public $ignoredFiles;
-  public $includedFiles;
-  public $substitutions;
   protected $triggerTemplateType = 'Google_Service_CloudBuild_RepoSource';
   protected $triggerTemplateDataType = '';
 
-  /**
-   * @param Google_Service_CloudBuild_Build
-   */
   public function setBuild(Google_Service_CloudBuild_Build $build)
   {
     $this->build = $build;
   }
-  /**
-   * @return Google_Service_CloudBuild_Build
-   */
   public function getBuild()
   {
     return $this->build;
@@ -85,40 +75,10 @@ class Google_Service_CloudBuild_BuildTrigger extends Google_Collection
   {
     return $this->id;
   }
-  public function setIgnoredFiles($ignoredFiles)
-  {
-    $this->ignoredFiles = $ignoredFiles;
-  }
-  public function getIgnoredFiles()
-  {
-    return $this->ignoredFiles;
-  }
-  public function setIncludedFiles($includedFiles)
-  {
-    $this->includedFiles = $includedFiles;
-  }
-  public function getIncludedFiles()
-  {
-    return $this->includedFiles;
-  }
-  public function setSubstitutions($substitutions)
-  {
-    $this->substitutions = $substitutions;
-  }
-  public function getSubstitutions()
-  {
-    return $this->substitutions;
-  }
-  /**
-   * @param Google_Service_CloudBuild_RepoSource
-   */
   public function setTriggerTemplate(Google_Service_CloudBuild_RepoSource $triggerTemplate)
   {
     $this->triggerTemplate = $triggerTemplate;
   }
-  /**
-   * @return Google_Service_CloudBuild_RepoSource
-   */
   public function getTriggerTemplate()
   {
     return $this->triggerTemplate;

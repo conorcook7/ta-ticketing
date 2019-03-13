@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,11 +15,9 @@
  * the License.
  */
 
-class Google_Service_Drive_Permission extends Google_Collection
+class Google_Service_Drive_Permission extends Google_Model
 {
-  protected $collection_key = 'teamDrivePermissionDetails';
   public $allowFileDiscovery;
-  public $deleted;
   public $displayName;
   public $domain;
   public $emailAddress;
@@ -28,8 +26,6 @@ class Google_Service_Drive_Permission extends Google_Collection
   public $kind;
   public $photoLink;
   public $role;
-  protected $teamDrivePermissionDetailsType = 'Google_Service_Drive_PermissionTeamDrivePermissionDetails';
-  protected $teamDrivePermissionDetailsDataType = 'array';
   public $type;
 
   public function setAllowFileDiscovery($allowFileDiscovery)
@@ -39,14 +35,6 @@ class Google_Service_Drive_Permission extends Google_Collection
   public function getAllowFileDiscovery()
   {
     return $this->allowFileDiscovery;
-  }
-  public function setDeleted($deleted)
-  {
-    $this->deleted = $deleted;
-  }
-  public function getDeleted()
-  {
-    return $this->deleted;
   }
   public function setDisplayName($displayName)
   {
@@ -111,20 +99,6 @@ class Google_Service_Drive_Permission extends Google_Collection
   public function getRole()
   {
     return $this->role;
-  }
-  /**
-   * @param Google_Service_Drive_PermissionTeamDrivePermissionDetails
-   */
-  public function setTeamDrivePermissionDetails($teamDrivePermissionDetails)
-  {
-    $this->teamDrivePermissionDetails = $teamDrivePermissionDetails;
-  }
-  /**
-   * @return Google_Service_Drive_PermissionTeamDrivePermissionDetails
-   */
-  public function getTeamDrivePermissionDetails()
-  {
-    return $this->teamDrivePermissionDetails;
   }
   public function setType($type)
   {

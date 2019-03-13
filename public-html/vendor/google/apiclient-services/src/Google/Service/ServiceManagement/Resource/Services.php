@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -42,7 +42,7 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
     return $this->call('create', array($params), "Google_Service_ServiceManagement_Operation");
   }
   /**
-   * Deletes a managed service. This method will change the service to the `Soft-
+   * Deletes a managed service. This method will change the serivce in the `Soft-
    * Delete` state for 30 days. Within this period, service producers may call
    * UndeleteService to restore the service. After 30 days, the service will be
    * permanently deleted.
@@ -62,9 +62,7 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
     return $this->call('delete', array($params), "Google_Service_ServiceManagement_Operation");
   }
   /**
-   * Disables a service for a project, so it can no longer be be used for the
-   * project. It prevents accidental usage that may cause unexpected billing
-   * charges or security leaks.
+   * Disable a managed service for a project.
    *
    * Operation (services.disable)
    *
@@ -81,11 +79,12 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
     return $this->call('disable', array($params), "Google_Service_ServiceManagement_Operation");
   }
   /**
-   * Enables a service for a project, so it can be used for the project. See
-   * [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for more
-   * information.
+   * Enable a managed service for a project with default setting.
    *
-   * Operation (services.enable)
+   * Operation
+   *
+   * google.rpc.Status errors may contain a google.rpc.PreconditionFailure error
+   * detail. (services.enable)
    *
    * @param string $serviceName Name of the service to enable. Specifying an
    * unknown service name will cause the request to fail.
@@ -122,8 +121,7 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
     return $this->call('generateConfigReport', array($params), "Google_Service_ServiceManagement_GenerateConfigReportResponse");
   }
   /**
-   * Gets a managed service. Authentication is required unless the service is
-   * public. (services.get)
+   * Gets a managed service. (services.get)
    *
    * @param string $serviceName The name of the service.  See the `ServiceManager`
    * overview for naming requirements.  For example: `example.googleapis.com`.
@@ -145,12 +143,7 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
    * `example.googleapis.com`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string configId The id of the service configuration resource.
-   *
-   * This field must be specified for the server to return all fields, including
-   * `SourceInfo`.
-   * @opt_param string view Specifies which parts of the Service Config should be
-   * returned in the response.
+   * @opt_param string configId
    * @return Google_Service_ServiceManagement_Service
    */
   public function getConfig($serviceName, $optParams = array())
@@ -164,8 +157,8 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
    * resource exists and does not have a policy set. (services.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See the operation documentation for the appropriate value for this
-   * field.
+   * requested. `resource` is usually specified as a path. For example, a Project
+   * resource is specified as `projects/{project}`.
    * @param Google_Service_ServiceManagement_GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_ServiceManagement_Policy
@@ -177,29 +170,15 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
     return $this->call('getIamPolicy', array($params), "Google_Service_ServiceManagement_Policy");
   }
   /**
-   * Lists managed services.
-   *
-   * Returns all public services. For authenticated users, also returns all
-   * services the calling user has "servicemanagement.services.get" permission
-   * for.
-   *
-   * **BETA:** If the caller specifies the `consumer_id`, it returns only the
-   * services enabled on the consumer. The `consumer_id` must have the format of
-   * "project:{PROJECT-ID}". (services.listServices)
+   * Lists all managed services. (services.listServices)
    *
    * @param array $optParams Optional parameters.
    *
+   * @opt_param int pageSize Requested size of the next page of data.
    * @opt_param string producerProjectId Include services produced by the
    * specified project.
-   * @opt_param string consumerId Include services consumed by the specified
-   * consumer.
-   *
-   * The Google Service Management implementation accepts the following forms: -
-   * project:
    * @opt_param string pageToken Token identifying which result to start with;
    * returned by a previous list call.
-   * @opt_param int pageSize The max number of items to include in the response
-   * list. Page size is 50 if not specified. Maximum value is 100.
    * @return Google_Service_ServiceManagement_ListServicesResponse
    */
   public function listServices($optParams = array())
@@ -213,8 +192,8 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
    * existing policy. (services.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See the operation documentation for the appropriate value for this
-   * field.
+   * specified. `resource` is usually specified as a path. For example, a Project
+   * resource is specified as `projects/{project}`.
    * @param Google_Service_ServiceManagement_SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_ServiceManagement_Policy
@@ -226,17 +205,12 @@ class Google_Service_ServiceManagement_Resource_Services extends Google_Service_
     return $this->call('setIamPolicy', array($params), "Google_Service_ServiceManagement_Policy");
   }
   /**
-   * Returns permissions that a caller has on the specified resource. If the
-   * resource does not exist, this will return an empty set of permissions, not a
-   * NOT_FOUND error.
-   *
-   * Note: This operation is designed to be used for building permission-aware UIs
-   * and command-line tools, not for authorization checking. This operation may
-   * "fail open" without warning. (services.testIamPermissions)
+   * Returns permissions that a caller has on the specified resource.
+   * (services.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See the operation documentation for the appropriate value
-   * for this field.
+   * being requested. `resource` is usually specified as a path. For example, a
+   * Project resource is specified as `projects/{project}`.
    * @param Google_Service_ServiceManagement_TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_ServiceManagement_TestIamPermissionsResponse

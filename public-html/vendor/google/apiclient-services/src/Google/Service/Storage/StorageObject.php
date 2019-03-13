@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -31,11 +31,9 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   protected $customerEncryptionType = 'Google_Service_Storage_StorageObjectCustomerEncryption';
   protected $customerEncryptionDataType = '';
   public $etag;
-  public $eventBasedHold;
   public $generation;
   public $id;
   public $kind;
-  public $kmsKeyName;
   public $md5Hash;
   public $mediaLink;
   public $metadata;
@@ -43,26 +41,17 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   public $name;
   protected $ownerType = 'Google_Service_Storage_StorageObjectOwner';
   protected $ownerDataType = '';
-  public $retentionExpirationTime;
   public $selfLink;
   public $size;
   public $storageClass;
-  public $temporaryHold;
   public $timeCreated;
   public $timeDeleted;
-  public $timeStorageClassUpdated;
   public $updated;
 
-  /**
-   * @param Google_Service_Storage_ObjectAccessControl
-   */
   public function setAcl($acl)
   {
     $this->acl = $acl;
   }
-  /**
-   * @return Google_Service_Storage_ObjectAccessControl
-   */
   public function getAcl()
   {
     return $this->acl;
@@ -131,16 +120,10 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   {
     return $this->crc32c;
   }
-  /**
-   * @param Google_Service_Storage_StorageObjectCustomerEncryption
-   */
   public function setCustomerEncryption(Google_Service_Storage_StorageObjectCustomerEncryption $customerEncryption)
   {
     $this->customerEncryption = $customerEncryption;
   }
-  /**
-   * @return Google_Service_Storage_StorageObjectCustomerEncryption
-   */
   public function getCustomerEncryption()
   {
     return $this->customerEncryption;
@@ -152,14 +135,6 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   public function getEtag()
   {
     return $this->etag;
-  }
-  public function setEventBasedHold($eventBasedHold)
-  {
-    $this->eventBasedHold = $eventBasedHold;
-  }
-  public function getEventBasedHold()
-  {
-    return $this->eventBasedHold;
   }
   public function setGeneration($generation)
   {
@@ -184,14 +159,6 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   public function getKind()
   {
     return $this->kind;
-  }
-  public function setKmsKeyName($kmsKeyName)
-  {
-    $this->kmsKeyName = $kmsKeyName;
-  }
-  public function getKmsKeyName()
-  {
-    return $this->kmsKeyName;
   }
   public function setMd5Hash($md5Hash)
   {
@@ -233,27 +200,13 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   {
     return $this->name;
   }
-  /**
-   * @param Google_Service_Storage_StorageObjectOwner
-   */
   public function setOwner(Google_Service_Storage_StorageObjectOwner $owner)
   {
     $this->owner = $owner;
   }
-  /**
-   * @return Google_Service_Storage_StorageObjectOwner
-   */
   public function getOwner()
   {
     return $this->owner;
-  }
-  public function setRetentionExpirationTime($retentionExpirationTime)
-  {
-    $this->retentionExpirationTime = $retentionExpirationTime;
-  }
-  public function getRetentionExpirationTime()
-  {
-    return $this->retentionExpirationTime;
   }
   public function setSelfLink($selfLink)
   {
@@ -279,14 +232,6 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   {
     return $this->storageClass;
   }
-  public function setTemporaryHold($temporaryHold)
-  {
-    $this->temporaryHold = $temporaryHold;
-  }
-  public function getTemporaryHold()
-  {
-    return $this->temporaryHold;
-  }
   public function setTimeCreated($timeCreated)
   {
     $this->timeCreated = $timeCreated;
@@ -302,14 +247,6 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   public function getTimeDeleted()
   {
     return $this->timeDeleted;
-  }
-  public function setTimeStorageClassUpdated($timeStorageClassUpdated)
-  {
-    $this->timeStorageClassUpdated = $timeStorageClassUpdated;
-  }
-  public function getTimeStorageClassUpdated()
-  {
-    return $this->timeStorageClassUpdated;
   }
   public function setUpdated($updated)
   {

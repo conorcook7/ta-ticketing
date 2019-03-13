@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,7 +20,6 @@ class Google_Service_SQLAdmin_BackupConfiguration extends Google_Model
   public $binaryLogEnabled;
   public $enabled;
   public $kind;
-  public $replicationLogArchivingEnabled;
   public $startTime;
 
   public function setBinaryLogEnabled($binaryLogEnabled)
@@ -46,14 +45,6 @@ class Google_Service_SQLAdmin_BackupConfiguration extends Google_Model
   public function getKind()
   {
     return $this->kind;
-  }
-  public function setReplicationLogArchivingEnabled($replicationLogArchivingEnabled)
-  {
-    $this->replicationLogArchivingEnabled = $replicationLogArchivingEnabled;
-  }
-  public function getReplicationLogArchivingEnabled()
-  {
-    return $this->replicationLogArchivingEnabled;
   }
   public function setStartTime($startTime)
   {

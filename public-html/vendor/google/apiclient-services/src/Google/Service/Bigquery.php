@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -68,7 +68,6 @@ class Google_Service_Bigquery extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'bigquery/v2/';
-    $this->batchPath = 'batch/bigquery/v2';
     $this->version = 'v2';
     $this->serviceName = 'bigquery';
 
@@ -202,10 +201,6 @@ class Google_Service_Bigquery extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'location' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'get' => array(
               'path' => 'projects/{projectId}/jobs/{jobId}',
@@ -221,10 +216,6 @@ class Google_Service_Bigquery extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'location' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
               ),
             ),'getQueryResults' => array(
               'path' => 'projects/{projectId}/queries/{jobId}',
@@ -239,10 +230,6 @@ class Google_Service_Bigquery extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'location' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
                 'maxResults' => array(
                   'location' => 'query',
@@ -284,17 +271,9 @@ class Google_Service_Bigquery extends Google_Service
                   'location' => 'query',
                   'type' => 'boolean',
                 ),
-                'maxCreationTime' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'minCreationTime' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
                 'pageToken' => array(
                   'location' => 'query',
@@ -330,17 +309,7 @@ class Google_Service_Bigquery extends Google_Service
         'projects',
         array(
           'methods' => array(
-            'getServiceAccount' => array(
-              'path' => 'projects/{projectId}/serviceAccount',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
+            'list' => array(
               'path' => 'projects',
               'httpMethod' => 'GET',
               'parameters' => array(
@@ -410,10 +379,6 @@ class Google_Service_Bigquery extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'selectedFields' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'startIndex' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -467,10 +432,6 @@ class Google_Service_Bigquery extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ),
-                'selectedFields' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'insert' => array(

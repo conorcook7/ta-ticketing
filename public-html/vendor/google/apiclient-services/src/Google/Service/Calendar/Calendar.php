@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,8 +17,6 @@
 
 class Google_Service_Calendar_Calendar extends Google_Model
 {
-  protected $conferencePropertiesType = 'Google_Service_Calendar_ConferenceProperties';
-  protected $conferencePropertiesDataType = '';
   public $description;
   public $etag;
   public $id;
@@ -27,20 +25,6 @@ class Google_Service_Calendar_Calendar extends Google_Model
   public $summary;
   public $timeZone;
 
-  /**
-   * @param Google_Service_Calendar_ConferenceProperties
-   */
-  public function setConferenceProperties(Google_Service_Calendar_ConferenceProperties $conferenceProperties)
-  {
-    $this->conferenceProperties = $conferenceProperties;
-  }
-  /**
-   * @return Google_Service_Calendar_ConferenceProperties
-   */
-  public function getConferenceProperties()
-  {
-    return $this->conferenceProperties;
-  }
   public function setDescription($description)
   {
     $this->description = $description;

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -29,10 +29,7 @@ class Google_Service_ServiceManagement_Resource_ServicesConfigs extends Google_S
    * Creates a new service configuration (version) for a managed service. This
    * method only stores the service configuration. To roll out the service
    * configuration to backend systems please call CreateServiceRollout.
-   *
-   * Only the 100 most recent service configurations and ones referenced by
-   * existing rollouts are kept for each service. The rest will be deleted
-   * eventually. (configs.create)
+   * (configs.create)
    *
    * @param string $serviceName The name of the service.  See the [overview
    * ](/service-management/overview) for naming requirements.  For example:
@@ -53,14 +50,8 @@ class Google_Service_ServiceManagement_Resource_ServicesConfigs extends Google_S
    * @param string $serviceName The name of the service.  See the [overview
    * ](/service-management/overview) for naming requirements.  For example:
    * `example.googleapis.com`.
-   * @param string $configId The id of the service configuration resource.
-   *
-   * This field must be specified for the server to return all fields, including
-   * `SourceInfo`.
+   * @param string $configId
    * @param array $optParams Optional parameters.
-   *
-   * @opt_param string view Specifies which parts of the Service Config should be
-   * returned in the response.
    * @return Google_Service_ServiceManagement_Service
    */
   public function get($serviceName, $configId, $optParams = array())
@@ -79,7 +70,7 @@ class Google_Service_ServiceManagement_Resource_ServicesConfigs extends Google_S
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize The max number of items to include in the response
-   * list. Page size is 50 if not specified. Maximum value is 100.
+   * list.
    * @opt_param string pageToken The token of the page to retrieve.
    * @return Google_Service_ServiceManagement_ListServiceConfigsResponse
    */
@@ -95,10 +86,6 @@ class Google_Service_ServiceManagement_Resource_ServicesConfigs extends Google_S
    * Specification). This method stores the source configurations as well as the
    * generated service configuration. To rollout the service configuration to
    * other services, please call CreateServiceRollout.
-   *
-   * Only the 100 most recent configuration sources and ones referenced by
-   * existing service configurtions are kept for each service. The rest will be
-   * deleted eventually.
    *
    * Operation (configs.submit)
    *

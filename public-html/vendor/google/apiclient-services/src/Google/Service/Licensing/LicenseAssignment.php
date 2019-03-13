@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,10 +20,8 @@ class Google_Service_Licensing_LicenseAssignment extends Google_Model
   public $etags;
   public $kind;
   public $productId;
-  public $productName;
   public $selfLink;
   public $skuId;
-  public $skuName;
   public $userId;
 
   public function setEtags($etags)
@@ -50,14 +48,6 @@ class Google_Service_Licensing_LicenseAssignment extends Google_Model
   {
     return $this->productId;
   }
-  public function setProductName($productName)
-  {
-    $this->productName = $productName;
-  }
-  public function getProductName()
-  {
-    return $this->productName;
-  }
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
@@ -73,14 +63,6 @@ class Google_Service_Licensing_LicenseAssignment extends Google_Model
   public function getSkuId()
   {
     return $this->skuId;
-  }
-  public function setSkuName($skuName)
-  {
-    $this->skuName = $skuName;
-  }
-  public function getSkuName()
-  {
-    return $this->skuName;
   }
   public function setUserId($userId)
   {

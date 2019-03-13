@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -34,7 +34,6 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   public $isActive;
   public $kind;
   public $languages;
-  public $minimumViewabilityDecile;
   public $mobileCarriers;
   public $mobileDevices;
   public $mobileOperatingSystemVersions;
@@ -42,7 +41,6 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   protected $placementsDataType = 'array';
   public $platforms;
   public $supportedCreativeAttributes;
-  public $userIdentifierDataRequired;
   public $userLists;
   public $vendorTypes;
   public $verticals;
@@ -81,16 +79,10 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   {
     return $this->creativeType;
   }
-  /**
-   * @param Google_Service_AdExchangeBuyer_PretargetingConfigDimensions
-   */
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-  /**
-   * @return Google_Service_AdExchangeBuyer_PretargetingConfigDimensions
-   */
   public function getDimensions()
   {
     return $this->dimensions;
@@ -111,16 +103,10 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   {
     return $this->excludedGeoCriteriaIds;
   }
-  /**
-   * @param Google_Service_AdExchangeBuyer_PretargetingConfigExcludedPlacements
-   */
   public function setExcludedPlacements($excludedPlacements)
   {
     $this->excludedPlacements = $excludedPlacements;
   }
-  /**
-   * @return Google_Service_AdExchangeBuyer_PretargetingConfigExcludedPlacements
-   */
   public function getExcludedPlacements()
   {
     return $this->excludedPlacements;
@@ -173,14 +159,6 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   {
     return $this->languages;
   }
-  public function setMinimumViewabilityDecile($minimumViewabilityDecile)
-  {
-    $this->minimumViewabilityDecile = $minimumViewabilityDecile;
-  }
-  public function getMinimumViewabilityDecile()
-  {
-    return $this->minimumViewabilityDecile;
-  }
   public function setMobileCarriers($mobileCarriers)
   {
     $this->mobileCarriers = $mobileCarriers;
@@ -205,16 +183,10 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   {
     return $this->mobileOperatingSystemVersions;
   }
-  /**
-   * @param Google_Service_AdExchangeBuyer_PretargetingConfigPlacements
-   */
   public function setPlacements($placements)
   {
     $this->placements = $placements;
   }
-  /**
-   * @return Google_Service_AdExchangeBuyer_PretargetingConfigPlacements
-   */
   public function getPlacements()
   {
     return $this->placements;
@@ -234,14 +206,6 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   public function getSupportedCreativeAttributes()
   {
     return $this->supportedCreativeAttributes;
-  }
-  public function setUserIdentifierDataRequired($userIdentifierDataRequired)
-  {
-    $this->userIdentifierDataRequired = $userIdentifierDataRequired;
-  }
-  public function getUserIdentifierDataRequired()
-  {
-    return $this->userIdentifierDataRequired;
   }
   public function setUserLists($userLists)
   {
@@ -267,16 +231,10 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   {
     return $this->verticals;
   }
-  /**
-   * @param Google_Service_AdExchangeBuyer_PretargetingConfigVideoPlayerSizes
-   */
   public function setVideoPlayerSizes($videoPlayerSizes)
   {
     $this->videoPlayerSizes = $videoPlayerSizes;
   }
-  /**
-   * @return Google_Service_AdExchangeBuyer_PretargetingConfigVideoPlayerSizes
-   */
   public function getVideoPlayerSizes()
   {
     return $this->videoPlayerSizes;
