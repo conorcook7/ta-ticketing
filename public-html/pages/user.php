@@ -20,7 +20,7 @@
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
-  <div class="container-fluid">
+
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Available Courses</h6>
@@ -70,8 +70,6 @@
 		</table><br />
   </div>
   </div>
-</div>
-</div>
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Teaching Assistants</h6>
@@ -101,6 +99,7 @@
       </div>
      </div>
     </div>
+  </div>
 	 </div>
 	</div>
  </div>
