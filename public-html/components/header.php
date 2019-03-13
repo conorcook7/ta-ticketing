@@ -3,6 +3,7 @@
 
     if (!isset($_SESSION["user"])) {
         header("Location: http://" . $_SERVER["HTTP_HOST"] . "/auth/google-auth/google.php");
+        exit();
     }
     
 ?>

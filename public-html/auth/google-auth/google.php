@@ -1,6 +1,8 @@
 <?php
     session_start();
-    require "../google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
+
+    require_once "../google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
+    require_once "../../components/KLogger.php";
 
     // Step 1: Set up the google client
     $googleClient = new Google_Client();
@@ -11,9 +13,12 @@
 
     // Step 2: Create the authorization url
     $authUrl = $googleClient->createAuthUrl();
-    echo "<a href='$authUrl'>Google Sign In</a>";
 
     // Step 3: Get the authorization code
+    if (!isset($_GET["code"])) {
+        header("Location: " . $authUrl);
+        exit();
+    }
     $authCode = isset($_GET["code"]) ? $_GET["code"] : NULL;
     
     // Step 4: Get access token
