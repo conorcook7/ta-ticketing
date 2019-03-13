@@ -1,6 +1,6 @@
 <?php
 
-    require "../../vendor/autoload.php";
+    require "../google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
 
     // Step 1: Set up the google client
     $googleClient = new Google_Client();
