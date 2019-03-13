@@ -1,7 +1,7 @@
 <?php
     require_once "../auth/google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
-    require_once "../../components/dao.php";
-    require_once "../../components/KLogger.php";
+    require_once "../components/dao.php";
+    require_once "../components/KLogger.php";
 
     session_start();
 
