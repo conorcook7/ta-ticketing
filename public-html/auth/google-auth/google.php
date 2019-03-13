@@ -29,6 +29,8 @@
         }
 
         try {
+            date_default_timezone_set("America/Boise");
+            
             $payload = $googleClient->verifyIdToken();
             
             // Step 5: If payload is set then redirect to index.php, else redirect to login.
