@@ -14,19 +14,19 @@
     $googleClient->setRedirectUri("http://taticketing.boisestate.edu/auth/google-auth/google.php");
     $googleClient->setScopes("email profile");
 
-    $logger->logDebug("Google client created");
+    $logger->logDebug(__FUNCTION__ . ": Google client created");
 
     // Step 2: Create the authorization url
     $authUrl = $googleClient->createAuthUrl();
-    $logger->logDebug("Google authorization url created");
+    $logger->logDebug(__FUNCTION__ . ": Google authorization url created");
 
     // Step 3: Get the authorization code
     if (!isset($_GET["code"])) {
-        $logger->logDebug("Google access code not set");
+        $logger->logDebug(__FUNCTION__ . ": Google access code not set");
         header("Location: " . $authUrl);
         exit();
     } else {
-        $logger->logDebug("Google access code set");
+        $logger->logDebug(__FUNCTION__ . ": Google access code set");
     }
     $authCode = isset($_GET["code"]) ? $_GET["code"] : NULL;
     
@@ -36,10 +36,10 @@
         try {
             $accessToken = $googleClient->fetchAccessTokenWithAuthCode($authCode);
             $googleClient->setAccessToken($accessToken);
-            $logger->logDebug("Google access token received");
+            $logger->logDebug(__FUNCTION__ . ": Google access token received");
 
         } catch (Exception $e) {
-            $logger->logError($e->getMessage());
+            $logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             header("Location: ./google.php");
             exit();
         }
@@ -47,15 +47,15 @@
         try {
             // Set the timezone to Mountain Time (Boise, ID)
             date_default_timezone_set("America/Boise");
-            $logger->logDebug("Set time zone to Mountain Time");
+            $logger->logDebug(__FUNCTION__ . ": Set time zone to Mountain Time");
 
             // Verify the google client
             $payload = $googleClient->verifyIdToken();
-            $logger->logDebug("Google client was verified");
+            $logger->logDebug(__FUNCTION__ . ": Google client was verified");
 
             if (isset($payload)) {
                 // Setup session from payload
-                $logger->logDebug("Google OAuth payload contains data");
+                $logger->logDebug(__FUNCTION__ . ": Google OAuth payload contains data");
                 $_SESSION["user"]["email"] = $payload["email"];
                 $_SESSION["user"]["givenName"] = $payload["given_name"];
                 $_SESSION["user"]["familyName"] = $payload["family_name"];
@@ -74,7 +74,7 @@
                         $_SESSION["user"]["familyName"]
                     );
                     if (!$querySuccessful) {
-                        $logger->logError("Unable to create user with dao method.");
+                        $logger->logError(__FUNCTION__ . ": Unable to create user with dao method.");
                         header("Location: ./google.php");
                         exit();
                     }
@@ -83,7 +83,7 @@
                 // Set the user to online
                 $count = 0;
                 while (!$dao->setUserOnline($_SESSION["user"]["email"]) && $count < 5) {
-                    $logger->logError("Unable to set the user to online with dao method.");
+                    $logger->logError(__FUNCTION__ . ": Unable to set the user to online with dao method.");
                     $count++;
                 }
 
@@ -96,6 +96,7 @@
                 // Get user information
                 $user = $dao->getUser($_SESSION["user"]["email"]);
                 $_SESSION["user"]["permission"] = $user["permission_name"];
+                $_SESSION["user"]["permission"] = $user;
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/index.php");
@@ -103,7 +104,7 @@
             }
 
         } catch (Exception $e) {
-            $logger->logError($e->getMessage());
+            $logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             header("Location: ./google.php");
             exit();
         }

@@ -90,10 +90,10 @@ class Dao {
         $results = $query->fetch(PDO::FETCH_ASSOC);
         $result = $results["COUNT(*)"];
         if ($result) {
-            $this->logger->logDebug(__FUNCTION__ . "User was found.");
+            $this->logger->logDebug(__FUNCTION__ . ": User was found.");
             return TRUE;
         } else {
-            $this->logger->logDebug(__FUNCTION__ . "User unable to be found.");
+            $this->logger->logDebug(__FUNCTION__ . ": User unable to be found.");
             return FALSE;
         }
     }
@@ -115,6 +115,7 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
             if ($query->execute()) {
+                $this->logger->logDebug(__FUNCTION__ . ": Get user successful");
                 $user = $query->fetchAll();
                 return $user;
             } else {
@@ -148,7 +149,8 @@ class Dao {
             $query->bindParam(":firstName", $firstName);
             $query->bindParam(":lastName", $lastName);
             $status = $query->execute();
-            if (status) {
+            if ($status) {
+                $this->logger->logDebug(__FUNCTION__ . ": Get user successful");
                 return $this->SUCCESS;
             }
         }
