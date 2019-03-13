@@ -81,7 +81,7 @@
                     } else {
                         $user = $dao->getUser($_SESSION["user"]["email"]);
                         $_SESSION["user"]["id"] = $user["user_id"];
-                        $_SESSION["user"]["permissionName"] = $user["permission_name"];
+                        $_SESSION["user"]["permission"] = $user["permission_name"];
                     }
                 }
                 
