@@ -116,7 +116,7 @@ class Dao {
         try {
             if ($query->execute()) {
                 $this->logger->logDebug(__FUNCTION__ . ": Get user successful");
-                $user = $query->fetchAll();
+                $user = $query->fetch();
                 return $user;
             } else {
                 $this->logger->logError(__FUNCTION__ . "Query returned bad status upon completion");
