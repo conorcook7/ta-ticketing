@@ -8,7 +8,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-
+    <?php require_once '../../components/topbar.php'; ?>
 
     <!-- Start of Sidebar -->
     <?php include_once '../../components/sidebar.php'; ?>
