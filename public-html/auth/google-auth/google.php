@@ -77,6 +77,10 @@
                         $logger->logError("Unable to create user with dao method.");
                         header("Location: ./google.php");
                         exit();
+
+                    } else {
+                        $user = $dao->getUser($_SESSION["user"]["email"]);
+                        $_SESSION["user"]["id"] = $user["user_id"];
                     }
                 }
                 
