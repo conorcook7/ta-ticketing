@@ -1,7 +1,10 @@
-<?php 
+<?php
   require_once '../components/header.php';
   require_once '../components/dao.php'; 
-  $dao = new Dao("Dummy_TA_Ticketing")?>
+  $dao = new Dao("Dummy_TA_Ticketing");
+  $page = 'admin.php';
+  $nav = 'dashboard';
+?>
 
   <div id="wrapper">
   
