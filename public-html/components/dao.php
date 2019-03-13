@@ -200,13 +200,14 @@ class Dao {
     public function setUserOnline($userEmail) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "UPDATE TABLE Users SET online = 1 WHERE email = :email;"
+            "UPDATE Users SET online = 1 WHERE email = :email;"
         );
         $query->bindParam(":email", $userEmail);
-        if ($query->execute()) {
-            return $this->SUCCESS;
-        } else {
-            $this->logger->logError("Unable to set the user to online.");
+        try {
+            $status = $query->execute();
+            return $status;
+        } catch (Exception $e) {
+            $this->logger->logError($e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -220,13 +221,14 @@ class Dao {
     public function setUserOffline($userEmail) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "UPDATE TABLE Users SET online = 0 WHERE email = :email;"
+            "UPDATE Users SET online = 0 WHERE email = :email;"
         );
         $query->bindParam(":email", $userEmail);
-        if ($query->execute()) {
-            return $this->SUCCESS;
-        } else {
-            $this->logger->logError("Unable to set the user to offline.");
+        try {
+            $status = $query->execute();
+            return $status;
+        } catch (Exception $e) {
+            $this->logger->logError($e->getMessage());
             return $this->FAILURE;
         }
     }
