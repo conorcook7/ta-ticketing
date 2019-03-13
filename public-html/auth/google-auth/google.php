@@ -97,6 +97,7 @@
                 $user = $dao->getUser($_SESSION["user"]["email"]);
                 $_SESSION["user"]["user_id"] = $user["user_id"];
                 $_SESSION["user"]["permission"] = $user["permission_name"];
+                $_SESSION["user"]["user"] = $user;
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/index.php");
