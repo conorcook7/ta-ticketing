@@ -4,7 +4,7 @@
     require_once "../google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
     require_once "../../components/KLogger.php";
     require_once "../../components/dao.php";
-    require_once "../../components/functions.php";
+    require_once "../../components/server-functions.php";
 
     $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
 
