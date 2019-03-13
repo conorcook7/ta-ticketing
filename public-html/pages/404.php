@@ -2,6 +2,7 @@
   session_start();
   $page = '404.php';
   $nav = 'pages';
+  require_once "../components/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +45,7 @@
             <div class="error mx-auto" data-text="404">404</div>
             <p class="lead text-gray-800 mb-5">Page Not Found</p>
             <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-            <a href="<?php echo strtolower($_SERVER['SERVER_PROTOCOL']) . $_SERVER['HTTP_HOST'] .
-                            '/pages/' . strtolower($_SESSION['user']['permission']) . '.php'; ?>"
+            <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>"
             >&larr; Back to Dashboard</a>
           </div>
 

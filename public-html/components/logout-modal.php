@@ -1,3 +1,7 @@
+<?php
+    require_once "functions.php";
+?>
+
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -13,8 +17,7 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a
             class="btn btn-primary"
-            href="<?php echo strtolower($_SERVER['SERVER_PROTOCOL']) . $_SERVER['HTTP_HOST'] .
-                            '/handlers/logout-handler.php';?>"
+            href="<?php echo generateUrl('/handlers/logout-handler.php');?>"
           >Logout</a>
         </div>
       </div>
