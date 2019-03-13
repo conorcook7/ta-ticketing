@@ -2,7 +2,7 @@
     session_start();
 
     if (!isset($_SESSION["user"])) {
-        header("Location: " . $_SERVER["HTTP_HOST"] . "/auth/google-auth/google.php");
+        header("Location: " . $_SERVER["DOCUMENT_ROOT"] . "/auth/google-auth/google.php");
     }
     
 ?>
