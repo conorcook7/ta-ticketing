@@ -1,7 +1,15 @@
 <?php
   require_once '../components/header.php';
+  require_once "../components/server-functions.php";
+
   $page = 'index.php';
   $nav = 'dashboard';
+
+  // Redirect the user to the dashboard
+  if (isset($_SESSION["user"])) {
+    header("Location: " . generateUrl("/pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");
+    exit();
+  }
 ?>
 
   <!-- Page Wrapper -->
