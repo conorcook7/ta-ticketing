@@ -104,30 +104,18 @@ class Dao {
      * @param $email - The email address of the user.
      * @return $user - The array of user data.
      */
-    public function getUser($email=NULL, $userId=NULL) {
+    public function getUser($email) {
         $conn = $this->getConnection();
-        if ($email != NULL) {
-            $query = $conn->prepare(
-                "SELECT * FROM Users AS U JOIN Permissions AS P
-                 ON U.permission_id = P.permission_id
-                 WHERE email = :email;"
-            );
-            $query->bindParam(":email", $email);
-        } else if ($userId != NULL) {
-            $query = $conn->prepare(
-                "SELECT * FROM Users AS U JOIN Permissions AS P
-                 ON U.permission_id = P.permission_id
-                 WHERE user_id = :userId;"
-            );
-            $query->bindParam(":userId", $userId);
-        } else {
-            $this->logger->logError(__FUNCTION__ . "email and user_id are NULL");
-            return Array();
-        }
+        $query = $conn->prepare(
+            "SELECT * FROM Users AS U JOIN Permissions AS P
+                ON U.permission_id = P.permission_id
+                WHERE email = :email;"
+        );
+        $query->bindParam(":email", $email);
+        $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
-            $status = $query->execute();
-            if ($status) {
-                $user = $query->fetch(PDO::FETCH_ASSOC);
+            if ($query->execute()) {
+                $user = $query->fetchAll();
                 return $user;
             } else {
                 $this->logger->logError(__FUNCTION__ . "Query returned bad status upon completion");
