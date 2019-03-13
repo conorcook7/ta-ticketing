@@ -24,6 +24,7 @@
             $googleClient->setAccessToken($accessToken);
 
         } catch (Exception $e) {
+            echo "Access Token Error: ";
             echo $e->getMessage();
         }
 
@@ -31,6 +32,7 @@
             $payload = $googleClient->verifyIdToken();
 
         } catch (Exception $e) {
+            echo "Payload Error: ";
             echo $e->getMessage();
         }
 
