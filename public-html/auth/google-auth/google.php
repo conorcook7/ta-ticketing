@@ -57,8 +57,8 @@
                 // Setup session from payload
                 $logger->logDebug(__FUNCTION__ . ": Google OAuth payload contains data");
                 $_SESSION["user"]["email"] = $payload["email"];
-                $_SESSION["user"]["givenName"] = $payload["given_name"];
-                $_SESSION["user"]["familyName"] = $payload["family_name"];
+                $_SESSION["user"]["given_name"] = $payload["given_name"];
+                $_SESSION["user"]["family_name"] = $payload["family_name"];
                 $_SESSION["user"]["name"] = $payload["name"];
                 $_SESSION["user"]["picture"] = $payload["picture"];
                 $_SESSION["user"]["accessToken"] = $accessToken;
@@ -70,8 +70,8 @@
                 if (!$dao->userExists($_SESSION["user"]["email"])) {
                     $querySuccessful = $dao->createUser(
                         $_SESSION["user"]["email"],
-                        $_SESSION["user"]["givenName"],
-                        $_SESSION["user"]["familyName"]
+                        $_SESSION["user"]["given_name"],
+                        $_SESSION["user"]["family_name"]
                     );
                     if (!$querySuccessful) {
                         $logger->logError(__FUNCTION__ . ": Unable to create user with dao method.");
@@ -95,8 +95,8 @@
 
                 // Get user information
                 $user = $dao->getUser($_SESSION["user"]["email"]);
+                $_SESSION["user"]["user_id"] = $user["user_id"];
                 $_SESSION["user"]["permission"] = $user["permission_name"];
-                $_SESSION["user"]["permission"] = $user;
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/index.php");
