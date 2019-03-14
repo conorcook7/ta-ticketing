@@ -690,7 +690,7 @@ class Dao {
             return $this->FAILURE;
         }
 
-        // Insert the ticket data into the closed tickets table.
+        // Insert the ticket data into the open tickets table.
         $query = $conn->prepare(
             "INSERT INTO Open_Tickets (available_course_id, creator_user_id,
              node_number, opener_user_id, description, room_number) VALUES (
@@ -705,6 +705,13 @@ class Dao {
         $query->bindParam(":roomNumber", $ticket["room_number"]);
         if (!$query->execute()) {
             echo "fail 3", "\n";
+            echo $ticket["availableCourseId"], "--";
+            echo $ticket["creator_user_id"], "--" ;
+            echo $ticket["node_number"], "--";
+            echo $openerUserId, "--";
+            echo $ticket["description"], "--";
+            echo $ticket["room_number"], "--";
+
             return $this->FAILURE;
         }
         
