@@ -848,7 +848,7 @@ class Dao {
         }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
-        $availableCourse = $query->fetch(PDO::FETCH_ASSOC);
+        $availableCourse = $query->fetch();
         $this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
         return $availableCourse;
     }
