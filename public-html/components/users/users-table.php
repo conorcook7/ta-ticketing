@@ -14,6 +14,7 @@
                       <th class="center">Email</th>
                       <th class="center">Permission Level</th>
                       <th class="center">User ID</th>
+                      <th class="center">Update User</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -28,9 +29,11 @@
                             <td name="email"><?php echo htmlspecialchars($user['email']); ?></td>
                             <td name="permissionID"><?php echo $user['permission_id']; ?></td>
                             <td name="userID"><?php echo $user['user_id']; ?></td>
+                            <td>
                             <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
                                 Update User
                             </button>
+                            </td>
                         </tr>
                     <?php } ?>
                   </tbody>
