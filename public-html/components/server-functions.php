@@ -31,3 +31,15 @@
         
         return $combinedPath;
     }
+
+    /**
+     * Returns the onyx node number from the hostname.
+     * 
+     * @return $nodeNumber - The node number from the IP address hostname.
+     */
+    function getNodeNumber() {
+        $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+        // TODO: Update the node number!
+        $nodeNumber = 1;
+        return $nodeNumber;
+    }
