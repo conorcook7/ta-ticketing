@@ -37,4 +37,5 @@
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
+    <?php unset($_POST); ?>
 </div>
