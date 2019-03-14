@@ -37,7 +37,7 @@
           <tr>
             <th class="center">Queue #</th>
             <th class="center">Node</th>
-            <th class="center">Course Number</th>
+            <th class="center">Course Name</th>
             <th class="center">Queue Time</th>
             <th class="center description">Ticket Description</th>
           </tr>
@@ -51,7 +51,7 @@
 				<tr>
           <td class="center"><?php echo ($i + 1); ?></td>
           <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
-          <td class="center"><?php echo htmlspecialchars($openTickets[$i]["course_number"]); ?></td>
+          <td class="center"><?php echo htmlspecialchars($openTickets[$i]["course_name"]); ?></td>
           <td class="center"><?php echo htmlspecialchars($openTickets[$i]["update_date"]); ?></td>
           <td class="center">
             <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#ticketDescription">
