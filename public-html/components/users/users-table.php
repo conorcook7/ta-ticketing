@@ -34,6 +34,7 @@
                                 Update User
                             </button>
                             </td>
+                        </form>
                         </tr>
                     <?php } ?>
                   </tbody>
