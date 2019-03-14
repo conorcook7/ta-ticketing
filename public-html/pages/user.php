@@ -22,10 +22,10 @@
         <!-- End of Topbar -->
   <div class="container-fluid">
   <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Available Courses</h6>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h6 class="h3 mb-0 text-gray-800">Available Courses</h6>
       <form action = "userform.php">
-      <button type="submit" class="btn btn-primary">CreateNewTicket</button>
+      <button type="submit" class="d-none d-sm-inline-block btn btn-primary">CreateNewTicket</button>
       </form>
     </div>
     <div class="card-body">

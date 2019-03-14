@@ -27,4 +27,5 @@ if($newTicket){
   header("Location: ../pages/user.php");
   exit;
 }
+
 ?>
