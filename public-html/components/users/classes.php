@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <label for="courseNumber">Course Number</label>
-        <input type="number" class="form-control required" id="courseNumber" name="courseNumber" placeholder="121" required="true">
+        <input type="number" class="form-control" id="courseNumber" name="courseNumber" placeholder="121" required="true">
     </div>
     <div class="form-group">
         <label for="courseDescription">Course Description</label>
