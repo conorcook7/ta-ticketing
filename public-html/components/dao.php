@@ -740,7 +740,8 @@ class Dao {
         $query->bindParam(":closedTicketId", $closedTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
-            if (!$query->execute()) {
+            $status = $query->execute();
+            if (!$status) {
                 $this->logger->logError(__FUNCTION__ . ": Unable to select closed ticket.");
                 return $this->FAILURE;
             }
@@ -767,7 +768,8 @@ class Dao {
         $query->bindParam(":description", $ticket["description"]);
         $query->bindParam(":roomNumber", $ticket["room_number"]);
         try {
-            if (!$query->execute()) {
+            $status = $query->execute();
+            if (!$status) {
                 $this->logger->logError(__FUNCTION__ . ": Unable to insert the data into open tickets.");
                 return $this->FAILURE;
             }
