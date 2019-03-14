@@ -21,13 +21,14 @@
             </div>
             <form method = "POST" action = "../handlers/user-form-handler.php">
             <div class="card-body">
-              <input id="dropdownMenuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName' value = "CourseName">
+              <select id="dropdownMenuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName' value = "CourseName">
               <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                 <?php $courses = $dao->getAvailableCourses();
 				        foreach($courses as $course){ ?>
                 <option class="dropdown-item"><?php echo strtoupper(htmlspecialchars($course['course_name'])); ?></option>
                 <?php } ?>
               </div>
+            </select>
             </div>
             <div class = "card-body">
               <label for="exampleFormControlTextarea1">Problem Description</label>
