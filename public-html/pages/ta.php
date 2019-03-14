@@ -302,7 +302,7 @@ require_once '../components/header.php';
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block bg-gradient-success">
+                            <button type="submit" class="btn btn-block bg-gradient-success text-gray-100">
                                 Reopen Ticket
                             </button>
                            </th>
