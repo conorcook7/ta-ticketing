@@ -10,15 +10,14 @@
                   <thead>
                     <tr>
                       <th class="center">Student Name</th>
-                      <th class="center nodeInfo">Email</th>
-                      <th class="center courseInfo">Permission Level</th>
-                      <th class="center description">User ID</th>
+                      <th class="center">Email</th>
+                      <th class="center">Permission Level</th>
+                      <th class="center">User ID</th>
                     </tr>
                   </thead>
                   <tbody>
                   <?php 
-                    $users = $dao->getUsers()
-                    $max = sizeof($users);
+                    $users = $dao->getUsers();
                     foreach($users as $user) { 
                   ?>
                         <tr>
