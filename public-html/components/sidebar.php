@@ -35,66 +35,31 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Navigation
       </div>
 
-      <!-- Nav Item - Components Collapse Menu -->
-      <li class="nav-item <?php if($nav == 'components'){echo 'active';}?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+      <!-- Nav Item - Admin Collapse Menu -->
+      <li class="nav-item <?php if($nav == 'admin'){echo 'active';}?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Admin</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseAdmin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a
-              class="collapse-item <?php if($page == 'buttons.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/buttons.php') ;?>"
-            >Buttons</a>
-            <a
-              class="collapse-item <?php if($page == 'cards.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/cards.php') ;?>"
-            >Cards</a>
+            <h6 class="collapse-header">Tables</h6>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=users'); ?>">Users</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=online-users'); ?>">Online Users</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=tickets'); ?>">Tickets</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=open-tickets'); ?>">Open Tickets</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=closed-tickets'); ?>">Closed Tickets</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Updates</h6>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=classes'); ?>">Classes</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=users-form'); ?>">User Updates</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=faq'); ?>">FAQs</a>
           </div>
         </div>
       </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item <?php if($nav == 'utilities'){echo 'active';}?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a
-              class="collapse-item <?php if($page == 'utilities-color.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-color.php') ;?>"
-            >Colors</a>
-            <a
-              class="collapse-item <?php if($page == 'utilities-border.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-border.php'); ?>"
-            >Borders</a>
-            <a
-              class="collapse-item <?php if($page == 'utilities-animation.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-animation.php'); ?>"
-            >Animations</a>
-            <a
-              class="collapse-item <?php if($page == 'utilities-other.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-other.php'); ?>"
-            >Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item <?php if($nav == 'pages'){echo 'active';}?>">
