@@ -594,7 +594,8 @@ class Dao {
         $query->bindParam(":openerUserId", $openerUserId);
         $query->bindParam(":description", $description);
         $query->bindParam(":roomNumber", $roomNumber);
-        if ($query->execute()) {
+        $status = $query->execute();
+        if ($status) {
             return $this->SUCCESS;
         } else {
             return $this->FAILURE;
