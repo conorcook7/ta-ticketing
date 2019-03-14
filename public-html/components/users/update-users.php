@@ -32,7 +32,7 @@
     </select>
     <div class="form-group">
         <label for="userID">User ID</label>
-        <input type="number" class="form-control" id="userID" name="userID" required="true" placeholder=<?php echo (isset($_POST["userID"]) ? $_POST["userID"] : 0);?>>
+        <input type="number" class="form-control" id="userID" name="userID" required="true" placeholder=<?php echo (isset($_POST["userID"]) ? $_POST["userID"] : -1);?>>
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
