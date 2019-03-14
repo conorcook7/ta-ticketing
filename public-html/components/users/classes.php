@@ -7,7 +7,10 @@
         <div class="alert alert-danger">
             <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
         </div>
-    <?php } ?>
+    <?php }
+        unset($_SESSION["failure"]);
+        unset($_SESSION["success"]);
+    ?>
     <form method="POST" action="<?php echo generateUrl('/handlers/create-class-handler.php')?>">
     <div class="form-group">
         <label for="courseName">Course Name</label>

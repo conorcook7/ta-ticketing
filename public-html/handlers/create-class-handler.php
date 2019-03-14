@@ -6,7 +6,7 @@
     $number = $_POST["courseNumber"];
     $description = $_POST["courseDescription"];
     $dao->createCourse($name, $number, $description);
-    $_SESSION["success"] = "Added a Class!";
+    $_SESSION["success"] = "Added the Class: " . name;
     header("Location: ../pages/admin.php?id=classes");
     exit;
 ?>
