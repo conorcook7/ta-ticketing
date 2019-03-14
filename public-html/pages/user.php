@@ -51,7 +51,7 @@
       ?>
 				<tr>
           <form method="POST" action="../handlers/user-open-ticket-handler.php">
-            <input type="hidden" name="open_ticket_id" value="<?php echo $openTickets['open_ticket_id']); ?>"/>
+            <input type="hidden" name="open_ticket_id" value="<?php echo $openTickets['open_ticket_id']; ?>"/>
             <td class="center"><?php echo ($i + 1); ?></td>
             <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
             <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
