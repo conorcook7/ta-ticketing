@@ -97,7 +97,7 @@ require_once '../components/header.php';
                         <td class="center"><?php echo strtoupper($myTickets[$index]['course_name'])?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-block bg-gradient-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
                                 More Info
                             </button>
 
@@ -121,7 +121,7 @@ require_once '../components/header.php';
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block btn-danger">
+                            <button type="submit" class="btn btn-block bg-gradient-danger text-gray-100">
                                 Close Ticket
                             </button>
                            </th>
@@ -189,7 +189,7 @@ require_once '../components/header.php';
                         <td class="center"><?php echo strtoupper($allOpenTickets[$index]['course_name'])?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-block bg-gradient-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
                                 More Info
                             </button>
 
@@ -213,7 +213,7 @@ require_once '../components/header.php';
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block bg-gradient-danger">
+                            <button type="submit" class="btn btn-block bg-gradient-danger text-gray-100">
                                 Close Ticket
                             </button>
                            </th>
@@ -278,7 +278,7 @@ require_once '../components/header.php';
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['update_date'])?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-block bg-gradient-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
                                 More Info
                             </button>
 
@@ -302,7 +302,7 @@ require_once '../components/header.php';
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block bg-gradient-success">
+                            <button type="submit" class="btn btn-block bg-gradient-success text-gray-100">
                                 Reopen Ticket
                             </button>
                            </th>
