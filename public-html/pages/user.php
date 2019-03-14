@@ -106,11 +106,14 @@
 		<tbody>
 			<?php
 				$tas = $dao->getAvailableTeachingAssistants();
-				foreach($tas as $ta){?>
+				foreach($tas as $ta) {
+          $startTime = new DateTime($ta["start_time_past_midnight"]);
+          $endTime = new DateTime($ta["end_time_past_midnight"]);
+      ?>
 				<tr>
 					<td class="center"><?php echo htmlspecialchars($ta['first_name']) . " " . htmlspecialchars($ta['last_name']); ?></td>
 					<td class="center"><?php echo htmlspecialchars($ta['email']); ?></td>
-          <td class="center"><?php echo htmlspecialchars($ta['start_time_past_midnight']) . "-" . htmlspecialchars($ta['end_time_past_midnight']); ?></td>
+          <td class="center"><?php echo $startTime->format("g:i A") . " - " . $endTime->format("g:i A"); ?></td>
 				<tr>
 			<?php } ?>
 		  </tbody>
