@@ -337,8 +337,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <?php require_once "../components/logout-modal.php"; ?>
-
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
