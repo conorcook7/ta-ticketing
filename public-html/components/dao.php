@@ -698,10 +698,15 @@ class Dao {
         );
         $query->bindParam(":closedTicketId", $closedTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
-        if (!$query->execute()) {
-            echo "Closed ticket id 2-->", $closedTicketId, "   ";
-            return $this->FAILURE;
+        try {
+            if (!$query->execute()) {
+                echo "Closed ticket id 2-->", $closedTicketId, "   ";
+                return $this->FAILURE;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
         }
+        
         $ticket = $query->fetch();
         if (!isset($ticket)) {
             return $this->FAILURE;
