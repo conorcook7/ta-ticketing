@@ -46,5 +46,4 @@
  </div>
 </div>
 <?php require_once '../components/footer.php'; ?>
-<script src="../js/user-interaction.js"></script>
 <?php require_once '../components/scripts.php'; ?>
