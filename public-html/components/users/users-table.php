@@ -24,15 +24,20 @@
                   ?>
                         <tr>
                         <form method="POST" action="../pages/admin.php?id=users-form">
-                            <td name="firstName" value="<?php echo htmlspecialchars($user['first_name']); ?>"><?php echo htmlspecialchars($user['first_name']); ?></td>
-                            <td name="lastName" value="<?php echo htmlspecialchars($user['last_name']); ?>"><?php echo htmlspecialchars($user['last_name']); ?></td>
-                            <td name="email" value="<?php echo htmlspecialchars($user['email']); ?>"><?php echo htmlspecialchars($user['email']); ?></td>
-                            <td name="permissionID" value="<?php echo $user['permission_id']; ?>"><?php echo $user['permission_id']; ?></td>
-                            <td name="userID" value="<?php echo $user['user_id']; ?>"><?php echo $user['user_id']; ?></td>
+                            <input type="hidden" name="firstName" value="<?php echo htmlspecialchars($user['first_name']); ?>"/>
+                            <input type="hidden" name="lastName" value="<?php echo htmlspecialchars($user['last_name']); ?>"/>
+                            <input type="hidden" name="email" value="<?php echo htmlspecialchars($user['email']); ?>"/>
+                            <input type="hidden" name="permissionID" value="<?php echo $user['permission_id']; ?>"/>
+                            <input type="hidden" name="userID" value="<?php echo $user['user_id']; ?>"/>
+                            <td><?php echo htmlspecialchars($user['first_name']); ?></td>
+                            <td><?php echo htmlspecialchars($user['last_name']); ?></td>
+                            <td><?php echo htmlspecialchars($user['email']); ?></td>
+                            <td><?php echo $user['permission_id']; ?></td>
+                            <td><?php echo $user['user_id']; ?></td>
                             <td>
-                            <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
-                                Update User
-                            </button>
+                                <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
+                                    Update User
+                                </button>
                             </td>
                         </form>
                         </tr>
