@@ -700,15 +700,15 @@ class Dao {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
             if (!$query->execute()) {
-                echo "Closed ticket id 2-->", $closedTicketId, "   ";
-                
+                $this->logger->logError(__FUNCTION__ . ": Unable to select closed ticket.");
+                return $this->FAILURE;
             }
         } catch (Exception $e) {
             $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
         }
-        
         $ticket = $query->fetch();
         if (!isset($ticket)) {
+            $this->logger->logError(__FUNCTION__ . ": Unable to fetch select data for closed ticket.");
             return $this->FAILURE;
         }
 
@@ -725,21 +725,33 @@ class Dao {
         $query->bindParam(":openerUserId", $openerUserId);
         $query->bindParam(":description", $ticket["description"]);
         $query->bindParam(":roomNumber", $ticket["room_number"]);
-        if (!$query->execute()) {
+        try {
+            if (!$query->execute()) {
+                $this->logger->logError(__FUNCTION__ . ": Unable to insert the data into open tickets.");
+                return $this->FAILURE;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             return $this->FAILURE;
         }
         
         // Delete the open ticket from the open ticket table.
         $query = $conn->prepare(
-            "DELETE FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId;"
+            "DELETE FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId ;"
         );
         $query->bindParam(":closedTicketId", $closedTicketId);
-        if ($query->execute()) {
-            echo "Closed ticket id 3 -->", $closedTicketId, "   ";
-            echo "Fail 4", "\n";
-            return $this->SUCCESS;
+        $this->logger->logDebug(__FUNCTION__ . ": " . $query);
+        try {
+            $status = $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . ": status = " . $status);
+            if ($status) {
+                return $this->SUCCESS;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
         }
-        echo "Made to the end", "\n";
+        $this->logger->logError(__FUNCTION__ . ": Ran off the end of the function");
         return $this->FAILURE;
     }
 
