@@ -872,7 +872,7 @@ class Dao {
             $status = $query->execute();
             if ($status) {
                 $availableCourse = $query->fetch();
-                $this->logger->logDebug(__FUNCTION__ . ": " . print_r($availableCourses,1));
+                $this->logger->logDebug(__FUNCTION__ . ": " . print_r($availableCourse,1));
                 return $availableCourse;
             }
         } catch (Exception $e) {
