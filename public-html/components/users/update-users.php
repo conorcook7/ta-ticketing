@@ -10,7 +10,9 @@
     <?php }
         unset($_SESSION["failure"]);
         unset($_SESSION["success"]);
+        echo $_POST;
     ?>
+    
     <form method="POST" action="<?php echo generateUrl('/handlers/update-user-handler.php')?>">
     <div class="form-group">
         <label for="firstName">First Name</label>
