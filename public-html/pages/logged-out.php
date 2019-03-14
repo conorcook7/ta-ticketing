@@ -39,7 +39,7 @@
   <div id="wrapper">
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column flex-fill">
 
       <!-- Main Content -->
       <div id="content">
@@ -49,7 +49,7 @@
 
           <!-- 404 Error Text -->
           <div class="text-center">
-            <div class="h1 mx-auto mt-5 mb-5">You have been logged out.</div>
+            <div class="h1 mx-auto mt-5 mb-5">You are logged out.</div>
             <p class="text-gray-500 mb-0">Please log in with your boise state email address to continue.</p>
             <a href="<?php echo generateUrl("/auth/google-auth/google.php"); ?>">&larr; Log in</a>
           </div>
