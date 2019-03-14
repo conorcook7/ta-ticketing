@@ -49,37 +49,44 @@
           if ($openTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
       ?>
 				<tr>
-          <td class="center"><?php echo ($i + 1); ?></td>
-          <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
-          <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
-          <td class="center"><?php
-            $updateDate = new DateTime($openTickets[$i]["update_date"]);
-            echo $updateDate->format("F jS Y\, \a\\t g:i A");
-          ?></td>
-          <td class="center">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#my-ticket-" . $i;?>">
-                More Info
-            </button>
+          <form method="POST" action="../handlers/user-open-ticket-handler.php">
+            <td class="center"><?php echo ($i + 1); ?></td>
+            <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
+            <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
+            <td class="center"><?php
+              $updateDate = new DateTime($openTickets[$i]["update_date"]);
+              echo $updateDate->format("F jS Y \a\\t g:i A");
+            ?></td>
+            <td class="center">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#my-ticket-" . $i;?>">
+                  More Info
+              </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="<?php echo "my-ticket-" . $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          </div>
-                        <div class="modal-body"><?php echo $openTickets[$i]['description']; ?></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </td>
+              <!-- Modal -->
+              <div class="modal fade" id="<?php echo "my-ticket-" . $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                          <div class="modal-body"><?php echo $openTickets[$i]['description']; ?></div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <th class="center">
+              <button type="submit" class="btn btn-danger">
+                Cancel Ticket
+              </button>
+            </th>
+          </form>
 				</tr>
       <?php
           }
