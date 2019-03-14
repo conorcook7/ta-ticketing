@@ -54,28 +54,29 @@
           <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
           <td class="center"><?php
             $updateDate = new DateTime($openTickets[$i]["update_date"]);
-            echo $updateDate->format("F jS Y \a\\t g:i A");
+            echo $updateDate->format("F jS Y\, \a\\t g:i A");
           ?></td>
           <td class="center">
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#ticketDescription">
+            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                 More Info
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="ticketDescription" tabindex="-1" role="dialog" aria-labelledby="ticketDescriptionTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                         <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                          </button>
-                         </div>
-                        <div class="modal-body"><?php echo htmlspecialchars($openTickets[$i]["description"]); ?>
-                         </div>
+                        </div>
+                        <div class="modal-body">
+                          <?php echo htmlspecialchars($openTickets[$i]["description"]); ?>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         </div>
+                        </div>
                      </div>
                  </div>
              </div>
