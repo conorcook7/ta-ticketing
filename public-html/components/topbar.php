@@ -178,3 +178,4 @@
           </ul>
 
         </nav>
+        <?php require_once "logout-modal.php"; ?>
