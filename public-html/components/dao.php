@@ -158,6 +158,31 @@ class Dao {
     }
 
     /**
+     * Create a user if they do not exist in the database.
+     * 
+     * @param $email - The email address of the user to create.
+     * @param $firstName - The first name of the user if given, else NULL.
+     * @param $lastName - The last name of the user if given, else NULL.
+     * @return Returns TRUE if the user was created, else FALSE
+     */
+    public function createCourse($name, $number, $description) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "INSERT INTO Available_Courses (course_name, course_number, course_description) " .
+            "VALUES (:name, :number, :description);"
+        );
+        $query->bindParam(":name", $name);
+        $query->bindParam(":number", $number);
+        $query->bindParam(":description", $description);
+        $status = $query->execute();
+        if ($status) {
+            $this->logger->logDebug(__FUNCTION__ . ": create course successful");
+            return $this->SUCCESS;
+        }
+        return $this->FAILURE;
+    }
+
+    /**
      * Delete a user from the database.
      * 
      * @param $email - The email address of the user to delete from the database.
