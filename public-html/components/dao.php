@@ -705,12 +705,12 @@ class Dao {
         $query->bindParam(":roomNumber", $ticket["room_number"]);
         if (!$query->execute()) {
             echo "fail 3", "\n";
-            echo $ticket["availableCourseId"], "--";
-            echo $ticket["creator_user_id"], "--" ;
-            echo $ticket["node_number"], "--";
-            echo $openerUserId, "--";
-            echo $ticket["description"], "--";
-            echo $ticket["room_number"], "--";
+            echo $ticket["availableCourseId"], "- <--available course id-";
+            echo $ticket["creator_user_id"], "- <--creator user id-" ;
+            echo $ticket["node_number"], "- <--node number-";
+            echo $openerUserId, "- <--opener id-";
+            echo $ticket["description"], "- <--description-";
+            echo $ticket["room_number"], "- <--room number-";
 
             return $this->FAILURE;
         }
