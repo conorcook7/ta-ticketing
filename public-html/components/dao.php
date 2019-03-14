@@ -740,7 +740,6 @@ class Dao {
             "DELETE FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId ;"
         );
         $query->bindParam(":closedTicketId", $closedTicketId);
-        $this->logger->logDebug(__FUNCTION__ . ": " . $query);
         try {
             $status = $query->execute();
             $this->logger->logDebug(__FUNCTION__ . ": status = " . $status);
