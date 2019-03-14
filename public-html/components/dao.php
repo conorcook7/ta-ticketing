@@ -681,12 +681,10 @@ class Dao {
         $query->bindParam(":closedTicketId", $closedTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         if (!$query->execute()) {
-            echo "Fail 1", "\n";
             return $this->FAILURE;
         }
         $ticket = $query->fetch();
         if (!isset($ticket)) {
-            echo "Fail 2", "\n";
             return $this->FAILURE;
         }
 
@@ -704,14 +702,6 @@ class Dao {
         $query->bindParam(":description", $ticket["description"]);
         $query->bindParam(":roomNumber", $ticket["room_number"]);
         if (!$query->execute()) {
-            echo "fail 3", "start ->  ";
-            echo $ticket["availableCourseId"], "- <--available course id-";
-            echo $ticket["creator_user_id"], "- <--creator user id-" ;
-            echo $ticket["node_number"], "- <--node number-";
-            echo $openerUserId, "- <--opener id-";
-            echo $ticket["description"], "- <--description-";
-            echo $ticket["room_number"], "- <--room number-";
-
             return $this->FAILURE;
         }
         
@@ -721,6 +711,7 @@ class Dao {
         );
         $query->bindParam(":closedTicketId", $closedTicketId);
         if ($query->execute()) {
+            echo "Closed ticket id -->", $closedTicketId;
             echo "Fail 4", "\n";
             return $this->SUCCESS;
         }
