@@ -10,6 +10,8 @@
     } else {
         $status = 0;
     }
+
+    unset($_POST);
     
     if (!$status) {
         $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
