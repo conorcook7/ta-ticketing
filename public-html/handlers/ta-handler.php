@@ -15,7 +15,6 @@ if(isset($_POST['my_open_ticket_id_input'])){
 
 if(isset($_POST['closed_ticket_id'])){
     $openClosedTicket = $dao->openClosedTicket($_POST["closed_ticket_id"] ,$_POST["opener_id"]);
-    echo $_POST['closed_ticket_id'];
 }
 // header("Location: ../pages/ta.php");
 // exit;
