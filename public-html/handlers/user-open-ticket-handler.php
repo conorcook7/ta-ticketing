@@ -1,6 +1,6 @@
 <?php
     session_start();
-    //require_once "../components/dao.php";
+    require_once "../components/dao.php";
     //require_once "../components/KLogger";
     var_dump($_POST);
     var_dump($_SESSION);
