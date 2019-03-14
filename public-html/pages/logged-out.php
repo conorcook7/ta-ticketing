@@ -47,7 +47,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- 404 Error Text -->
+          <!-- Logged Out Text -->
           <div class="text-center">
             <div class="h1 mx-auto mt-5 mb-5">You are logged out.</div>
             <p class="text-gray-500 mb-0">Please log in with your boise state email address to continue.</p>
