@@ -606,7 +606,7 @@ class Dao {
                 AC.available_course_id,
                 AC.course_name,
                 AC.course_number,
-                AC.section,
+                AC.course_description,
 
                 Students.user_id AS student_user_id,
                 Students.permission_id AS student_permission_id,
