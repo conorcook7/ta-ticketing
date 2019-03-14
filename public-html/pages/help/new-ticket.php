@@ -96,7 +96,7 @@
                       <i class="fas fa-clock fa-2x text-gray-300"></i>
                     </div>
                   </div>
-                  <p>Continue working on other part of the homework, while a teaching assistant
+                  <p>Continue working on other parts of the homework, while a teaching assistant
                   becomes available.
                   </p>
                 </div>

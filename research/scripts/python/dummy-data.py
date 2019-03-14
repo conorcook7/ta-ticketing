@@ -22,7 +22,7 @@ def insert_course(course_name):
     course_number = course_name.split('cs')[1]
     section = str(random.randint(1, 20)).zfill(3)
     return (
-        'INSERT INTO Available_Courses (course_name, course_number, section)'
+        'INSERT INTO Available_Courses (course_name, course_number, course_description)'
         ' VALUES(\'{}\', \'{}\', \'{}\');\n'
     ).format(
         course_name,
