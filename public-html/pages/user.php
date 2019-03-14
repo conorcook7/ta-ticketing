@@ -24,7 +24,7 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
     <div class="d-sm-flex align-items-center justify-content-between">
-      <h6 class="h3 mb-0 text-gray-800">Available Courses</h6>
+      <h6 class="h3 mb-0 text-gray-800">My Open Tickets</h6>
       <form action = "userform.php">
         <button type="submit" class="d-none d-sm-inline-block btn btn-success"><i class="fas fa-plus-square fa-xl text-white pr-2"></i>Create New Ticket</button>
       </form>
@@ -35,23 +35,31 @@
 		    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
-            <th class="center">Course Name</th>
-            <th  class="center description">Course Description</th>
+            <th class="center">Queue #</th>
+            <th class="center">Node</th>
+            <th class="center">Course Number</th>
+            <th class="center">Queue Time</th>
+            <th class="center description">Ticket Description</th>
           </tr>
 		  </thead>
 		  <tbody>
 			<?php
-				$courses = $dao->getAvailableCourses();
-				foreach($courses as $course){?>
+				$openTickets = $dao->getOpenTickets();
+				for ($i = 0; $i < count($openTickets); $i++) {
+          if ($openTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
+      ?>
 				<tr>
-          <td class="center"><?php echo htmlspecialchars($course['course_name']); ?></td>
+          <td class="center"><?php echo ($i + 1); ?></td>
+          <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
+          <td class="center"><?php echo htmlspecialchars($openTickets[$i]["course_number"]); ?></td>
+          <td class="center"><?php echo htmlspecialchars($openTickets[$i]["update_date"]); ?></td>
           <td class="center">
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#ticketDescription">
                 More Info
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="ticketDescription" tabindex="-1" role="dialog" aria-labelledby="ticketDescriptionTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -60,7 +68,7 @@
                             <span aria-hidden="true">&times;</span>
                          </button>
                          </div>
-                        <div class="modal-body"><?php echo 'Test Text'?>
+                        <div class="modal-body"><?php echo htmlspecialchars($openTickets[$i]["description"]); ?>
                          </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,7 +78,10 @@
              </div>
            </td>
 				</tr>
-			<?php } ?>
+      <?php
+          }
+        }
+      ?>
 		  </tbody>
 		</table><br />
   </div>
