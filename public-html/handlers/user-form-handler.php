@@ -14,7 +14,7 @@ if(isset($_SESSION['user']['email'])){
 if(isset($_POST['courseName'])){
   $course = $dao->getAvailableCourse($_POST['courseName']);
   echo "<pre>" . print_r($course, 1) . "</pre>";
-  $couse_id = $course['available_course_id'];
+  $course_id = $course['available_course_id'];
 }
 $nodeNum = getNodeNumber();
 echo $course_id;
