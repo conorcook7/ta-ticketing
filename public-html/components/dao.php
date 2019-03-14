@@ -594,14 +594,20 @@ class Dao {
         $query->bindParam(":openerUserId", $openerUserId ? $openerUserId : "NULL");
         $query->bindParam(":description", $description ? $description : "NULL");
         $query->bindParam(":roomNumber", $roomNumber ? $roomNumber : "NULL");
-        $status = $query->execute();
-        if ($status) {
-            $this->logger->logDebug(__FUNCTION__ . ": Created new ticket.");
-            return $this->SUCCESS;
-        } else {
-            $this->logger->logError(__FUNCTION__ . ": Unable to create new ticket");
-            return $this->FAILURE;
+        try {
+            $status = $query->execute();
+            if ($status) {
+                $this->logger->logDebug(__FUNCTION__ . ": Created new ticket.");
+                return $this->SUCCESS;
+            } else {
+                $this->logger->logError(__FUNCTION__ . ": Unable to create new ticket");
+                return $this->FAILURE;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE:
         }
+        
     }
 
     /**
