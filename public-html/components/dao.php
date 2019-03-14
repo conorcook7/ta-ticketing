@@ -605,9 +605,10 @@ class Dao {
             }
         } catch (Exception $e) {
             $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
-            return $this->FAILURE:
+            return $this->FAILURE;
         }
-        
+        $this->logger->logError(__FUNCTION__ . ": Unable to create new ticket");
+        return $this->FAILURE;
     }
 
     /**
