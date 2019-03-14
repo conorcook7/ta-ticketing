@@ -10,7 +10,6 @@
     <?php }
         unset($_SESSION["failure"]);
         unset($_SESSION["success"]);
-        echo $_POST;
     ?>
     
     <form method="POST" action="<?php echo generateUrl('/handlers/update-user-handler.php')?>">
@@ -34,7 +33,7 @@
     </select>
     <div class="form-group">
         <label for="userID">User ID</label>
-        <input type="number" class="form-control" id="userID" name="userID" required="true" placeholder=<?php echo (isset($_POST["userID"]) ? $_POST["userID"] : -1);?>>
+        <input type="number" class="form-control" id="userID" name="userID" required="true" placeholder=<?php echo (isset($_POST["userID"]) ? $_POST["userID"] : -1);?> readonly>
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>

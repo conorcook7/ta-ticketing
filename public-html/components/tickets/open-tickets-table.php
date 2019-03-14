@@ -9,12 +9,12 @@
               <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th class = "queue">Queue #</th>
+                      <th class ="center">ID</th>
                       <th class="center">Student Name</th>
                       <th class="center nodeInfo">Node</th>
                       <th class="center courseInfo">Course</th>
+                      <th class="center status">Status</th>
                       <th class="center description">Description</th>
-                      <th class="center action">Action</th>
                     </tr>
                   </thead>
                   <tbody>
