@@ -701,7 +701,7 @@ class Dao {
         try {
             if (!$query->execute()) {
                 echo "Closed ticket id 2-->", $closedTicketId, "   ";
-                return $this->FAILURE;
+                
             }
         } catch (Exception $e) {
             $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
