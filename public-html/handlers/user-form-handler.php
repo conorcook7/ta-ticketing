@@ -12,7 +12,7 @@ if(isset($_SESSION['user']['email'])){
   $user_id = $user['user_id'];
 }
 if(isset($_POST['courseName'])){
-  $course = $dao->getAvailableCourse(courseName = $_POST['courseName']);
+  $course = $dao->getAvailableCourse($_POST['courseName']);
   $couse_id = $course['available_course_id'];
 }
 $nodeNum = getNodeNumber();
