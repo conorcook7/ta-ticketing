@@ -625,7 +625,7 @@ class Dao {
         $conn = $this->getConnection();
         $query = $conn->prepare(
             "INSERT INTO Open_Tickets (available_course_id, creator_user_id,
-             node_number, opener_user_id, description, room_number) VALUES (
+             node_number, description) VALUES (
              :availableCourseId, :userId, :nodeNumber, :description);"
         );
         $query->bindParam(":availableCourseId", $availableCourseId);
