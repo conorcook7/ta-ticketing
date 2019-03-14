@@ -19,7 +19,7 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Help Submission Form</h6>
             </div>
-            <form method = "post">
+            <form method = "POST">
             <div class="card-body">
               <button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName'>
                 Course Name
@@ -32,10 +32,11 @@
               </div>
             </div>
             </form>
-            <form method = "post" action = "userformhandler.php">
+            <form method = "POST" action = "user-form-handler.php">
             <div class = "card-body">
-              <label for="exampleFormControlTextarea1">Example textarea</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <label for="exampleFormControlTextarea1">Problem Description</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "description"></textarea>
+              <br>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </form>
