@@ -33,15 +33,15 @@
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
         
-        <?php  
+        <?php /**
         $selection = $_SESSION['admin-selection']
-        if ($selection == 'UNNAUTHORIZED'){ ?>
+        if ($selection == 'UNNAUTHORIZED'){ */?>
           <!-- 404 Error Text -->
           <div class="text-center">
             <div class="error mx-auto" data-text="404">404</div>
             <p class="lead text-gray-800 mb-5">Page Not Found</p>
           </div>
-        <?php
+        <?php/**
         } elseif ($selection == 'DEFAULT' || $selection == 'users'){
           include_once '../components/users/users-table.php'
         } elseif ($selection == 'online-users'){
@@ -59,7 +59,7 @@
         } elseif ($selection == 'faq'){
           include_once '../components/tickets/faq.php'
         }
-        ?>
+        */?>
       </div>
     </div>
   </div>
