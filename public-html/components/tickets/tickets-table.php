@@ -23,13 +23,8 @@
                     $max = sizeof($allTickets);
                     $queue = 0;
                     for ($index = 0; $index <= $max; $index++) {
-                      if($allTickets[$index]['online'] == 1){
-                        $queue++;
                    ?>
                       <tr>
-                      <form method="POST" action="../handlers/ta-handler.php"> <!-- need to add linking -->
-                        <input type='hidden' name='open_ticket_id_input' value="<?php echo $allTickets[$index]['id'];?>"/>
-                        <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue?></td>
                         <td class="center"><?php echo $allTickets[$index]['first_name'], " ", $allTickets[$index]['last_name']?></td>
                         <td class="center"><?php echo $allTickets[$index]['node_number']?></td>
@@ -60,14 +55,8 @@
                                  </div>
                              </div>
                             </td>
-                          </form> 
                         </tr>
-                    <?php
-                    }
-                    if($index == 500){
-                      break;
-                    }
-                    }?>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>
