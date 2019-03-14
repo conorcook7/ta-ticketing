@@ -33,7 +33,6 @@
 
   <!-- Interaction for admin sidebar so the we don't load everything -->
   <script src="<?php echo generateUrl('/js/admin-interaction.js');?>"></script>
-  <script src="<?php echo generateUrl('/js/user-interaction.js'); ?>"></script>
 
 </body>
 </html>
