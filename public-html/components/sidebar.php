@@ -96,6 +96,29 @@
         Addons
       </div>
 
+      <!-- Nav Item - Admin Collapse Menu -->
+      <li class="nav-item <?php if($nav == 'admin'){echo 'active';}?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Admin</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Tables</h6>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=users'); ?>">Users</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=online-users'); ?>">Online Users</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=tickets'); ?>">Tickets</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=open-tickets'); ?>">Open Tickets</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=closed-tickets'); ?>">Closed Tickets</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Updates</h6>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=classes'); ?>">Classes</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=users-form'); ?>">User Updates</a>
+            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=faq'); ?>">FAQs</a>
+          </div>
+        </div>
+      </li>
+
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item <?php if($nav == 'pages'){echo 'active';}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">

@@ -3,11 +3,11 @@
   require_once '../components/dao.php'; 
   $dao = new Dao("Dummy_TA_Ticketing");
   $page = 'admin.php';
-  $nav = 'dashboard';
+  $nav = 'admin';
   
   if($_SESSION['user']['access-level'] <= 3){
-    if(isset($_GET['admin-selection'])){
-      $_SESSION['admin-selection'] = $_GET['admin-selection'];
+    if(isset($_GET['id'])){
+      $_SESSION['admin-selection'] = $_GET['id'];
     } else {
       $_SESSION['admin-selection'] = 'DEFAULT';
     }
@@ -54,11 +54,11 @@
         } elseif ($selection == 'closed-tickets'){
           include_once '../components/tickets/closed-tickets-table.php';
         } elseif ($selection == 'classes'){
-          include_once '../components/tickets/classes.php';
+          include_once '../components/users/classes.php';
         } elseif ($selection == 'users-form'){
-          include_once '../components/tickets/update-users.php';
+          include_once '../components/users/update-users.php';
         } elseif ($selection == 'faq'){
-          include_once '../components/tickets/faq.php';
+          include_once '../components/users/faq.php';
         }
         ?>
       </div>
