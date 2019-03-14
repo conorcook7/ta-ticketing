@@ -493,9 +493,9 @@ class Dao {
     }
 
     /**
-     * Get all of the open ticket.
+     * Get all tickets.
      * 
-     * @return $openTickets - The array of arrays of open tickets information.
+     * @return $allTickets - The array of arrays of open tickets information.
      */
     public function getAllTickets() {
         $conn = $this->getConnection();
@@ -504,16 +504,16 @@ class Dao {
         $query->execute();
         $openTickets = $query->fetchAll();
         $this->logger->logDebug(__FUNCTION__ . ": First open ticket: " . print_r($openTickets[0],1));
-        foreach ($ticket in $openTickets){
+        foreach ($openTickets as $ticket){
             $ticket["status"] = "Open";
             $ticket["id"] = $ticket["open_ticket_id"];
         }
-        $query = $conn->prepare("SELECT * FROM Closed_tickets;");
+        $query = $conn->prepare("SELECT * FROM Closed_Tickets;");
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $closedTickets = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__ . ": First closed ticket: " . print_r($openTickets[0],1));
-        foreach ($ticket in $closedTickets){
+        $this->logger->logDebug(__FUNCTION__ . ": First closed ticket: " . print_r($closedTickets[0],1));
+        foreach ($closedTickets as $ticket){
             $ticket["status"] = "Closed";
             $ticket["id"] = $ticket["closed_ticket_id"];
         }
