@@ -135,8 +135,8 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Help Page -->
-      <li class="nav-item <?php if ($nav == 'help') { echo 'active'; }?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHelpPages" aria-expanded="true" aria-controls="collapsePages">
+      <li class="nav-item <?php if ($nav == 'help') { echo 'active'; } ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHelpPages" aria-expanded="true" aria-controls="collapseHelpPages">
           <i class="fas fa-fw fa-question"></i>
           <span>Help</span>
         </a>
