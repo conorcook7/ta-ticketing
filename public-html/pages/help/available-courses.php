@@ -67,4 +67,7 @@
   </div>
   <!-- End of Page Wrapper -->
 
-  <?php require_once "../../components/scripts.php"; ?>
+<?php
+  require_once "../../components/logout-modal.php";
+  require_once "../../components/scripts.php";
+?>
