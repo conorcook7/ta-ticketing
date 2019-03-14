@@ -34,7 +34,7 @@
     }
 
     // Unset the user
-    unset($_SESSION["user"]);
+    session_unset();
     session_destroy();
 
     // Redirect to the login page
