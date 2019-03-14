@@ -517,7 +517,7 @@ class Dao {
             $ticket["status"] = "Closed";
             $ticket["id"] = $ticket["closed_ticket_id"];
         }
-        return array_merge($openTickets, $closedTickets);
+        return $openTickets;
     }    
 
     /**
