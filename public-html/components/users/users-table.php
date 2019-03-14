@@ -24,6 +24,11 @@
                   ?>
                         <tr>
                         <form method="POST" action="../pages/admin.php?id=users-form">
+                            <input type="hidden" name="firstName" value="<?php echo htmlspecialchars($user['first_name']); ?>"/>
+                            <input type="hidden" name="lastName" value="<?php echo htmlspecialchars($user['last_name']); ?>"/>
+                            <input type="hidden" name="email" value="<?php echo htmlspecialchars($user['email']); ?>"/>
+                            <input type="hidden" name="permissionID" value="<?php echo $user['permission_id']; ?>"/>
+                            <input type="hidden" name="userID" value="<?php echo $user['user_id']; ?>"/>
                             <td name="firstName"><?php echo htmlspecialchars($user['first_name']); ?></td>
                             <td name="lastName"><?php echo htmlspecialchars($user['last_name']); ?></td>
                             <td name="email"><?php echo htmlspecialchars($user['email']); ?></td>
