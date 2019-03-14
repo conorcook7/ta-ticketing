@@ -54,7 +54,7 @@
           <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
           <td class="center"><?php
             $updateDate = new DateTime($openTickets[$i]["update_date"]);
-            echo $updateDate->format("g:i A F jS Y");
+            echo $updateDate->format("F jS Y \a\\t g:i A");
           ?></td>
           <td class="center">
             <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#ticketDescription">
