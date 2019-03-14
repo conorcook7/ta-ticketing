@@ -52,7 +52,10 @@
           <td class="center"><?php echo ($i + 1); ?></td>
           <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
           <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
-          <td class="center"><?php echo htmlspecialchars($openTickets[$i]["update_date"]); ?></td>
+          <td class="center"><?php
+            $updateDate = new DateTime($openTickets[$i]["update_date"]);
+            echo $updateDate->format("g:i A F jS Y");
+          ?></td>
           <td class="center">
             <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#ticketDescription">
                 More Info
