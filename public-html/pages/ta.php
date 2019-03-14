@@ -221,9 +221,9 @@ require_once '../components/header.php';
                         </tr>
                     <?php
                     }
-                    if($index == 500){
-                      break;
-                    }
+                    // if($index == 500){
+                    //   break;
+                    // }
                     }?>
                   </tbody>
                 </table>
