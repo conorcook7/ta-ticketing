@@ -29,12 +29,11 @@
                             <input type="hidden" name="email" value="<?php echo htmlspecialchars($user['email']); ?>"/>
                             <input type="hidden" name="permissionID" value="<?php echo $user['permission_id']; ?>"/>
                             <input type="hidden" name="userID" value="<?php echo $user['user_id']; ?>"/>
-                            <td name="firstName"><?php echo htmlspecialchars($user['first_name']); ?></td>
-                            <td name="lastName"><?php echo htmlspecialchars($user['last_name']); ?></td>
-                            <td name="email"><?php echo htmlspecialchars($user['email']); ?></td>
-                            <td name="permissionID"><?php echo $user['permission_id']; ?></td>
-                            <td name="userID"><?php echo $user['user_id']; ?></td>
-                            <td>
+                            <td><?php echo htmlspecialchars($user['first_name']); ?></td>
+                            <td><?php echo htmlspecialchars($user['last_name']); ?></td>
+                            <td><?php echo htmlspecialchars($user['email']); ?></td>
+                            <td><?php echo $user['permission_id']; ?></td>
+                            <td><?php echo $user['user_id']; ?></td>
                             <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
                                 Update User
                             </button>
