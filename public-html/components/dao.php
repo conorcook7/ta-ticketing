@@ -591,9 +591,9 @@ class Dao {
         $query->bindParam(":availableCourseId", $availableCourseId);
         $query->bindParam(":userId", $userId);
         $query->bindParam(":nodeNumber", $nodeNumber);
-        $query->bindParam(":openerUserId", $openerUserId ? $openerUserId : "NULL");
-        $query->bindParam(":description", $description ? $description : "NULL");
-        $query->bindParam(":roomNumber", $roomNumber ? $roomNumber : "NULL");
+        $query->bindParam(":openerUserId", $openerUserId != NULL ? $openerUserId : "NULL");
+        $query->bindParam(":description", $description != NULL ? $description : "NULL");
+        $query->bindParam(":roomNumber", $roomNumber != NULL ? $roomNumber : "NULL");
         try {
             $status = $query->execute();
             if ($status) {
