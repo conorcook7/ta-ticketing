@@ -15,7 +15,7 @@ if(isset($_POST['my_open_ticket_id_input'])){
 
 if(isset($_POST['closed_ticket_id'])){
     $openClosedTicket = $dao->openClosedTicket($_POST["closed_ticket_id"] ,$_POST["opener_id"]);
-    echo "Closed ticket is valid";
+    echo "Closed ticket is valid", "\n";
 }
     echo "outside of loop";
 // header("Location: ../pages/ta.php");
