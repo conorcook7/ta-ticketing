@@ -3,7 +3,7 @@
     require_once "../components/dao.php";
     require_once "../components/KLogger";
     
-    $dao = new Dao("Dummy_TA_Ticketing");
+    //$dao = new Dao("Dummy_TA_Ticketing");
 
     // if (isset($_POST["open_ticket_id"]) && isset($_SESSION["user"]["user_id"])) {
     //     $status = $dao->closeTicket($_POST["open_ticket_id"], $_SESSION["user"]["user_id"]);
