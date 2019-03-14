@@ -35,7 +35,7 @@
         <!-- End of Topbar -->
         
         <?php
-        $selection = $_SESSION['admin-selection']
+        $selection = $_SESSION['admin-selection'];
         if ($selection == 'UNNAUTHORIZED'){ ?>
           <!-- 404 Error Text -->
           <div class="text-center">
