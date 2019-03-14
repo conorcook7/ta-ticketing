@@ -36,7 +36,7 @@
 
 <body id="page-top">
   <!-- Page Wrapper -->
-  <div id="wrapper h-75">
+  <div id="wrapper">
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
