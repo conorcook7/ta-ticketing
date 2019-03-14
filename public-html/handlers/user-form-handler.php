@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../components/dao.php';
-require_once '../components/server-functions.php'
+require_once '../components/server-functions.php';
 
 $dao = new Dao('Dummy_TA_Ticketing');
 $user_id = 0;
