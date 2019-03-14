@@ -1,14 +1,13 @@
-<?php if (isset($_SESSION["success"])){ ?>
-    <div class="alert alert-success">
-        <strong>Success!</strong> <?php $_SESSION["success"] ?>
-    </div>
-<?php } elseif (isset($_SESSION["failure"])) { ?>
-    <div class="alert alert-danger">
-        <strong>Failure!</strong> <?php $_SESSION["failure"] ?>
-    </div>
-<?php } ?>
-
 <div class="container">
+    <?php if (isset($_SESSION["success"])){ ?>
+        <div class="alert alert-success">
+            <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
+        </div>
+    <?php } elseif (isset($_SESSION["failure"])) { ?>
+        <div class="alert alert-danger">
+            <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
+        </div>
+    <?php } ?>
     <form method="POST" action="<?php echo generateUrl('/handlers/create-class-handler.php')?>">
     <div class="form-group">
         <label for="courseName">Course Name</label>
