@@ -749,7 +749,8 @@ class Dao {
             "DELETE FROM Open_Tickets WHERE open_ticket_id = :openTicketId;"
         );
         $query->bindParam(":openTicketId", $openTicketId);
-        if ($query->execute()) {
+        $status = $query->execute();
+        if ($status) {
             return $this->SUCCESS;
         }
         return $this->FAILURE;
