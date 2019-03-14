@@ -69,16 +69,6 @@ require_once '../components/header.php';
                       <th class="center action">Action</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                   <?php 
                     $max1 = sizeof($myTickets);
@@ -161,16 +151,6 @@ require_once '../components/header.php';
                       <th class="center action">Action</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                   <?php 
                     $max = sizeof($allOpenTickets);
@@ -253,16 +233,6 @@ require_once '../components/header.php';
                       <th class="center action">Action</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                   <?php 
                     $max3 = sizeof($closedTickets);
