@@ -70,7 +70,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <?php include_once '../../components/footer.php' ?>
+      <?php include_once '../../components/footer.php'; ?>
       <!-- End of Footer -->
 
     </div>
