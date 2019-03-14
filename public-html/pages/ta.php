@@ -176,8 +176,8 @@ require_once '../components/header.php';
                     $max = sizeof($allOpenTickets);
                     $queue = 0;
                     for ($index = 0; $index <= $max; $index++) {
-                      if($allOpenTickets[$index]['online'] == 1){
-                        $queue++;
+                      // if($allOpenTickets[$index]['online'] == 1){
+                      //   $queue++;
                    ?>
                       <tr>
                       <form method="POST" action="../handlers/ta-handler.php"> 
@@ -220,7 +220,7 @@ require_once '../components/header.php';
                           </form> 
                         </tr>
                     <?php
-                    }
+                    // }
                     // if($index == 500){
                     //   break;
                     // }
