@@ -504,7 +504,7 @@ class Dao {
         $query->execute();
         $openTickets = $query->fetchAll();
         $this->logger->logDebug(__FUNCTION__ . ": First open ticket: " . print_r($openTickets[0],1));
-        for ($ticket in $openTickets){
+        foreach ($ticket in $openTickets){
             $ticket["status"] = "Open";
             $ticket["id"] = $ticket["open_ticket_id"];
         }
@@ -513,7 +513,7 @@ class Dao {
         $query->execute();
         $closedTickets = $query->fetchAll();
         $this->logger->logDebug(__FUNCTION__ . ": First closed ticket: " . print_r($openTickets[0],1));
-        for ($ticket in $closedTickets){
+        foreach ($ticket in $closedTickets){
             $ticket["status"] = "Closed";
             $ticket["id"] = $ticket["closed_ticket_id"];
         }
