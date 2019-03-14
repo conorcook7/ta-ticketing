@@ -32,7 +32,7 @@
               </div>
             </div>
             </form>
-            <form method = "POST" action = "user-form-handler.php">
+            <form method = "POST" action = "../handlers/user-form-handler.php">
             <div class = "card-body">
               <label for="exampleFormControlTextarea1">Problem Description</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "description"></textarea>
