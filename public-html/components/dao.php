@@ -499,14 +499,16 @@ class Dao {
      */
     public function getAllTickets() {
         $openTickets = $this->getOpenTickets();
-        foreach ($openTickets as $ticket){
-            $ticket["status"] = "Open";
-            $ticket["id"] = $ticket["open_ticket_id"];
+        $max = sizeof($openTickets);
+        for ($index = 0; $index <= $max; $index++) {
+            $ticket[$index]["status"] = "Open";
+            $ticket[$index]["id"] = $ticket["open_ticket_id"];
         }
         $closedTickets = $this->getClosedTickets();
-        foreach ($closedTickets as $ticket){
-            $ticket["status"] = "Closed";
-            $ticket["id"] = $ticket["closed_ticket_id"];
+        $max = sizeof($closedTickets);
+        for ($index = 0; $index <= $max; $index++) {
+            $ticket[$index]["status"] = "Closed";
+            $ticket[$index]["id"] = $ticket["closed_ticket_id"];
         }
         return array_merge($openTickets, $closedTickets);
     }    
