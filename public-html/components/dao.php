@@ -697,14 +697,14 @@ class Dao {
              :availableCourseId, :userId, :nodeNumber, :openerUserId,
              :description, :roomNumber);"
         );
-        $query->bindParam(":availableCourseId", $ticket["availableCourseId"]);
+        $query->bindParam(":availableCourseId", $ticket["available_course_id"]);
         $query->bindParam(":userId", $ticket["creator_user_id"]);
         $query->bindParam(":nodeNumber", $ticket["node_number"]);
         $query->bindParam(":openerUserId", $openerUserId);
         $query->bindParam(":description", $ticket["description"]);
         $query->bindParam(":roomNumber", $ticket["room_number"]);
         if (!$query->execute()) {
-            echo "fail 3", "\n";
+            echo "fail 3", "start ->  ";
             echo $ticket["availableCourseId"], "- <--available course id-";
             echo $ticket["creator_user_id"], "- <--creator user id-" ;
             echo $ticket["node_number"], "- <--node number-";
