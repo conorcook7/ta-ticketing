@@ -24,7 +24,7 @@ if(isset($_POST['courseName']) && isset($_POST['description']) && $user_id != 0 
     $descript = $_POST['description'];
     $newTicket = $dao->createTicket($course_id,$user_id,$nodeNum, $description = $descript);
 }
-
+echo "<pre>" . $newTicket . "</pre>";
 if($newTicket){
   header("Location: ../pages/user.php");
   exit;
