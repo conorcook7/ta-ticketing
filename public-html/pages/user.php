@@ -102,14 +102,12 @@
   </div>
 </div>
 
+<!-- My Closed Tickets -->
 <div class="container-fluid">
   <div class="card shadow mb-4">
     <div class="card-header py-3">
     <div class="d-sm-flex align-items-center justify-content-between">
-      <h6 class="h3 mb-0 text-gray-800">My Open Tickets</h6>
-      <form action = "userform.php">
-        <button type="submit" class="d-none d-sm-inline-block btn btn-success"><i class="fas fa-plus-square fa-xl text-white pr-2"></i>Create New Ticket</button>
-      </form>
+      <h6 class="h3 mb-0 text-gray-800">My Closed Tickets</h6>
     </div>
   </div>
     <div class="card-body">
@@ -117,28 +115,30 @@
 		    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
-            <th class="center">Queue #</th>
-            <th class="center">Node</th>
+            <th class="center">Ticket #</th>
+            <th class="center">Ticket Creator</th>
+            <th class="center">Ticket Closer</th>
             <th class="center">Course Name</th>
-            <th class="center">Queue Time</th>
+            <th class="center">Date Solved</th>
             <th class="center description">Ticket Description</th>
             <th class="center">Action</th>
           </tr>
 		  </thead>
 		  <tbody>
 			<?php
-				$openTickets = $dao->getOpenTickets();
-				for ($i = 0; $i < sizeof($openTickets); $i++) {
-          if ($openTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
+				$closedTickets = $dao->getClosedTickets();
+				for ($i = 0; $i < sizeof($closedTickets); $i++) {
+          if ($closedTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
       ?>
 				<tr>
-          <form method="POST" action="../handlers/user-open-ticket-handler.php">
-            <input type="hidden" name="open_ticket_id" value="<?php echo $openTickets[$i]['open_ticket_id']; ?>"/>
-            <td class="center"><?php echo ($i + 1); ?></td>
-            <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
-            <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
+          <form method="POST" action="../handlers/user-closed-ticket-handler.php">
+            <input type="hidden" name="closed_ticket_id" value="<?php echo $closedTickets[$i]['closed_ticket_id']; ?>"/>
+            <td class="center"><?php echo $closedTickets[$i]["closed_ticket_id"]; ?></td>
+            <td class="center"><?php echo htmlspecialchars($closedTickets[$i]["student_first_name"] . " " . $closedTickets[$i]["student_last_name"]); ?></td>
+            <td class="center"><?php echo htmlspecialchars($closedTickets[$i]["ta_first_name"] . " " . $closedTickets[$i]["ta_last_name"]); ?></td>
+            <td class="center"><?php echo strtoupper(htmlspecialchars($closedTickets[$i]["course_name"])); ?></td>
             <td class="center"><?php
-              $updateDate = new DateTime($openTickets[$i]["update_date"]);
+              $updateDate = new DateTime($closedTickets[$i]["update_date"]);
               echo $updateDate->format("F jS Y \a\\t g:i A");
             ?></td>
             <td class="center">
@@ -157,7 +157,7 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
-                          <div class="modal-body"><?php echo $openTickets[$i]['description']; ?></div>
+                          <div class="modal-body"><?php echo $closedTickets[$i]['description']; ?></div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
@@ -168,7 +168,7 @@
             <th class="center">
               <button type="submit" class="btn btn-block btn-danger">
                 <i class="fas fa-times fa-xl text-white pr-2"></i>
-                Cancel Ticket
+                Reopen Ticket
               </button>
             </th>
           </form>
@@ -183,6 +183,7 @@
   </div>
   </div>
 </div>
+<!-- End My Closed Tickets -->
 
 <div class="container-fluid">
 <div class="card shadow mb-4">
