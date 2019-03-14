@@ -45,7 +45,7 @@
 		  <tbody>
 			<?php
 				$openTickets = $dao->getOpenTickets();
-				for ($i = 0; $i < count($openTickets); $i++) {
+				for ($i = 0; $i < sizeof($openTickets); $i++) {
           if ($openTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
       ?>
 				<tr>
