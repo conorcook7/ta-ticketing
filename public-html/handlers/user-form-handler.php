@@ -11,7 +11,7 @@ if(isset($_SESSION['user']['email'])){
   $user_id = $user['user_id'];
 }
 if(isset($_POST['courseName'])){
-  $course = $dao->getAvailableCourse($courseName = $_POST['courseName']);
+  $course = $dao->getAvailableCourse(courseName = $_POST['courseName']);
   $couse_id = $course['available_course_id'];
 }
 $nodeNum = getNodeNumber();
@@ -20,7 +20,7 @@ echo $user_id;
 echo $_POST['description'];
 if(isset($_POST['courseName']) && isset($_POST['description']) && $user_id != 0 && $course_id != 0){
     $descript = $_POST['description'];
-    $newTicket = $dao->createTicket($course_id,$user_id,$nodeNum,$description = $descript);
+    $newTicket = $dao->createTicket($course_id,$user_id,$nodeNum, description = $descript);
 }
 
 if($newTicket){
