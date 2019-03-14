@@ -35,65 +35,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Components Collapse Menu -->
-      <li class="nav-item <?php if($nav == 'components'){echo 'active';}?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a
-              class="collapse-item <?php if($page == 'buttons.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/buttons.php') ;?>"
-            >Buttons</a>
-            <a
-              class="collapse-item <?php if($page == 'cards.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/cards.php') ;?>"
-            >Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item <?php if($nav == 'utilities'){echo 'active';}?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a
-              class="collapse-item <?php if($page == 'utilities-color.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-color.php') ;?>"
-            >Colors</a>
-            <a
-              class="collapse-item <?php if($page == 'utilities-border.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-border.php'); ?>"
-            >Borders</a>
-            <a
-              class="collapse-item <?php if($page == 'utilities-animation.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-animation.php'); ?>"
-            >Animations</a>
-            <a
-              class="collapse-item <?php if($page == 'utilities-other.php'){echo 'active';}?>"
-              href="<?php echo generateUrl('/examples/utilities-other.php'); ?>"
-            >Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
+        Navigation
       </div>
 
       <!-- Nav Item - Admin Collapse Menu -->
