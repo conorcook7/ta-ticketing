@@ -502,6 +502,7 @@ class Dao {
         $query = $conn->prepare(
             "SELECT
                 open_ticket_id,
+                creator_user_id,
                 course_name,
                 course_number,
                 OT.update_date,
