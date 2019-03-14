@@ -126,7 +126,7 @@
 		  </thead>
 		  <tbody>
 			<?php
-				$closedTickets = $dao->getClosedTickets();
+        $closedTickets = $dao->getClosedTickets();
 				for ($i = 0; $i < sizeof($closedTickets); $i++) {
           if ($closedTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
       ?>
@@ -143,12 +143,12 @@
             ?></td>
             <td class="center">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#my-ticket-" . $i;?>">
+              <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#my-closed-ticket-" . $i;?>">
                   More Info
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="<?php echo "my-ticket-" . $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal fade" id="<?php echo "my-closed-ticket-" . $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
@@ -166,8 +166,8 @@
                 </div>
             </td>
             <th class="center">
-              <button type="submit" class="btn btn-block btn-danger">
-                <i class="fas fa-times fa-xl text-white pr-2"></i>
+              <button type="submit" class="btn btn-block btn-success">
+                <i class="fas fa-redo fa-xl text-white pr-2"></i>
                 Reopen Ticket
               </button>
             </th>
