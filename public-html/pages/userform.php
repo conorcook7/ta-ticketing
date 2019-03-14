@@ -21,9 +21,9 @@
             </div>
             <form method = "POST" action = "../handlers/user-form-handler.php">
             <div class="card-body">
-              <button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName'>
+              <input id="dropdownMenuButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName'>
                 Course Name
-              </button>
+              </input>
               <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                 <?php $courses = $dao->getAvailableCourses();
 				        foreach($courses as $course){ ?>
