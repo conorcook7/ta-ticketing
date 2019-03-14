@@ -40,6 +40,7 @@
             <th class="center">Course Name</th>
             <th class="center">Queue Time</th>
             <th class="center description">Ticket Description</th>
+            <th class="center">Action</th>
           </tr>
 		  </thead>
 		  <tbody>
@@ -82,7 +83,8 @@
                 </div>
             </td>
             <th class="center">
-              <button type="submit" class="btn btn-danger">
+              <button type="submit" class="btn btn-block btn-danger">
+                <i class="fas fa-times fa-xl text-white pr-2"></i>
                 Cancel Ticket
               </button>
             </th>
