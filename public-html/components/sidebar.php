@@ -142,6 +142,10 @@
         </a>
         <div id="collapseHelpPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
+            <a
+              class="collapse-item <?php if($page == 'available-courses.php'){echo 'active';}?>"
+              href="<?php echo generateUrl('/pages/help/available-courses.php');?>"
+            >Available Courses</a>
             <a 
               class="collapse-item <?php if($page == 'new-ticket.php'){echo 'active';}?>"
               href="<?php echo generateUrl('/pages/help/new-ticket.php');?>"
