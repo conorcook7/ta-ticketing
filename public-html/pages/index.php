@@ -8,14 +8,14 @@
   $nav = 'dashboard';
 
   // Redirect the user to the dashboard
-  // if (isset($_SESSION["user"])) {
-  //   header("Location: " . generateUrl("/pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");
-  //   exit();
+  if (isset($_SESSION["user"])) {
+    header("Location: " . generateUrl("/pages/" . strtolower($_SESSION["user"]["permission"]) . ".php"));
+    exit();
 
-  // } else {
-  //   header("Location: " . generateUrl("/auth/google-auth/google.php"));
-  //   exit();
-  // }
+  } else {
+    header("Location: " . generateUrl("/auth/google-auth/google.php"));
+    exit();
+  }
 ?>
 
   <!-- Page Wrapper -->
