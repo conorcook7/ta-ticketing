@@ -486,6 +486,47 @@ class Dao {
     }
 
     /**
+     * Returns the user's open tickts.
+     * 
+     * @param $userEmail - The user's email to search for open tickts.
+     * @return $openTickets - The open tickets for that user.
+     */
+    public function getUserOpenTickts($userEmail) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "SELECT
+                OT.open_ticket_id,
+                OT.description,
+                OT.create_date,
+                AC.course_name,
+                AC.course_number
+            FROM
+                Open_Tickets AS OT
+            JOIN
+                Available_Courses AS AC ON OT.available_course_id = AC.available_course_id
+            JOIN
+                Users AS U ON OT.creator_user_id = U.user_id
+            WHERE
+                U.email = :userEmail
+            ;"
+        );
+        $query->bindParam(":userEmail", $userEmail);
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        try {
+            if (!$query->execute()) {
+                $this->logger->logError(__FUNCTION__ . ": Unable to select all open tickets for user.");
+                return Array();
+            }
+            $openTickets = $query->fetchAll();
+            return $openTickets;
+
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            return Array();
+        }
+    }
+
+    /**
      * Gets all open tickets for the corresponding TA
      * @return $myTickets - open tickets for that specific TA
      */
