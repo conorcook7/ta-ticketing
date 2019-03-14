@@ -58,12 +58,12 @@
           ?></td>
           <td class="center">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#my-ticket-" . $i;?>">
                 More Info
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="<?php echo "my-ticket-" . $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
