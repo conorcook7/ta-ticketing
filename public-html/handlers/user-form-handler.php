@@ -17,7 +17,6 @@ if(isset($_POST['courseName'])){
 }
 $nodeNum = getNodeNumber();
 echo $course_id;
-echo $user_id;
 echo $_POST['description'];
 if(isset($_POST['courseName']) && isset($_POST['description']) && $user_id != 0 && $course_id != 0){
     $descript = $_POST['description'];
