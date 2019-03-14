@@ -598,6 +598,7 @@ class Dao {
         if ($status) {
             return $this->SUCCESS;
         } else {
+            $this->logger->logError(__FUNCTION__ . ": Unable to create new ticket");
             return $this->FAILURE;
         }
     }
