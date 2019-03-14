@@ -145,7 +145,7 @@
             <a
               class="collapse-item <?php if($page == 'available-courses.php'){echo 'active';}?>"
               href="<?php echo generateUrl('/pages/help/available-courses.php');?>"
-            >Available Courses</a>
+            >Available courses</a>
             <a 
               class="collapse-item <?php if($page == 'new-ticket.php'){echo 'active';}?>"
               href="<?php echo generateUrl('/pages/help/new-ticket.php');?>"
