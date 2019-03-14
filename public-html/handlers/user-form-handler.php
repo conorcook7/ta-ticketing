@@ -18,6 +18,7 @@ if(isset($_POST['courseName'])){
 $nodeNum = getNodeNumber();
 echo $course_id;
 echo $_POST['description'];
+echo $_POST['courseName'];
 if(isset($_POST['courseName']) && isset($_POST['description']) && $user_id != 0 && $course_id != 0){
     $descript = $_POST['description'];
     $newTicket = $dao->createTicket($course_id,$user_id,$nodeNum, $description = $descript);
