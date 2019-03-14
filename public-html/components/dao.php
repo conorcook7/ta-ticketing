@@ -681,6 +681,7 @@ class Dao {
         $query->bindParam(":closedTicketId", $closedTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         if (!$query->execute()) {
+            echo "Closed ticket id 2-->", $closedTicketId, "   ";
             return $this->FAILURE;
         }
         $ticket = $query->fetch();
@@ -711,7 +712,7 @@ class Dao {
         );
         $query->bindParam(":closedTicketId", $closedTicketId);
         if ($query->execute()) {
-            echo "Closed ticket id -->", $closedTicketId;
+            echo "Closed ticket id 3 -->", $closedTicketId, "   ";
             echo "Fail 4", "\n";
             return $this->SUCCESS;
         }
