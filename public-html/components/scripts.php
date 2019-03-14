@@ -25,8 +25,6 @@
   <script src="<?php echo generateUrl('/vendor/chart.js/Chart.min.js');?>"></script>
 
   <!-- Page level custom scripts -->
-  <!-- <script src="<?php echo generateUrl('/js/demo/chart-area-demo.js');?>"></script> -->
-  <!-- <script src="<?php echo generateUrl('/js/demo/chart-pie-demo.js');?>"></script> -->
   <script src="<?php echo generateUrl('/js/demo/datatables-demo.js');?>"></script>
 
   <!-- Page level plugins -->
