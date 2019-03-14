@@ -38,8 +38,7 @@ class Dao {
             $this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
-            echo "connection failed: " . $e->getMessage();
-            $this->logger->logFatal("The database connection failed.");
+            $this->logger->logFatal(__FUNCTION__ . ": " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -847,10 +846,17 @@ class Dao {
             return Array();
         }
         $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $availableCourse = $query->fetch();
-        $this->logger->logDebug(__FUNCTION__ . " " . print_r($availableCourses,1));
-        return $availableCourse;
+        try {
+            $status = $query->execute();
+            if ($status) {
+                $availableCourse = $query->fetch();
+                $this->logger->logDebug(__FUNCTION__ . ": " . print_r($availableCourses,1));
+                return $availableCourse;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            return NULL;
+        }
     }
 
     /**
