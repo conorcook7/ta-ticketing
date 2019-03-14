@@ -49,7 +49,7 @@
           include_once '../components/users/online-users-table.php';
         } elseif ($selection == 'tickets'){
           include_once '../components/tickets/tickets-table.php';
-        } elseif ($selectoin == 'open-tickets'){
+        } elseif ($selection == 'open-tickets'){
           include_once '../components/tickets/open-tickets-table.php';
         } elseif ($selection == 'closed-tickets'){
           include_once '../components/tickets/closed-tickets-table.php';
