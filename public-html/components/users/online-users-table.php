@@ -11,7 +11,6 @@
     <tbody>
     <?php 
         $users = $dao->getOnlineUsers();
-        $count = 1;
         foreach($users as $user) { ?>
         <tr>
         <td><?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']); ?></td>

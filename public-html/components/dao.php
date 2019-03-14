@@ -194,6 +194,24 @@ class Dao {
     }
 
     /**
+     * Returns all of the users that are online.
+     * @return $users - All returned users.
+     */
+    public function getOnlineUsers(){
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "SELECT * FROM Users AS U JOIN Permissions AS P
+             ON U.permission_id = P.permission_id
+             WHERE U.online != 0;"
+        );
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        $users = $query->fetchAll();
+        $this->logger->logDebug(__FUNCTION__);
+        return $users;
+    }
+
+    /**
      * Sets the online flag to 1 (online) for the user.
      * 
      * @param $userEmail - The email address of the user to change to online.
