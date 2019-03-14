@@ -821,30 +821,52 @@ class Dao {
         return $this->FAILURE;
     }
 
+    // /**
+    //  * Get the available course by name, number, or id.
+    //  * @param $courseId - The course id to search for.
+    //  * @param $courseNumber - The course number to search for.
+    //  * @param $courseName - The course name to search for.
+    //  * @return $availableCourse - The array of course information, else and empty array.
+    //  */
+    // public function getAvailableCourse($courseId=NULL, $courseNumber=NULL, $courseName=NULL) {
+    //     $conn = $this->getConnection();
+    //     if ($courseId != NULL) {
+    //         $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_id = :courseId;");
+    //         $query->bindParam(":courseId", $courseId);
+
+    //     } else if ($courseNumber != NULL) {
+    //         $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_number = :courseNumber;");
+    //         $query->bindParam(":courseNumber", $courseNumber);
+
+    //     } else if ($courseName != NULL) {
+    //         $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_name = :courseName;");
+    //         $query->bindParam(":courseName", $courseName);
+
+    //     } else {
+    //         return Array();
+    //     }
+    //     $query->setFetchMode(PDO::FETCH_ASSOC);
+    //     try {
+    //         $status = $query->execute();
+    //         if ($status) {
+    //             $availableCourse = $query->fetch();
+    //             $this->logger->logDebug(__FUNCTION__ . ": " . print_r($availableCourses,1));
+    //             return $availableCourse;
+    //         }
+    //     } catch (Exception $e) {
+    //         $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+    //         return NULL;
+    //     }
+    // }
     /**
      * Get the available course by name, number, or id.
-     * @param $courseId - The course id to search for.
-     * @param $courseNumber - The course number to search for.
      * @param $courseName - The course name to search for.
      * @return $availableCourse - The array of course information, else and empty array.
      */
-    public function getAvailableCourse($courseId=NULL, $courseNumber=NULL, $courseName=NULL) {
+    public function getAvailableCourse($courseName) {
         $conn = $this->getConnection();
-        if ($courseId != NULL) {
-            $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_id = :courseId;");
-            $query->bindParam(":courseId", $courseId);
-
-        } else if ($courseNumber != NULL) {
-            $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_number = :courseNumber;");
-            $query->bindParam(":courseNumber", $courseNumber);
-
-        } else if ($courseName != NULL) {
-            $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_name = :courseName;");
-            $query->bindParam(":courseName", $courseName);
-
-        } else {
-            return Array();
-        }
+        $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_name = :courseName;");
+        $query->bindParam(":courseName", $courseName);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
             $status = $query->execute();
