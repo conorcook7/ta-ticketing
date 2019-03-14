@@ -4,15 +4,16 @@
   $dao = new Dao("Dummy_TA_Ticketing");
   $page = 'admin.php';
   $nav = 'dashboard';
+  /**
   if($_SESSION['user']['access-level'] <= 3){
-    if(isset($_GET['admin-selection']) /*you can validate the link here*/){
+    if(isset($_GET['admin-selection'])){
       $_SESSION['admin-selection'] = $_GET['admin-selection'];
     } else {
       $_SESSION['admin-selection'] = 'DEFAULT'
     }
   } else {
     $_SESSION['admin-selection'] = 'UNNAUTHORIZED'
-  }
+  } */
 ?>
 
   <div id="wrapper">
