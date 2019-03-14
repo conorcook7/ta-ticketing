@@ -19,7 +19,7 @@
                   <?php 
                     $users = $dao->getUsers()
                     $max = sizeof($users);
-                    foreach($users as $user) { ?>
+                    foreach($users as $user) { 
                   ?>
                         <tr>
                             <td><?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']); ?></td>
