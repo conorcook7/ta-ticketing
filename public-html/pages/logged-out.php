@@ -36,10 +36,10 @@
 
 <body id="page-top">
   <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper flex-fill">
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column flex-fill">
+    <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content">
