@@ -1,8 +1,15 @@
 <?php
+  require_once "../components/server-functions.php";
+
   session_start();
+
   $page = '404.php';
   $nav = 'pages';
-  require_once "../components/server-functions.php";
+  
+  if (isset($_SESSION["user"])) {
+      header("Location: " . generateUrl());
+      exit();
+  }
 ?>
 
 <!DOCTYPE html>
