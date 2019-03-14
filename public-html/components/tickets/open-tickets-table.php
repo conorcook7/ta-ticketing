@@ -1,3 +1,4 @@
+<div class="container-fluid">
         <!-- All Open Tickets Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -77,3 +78,4 @@
             </div>
           </div>
           <!-- End of All open tickets -->
+</div>
