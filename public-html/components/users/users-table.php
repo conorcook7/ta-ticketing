@@ -34,9 +34,10 @@
                             <td><?php echo htmlspecialchars($user['email']); ?></td>
                             <td><?php echo $user['permission_id']; ?></td>
                             <td><?php echo $user['user_id']; ?></td>
-                            <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
-                                Update User
-                            </button>
+                            <td>
+                                <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
+                                    Update User
+                                </button>
                             </td>
                         </form>
                         </tr>
