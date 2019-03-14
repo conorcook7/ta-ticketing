@@ -22,12 +22,14 @@
         <!-- End of Topbar -->
   <div class="container-fluid">
   <div class="card shadow mb-4">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="card-header py-3">
+    <div class="d-sm-flex align-items-center justify-content-between">
       <h6 class="h3 mb-0 text-gray-800">Available Courses</h6>
       <form action = "userform.php">
       <button type="submit" class="d-none d-sm-inline-block btn btn-primary">CreateNewTicket</button>
       </form>
     </div>
+  </div>
     <div class="card-body">
       <div class="table-responsive">
 		    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
