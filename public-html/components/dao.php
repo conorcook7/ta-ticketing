@@ -498,21 +498,12 @@ class Dao {
      * @return $allTickets - The array of arrays of open tickets information.
      */
     public function getAllTickets() {
-        $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Open_Tickets;");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $openTickets = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__ . ": First open ticket: " . print_r($openTickets[0],1));
+        $openTickets = $this->getOpenTickets();
         foreach ($openTickets as $ticket){
             $ticket["status"] = "Open";
             $ticket["id"] = $ticket["open_ticket_id"];
         }
-        $query = $conn->prepare("SELECT * FROM Closed_Tickets;");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $closedTickets = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__ . ": First closed ticket: " . print_r($closedTickets[0],1));
+        $closedTickets = $this->getClosedTickets();
         foreach ($closedTickets as $ticket){
             $ticket["status"] = "Closed";
             $ticket["id"] = $ticket["closed_ticket_id"];
