@@ -34,7 +34,9 @@
             </form>
             <form method = "post" action = "userformhandler.php">
             <div class = "card-body">
-
+              <label for="exampleFormControlTextarea1">Example textarea</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </form>
         </div>
