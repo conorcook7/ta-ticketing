@@ -38,6 +38,6 @@
     session_destroy();
 
     // Redirect to the login page
-    header("Location: ../auth/google-auth/google.php");
+    header("Location: ../pages/logged-out.php");
     exit();
 ?>
