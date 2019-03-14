@@ -832,9 +832,11 @@ class Dao {
             ;"
         );
         $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
+        $status = $query->execute();
+        if (!$status) {
+            $this->logger->logError(__FUNCTION__ . ": Unable to get all closed tickets.");
+        }
         $closedTickets = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__);
         return $closedTickets;
     }
 
