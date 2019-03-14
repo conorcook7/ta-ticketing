@@ -25,7 +25,7 @@
                     for ($index = 0; $index <= $max; $index++) {
                    ?>
                       <tr>
-                        <td class="center"><?php echo $queue?></td>
+                        <td class="center"><?php echo $allTickets[$index]['id']?></td>
                         <td class="center"><?php echo $allTickets[$index]['first_name'], " ", $allTickets[$index]['last_name']?></td>
                         <td class="center"><?php echo $allTickets[$index]['node_number']?></td>
                         <td class="center"><?php echo strtoupper($allTickets[$index]['course_name'])?></td>
