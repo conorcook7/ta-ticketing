@@ -1,4 +1,4 @@
-$("a.admin-js").onclick(function()
+$("a.admin-js").click(function()
 {
     // Get the src of the image
     var id = $(this).attr("id");
