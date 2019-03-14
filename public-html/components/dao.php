@@ -681,7 +681,6 @@ class Dao {
         $query->bindParam(":closedTicketId", $closedTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         if (!$query->execute()) {
-            echo "Closed ticket id 2-->", $closedTicketId, "   ";
             return $this->FAILURE;
         }
         $ticket = $query->fetch();
@@ -708,15 +707,12 @@ class Dao {
         
         // Delete the open ticket from the open ticket table.
         $query = $conn->prepare(
-            "DELETE FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId;"
+            "DELETE FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId ;"
         );
         $query->bindParam(":closedTicketId", $closedTicketId);
         if ($query->execute()) {
-            echo "Closed ticket id 3 -->", $closedTicketId, "   ";
-            echo "Fail 4", "\n";
             return $this->SUCCESS;
         }
-        echo "Made to the end", "\n";
         return $this->FAILURE;
     }
 
