@@ -719,11 +719,14 @@ class Dao {
         );
         $query->bindParam(":openTicketId", $openTicketId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
-        if (!$query->execute()) {
+        $status = $query->execute();
+        if (!$status) {
+            $this->logger->logError(__FUNCTION__ . ": Unable to get open ticket data.");
             return $this->FAILURE;
         }
         $ticket = $query->fetch();
         if (!isset($ticket)) {
+            $this->logger->logError(__FUNCTION__ . ": Unable to fetch the open ticket data.");
             return $this->FAILURE;
         }
 
@@ -740,7 +743,9 @@ class Dao {
         $query->bindParam(":closerUserId", $closerUserId);
         $query->bindParam(":description", $ticket["description"]);
         $query->bindParam(":roomNumber", $ticket["room_number"]);
-        if (!$query->execute()) {
+        $status = $query->execute();
+        if (!$status) {
+            $this->logger->logError(__FUNCTION__ . ": Unable to insert into closed tickets.");
             return $this->FAILURE;
         }
         
@@ -753,6 +758,7 @@ class Dao {
         if ($status) {
             return $this->SUCCESS;
         }
+        $this->logger->logError(__FUNCTION__ . ": Unable to delete from open tickets.");
         return $this->FAILURE;
     }
     
