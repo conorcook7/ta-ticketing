@@ -127,6 +127,7 @@
 		  <tbody>
 			<?php
         $closedTickets = $dao->getClosedTickets();
+        echo "<h1>Closed Ticket Count: " . sizeof($closedTickets) . "</h1>";
 				for ($i = 0; $i < sizeof($closedTickets); $i++) {
           if ($closedTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
       ?>
