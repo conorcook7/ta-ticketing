@@ -8,12 +8,31 @@
   if($_SESSION['user']['access-level'] <= 3){
     if(isset($_GET['id'])){
       $_SESSION['admin-selection'] = $_GET['id'];
+      $selection = $_SESSION['admin-selection'];
+        if ($selection == 'DEFAULT' || $selection == 'users'){
+            $page = 'users-table.php';
+        } else if ($selection == 'online-users'){
+            $page = 'online-users-table.php';
+        } else if ($selection == 'tickets'){
+            $page = 'tickets-table.php';
+        } else if ($selection == 'open-tickets'){
+          $page = 'open-tickets-table.php';
+        } else if ($selection == 'closed-tickets'){
+          $page = 'closed-tickets-table.php';
+        } else if ($selection == 'classes'){
+          $page = 'classes.php';
+        } else if ($selection == 'users-form'){
+          $page = 'update-users.php';
+        } else if ($selection == 'faq'){
+          $page = 'faq.php';
+        }
     } else {
       $_SESSION['admin-selection'] = 'DEFAULT';
     }
   } else {
     $_SESSION['admin-selection'] = 'UNNAUTHORIZED';
   }
+  
 ?>
 
   <div id="wrapper">

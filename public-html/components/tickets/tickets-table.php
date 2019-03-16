@@ -1,3 +1,4 @@
+<?php $page = "tickets-table.php"; ?>
 <div class="container-fluid">
         <!-- All Open Tickets Table -->
         <div class="card shadow mb-4">

@@ -1,3 +1,4 @@
+<?php $page = "online-users-table.php"; ?>
 <div class="container-fluid">
         <!-- All Users Table -->
         <div class="card shadow mb-4">

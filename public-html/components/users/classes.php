@@ -1,3 +1,4 @@
+<?php $page = "classes.php"; ?>
 <div class="container">
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">

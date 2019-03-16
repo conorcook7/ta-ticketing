@@ -40,49 +40,49 @@
 
     <?php if ($_SESSION["user"]["access_level"] == 3) { ?>
       <!-- Admin Pages -->
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($page == 'users-table.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users');?>">
             <i class="fas fa-fw fa-users"></i>
             <span>Users</span>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($page == 'online-users-table.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=online-users');?>">
             <i class="fas fa-fw fa-user-check"></i>
             <span>Online Users</span>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($page == 'tickets-table.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=tickets');?>">
             <i class="fas fa-fw fa-list-alt"></i>
             <span>Tickets</span>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($page == 'open-tickets-table.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=open-tickets');?>">
             <i class="fas fa-fw fa-list-ul"></i>
             <span>Open Tickets</span>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($page == 'closed-tickets-table.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=closed-tickets');?>">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Closed Tickets</span>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($page == 'classes.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=classes');?>">
             <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>Classes</span>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($page == 'update-users.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users-form');?>">
             <i class="fas fa-fw fa-user-cog"></i>
             <span>User Updates</span>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+      <li class="nav-item <?php if ($nav == 'admin' && $page == 'faq.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=faq');?>">
             <i class="fas fa-fw fa-question-circle"></i>
             <span>FAQs</span>
@@ -125,15 +125,15 @@
         <div id="collapseHelpPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a
-              class="collapse-item <?php if($page == 'available-courses.php'){echo 'active';}?>"
+              class="collapse-item <?php if($nav == 'help' && $page == 'available-courses.php'){echo 'active';}?>"
               href="<?php echo generateUrl('/pages/help/available-courses.php');?>"
             >Available courses</a>
             <a 
-              class="collapse-item <?php if($page == 'new-ticket.php'){echo 'active';}?>"
+              class="collapse-item <?php if($nav == 'help' && $page == 'new-ticket.php'){echo 'active';}?>"
               href="<?php echo generateUrl('/pages/help/new-ticket.php');?>"
             >Create a ticket</a>
             <a
-              class="collapse-item <?php if($page == 'faq.php'){echo 'active';}?>"
+              class="collapse-item <?php if($nav == 'help' && $page == 'faq.php'){echo 'active';}?>"
               href="<?php echo generateUrl('/pages/help/faq.php');?>"
             >FAQs</a>
           </div>
