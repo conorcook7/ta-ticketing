@@ -35,7 +35,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Navigation
+        <?php echo strtoupper($_SESSION["user"]["permission"]); ?>
       </div>
 
       <!-- Nav Item - Admin Collapse Menu -->
