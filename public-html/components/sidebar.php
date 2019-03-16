@@ -90,7 +90,9 @@
       <!-- End Admin Pages -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <hr class="sidebar-divider">
+
+      <div class="sidebar-heading">INFO</div>
 
       <!-- Help Page -->
       <li class="nav-item <?php if ($nav == 'help') { echo 'active'; } ?>">
