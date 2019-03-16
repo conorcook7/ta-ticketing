@@ -125,6 +125,40 @@ trait DaoUsers {
     }
 
     /**
+     * Retuns the online flag from the database
+     * 
+     * @param $userEmail - The email address of the user to check
+     * @return $onlineStatus - The string version of the online status
+     */
+    public function getOnlineStatus($userEmail) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("SELECT online FROM Users WHERE email = :email;");
+            $query->bindParam(":email", $userEmail);
+            $status = $query->execute();
+            if ($status) {
+                $onlineStatus = $query->fetch();
+                switch ($onlineStatus) {
+                    case "0":
+                        return "OFFLINE";
+                    case "1":
+                        return "ONLINE";
+                    case "2":
+                        return "AWAY";
+                    default:
+                        return "N/A";
+                }
+            } else {
+                $this->logger->logError(__FUNCTION__ . ": Unable to fetch online status");
+                return $this->FAILURE;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
      * Returns all of the users that are online.
      * @return $users - All returned users.
      */
@@ -158,7 +192,7 @@ trait DaoUsers {
             $status = $query->execute();
             return $status;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -179,7 +213,28 @@ trait DaoUsers {
             $status = $query->execute();
             return $status;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Sets the online flag to 2 (away) for the user.
+     * 
+     * @param $userEmail - The email address of the user to change to away.
+     * @return Returns TRUE if the update was successful, else FALSE.
+     */
+    public function setUserAway($userEmail) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "UPDATE Users SET online = 2 WHERE email = :email;"
+        );
+        $query->bindParam(":email", $userEmail);
+        try {
+            $status = $query->execute();
+            return $status;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -248,6 +303,53 @@ trait DaoUsers {
         } catch (Exception $e) {
             $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             return Array();
+        }
+    }
+
+    /**
+     * Log out the users that have an away flag (i.e., online = 2).
+     * 
+     * @param $tolerance - The amount of time (in seconds) that need to have passed to log out the user.
+     * @return Returns TRUE if the query updated users, else FALSE.
+     */
+    public function logoutAwayUsers($tolerance) {
+        try {
+            // Get all of the users with away status
+            $conn = $this->getConnection();
+            $query = $conn->prepare("SELECT * FROM Users WHERE online = 2;");
+            $status = $query->execute();
+            if (!$status) {
+                $this->logger->logError(__FUNCTION__ . ": Unable to get users that are away.");
+                return $this->FAILURE;
+            }
+            $awayUsers = $query->fetchAll();
+
+            // Compare each users update time agains the tolerance
+            $now = new DateTime("now", new DateTimeZone("America/Boise"));
+
+            foreach ($awayUsers as $user) {
+                $updateTime = new DateTime($user["update_date"]);
+                $expirationTime = $updateTime->getTimestamp() + $tolerance;
+
+                // If it is past the expiration time
+                if ($now->getTimestamp() >= $expirationTime) {
+                    $query = $conn->prepare(
+                        "UPDATE Users SET online = 0 WHERE email = :email;"
+                    );
+                    $query->bindParam(":email", $user["email"]);
+                    $status = $query->execute();
+                    if (!$status) {
+                        $this->logger->logError(__FUNCTION__ . ": unable to logout user " . $user["user_id"]);
+                    }
+                }
+            }
+
+            // Return that the method was able to complete
+            return $this->SUCCESS;
+
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e);
+            return $this->FAILURE;
         }
     }
 

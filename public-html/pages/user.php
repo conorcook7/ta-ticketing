@@ -5,7 +5,7 @@
   
   require_once '../components/header.php';
   require_once '../components/dao.php';
-  $dao = new Dao("Dummy_TA_Ticketing");
+  $dao = new Dao();
 ?>
 
   <div id="wrapper">

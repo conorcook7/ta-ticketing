@@ -7,7 +7,7 @@ require_once '../public-html/components/dao.php';
 final class DaoTest extends TestCase {
 
     protected function setUp() {
-        $this->dao = new Dao("Dummy_TA_Ticketing");
+        $this->dao = new Dao();
         $this->correctEmails = [
             "CooperHazel@example.boisestate.edu",
             "EzraCooper@example.boisestate.edu"

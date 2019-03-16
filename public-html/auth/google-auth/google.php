@@ -75,7 +75,7 @@
                 $_SESSION["user"]["accessToken"] = $accessToken;
 
                 // Database setup for user
-                $dao = new Dao("Dummy_TA_Ticketing");
+                $dao = new Dao();
 
                 // If the user is not in the database
                 if (!$dao->userExists($_SESSION["user"]["email"])) {

@@ -35,7 +35,7 @@
 
           <!-- Available Courses -->
           <?php
-            $dao = new Dao("Dummy_TA_Ticketing");
+            $dao = new Dao();
             $courses = $dao->getAvailableCourses();
             foreach ($courses as $course) {
           ?>

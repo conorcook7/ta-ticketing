@@ -18,7 +18,7 @@
     $googleClient->revokeToken();
 
     // Set the user to offline
-    $dao = new Dao("Dummy_TA_Ticketing");
+    $dao = new Dao();
     try {
         $count = 0;
         while (!$dao->setUserOffline($_SESSION["user"]["email"]) && $count < 5) {

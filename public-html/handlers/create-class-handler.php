@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once "../components/dao.php";
-    $dao = new Dao("Dummy_TA_Ticketing");
+    $dao = new Dao();
     $name = $_POST["courseName"];
     $number = $_POST["courseNumber"];
     $description = $_POST["courseDescription"];
