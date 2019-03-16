@@ -21,7 +21,12 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item <?php if($nav == 'dashboard'){echo 'active';}?>">
+      <li class="nav-item <?php
+        if ($nav == 'dashboard' || ($nav == 'admin' && $page == 'admin.php') ||
+        ($nav == 'ta' && $page == 'ta.php') || ($nav == 'user' && $page == 'user.php')) {
+            echo 'active';
+        }?>"
+      >
         <a
           class="nav-link"
           href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php';?>"

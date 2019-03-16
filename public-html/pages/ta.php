@@ -1,4 +1,9 @@
 <?php
+
+// Settings for the navbar
+$nav = 'ta';
+$page = 'ta.php';
+
 require_once '../components/dao.php';
   try{
       $dao = new Dao('Dummy_TA_Ticketing');
