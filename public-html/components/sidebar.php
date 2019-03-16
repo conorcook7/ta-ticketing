@@ -38,6 +38,7 @@
         <?php echo strtoupper($_SESSION["user"]["permission"]); ?>
       </div>
 
+    <?php if ($_SESSION["user"]["access_level"] == 3) { ?>
       <!-- Admin Pages -->
       <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users');?>">
@@ -88,7 +89,28 @@
         </a>
       </li>
       <!-- End Admin Pages -->
-
+    <?php } else if ($_SESSION["user"]["access_level"] == 2) { ?>
+      <!-- Teaching Assistant Pages -->
+      <li class="nav-item <?php if ($page == 'ta.php') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/ta.php');?>">
+            <i class="fas fa-fw fa-question"></i>
+            <span>TA Page Home Template</span>
+        </a>
+      </li>
+      <!-- End Teaching Assistant Pages -->
+    <?php } else if ($_SESSION["user"]["access_level"] == 1) { ?>
+      <!-- User Pages -->
+      <li class="nav-item <?php if ($page == 'user.php') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/user.php');?>">
+            <i class="fas fa-fw fa-user"></i>
+            <span>User Page Home Template</span>
+        </a>
+      </li>
+      <!-- End User Pages -->
+    <?php } else {
+        header("Location: " . generateUrl("/handlers/logout-handler.php"));
+        exit();
+    } ?>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
