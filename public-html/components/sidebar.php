@@ -38,28 +38,56 @@
         <?php echo strtoupper($_SESSION["user"]["permission"]); ?>
       </div>
 
-      <!-- Nav Item - Admin Collapse Menu -->
-      <li class="nav-item <?php if($nav == 'admin'){echo 'active';}?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Admin</span>
+      <!-- Admin Pages -->
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Users</span>
         </a>
-        <div id="collapseAdmin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Tables</h6>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=users'); ?>">Users</a>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=online-users'); ?>">Online Users</a>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=tickets'); ?>">Tickets</a>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=open-tickets'); ?>">Open Tickets</a>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=closed-tickets'); ?>">Closed Tickets</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Updates</h6>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=classes'); ?>">Classes</a>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=users-form'); ?>">User Updates</a>
-            <a class="collapse-item" href="<?php echo generateUrl('/pages/admin.php?id=faq'); ?>">FAQs</a>
-          </div>
-        </div>
       </li>
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=online-users');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Online Users</span>
+        </a>
+      </li>
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=tickets');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Tickets</span>
+        </a>
+      </li>
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=open-tickets');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Open Tickets</span>
+        </a>
+      </li>
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=closed-tickets');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Closed Tickets</span>
+        </a>
+      </li>
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=classes');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Classes</span>
+        </a>
+      </li>
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users-form');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>User Updates</span>
+        </a>
+      </li>
+      <li class="nav-item <?php if ($page == 'users') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=faq');?>">
+            <i class="fas fa-fw fa-info"></i>
+            <span>FAQs</span>
+        </a>
+      </li>
+      <!-- End Admin Pages -->
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
