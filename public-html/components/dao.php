@@ -1,5 +1,5 @@
 <?php
-
+// Require the logger
 require_once 'KLogger.php';
 
 // Require all of the dao traits
@@ -22,7 +22,7 @@ class Dao {
     private $FAILURE = FALSE;
 
     // MySQL generic user
-    private $db;
+    private $db = "Dummy_TA_Ticketing";
     private $user = "ta-ticketing";
     private $pass = "34$5iu98&7o7%76d4Ss35";
 
@@ -43,9 +43,8 @@ class Dao {
      * 
      * @param $database - The database name to connect to.
      */
-    public function __construct($database) {
+    public function __construct() {
         $this->logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
-        $this->db = $database;
     }
   
     /**
