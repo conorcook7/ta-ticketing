@@ -86,4 +86,4 @@ CREATE EVENT IF NOT EXISTS Logout
     ON SCHEDULE EVERY 1 MINUTE
     DO
         UPDATE Users SET online = 0
-        WHERE DATE_ADD(update_date, INTERVAL 3 MINUTE) < NOW();
+        WHERE DATE_ADD(update_date, INTERVAL 15 MINUTE) < NOW();
