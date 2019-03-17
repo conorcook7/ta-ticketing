@@ -32,4 +32,4 @@ setInterval(function() {
     },
     error: function(request, error) {}
   });
-}, 15 * 1000);
+}, 5 * 60 * 1000);
