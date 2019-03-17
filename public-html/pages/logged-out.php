@@ -3,11 +3,11 @@
 
   session_start();
 
-  $page = '404.php';
+  $page = 'logged-out.php';
   $nav = 'pages';
   
-  if (isset($_SESSION["user"])) {
-      header("Location: " . generateUrl());
+  if (isset($_SESSION["user"]["permission"])) {
+      header("Location: " . generateUrl("/pages/" . strtolower($_SESSION["user"]["permission"]) . ".php"));
       exit();
   }
 ?>

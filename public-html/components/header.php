@@ -2,9 +2,12 @@
     session_start();
 
     require_once "server-functions.php";
+    require_once "dao.php";
 
-    if (!isset($_SESSION["user"])) {
-        header("Location: " . generateUrl("/pages/logged-out.php"));
+    $dao = new Dao();
+    if (!isset($_SESSION["user"]) ||
+    $dao->getOnlineStatus($_SESSION["user"]["email"]) == "OFFLINE") {
+        header("Location: " . generateUrl("/handlers/logout-handler.php"));
         exit();
     }
     

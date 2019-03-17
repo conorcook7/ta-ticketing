@@ -92,16 +92,9 @@
                 }
                 
                 // Set the user to online
-                $count = 0;
-                while (!$dao->setUserOnline($_SESSION["user"]["email"]) && $count < 5) {
-                    $logger->logError(__FUNCTION__ . ": Unable to set the user to online with dao method.");
-                    $count++;
-                }
-
-                // Redirect if the user could not be set to online
-                if ($count == 5) {
-                    header("Location: ./google.php");
-                    exit();
+                $status = $dao->setUserOnline($_SESSION["user"]["email"]);
+                if (!$status) {
+                    $logger->logError(__FILE__ . ": unable to set user online");
                 }
 
                 // Get user information
@@ -113,7 +106,7 @@
                     $user["update_date"],
                     new DateTimeZone("America/Boise")
                 );
-                $_SESSION["user"]["online"] = TRUE;
+                $_SESSION["user"]["online"] = "ONLINE";
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");

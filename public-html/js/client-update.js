@@ -1,40 +1,35 @@
 // On window close, reload, or back.
-window.onunload = function(event) {
-  console.log("window unloading");
+window.addEventListener("beforeunload", function(event) {
   $.ajax({
-    url: window.location.origin + "/handlers/user-update.php",
+    url: window.location.origin + "/handlers/client-update.php",
     type: "POST",
     data: {
       unload: true
     },
     dataType: "json",
     success: function(data) {
-      console.log("Data: " + JSON.stringify(data));
+      if (data["reset"] === false) {
+        window.location.replace(data["redirect"]);
+      }
     },
-    error: function(request, error) {
-      console.log("Request: " + JSON.stringify(request));
-    }
+    error: function(request, error) {}
   });
-};
+});
 
 // Update the user status every interval
 setInterval(function() {
-  console.log("Sending update");
   $.ajax({
-    url: window.location.origin + "/handlers/user-update.php",
+    url: window.location.origin + "/handlers/client-update.php",
     type: "POST",
     data: {
       unload: false
     },
     dataType: "json",
     success: function(data) {
-      console.log("Data: " + JSON.stringify(data));
       if (data["reset"] === false) {
-        //window.location.replace(data["redirect"]);
+        window.location.replace(data["redirect"]);
       }
     },
-    error: function(request, error) {
-      console.log("Request: " + JSON.stringify(request));
-    }
+    error: function(request, error) {}
   });
-}, 5000);
+}, 15 * 1000);

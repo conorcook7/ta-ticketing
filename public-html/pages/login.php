@@ -31,6 +31,5 @@
         </div>
 
     <?php require_once "../components/scripts.php"; ?>
-    <script src="../js/client-update.js"></script>  
   </body>
 </html>

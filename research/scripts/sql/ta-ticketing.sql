@@ -81,3 +81,9 @@ CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
     FULLTEXT (question),
     FOREIGN KEY (admin_user_id) REFERENCES Users(user_id)
 );
+
+CREATE EVENT IF NOT EXISTS Logout
+    ON SCHEDULE EVERY 1 MINUTE
+    DO
+        UPDATE Users SET online = 0
+        WHERE DATE_ADD(update_date, INTERVAL 3 MINUTE) < NOW();

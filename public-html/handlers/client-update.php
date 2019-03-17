@@ -29,7 +29,6 @@
 
                 // Set return data
                 $data["reset"] = TRUE;
-                $data["time"] = $time . " seconds";
 
                 // Update session
                 $_SESSION["user"]["online_since"] = new DateTime(
@@ -40,25 +39,21 @@
 
                     // If the check-in is an unload
                     if ($_POST["unload"] === "true") {
-                        while (!$dao->setUserAway($_SESSION["user"]["email"]) && $count < 5) {
-                            $count++;
-                        }
-                        if ($count >= 5) {
+                        $status = $dao->setUserAway($_SESSION["user"]["email"]);
+                        if (!$status) {
                             $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
-                            $logger->logError(__FUNCTION__ . ": Unable to set user away");
+                            $logger->logError(__FILE__ . ": Unable to set user away");
                         }
-                        $_SESSION["user"]["online"] = 2;
+                        $_SESSION["user"]["online"] = "AWAY";
 
                     // If the check-in is an interval check-in
                     } else if ($_POST["unload"] === "false") {
-                        while (!$dao->setUserOnline($_SESSION["user"]["email"]) && $count < 5) {
-                            $count++;
-                        }
-                        if ($count >= 5) {
+                        $status = $dao->setUserOnline($_SESSION["user"]["email"]);
+                        if (!$status) {
                             $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
-                            $logger->logError(__FUNCTION__ . ": Unable to set user online");
+                            $logger->logError(__FILE__ . ": Unable to set user online");
                         }
-                        $_SESSION["user"]["online"] = 1;
+                        $_SESSION["user"]["online"] = "ONLINE";
                     }
                 } catch (Exception $e) {
                     $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
@@ -68,12 +63,11 @@
             // If check-in was not within tolerance
             } else {
                 $data["reset"] = FALSE;
-                $data["time"] = $time . " seconds";
                 $data["redirect"] = generateUrl("/handlers/logout-handler.php");
             }
 
-            // Update all away users
-            $dao->logoutAwayUsers($checkInTolerance);
+            // Unset post
+            unset($_POST);
 
             // Return the data
             header("Content-Type: application/json");

@@ -137,13 +137,13 @@ trait DaoUsers {
             $query->bindParam(":email", $userEmail);
             $status = $query->execute();
             if ($status) {
-                $onlineStatus = $query->fetch();
+                $onlineStatus = $query->fetch()[0];
                 switch ($onlineStatus) {
-                    case "0":
+                    case 0:
                         return "OFFLINE";
-                    case "1":
+                    case 1:
                         return "ONLINE";
-                    case "2":
+                    case 2:
                         return "AWAY";
                     default:
                         return "N/A";
@@ -183,9 +183,11 @@ trait DaoUsers {
      * @return Returns TRUE if the update was successful, else FALSE.
      */
     public function setUserOnline($userEmail) {
+        $this->logger->logError(__FUNCTION__ . ": Set user online");
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "UPDATE Users SET online = 1 WHERE email = :email;"
+            "UPDATE Users SET online = 1, update_date = CURRENT_TIMESTAMP
+            WHERE email = :email;"
         );
         $query->bindParam(":email", $userEmail);
         try {
@@ -251,7 +253,7 @@ trait DaoUsers {
             "SELECT Users.user_id, Users.first_name, MIN(Open_Tickets.update_date)
              FROM Users INNER JOIN Open_Tickets
              ON Users.user_id = Open_Tickets.creator_user_id
-             WHERE Users.online = 1
+             WHERE Users.online >= 1
              GROUP BY Users.user_id
              ORDER BY MIN(Open_Tickets.update_date) ASC;"
         );

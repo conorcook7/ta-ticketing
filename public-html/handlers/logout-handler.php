@@ -8,29 +8,27 @@
 
     $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
 
-    // Revoke Google OAuth
-    $googleClient = new Google_Client();
-    $googleClient->setClientId("153288048540-sogdggkb32ugai855a0uffo0d7h2hqnq.apps.googleusercontent.com");
-    $googleClient->setClientSecret("ZyXV3mVUVs89rDkuq8RjFaH4");
-    $googleClient->setRedirectUri(generateUrl("/auth/google-auth/google.php"));
-    $googleClient->setScopes("email profile");
-    $googleClient->setAccessToken($_SESSION["user"]["accessToken"]);
-    $googleClient->revokeToken();
+    if (isset($_SESSION["user"]["accessToken"])) {
+        // Revoke Google OAuth
+        $googleClient = new Google_Client();
+        $googleClient->setClientId("153288048540-sogdggkb32ugai855a0uffo0d7h2hqnq.apps.googleusercontent.com");
+        $googleClient->setClientSecret("ZyXV3mVUVs89rDkuq8RjFaH4");
+        $googleClient->setRedirectUri(generateUrl("/auth/google-auth/google.php"));
+        $googleClient->setScopes("email profile");
+        $googleClient->setAccessToken($_SESSION["user"]["accessToken"]);
+        $googleClient->revokeToken();
 
-    // Set the user to offline
-    $dao = new Dao();
-    try {
-        $count = 0;
-        while (!$dao->setUserOffline($_SESSION["user"]["email"]) && $count < 5) {
-            $count++;
-        }
-        
-        if ($count >= 5) {
-            $logger->logError("Unable to set user to offline");
-        }
+        // Set the user to offline
+        $dao = new Dao();
+        try {
+            $status = $dao->setUserOffline($_SESSION["user"]["email"]);
+            if (!$status) {
+                $logger->logError("Unable to set user to offline");
+            }
 
-    } catch (Exception $e) {
-        $logger->logError($e->getMessage());
+        } catch (Exception $e) {
+            $logger->logError($e->getMessage());
+        }
     }
 
     // Unset the user
