@@ -51,7 +51,7 @@
           <!-- Logged Out Text -->
           <div class="text-center align-items-center">
             <div class="h1 mx-auto mt-5 mb-5">You are signed out.</div>
-            <p class="text-gray-500 mb-0">Please sign in with your boise state email address to continue.</p>
+            <p class="text-gray-500 mb-0">Please use your boise state email address to continue.</p>
             <a id="google-sign-in" class="m-4" href="<?php echo generateUrl("/auth/google-auth/google.php"); ?>">
                 <div id="google-card" class="card p-3 m-auto text-center">
                     <span class="mr-auto"><img id="google-logo" src="../img/google-logo.png" alt="google-logo"/><span>
