@@ -40,12 +40,11 @@
     <div class="flex-column d-flex text-center align-items-center justify-content-center h-100">
       <div class="h1 mx-auto my-5">You are signed out.</div>
       <p class="text-gray mb-0">Please use your Boise State email address to continue.</p>
-      <a id="google-sign-in" class="m-4" href="<?php echo generateUrl("/auth/google-auth/google.php"); ?>">
-        <div id="google-card" class="card p-3 m-auto text-center">
-          <span class="mr-auto"><img id="google-logo" src="../img/google-logo.png" alt="google-logo"/><span>
+      <form class="my-4" action="../auth/google-auth/google.php">
+        <button id="google-card" class="card p-3 m-auto text-center" type="submit">
+          <span><img id="google-logo" src="../img/google-logo.png" alt="google-logo"/><span>
           <span class="pl-2">Sign in with Google</span>
-        </div>
-      </a>
+        </button>
       <!-- Footer -->
       <?php include_once '../components/footer.php' ?>
       <!-- End of Footer -->

@@ -8,14 +8,6 @@ body {
   height: 24px;
 }
 
-#google-sign-in:hover {
-  text-decoration: none;
-}
-
-#google-sign-in:visited {
-  text-decoration: none;
-}
-
 #google-card {
   width: 215px;
 }
