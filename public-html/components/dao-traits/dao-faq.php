@@ -102,9 +102,14 @@ trait DaoFaq {
      * 
      * @return $FAQs - The array of arrays of FAQs information.
      */
-    public function getFAQs() {
+    public function getFAQs($limit=NULL) {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Frequently_Asked_Questions;");
+        if ($limit == NULL) {
+            $query = $conn->prepare("SELECT * FROM Frequently_Asked_Questions;");
+        } else {
+            $query = $conn->prepare("SELECT * FROM Frequently_Asked_Questions LIMIT :limit;");
+            $query->bindParam(":limit", $limit);
+        }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         if ($query->execute()) {
             $FAQs = $query->fetchAll();
