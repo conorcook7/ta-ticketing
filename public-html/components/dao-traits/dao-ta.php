@@ -32,14 +32,23 @@ trait DaoTa {
     /**
      * Returns all of the teaching assistants with information about them.
      * 
+     * @param $limit - (optional) A limit to the number of teaching assistants to return.
      * @return $teachingAssistants - The array of arrays for each teaching assistant.
      */
-    public function getTeachingAssistants() {
+    public function getTeachingAssistants($limit=NULL) {
         $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
-             ON TA.user_id = U.user_id;"
-        );
+        if ($limit == NULL) {
+            $query = $conn->prepare(
+                "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
+                ON TA.user_id = U.user_id;"
+            );
+        } else {
+            $query = $conn->prepare(
+                "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
+                ON TA.user_id = U.user_id LIMIT :limit;"
+            );
+            $query->bindParam(":limit", $limit);
+        }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $teachingAssistants = $query->fetchAll();
