@@ -98,11 +98,19 @@ trait DaoCourses {
     /**
      * Get all of the available courses.
      * 
+     * @param $limit - (optional) A limit to the number of courses returned.
      * @return $availableCourses - The array of arrays of available courses information.
      */
-    public function getAvailableCourses() {
+    public function getAvailableCourses($limit=NULL) {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Available_Courses;");
+        $query = "SELECT * FROM Available_Courses";
+        if ($limit == NULL) {
+            $query = $conn->prepare($query);
+        } else {
+            $query .= " LIMIT :limit;";
+            $query = $conn->prepare($query);
+            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
+        }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $availableCourses = $query->fetchAll();
