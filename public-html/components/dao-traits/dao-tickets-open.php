@@ -10,12 +10,12 @@ trait DaoTicketsOpen {
     /**
      * Get all of the open ticket.
      * 
+     * @param $limit - (optional) A limit to the number of tickets to get.
      * @return $openTickets - The array of arrays of open tickets information.
      */
-    public function getOpenTickets() {
+    public function getOpenTickets($limit=NULL) {
         $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT
+        $query ="SELECT
                 open_ticket_id,
                 creator_user_id,
                 course_name,
@@ -31,8 +31,14 @@ trait DaoTicketsOpen {
             JOIN Available_Courses AC ON OT.available_course_id=AC.available_course_id
             JOIN Users U ON OT.creator_user_id=U.user_id
             ORDER BY OT.update_date
-            ;"
-        );
+            ";
+        if ($limit == NULL) {
+            $query = $conn->prepare($query);
+        } else {
+            $query .= " LIMIT :limit;";
+            $query = $conn->prepare($query);
+            $query->bindParam(":limit", $limit);
+        }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $openTickets = $query->fetchAll();
