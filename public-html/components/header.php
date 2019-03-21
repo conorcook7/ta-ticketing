@@ -38,6 +38,7 @@
   <!-- Custom styles for this page -->
   <link href="<?php echo generateUrl('/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
   <!-- <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+  <script src="<?php echo generateUrl('/vendor/jquery/jquery.min.js');?>"></script>
 </head>
 
 <body id="page-top">
