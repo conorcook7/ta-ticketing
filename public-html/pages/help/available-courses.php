@@ -36,7 +36,7 @@
           <!-- Available Courses -->
           <?php
             $dao = new Dao();
-            $courses = $dao->getAvailableCourses();
+            $courses = $dao->getAvailableCourses(10);
             foreach ($courses as $course) {
           ?>
             <div class="card shadow mb-4">
@@ -66,7 +66,7 @@
 
   </div>
   <!-- End of Page Wrapper -->
-
+<script src="../../js/ajax/help-available-courses.js"></script>
 <?php
   require_once "../../components/scripts.php";
 ?>
