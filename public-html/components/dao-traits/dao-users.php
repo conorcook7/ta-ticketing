@@ -113,7 +113,7 @@ trait DaoUsers {
      * @param $limit - (optional) A limit to the number of users to get.
      * @return $users - All of the users from the Users table.
      */
-    public function getUsers($limit){
+    public function getUsers($limit=NULL){
         $conn = $this->getConnection();
 
         $query = "SELECT * FROM Users AS U JOIN Permissions AS P
