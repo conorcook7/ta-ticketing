@@ -32,11 +32,10 @@
 
           <?php
             $dao = new Dao('Dummy_TA_Ticketing');
-            $FAQs = $dao->getFAQs();
+            $FAQs = $dao->getFAQs(1);
             if (isset($FAQs)) {
                 for ($i = 0; $i < count($FAQs); $i++) {
           ?>
-                <!-- Step 1 - Submit Button -->
                 <div class="mb-4">
                   <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -78,5 +77,6 @@
 
   </div>
   <!-- End of Page Wrapper -->
-
+  <script src="<?php echo generateUrl('/vendor/jquery/jquery.min.js');?>"></script>
+  <script src="../../js/ajax/help-faq.js"></script>
   <?php require_once "../../components/scripts.php"; ?>
