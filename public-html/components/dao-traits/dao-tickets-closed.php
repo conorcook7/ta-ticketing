@@ -9,12 +9,13 @@ trait DaoTicketsClosed {
 
     /**
      * Get all of the closed tickes.
+     * 
+     * @param $limit - (optional) A limit to the number of tickets to get.
      * @return $closedTickets - The array of arrays of closed tickets information.
      */
     public function getClosedTickets() {
         $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT
+        $query = "SELECT
                 CT.closed_ticket_id,
                 CT.description,
                 CT.node_number,
@@ -73,9 +74,14 @@ trait DaoTicketsClosed {
                 ON Users.permission_id = Permissions.permission_id
                 ) AS Ta
             ON CT.closer_user_id = Ta.user_id
-            ORDER BY CT.update_date
-            ;"
-        );
+            ORDER BY CT.update_date";
+        if ($limit == NULL) {
+            $query = $conn->prepare($query);
+        } else {
+            $query .= " LIMIT :limit;";
+            $query = $conn->prepare($query);
+            $query->bindParam(":limit", $limit);
+        }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $status = $query->execute();
         if (!$status) {
