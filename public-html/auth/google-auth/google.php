@@ -108,6 +108,9 @@
                 );
                 $_SESSION["user"]["online"] = "ONLINE";
 
+                // Adding the hostname to the session
+                $_SESSION["user"]["computer"] = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+
                 // Redirect to the dashboard
                 header("Location: ../../pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");
                 exit();
