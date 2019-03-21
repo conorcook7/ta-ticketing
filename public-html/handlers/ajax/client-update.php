@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    require_once "../components/dao.php";
-    require_once "../components/KLogger.php";
-    require_once "../components/server-functions.php";
+    require_once "../../components/dao.php";
+    require_once "../../components/KLogger.php";
+    require_once "../../components/server-functions.php";
 
     // Tolerance for check in with units of seconds
     $checkInTolerance = 15 * 60;
