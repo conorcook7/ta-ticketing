@@ -47,7 +47,7 @@ trait DaoTa {
                 "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
                 ON TA.user_id = U.user_id LIMIT :limit;"
             );
-            $query->bindParam(":limit", $limit);
+            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
         }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();

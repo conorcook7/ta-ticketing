@@ -37,7 +37,7 @@ trait DaoTicketsOpen {
         } else {
             $query .= " LIMIT :limit;";
             $query = $conn->prepare($query);
-            $query->bindParam(":limit", $limit);
+            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
         }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();

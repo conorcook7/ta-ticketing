@@ -105,18 +105,20 @@ trait DaoFaq {
      */
     public function getFAQs($limit=NULL) {
         $conn = $this->getConnection();
+        $query = "SELECT * FROM Frequently_Asked_Questions";
         if ($limit == NULL) {
-            $query = $conn->prepare("SELECT * FROM Frequently_Asked_Questions;");
+            $query = $conn->prepare($query);
         } else {
-            $query = $conn->prepare("SELECT * FROM Frequently_Asked_Questions LIMIT :limit;");
-            $query->bindParam(":limit", $limit);
+            $query .= " LIMIT :limit;";
+            $query = $conn->prepare($query);
+            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
         }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         if ($query->execute()) {
             $FAQs = $query->fetchAll();
             return $FAQs;
         }
-        $this->logger->logWarning(__FUNCTION__ . ": Unable to get FAQs");
+        $this->logger->logWarn(__FUNCTION__ . ": Unable to get FAQs");
         return Array();
         
     }
