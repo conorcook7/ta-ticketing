@@ -109,14 +109,22 @@ trait DaoUsers {
 
     /**
      * Returns all of the users.
+     * 
+     * @param $limit - (optional) A limit to the number of users to get.
      * @return $users - All of the users from the Users table.
      */
-    public function getUsers(){
+    public function getUsers($limit){
         $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT * FROM Users AS U JOIN Permissions AS P
-             ON U.permission_id = P.permission_id;"
-        );
+
+        $query = "SELECT * FROM Users AS U JOIN Permissions AS P
+                  ON U.permission_id = P.permission_id";
+        if ($limit == NULL) {
+            $query = $conn->prepare($query);
+        } else {
+            $query .= " LIMIT :limit;";
+            $query = $conn->prepare($query);
+            $query->bindParam(":limit", $limit);
+        }
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $users = $query->fetchAll();
@@ -305,53 +313,6 @@ trait DaoUsers {
         } catch (Exception $e) {
             $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             return Array();
-        }
-    }
-
-    /**
-     * Log out the users that have an away flag (i.e., online = 2).
-     * 
-     * @param $tolerance - The amount of time (in seconds) that need to have passed to log out the user.
-     * @return Returns TRUE if the query updated users, else FALSE.
-     */
-    public function logoutAwayUsers($tolerance) {
-        try {
-            // Get all of the users with away status
-            $conn = $this->getConnection();
-            $query = $conn->prepare("SELECT * FROM Users WHERE online = 2;");
-            $status = $query->execute();
-            if (!$status) {
-                $this->logger->logError(__FUNCTION__ . ": Unable to get users that are away.");
-                return $this->FAILURE;
-            }
-            $awayUsers = $query->fetchAll();
-
-            // Compare each users update time agains the tolerance
-            $now = new DateTime("now", new DateTimeZone("America/Boise"));
-
-            foreach ($awayUsers as $user) {
-                $updateTime = new DateTime($user["update_date"]);
-                $expirationTime = $updateTime->getTimestamp() + $tolerance;
-
-                // If it is past the expiration time
-                if ($now->getTimestamp() >= $expirationTime) {
-                    $query = $conn->prepare(
-                        "UPDATE Users SET online = 0 WHERE email = :email;"
-                    );
-                    $query->bindParam(":email", $user["email"]);
-                    $status = $query->execute();
-                    if (!$status) {
-                        $this->logger->logError(__FUNCTION__ . ": unable to logout user " . $user["user_id"]);
-                    }
-                }
-            }
-
-            // Return that the method was able to complete
-            return $this->SUCCESS;
-
-        } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . ": " . $e);
-            return $this->FAILURE;
         }
     }
 
