@@ -1,7 +1,7 @@
 // On window close, reload, or back.
 window.addEventListener("beforeunload", function(event) {
   $.ajax({
-    url: window.location.origin + "/handlers/client-update.php",
+    url: window.location.origin + "/handlers/ajax/client-update.php",
     type: "POST",
     data: {
       unload: true
@@ -19,7 +19,7 @@ window.addEventListener("beforeunload", function(event) {
 // Update the user status every interval
 setInterval(function() {
   $.ajax({
-    url: window.location.origin + "/handlers/client-update.php",
+    url: window.location.origin + "/handlers/ajax/client-update.php",
     type: "POST",
     data: {
       unload: false

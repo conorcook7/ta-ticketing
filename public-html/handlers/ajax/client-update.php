@@ -6,7 +6,7 @@
     require_once "../components/server-functions.php";
 
     // Tolerance for check in with units of seconds
-    $checkInTolerance = 60;
+    $checkInTolerance = 15 * 60;
 
     if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&

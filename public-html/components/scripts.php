@@ -19,7 +19,7 @@
   <script src="<?php echo generateUrl('/vendor/jquery-easing/jquery.easing.min.js');?>"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="<?php echo generateUrl('/js/client-update.js');?>"></script>
+  <script src="<?php echo generateUrl('/js/ajax/client-update.js');?>"></script>
   <script src="<?php echo generateUrl('/js/sb-admin-2.min.js');?>"></script>
 
   <!-- Page level plugins -->
