@@ -100,6 +100,7 @@ trait DaoFaq {
     /**
      * Get all of the frequently asked questions.
      * 
+     * @param $limit - (optional) A limit to the number of FAQs to return.
      * @return $FAQs - The array of arrays of FAQs information.
      */
     public function getFAQs($limit=NULL) {
