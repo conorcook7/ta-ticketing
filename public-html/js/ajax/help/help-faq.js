@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $.ajax({
-    url: window.location.origin + "/handlers/ajax/help-faq.php",
+    url: window.location.origin + "/handlers/ajax/help/help-faq.php",
     type: "GET",
     data: {},
     dataType: "json",

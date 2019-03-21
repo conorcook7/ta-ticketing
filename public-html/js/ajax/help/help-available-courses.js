@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $.ajax({
-    url: window.location.origin + "/handlers/ajax/help-available-courses.php",
+    url:
+      window.location.origin + "/handlers/ajax/help/help-available-courses.php",
     type: "GET",
     data: {},
     dataType: "json",
@@ -10,17 +11,17 @@ $(document).ready(function() {
         console.log("working on " + (i + 1));
         $(".container-fluid").append(
           `<div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h1 class="h5 m-0 font-weight-bold text-primary">` +
+                  <div class="card-header py-3">
+                    <h1 class="h5 m-0 font-weight-bold text-primary">` +
             courses[i]["course_name"].toUpperCase() +
             `   </h1>
-              </div>
-            <div class="card-body">
-            <p>` +
+                  </div>
+                <div class="card-body">
+                <p>` +
             courses[i]["course_description"] +
             `</p>
-             </div>
-            </div>`
+                 </div>
+                </div>`
         );
       }
     },

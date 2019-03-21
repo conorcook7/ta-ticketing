@@ -77,6 +77,5 @@
 
   </div>
   <!-- End of Page Wrapper -->
-  <script src="<?php echo generateUrl('/vendor/jquery/jquery.min.js');?>"></script>
-  <script src="../../js/ajax/help-faq.js"></script>
+  <script src="../../js/ajax/help/help-faq.js"></script>
   <?php require_once "../../components/scripts.php"; ?>
