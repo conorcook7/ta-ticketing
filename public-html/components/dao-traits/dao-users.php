@@ -61,6 +61,36 @@ trait DaoUsers {
     }
 
     /**
+     * Returns the user with the specific id.
+     * 
+     * @param $id - The user id of the user.
+     * @return $user - The array of user data.
+     */
+    public function getUserById($id) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "SELECT * FROM Users AS U JOIN Permissions AS P
+                ON U.permission_id = P.permission_id
+                WHERE user_id = :id;"
+        );
+        $query->bindParam(":id", $id);
+        try {
+            if ($query->execute()) {
+                $this->logger->logDebug(__FUNCTION__ . ": Get user successful");
+                $user = $query->fetch();
+                return $user;
+            } else {
+                $this->logger->logError(__FUNCTION__ . "Query returned bad status upon completion");
+                return Array();
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . " " . $e->getMessage());
+            return Array();
+        }
+        
+    }
+
+    /**
      * Create a user if they do not exist in the database.
      * 
      * @param $email - The email address of the user to create.
