@@ -28,10 +28,10 @@
     </div>
     <label for="permissionID">Permission Level</label>
     <select class="form-control" id="permissionID" name="permissionID" value="<?php echo (isset($_POST["permissionID"]) ? $_POST["PermissionID"] : 1);?>">
-      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
+      <option>0</option>
     </select>
     <div class="form-group">
         <label for="userID">User ID</label>
