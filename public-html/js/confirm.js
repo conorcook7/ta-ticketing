@@ -1,4 +1,4 @@
-$(document).ready(function(){
+    function doConfirm(){
     $('.closeTickets').on('click', function(){
         bootbox.confirm({
             message: "This is a confirm with custom button text and color! Do you like it?",
@@ -34,5 +34,8 @@ $(document).ready(function(){
         //     // }
         // });
     });
-});
+}
 
+$(document).ready(function() {
+    setTimeout(function(){ doConfirm() }, 100);    
+  });
