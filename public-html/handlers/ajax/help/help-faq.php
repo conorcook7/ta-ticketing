@@ -1,6 +1,6 @@
 <?php
 
-    require_once "../../components/dao.php";
+    require_once "../../../components/dao.php";
 
     $dao = new Dao();
 
