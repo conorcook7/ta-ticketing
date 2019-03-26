@@ -22,6 +22,7 @@
   <!-- Custom scripts for all pages-->
   <script src="<?php echo generateUrl('/js/ajax/client-update.js');?>"></script>
   <script src="<?php echo generateUrl('/js/sb-admin-2.min.js');?>"></script>
+  <script src="<?php echo generateUrl('/js/bootbox.all.min.js');?>"></script>
 
   <!-- Page level plugins -->
   <script src="<?php echo generateUrl('/vendor/chart.js/Chart.min.js');?>"></script>
