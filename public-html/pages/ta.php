@@ -116,7 +116,7 @@ require_once '../components/header.php';
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block bg-gradient-danger text-gray-100">
+                            <button type="submit" class="btn btn-block bg-gradient-danger text-gray-100 closeTickets">
                                 Close Ticket
                             </button>
                            </th>
