@@ -98,7 +98,7 @@
                   <div class="row no-gutters align-items-center mb-4">
                     <div class="col mr-2">
                       <div class="text-l font-weight-bold text-danger text-uppercase mb-1">Conor Cook</div>
-                      <a ref="mailto: conorcook@u.boisestate.edu">
+                      <a href="mailto: conorcook@u.boisestate.edu">
                         <span class="text-m mb-0 font-weight-bold text-gray-800">conorcook@u.boisestate.edu</span>
                       </a>
                     </div>
