@@ -1,5 +1,5 @@
 bootbox.confirm({
-    message: "This is a confirm with custom button text and color! Do you like it?",
+    message: "Are you sure you would like to proceed?",
     buttons: {
         confirm: {
             label: '<i class="fa fa-check"></i> Confirm',
