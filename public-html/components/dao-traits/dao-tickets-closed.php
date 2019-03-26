@@ -13,7 +13,7 @@ trait DaoTicketsClosed {
      * @param $limit - (optional) A limit to the number of tickets to get.
      * @return $closedTickets - The array of arrays of closed tickets information.
      */
-    public function getClosedTickets() {
+    public function getClosedTickets($limit=NULL) {
         $conn = $this->getConnection();
         $query = "SELECT
                 CT.closed_ticket_id,
