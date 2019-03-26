@@ -141,13 +141,37 @@ trait DaoTa {
 
     /**
      * Gets all open tickets for the corresponding TA
+     * 
+     * @param $limit - (optional) A limit to the number of tickets returned.
      * @return $myTickets - open tickets for that specific TA
      */
-    public function getMyOpenTickets($teaching_assistant_id) {
+    public function getMyOpenTickets($teaching_assistant_id, $limit=NULL) {
         $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT open_ticket_id, course_name, OT.update_date, first_name, last_name, node_number, online, 
-        description FROM Open_Tickets OT JOIN Available_Courses AC ON OT.available_course_id=AC.available_course_id
-        JOIN Users U ON OT.creator_user_id=U.user_id WHERE OT.available_course_id = :ta_course_input ORDER BY OT.update_date;");
+        $query = "SELECT
+                    open_ticket_id,
+                    course_name,
+                    OT.update_date,
+                    first_name,
+                    last_name,
+                    node_number,
+                    online, 
+                    description
+                FROM
+                    Open_Tickets OT
+                JOIN
+                    Available_Courses AC ON OT.available_course_id=AC.available_course_id
+                JOIN
+                    Users U ON OT.creator_user_id=U.user_id
+                WHERE
+                    OT.available_course_id = :ta_course_input
+                ORDER BY OT.update_date";
+        if ($limit == NULL) {
+            $query = $conn->prepare($query);
+        } else {
+            $query .= " LIMIT :limit;";
+            $query = $conn->prepare($query);
+            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
+        }
         $query->bindParam(":ta_course_input", $teaching_assistant_id);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
