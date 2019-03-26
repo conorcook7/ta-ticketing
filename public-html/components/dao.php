@@ -103,13 +103,13 @@ class Dao {
         $max = sizeof($openTickets);
         for ($index = 0; $index <= $max; $index++) {
             $openTickets[$index]['status'] = 'Open';
-            $openTickets[$index]['id'] = $ticket["open_ticket_id"];
+            $openTickets[$index]['id'] = $openTickets[$index]["open_ticket_id"];
         }
         $closedTickets = $this->getClosedTickets();
         $max = sizeof($closedTickets);
         for ($index = 0; $index <= $max; $index++) {
             $closedTickets[$index]['status'] = 'Closed';
-            $closedTickets[$index]['id'] = $ticket["closed_ticket_id"];
+            $closedTickets[$index]['id'] = $closedTickets[$index]["closed_ticket_id"];
         }
         return array_merge($openTickets, $closedTickets);
     }
