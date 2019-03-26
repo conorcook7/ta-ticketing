@@ -18,6 +18,7 @@ trait DaoTicketsOpen {
         $query ="SELECT
                 open_ticket_id,
                 creator_user_id,
+                opener_user_id,
                 course_name,
                 course_number,
                 OT.update_date,
@@ -160,6 +161,32 @@ trait DaoTicketsOpen {
         }
         $this->logger->logError(__FUNCTION__ . ": Unable to delete from open tickets.");
         return $this->FAILURE;
+    }
+
+    /**
+     * Get the queue number for this ticket.
+     * 
+     * @param $openTicketId - The ticket id to check for the queue number
+     * @return $queueNum - The queue number for this ticket
+     */
+    public function ticketQueueNumber($openTicketId) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "SELECT open_ticket_id FROM Open_Tickets ORDER BY update_date ASC;"
+        );
+        $status = $query->execute();
+        if ($status) {
+            $queue = $query->fetchAll();
+            for ($i = 0; $i < sizeof($queue); $i++) {
+                if ($queue[$i]["open_ticket_id"] == $openTicketId) {
+                    return ($i + 1);
+                }
+            }
+            $this->logger->logError(__FUNCTION__ . ": Unable to find queue nubmer by comparison.");
+            return -1;
+        }
+        $this->logger->logError(__FUNCTION__ . ": Error executing query.");
+        return -1;
     }
 
 }
