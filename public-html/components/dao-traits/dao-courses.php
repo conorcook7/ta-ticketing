@@ -34,7 +34,7 @@ trait DaoCourses {
     }
 
     /**
-     * Get the available course by name, number, or id.
+     * Get the available course by name.
      * @param $courseName - The course name to search for.
      * @return $availableCourse - The array of course information, else and empty array.
      */
@@ -42,6 +42,30 @@ trait DaoCourses {
         $conn = $this->getConnection();
         $query = $conn->prepare("SELECT * FROM Available_Courses WHERE course_name = :courseName;");
         $query->bindParam(":courseName", $courseName);
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        try {
+            $status = $query->execute();
+            if ($status) {
+                $availableCourse = $query->fetch();
+                $this->logger->logDebug(__FUNCTION__ . ": " . print_r($availableCourse,1));
+                return $availableCourse;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
+     * Get the available course by id
+     * 
+     * @param $courseId - The available course id
+     * @return $availableCourse - The information for the course
+     */
+    public function getAvailableCourseById($courseId) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare("SELECT * FROM Available_Courses WHERE available_course_id = :courseId;");
+        $query->bindParam(":courseId", $courseId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
             $status = $query->execute();
