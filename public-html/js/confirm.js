@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('.closeTickets').on('click', function(){
-        alert("Hello! I am an alert box!!");
+        bootbox.alert("Hello! I am an alert box!!");
         // bootbox.confirm({
         //     message: "Are you sure you would like to proceed?",
         //     buttons: {
