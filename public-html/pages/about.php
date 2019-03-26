@@ -15,7 +15,7 @@
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-    
+
       <!-- Topbar -->
       <?php include_once '../components/topbar.php'; ?>
       <!-- End of Topbar -->
@@ -123,8 +123,8 @@
                     </div>
                   </div>
                   <p>
-                  Hey, good on you for looking into who made this page. A lot of my parts into this was 
-                  with creating the Admin page that only admins can see. I also assisted with debugging 
+                  Hey, good on you for looking into who made this page. A lot of my parts into this was
+                  with creating the Admin page that only admins can see. I also assisted with debugging
                   and outside the box solutions to most problems.
                   </p>
                 </div>
@@ -167,10 +167,13 @@
                         <span class="text-m mb-0 font-weight-bold text-gray-800">michaelsanchez563@u.boisestate.edu</span>
                       </a>
                     </div>
-                    
+
                   </div>
                   <p>
-                  Bio
+                  My role in this website was creating the page that general users see
+                  when they are logged into the website. I also created and handled the
+                  forms that users utilize when they are creating a new help ticket to be
+                  reviewed. 
                   </p>
                 </div>
               </div>
