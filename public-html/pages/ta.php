@@ -83,7 +83,7 @@ require_once '../components/header.php';
                         $queue1++;
                    ?>
                       <tr>
-                      <form class="myOpenTicketsTable" method="POST" action="../handlers/ta-handler.php"> 
+                      <form id="myOpenTicketsTable" method="POST" action="../handlers/ta-handler.php"> 
                         <input type='hidden' name='my_open_ticket_id_input' value="<?php echo $myTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='my_closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue1?></td>
@@ -116,7 +116,7 @@ require_once '../components/header.php';
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block bg-gradient-danger text-gray-100 closeTickets">
+                            <button type="submit" class="btn btn-block bg-gradient-danger text-gray-100">
                                 Close Ticket
                             </button>
                            </th>

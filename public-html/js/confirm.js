@@ -1,13 +1,16 @@
     function doConfirm(){
     // $('.closeTickets').on('click', function(){
-        $('.myOpenTicketsTable').submit(function(e) {
+        $('#myOpenTicketsTable').submit(function(e) {
             e.preventDefault();
             bootbox.confirm({
             message: "Are you sure you would like to proceed?",
             buttons: {
                 confirm: {
                     label: '<i class="fa fa-check"></i> Confirm',
-                    className: 'btn-success'
+                    className: 'btn-success',
+                    callback: function () {
+                        $('#myOpenTicketsTable').submit();
+                    }
                 },
                 cancel: {
                     label: '<i class="fa fa-times"></i> Cancel',
