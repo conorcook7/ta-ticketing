@@ -12,7 +12,7 @@
                         // $( ".confirmed" ).click(function() {
                         //     $( "#myOpenTicketsTable" ).submit();
                         //   });
-                        document.myOpenTicketsTable.submit();
+                        $(this).submit();
                     }
                 },
                 cancel: {
