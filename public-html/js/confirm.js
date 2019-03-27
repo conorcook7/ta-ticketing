@@ -9,7 +9,7 @@
                     label: '<i class="fa fa-check"></i> Confirm',
                     className: 'btn-success confirmed',
                     callback: function () {
-                        $('#myOpenTicketsTable').submit();
+                        e.submit();
                     }
                 },
                 cancel: {
