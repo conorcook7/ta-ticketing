@@ -119,6 +119,7 @@ require_once '../components/header.php';
                             <button type="button" class="btn btn-block bg-gradient-danger text-gray-100" data-toggle="modal" data-target="#confirmModal">
                                 Close Ticket
                             </button>
+                            <!-- Confirmation Modal -->
                             <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
