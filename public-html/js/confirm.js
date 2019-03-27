@@ -2,6 +2,7 @@
     // $('.closeTickets').on('click', function(){
         $('#myOpenTicketsTable').click(function(e) {
             e.preventDefault();
+            e.submit();
             bootbox.confirm({
             message: "Are you sure you would like to proceed?",
             buttons: {
