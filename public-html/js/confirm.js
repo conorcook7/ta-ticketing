@@ -9,9 +9,10 @@
                     label: '<i class="fa fa-check"></i> Confirm',
                     className: 'btn-success confirmed',
                     callback: function () {
-                        $( ".confirmed" ).click(function() {
-                            $( "#myOpenTicketsTable" ).submit();
-                          });
+                        // $( ".confirmed" ).click(function() {
+                        //     $( "#myOpenTicketsTable" ).submit();
+                        //   });
+                        $(this).submit();
                     }
                 },
                 cancel: {
