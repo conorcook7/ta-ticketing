@@ -1,14 +1,14 @@
     function doConfirm(){
     $('.closeTickets').on('click', function(){
         bootbox.confirm({
-            message: "This is a confirm with custom button text and color! Do you like it?",
+            message: "Are you sure you would like to proceed?",
             buttons: {
                 confirm: {
-                    label: 'Yes',
+                    label: '<i class="fa fa-check"></i> Confirm',
                     className: 'btn-success'
                 },
                 cancel: {
-                    label: 'No',
+                    label: '<i class="fa fa-times"></i> Cancel',
                     className: 'btn-danger'
                 }
             },
