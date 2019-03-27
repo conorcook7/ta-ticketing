@@ -1,6 +1,8 @@
     function doConfirm(){
-    $('.closeTickets').on('click', function(){
-        bootbox.confirm({
+    // $('.closeTickets').on('click', function(){
+        $('#myOpenTicketsTable').submit(function(e) {
+            e.preventDefault();
+            bootbox.confirm({
             message: "Are you sure you would like to proceed?",
             buttons: {
                 confirm: {
