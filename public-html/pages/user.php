@@ -226,6 +226,7 @@
     </div>
   </div>
 	 </div>
+   <?php require_once '../components/footer.php'?>
 	</div>
  </div>
- <?php require_once '../components/footer.php';require_once '../components/scripts.php'; ?>
+ <?php require_once '../components/scripts.php'; ?>
