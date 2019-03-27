@@ -123,17 +123,17 @@ require_once '../components/header.php';
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                  <div class="modal-header">
-                                  <h5 class="modal-title">Modal title</h5>
+                                  <h5 class="modal-title">Please Confirm</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                  </div>
                                   <div class="modal-body">
-                                    <p>Modal body text goes here.</p>
+                                    <p>Are you sure you want to close this ticket?</p>
                                    </div>
                                    <div class="modal-footer">
-                                   <button type="submit" class="btn btn-primary">Confirm</button>
-                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                   <button type="submit" class="btn btn-success">Confirm</button>
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                    </div>
                                   </div>
                                 </div>
