@@ -7,9 +7,11 @@
             buttons: {
                 confirm: {
                     label: '<i class="fa fa-check"></i> Confirm',
-                    className: 'btn-success',
+                    className: 'btn-success confirmed',
                     callback: function () {
-                        $('#myOpenTicketsTable').submit();
+                        $( ".confirmed" ).click(function() {
+                            $( "#myOpenTicketsTable" ).submit();
+                          });
                     }
                 },
                 cancel: {
