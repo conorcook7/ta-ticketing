@@ -81,10 +81,13 @@
         }
         ?>
       </div>
+      <?php require_once '../components/footer.php';?>
     </div>
+    <!-- End of Content Wrapper -->
   </div>
+  <!-- End of Page Wrapper -->
 <?php
-  require_once '../components/footer.php';
+  // require_once '../components/footer.php';
   require_once '../components/logout-modal.php';
   require_once '../components/scripts.php';
  ?>
