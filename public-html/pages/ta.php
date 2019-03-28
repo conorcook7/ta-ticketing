@@ -238,15 +238,9 @@ require_once '../components/header.php';
           <!-- End of All open tickets -->
 
 
-
-          
           <!-- All Closed Tickets Table -->
           <?php include_once '../components//tickets/closed-tickets-table.php' ?>
           <!-- End of Closed tickets. -->
-
-
-
-
 
         </div>
         <!-- /.container-fluid -->
