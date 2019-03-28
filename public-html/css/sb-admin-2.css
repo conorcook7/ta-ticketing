@@ -115,25 +115,25 @@ address {
   /* text-align: center; */
 }
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
+/* @media (min-width: 576px) { 
   .big-title { display: none; }
   .small-title { display: inline-block; }
  }
  /* Medium devices (tablets, 725px and up) */
-@media (min-width: 725x) { 
+/* @media (min-width: 725x) { 
   .big-title { display: inline-block; }
   .small-title { display: none; }
- }
+ } */
  /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
+/* @media (min-width: 992px) { 
   .big-title { display: inline-block; }
   .small-title { display: none; }
- }
+ } */
  /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
+/* @media (min-width: 1200px) { 
   .big-title { display: inline-block; }
   .small-title { display: none; }
- }
+ }  */
 
 ol,
 ul,
