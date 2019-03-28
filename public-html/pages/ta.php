@@ -360,6 +360,9 @@ require_once '../components/header.php';
   </div>
 
 <!-- Scripts -->
-<?php include_once '../components/scripts.php' ?>
+<?php 
+  require_once '../components/logout-modal.php';
+  require_once '../components/scripts.php' 
+?>
 <!-- End of Scripts -->
 
