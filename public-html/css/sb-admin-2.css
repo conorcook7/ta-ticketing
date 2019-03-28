@@ -110,6 +110,9 @@ address {
   font-style: normal;
   line-height: inherit;
 }
+.ticketing-title:h1{
+  padding: 5px;
+}
 
 ol,
 ul,
