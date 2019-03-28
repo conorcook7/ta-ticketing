@@ -119,8 +119,8 @@ address {
   .big-title { display: none; }
   .small-title { display: inline; }
  }
- /* Medium devices (tablets, 725px and up) */
-@media (min-width: 725x) { 
+ /* Medium devices (tablets, 768px and up) */
+@media (min-width: 768x) { 
   .big-title { display: inline; }
   .small-title { display: none; }
  } 
