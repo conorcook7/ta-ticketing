@@ -4,10 +4,11 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-          <div id="ticketing-title" class="container justify-content-center">
+          <div class="container">
+          <div id="ticketing-title" class="display-4 text-primary text-xs-center p-b-1 m-b-1">
             <h1 class="text-primary">TA Ticketing Service</h1>
           </div>
-          
+          </div>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
