@@ -120,7 +120,7 @@ address {
   .small-title { display: block; }
  }
  /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
+@media (min-width: 725x) { 
   .big-title { display: block; }
   .small-title { display: none; }
  }
