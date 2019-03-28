@@ -5,7 +5,8 @@
             <i class="fa fa-bars"></i>
           </button>
           <!-- <div id="ticketing-title" class="container"> -->
-            <h1 class="text-primary">TA Ticketing Service</h1>
+            <h1 class="text-primary big-title">TA Ticketing Service</h1>
+            <h1 class="text-primary small-title">Ticketing</h1>
             <!-- <h1 class="text-primary small-title">Ticketing</h1> -->
           <!-- </div> -->
 
