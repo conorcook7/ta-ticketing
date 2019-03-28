@@ -100,7 +100,7 @@
       <li class="nav-item <?php if ($page == 'my-open-tickets.php') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/ta.php?id=mytickets');?>">
             <i class="fas fa-fw fa-question"></i>
-            <span>My Open Tickets</span>
+            <span>My Tickets</span>
         </a>
       </li>
       <li class="nav-item <?php if ($page == 'users-table.php') { echo 'active'; }?>">
