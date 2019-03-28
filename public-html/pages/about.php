@@ -41,7 +41,6 @@
                   <p>The purpose of this website is to assist teaching assistants in more
                   efficiently helping students in need.
                   </p>
-                  <p></p>
                   <p>
                   </p>
                 </div>
