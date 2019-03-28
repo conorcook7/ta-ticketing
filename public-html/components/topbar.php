@@ -4,7 +4,7 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-          <div id="ticketing-title" class="container">
+          <div id="ticketing-title" class="container justify-content-center">
             <h1 class="text-primary">TA Ticketing Service</h1>
           </div>
           
