@@ -34,7 +34,7 @@
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['update_date'])?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block bg-gradient-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
                                 More Info
                             </button>
 
@@ -58,7 +58,7 @@
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block bg-gradient-success text-gray-100">
+                            <button type="submit" class="btn btn-block bg-success text-gray-100">
                                 Reopen Ticket
                             </button>
                            </th>
