@@ -111,7 +111,8 @@ address {
   line-height: inherit;
 }
 #ticketing-title{
-  padding: 5px;
+  padding: 6px;
+  text-align: center;
 }
 
 ol,
