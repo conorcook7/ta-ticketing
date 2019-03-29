@@ -27,9 +27,5 @@
   <!-- Page level custom scripts -->
   <script src="<?php echo generateUrl('/js/demo/datatables-demo.js');?>"></script>
 
-  <!-- Page level plugins -->
-  <script src="<?php echo generateUrl('/vendor/datatables/jquery.dataTables.min.js');?>"></script>
-  <script src="<?php echo generateUrl('/vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>
-
 </body>
 </html>
