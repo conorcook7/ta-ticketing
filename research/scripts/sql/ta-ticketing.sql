@@ -1,6 +1,12 @@
 CREATE DATABASE IF NOT EXISTS TA_Ticketing;
 USE TA_Ticketing;
 
+DROP USER IF EXISTS 'ta-ticketing'@'localhost';
+
+CREATE USER 'ta-ticketing'@'localhost' IDENTIFIED WITH
+mysql_native_password BY '34$5iu98&7o7%76d4Ss35';
+GRANT ALL PRIVILEGES ON TA_Ticketing.* TO 'ta-ticketing'@'localhost' WITH GRANT OPTION;
+
 CREATE TABLE IF NOT EXISTS Permissions (
     permission_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     permission_name VARCHAR(256) NOT NULL UNIQUE
@@ -93,3 +99,8 @@ CREATE EVENT IF NOT EXISTS Delete_Old_Tickets
     DO
         DELETE FROM Closed_Tickets
         WHERE DATE_ADD(update_date, INTERVAL 1 YEAR) < NOW();
+
+INSERT INTO Permissions VALUES('USER');
+INSERT INTO Permissions VALUES('TA');
+INSERT INTO Permissions VALUES('ADMIN');
+INSERT INTO Permissions VALUES('DENIED');
