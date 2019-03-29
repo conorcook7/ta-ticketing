@@ -14,8 +14,8 @@
                       <th class="center">Student Name</th>
                       <th class="center nodeInfo">Node</th>
                       <th class="center courseInfo">Course</th>
-                      <th class="center status">Status</th>
-                      <th class="center description">Description</th>
+                      <th class="center status">Description</th>
+                      <th class="center description">Status</th>
                     </tr>
                   </thead>
                   <tbody>
