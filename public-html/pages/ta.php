@@ -9,8 +9,8 @@ require_once '../components/dao.php';
       $dao = new Dao('Dummy_TA_Ticketing');
       $users = $dao->getUsers();
 
-      $my_ta_id = 1; //need a function for this
-      $my_course_id = 1; //need a function for this
+      $my_ta_id = 1; //need a function for this ID for the TA assistant
+      $my_course_id = 1; //need a function for this ID for the courses table
 
       // $allOpenTickets = $dao->getOpenTickets();
 
