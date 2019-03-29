@@ -33,16 +33,13 @@
 
           <div class="row">
             <!-- Approach -->
-            <div class="card shadow col-xl-8 mb-4">
+            <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Project Overview</h6>
                 </div>
                 <div class="card-body">
                   <p>The purpose of this website is to assist teaching assistants in more
                   efficiently helping students in need.
-                  </p>
-                  <p></p>
-                  <p>
                   </p>
                 </div>
               </div>
