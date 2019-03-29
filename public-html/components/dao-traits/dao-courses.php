@@ -25,12 +25,15 @@ trait DaoCourses {
         $query->bindParam(":name", $name);
         $query->bindParam(":number", $number);
         $query->bindParam(":description", $description);
-        $status = $query->execute();
-        if ($status) {
-            $this->logger->logDebug(__FUNCTION__ . ": create course successful");
+        try {
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): create course successful");
             return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to create course");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
         }
-        return $this->FAILURE;
     }
 
     /**
@@ -44,14 +47,13 @@ trait DaoCourses {
         $query->bindParam(":courseName", $courseName);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
-            $status = $query->execute();
-            if ($status) {
-                $availableCourse = $query->fetch();
-                $this->logger->logDebug(__FUNCTION__ . ": " . print_r($availableCourse,1));
-                return $availableCourse;
-            }
+            $query->execute();
+            $availableCourse = $query->fetch();
+            $this->logger->logDebug(__FUNCTION__ . "(): " . print_r($availableCourse,1));
+            return $availableCourse;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get course by name");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
     }
@@ -68,14 +70,13 @@ trait DaoCourses {
         $query->bindParam(":courseId", $courseId);
         $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
-            $status = $query->execute();
-            if ($status) {
-                $availableCourse = $query->fetch();
-                $this->logger->logDebug(__FUNCTION__ . ": " . print_r($availableCourse,1));
-                return $availableCourse;
-            }
+            $query->execute();
+            $availableCourse = $query->fetch();
+            $this->logger->logDebug(__FUNCTION__ . "(): " . print_r($availableCourse,1));
+            return $availableCourse;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get course by ID");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
     }
@@ -96,10 +97,15 @@ trait DaoCourses {
         $query->bindParam(":courseNumber", $courseNumber);
         $query->bindParam(":courseName", $courseName);
         $query->bindParam(":courseSection", $courseSection);
-        if ($query->execute()) {
+        try {
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): created an available course");
             return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to create the available course");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
         }
-        return $this->FAILURE;
     }
 
     /**
@@ -112,11 +118,15 @@ trait DaoCourses {
         $conn = $this->getConnection();
         $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
         $query->bindParam(":courseId", $courseId);
-        if ($query->execute()) {
+        try {
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Deleted available course");
             return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to delete available course");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
         }
-        $this->logger->logWarning(__FUNCTION__ . ": Unable to delete available course");
-        return $this->FAILURE;
     }
 
     /**
@@ -136,10 +146,16 @@ trait DaoCourses {
             $query->bindParam(":limit", $limit, PDO::PARAM_INT);
         }
         $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $availableCourses = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__ . "()");
-        return $availableCourses;
+        try {
+            $query->execute();
+            $availableCourses = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): returned the available courses");
+            return $availableCourses;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to return the available courses");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return NULL;
+        }
     }
 
 }
