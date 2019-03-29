@@ -86,4 +86,10 @@ CREATE EVENT IF NOT EXISTS Logout
     ON SCHEDULE EVERY 1 MINUTE
     DO
         UPDATE Users SET online = 0
-        WHERE DATE_ADD(update_date, INTERVAL 15 MINUTE) < NOW();
+        WHERE online = 2 AND DATE_ADD(update_date, INTERVAL 15 MINUTE) < NOW();
+
+CREATE EVENT IF NOT EXISTS Delete_Old_Tickets
+    ON SCHEDULE EVERY 1 DAY
+    DO
+        DELETE FROM Closed_Tickets
+        WHERE DATE_ADD(update_date, INTERVAL 1 YEAR) < NOW();
