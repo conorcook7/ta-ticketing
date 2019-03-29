@@ -67,11 +67,13 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     creator_user_id BIGINT UNSIGNED NOT NULL,
     closer_user_id BIGINT UNSIGNED NOT NULL,
     description TEXT,
+    closing_description TEXT,
     node_number INTEGER NOT NULL,
     room_number INTEGER,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
+    FULLTEXT (closing_description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
     FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
     FOREIGN KEY (closer_user_id) REFERENCES Users(user_id)
