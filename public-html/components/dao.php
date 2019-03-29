@@ -17,6 +17,9 @@ require_once 'dao-traits/dao-users.php';
  */
 class Dao {
   
+    // Online only data
+    private $USE_ONLINE_ONLY = FALSE;
+
     // Pass/Fail flags for methods
     private $SUCCESS = TRUE;
     private $FAILURE = FALSE;
@@ -55,6 +58,9 @@ class Dao {
     public function getConnection() {
         try{
             $conn = new PDO("mysql:host=localhost;dbname={$this->db}", $this->user, $this->pass);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // This might not be needed
+            // $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
