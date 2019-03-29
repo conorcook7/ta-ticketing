@@ -15,7 +15,7 @@
                       <th class="center nodeInfo">Course</th>
                       <th class="center courseInfo">Date Solved</th>
                       <th class="center description">Description</th>
-                      <th class="center action">Action</th>
+                      <th class="center action">Status</th>
                     </tr>
                   </thead>
                   <tbody>
