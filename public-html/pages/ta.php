@@ -66,12 +66,12 @@ require_once '../components/header.php';
               <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th class = "queue">Queue #</th>
+                      <th class = "queue">Queue</th>
                       <th class="center">Student Name</th>
                       <th class="center nodeInfo">Node</th>
                       <th class="center courseInfo">Course</th>
                       <th class="center description">Description</th>
-                      <th class="center action">Action</th>
+                      <th class="center action">Status</th>
                     </tr>
                   </thead>
                   <tbody>
