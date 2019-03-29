@@ -42,13 +42,9 @@ require_once '../components/header.php';
       <!-- Main Content -->
       <div id="content">
 
-
-
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
-
-    
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -61,13 +57,12 @@ require_once '../components/header.php';
           <?php include_once '../components/tickets/open-tickets-table.php' ?>
           <!-- End of All open tickets -->
 
-
           <!-- All Closed Tickets Table -->
           <?php include_once '../components/tickets/closed-tickets-table.php' ?>
           <!-- End of Closed tickets. -->
 
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of container-fluid -->
 
       </div>
       <!-- End of Main Content -->
