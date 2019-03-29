@@ -1,4 +1,6 @@
-<?php $page = "my-ta-tickets.php"; ?>
+<?php $page = "my-ta-tickets.php";
+$myTickets = $dao->getMyOpenTickets($my_course_id);
+ ?>
 <div class="container-fluid">  
         <!-- Start of My Tickets Table -->
         <div class="card shadow mb-4">
@@ -21,7 +23,6 @@
                   <tbody>
                   <?php 
                     $max1 = sizeof($myTickets);
-                    $myTickets = $dao->getMyOpenTickets($my_course_id);
                     $queue1 = 0;
                     for ($index = 0; $index <= $max1; $index++) {
                       if($myTickets[$index]['online'] == 1){
