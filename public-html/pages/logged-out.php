@@ -33,6 +33,8 @@
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
   <link href="../css/logged-out.css" rel="stylesheet">
 
+  <!-- Scripts for this page -->
+  <script src="<?php echo generateUrl('/vendor/jquery/jquery.min.js');?>"></script>
 </head>
 
 <body id="page-top">
