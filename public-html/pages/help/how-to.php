@@ -15,6 +15,10 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid p-4">
+
+                <div class="row">
+                    <div class="h2 text-gray-800">How-To</div>
+                </div>
             
                 <?php
                     $permission = strtoupper($_SESSION["user"]["permission"]);
@@ -33,7 +37,7 @@
                                             role="tab"
                                             aria-controls="nav-how-to-admin"
                                             aria-selected="true"
-                                        >Admin How-To</a>
+                                        >Admin</a>
                                         <a
                                             class="nav-item nav-link"
                                             id="nav-how-to-ta-tab"
@@ -42,7 +46,7 @@
                                             role="tab"
                                             aria-controls="nav-how-to-ta"
                                             aria-selected="false"
-                                        >Teaching Assistant How-To</a>
+                                        >Teaching Assistant</a>
                                         <a
                                             class="nav-item nav-link"
                                             id="nav-how-to-user-tab"
@@ -51,7 +55,7 @@
                                             role="tab"
                                             aria-controls="nav-how-to-user"
                                             aria-selected="false"
-                                        >User How-To</a>
+                                        >User</a>
                                     </div>
                                 </nav>
                                 <?php require_once "how-to/how-to-admin.php"; ?>
@@ -70,7 +74,7 @@
                                             role="tab"
                                             aria-controls="nav-how-to-ta"
                                             aria-selected="false"
-                                        >Teaching Assistant How-To</a>
+                                        >Teaching Assistant</a>
                                         <a
                                             class="nav-item nav-link"
                                             id="nav-how-to-user-tab"
@@ -79,7 +83,7 @@
                                             role="tab"
                                             aria-controls="nav-how-to-user"
                                             aria-selected="false"
-                                        >User How-To</a>
+                                        >User</a>
                                     </div>
                                 </nav>
                                 <?php require_once "how-to/how-to-ta.php"; ?>
