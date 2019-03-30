@@ -154,12 +154,12 @@
                                             <span class="text-m mb-0 mr-3 font-weight-bold text-gray-800">haydenphothong@u.boisestate.edu</span>
                                         </a>
                                     </div>
-                                    <p>
-                                    Hello! My role in creating this website was mostly back-end development.
-                                    I helped create the database schema and assisted other developers with
-                                    complex SQL queries. I also created the page you are looking at now!
-                                    </p>
                                 </div>
+                                <p>
+                                Hello! My role in creating this website was mostly back-end development.
+                                I helped create the database schema and assisted other developers with
+                                complex SQL queries. I also created the page you are looking at now!
+                                </p>
                             </div>
                         </div>
                     </div>
