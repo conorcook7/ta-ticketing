@@ -5,77 +5,83 @@
   $nav = 'help';
 ?>
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-    <!-- Start of Sidebar -->
-    <?php include_once '../../components/sidebar.php'; ?>
-    <!-- End of Sidebar -->
+        <!-- Start of Sidebar -->
+        <?php include_once '../../components/sidebar.php'; ?>
+        <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Topbar -->
-      <?php include_once '../../components/topbar.php'; ?>
-      <!-- End of Topbar -->
+            <!-- Topbar -->
+            <?php include_once '../../components/topbar.php'; ?>
+            <!-- End of Topbar -->
       
-      <!-- Main Content -->
-      <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid p-4">
+            <?php
+                $dao = new Dao();
+                $FAQs = $dao->getFAQs(1);
+                if (count($FAQs) > 0) {
+            ?>
 
-          <!-- FAQ heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Frequently Asked Questions</h1>
-          </div>
+                <!-- Begin Page Content -->
+                <div class="container-fluid p-4">
 
-          <?php
-            $dao = new Dao('Dummy_TA_Ticketing');
-            $FAQs = $dao->getFAQs(1);
-            if (isset($FAQs)) {
-                for ($i = 0; $i < count($FAQs); $i++) {
-          ?>
-                <div class="mb-4">
-                  <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2 mb-4">
-                            <div
-                              class="h5 font-weight-bold text-primary text-uppercase mb-1"
-                            >FAQ #<?php echo ($i + 1); ?></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                              <?php echo htmlentities($FAQs[$i]['question']); ?>
-                            </div>
-                          </div>
-                        </div>
-                        <p><?php echo htmlentities($FAQs[$i]['answer']); ?></p>
-                    </div>
-                  </div>
+                <!-- FAQ heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Frequently Asked Questions</h1>
                 </div>
-          <?php
+
+                <?php
+                        for ($i = 0; $i < count($FAQs); $i++) {
+                ?>
+                        <div class="mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                <div class="col mr-2 mb-4">
+                                    <div
+                                    class="h5 font-weight-bold text-primary text-uppercase mb-1"
+                                    >FAQ #<?php echo ($i + 1); ?></div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo htmlentities($FAQs[$i]['question']); ?>
+                                    </div>
+                                </div>
+                                </div>
+                                <p><?php echo htmlentities($FAQs[$i]['answer']); ?></p>
+                            </div>
+                        </div>
+                        </div>
+                <?php
+                        }
+                echo "</div>
+                <!-- /.container-fluid -->";
+
+                } else {
+                    echo '
+                        <div class="flex-column d-flex justify-content-center h-75">
+                            <div class="h3 text-gray-800 text-center">There are no FAQs at this time.</div>
+                            <div class="h3 text-gray-600 text-center">Sorry for the inconvenience!</div>
+                        </div>';
                 }
-            } else {
-              echo '<div class="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 class="h3 mb-0 text-gray-800">Sorry! There are no FAQs at this time!</h1>
-                    </div>';
-            }
-          ?>
+            ?>
+        
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <?php include_once '../../components/footer.php'; ?>
+            <!-- End of Footer -->
 
         </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <?php include_once '../../components/footer.php'; ?>
-      <!-- End of Footer -->
+        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
-  <script src="../../js/ajax/help/help-faq.js"></script>
-  <?php require_once "../../components/scripts.php"; ?>
+    <script src="../../js/ajax/help/help-faq.js"></script>
+    <?php require_once "../../components/scripts.php"; ?>
