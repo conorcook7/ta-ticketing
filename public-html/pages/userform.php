@@ -4,16 +4,18 @@
   $dao = new Dao();
 ?>
 <script>
-$('textarea').on("input", function(){
-  var maxlength = $(this).attr("maxlength");
-  var currentLength = $(this).val().length;
+var textarea = document.querySelector("textarea");
 
-  if( currentLength >= maxlength ){
-      $('#charNum').text(' you have reached the limit');
-  }else{
-    var char = maxlength - currentLength;
-  $('#charNum').text(char + ' characters left');
-  }
+textarea.addEventListener("input", function(){
+    var maxlength = this.getAttribute("maxlength");
+    var currentLength = this.value.length;
+
+    if( currentLength >= maxlength ){
+        $('#charNum').text(' you have reached the limit');
+    }else{
+      var char = maxlength - currentLength;
+      $('#charNum').text(char + ' characters left');
+    }
 });
 </script>
  <div id="wrapper">
