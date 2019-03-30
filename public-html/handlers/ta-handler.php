@@ -4,7 +4,7 @@ ini_set("display_errors","On");
 
 require_once '../components/dao.php';
 
-$dao = new Dao('Dummy_TA_Ticketing');
+$dao = new Dao();
 if(isset($_POST['open_ticket_id_input'])){
     $closeTicket = $dao->closeTicket($_POST["open_ticket_id_input"] ,$_POST["closer_id_input"]);
 }

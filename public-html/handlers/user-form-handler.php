@@ -3,7 +3,7 @@ session_start();
 require_once '../components/dao.php';
 require_once '../components/server-functions.php';
 
-$dao = new Dao('Dummy_TA_Ticketing');
+$dao = new Dao();
 $user_id = 0;
 $course_id = 0;
 if(isset($_SESSION['user']['email'])){

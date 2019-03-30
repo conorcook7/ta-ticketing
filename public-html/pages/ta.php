@@ -6,7 +6,7 @@ $page = 'ta.php';
 
 require_once '../components/dao.php';
   try{
-      $dao = new Dao('Dummy_TA_Ticketing');
+      $dao = new Dao();
       $users = $dao->getUsers();
 
       // $my_ta_id = $_SESSION['user']['user_id']; //need a function for this ID for the TA assistant
