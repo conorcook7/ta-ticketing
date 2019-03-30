@@ -29,24 +29,10 @@
                 class="collapse-item <?php if($nav == 'help' && $page == 'faq.php'){echo 'active';}?>"
                 href="<?php echo generateUrl('/pages/help/faq.php');?>"
             >FAQs</a>
-
-
-
-            <?php
-                $permission = strtoupper($_SESSION["user"]["permission"]);
-                if ($permission == "USER" || $permission == "TA" || $permission == "ADMIN") {
-            ?>
             <a
-                <?php
-                    if($nav == 'help' && ($page == 'how-to-user.php' || $page == 'how-to-ta.php' || $page == 'how-to-admin.php')) {
-                        echo 'class="collapse-item active"';
-                    } else {
-                        echo 'class="collapse-item"';
-                    }
-                ?>
-                href="<?php echo generateUrl('/pages/help/how-to-' . strtolower($permission) . '.php'); ?>"
+                class="collapse-item <?php if($nav == 'help' && $page == 'how-to.php'){echo 'active';}?>"
+                href="<?php echo generateUrl('/pages/help/how-to.php');?>"
             >How-To</a>
-            <?php } ?>
         </div>
     </div>
 </li>
