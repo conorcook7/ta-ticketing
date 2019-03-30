@@ -10,6 +10,11 @@
         header("Location: " . generateUrl("/handlers/logout-handler.php"));
         exit();
     }
+
+    if (strtoupper($_SESSION["user"]["permission"]) == "DENIED") {
+        header("Location: ". generateUrl("/pages/403.php"));
+        exit();
+    }
     
 ?>
 <!DOCTYPE html>
