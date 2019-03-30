@@ -1,7 +1,8 @@
 <?php
     session_start();
 
-    if (strtoupper($_SESSION["user"]["permission"]) != "TA") {
+    $permission = strtoupper($_SESSION["user"]["permission"]);
+    if ($permission != "TA" && $permission != "ADMIN") {
         header("Location: ../403.php");
         exit();
     }

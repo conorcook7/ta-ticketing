@@ -1,11 +1,5 @@
 <?php
     session_start();
-
-    if (strtoupper($_SESSION["user"]["permission"]) != "USER") {
-        header("Location: ../403.php");
-        exit();
-    }
-
     require_once '../../components/header.php';
     $page = 'how-to-user.php';
     $nav = 'help';
