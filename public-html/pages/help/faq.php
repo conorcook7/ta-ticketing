@@ -63,7 +63,7 @@
 
                 } else {
                     echo '
-                        <div class="flex-column d-flex justify-content-center h-75">
+                        <div class="flex-column d-flex justify-content-center h-100">
                             <div class="h3 text-gray-800 text-center">There are no FAQs at this time.</div>
                             <div class="h3 text-gray-600 text-center">Sorry for the inconvenience!</div>
                         </div>';
