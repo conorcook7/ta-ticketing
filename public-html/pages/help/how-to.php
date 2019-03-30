@@ -58,7 +58,9 @@
                                         >User</a>
                                     </div>
                                 </nav>
-                                <?php require_once "how-to/how-to-admin.php"; ?>
+                                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                    <?php require_once "how-to/how-to-admin.php"; ?>
+                                </div>
                             </div>
                         </div>
                 <?php  } else if ($permission == "TA") { ?>
@@ -86,7 +88,9 @@
                                         >User</a>
                                     </div>
                                 </nav>
-                                <?php require_once "how-to/how-to-ta.php"; ?>
+                                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                    <?php require_once "how-to/how-to-ta.php"; ?>
+                                </div>
                             </div>
                         </div>
                 <?php   } else { require_once "how-to/how-to-user.php"; } ?>

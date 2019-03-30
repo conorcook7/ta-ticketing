@@ -8,8 +8,8 @@
     }
 ?>
 
-<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-how-to-ta" role="tabpanel" aria-labelledby="nav-how-to-ta-tab">
+
+    <div class="tab-pane fade <?php if ($permission == 'TA') {echo 'active show';} ?>" id="nav-how-to-ta" role="tabpanel" aria-labelledby="nav-how-to-ta-tab">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h1 class="h2 m-0 font-weight-bold text-primary">Teaching Assistant How-To</h1>
@@ -28,5 +28,4 @@
     <div class="tab-pane fade" id="nav-how-to-user" role="tabpanel" aria-labelledby="nav-how-to-user-tab">
         <?php require_once "how-to/how-to-user.php"; ?>
     </div>
-</div>
   
