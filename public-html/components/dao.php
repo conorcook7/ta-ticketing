@@ -64,7 +64,8 @@ class Dao {
             $this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
-            $this->logger->logFatal(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get connection");
+            $this->logger->logFatal(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -105,19 +106,29 @@ class Dao {
      * @return $allTickets - The array of arrays of open tickets information.
      */
     public function getAllTickets() {
-        $openTickets = $this->getOpenTickets();
-        $max = sizeof($openTickets);
-        for ($index = 0; $index <= $max; $index++) {
-            $openTickets[$index]['status'] = 'Open';
-            $openTickets[$index]['id'] = $openTickets[$index]["open_ticket_id"];
+        try {
+            $this->logger->logDebug(__FUNCTION__ . "(): Get all open tickets");
+            $openTickets = $this->getOpenTickets();
+            $max = sizeof($openTickets);
+            for ($index = 0; $index <= $max; $index++) {
+                $openTickets[$index]['status'] = 'Open';
+                $openTickets[$index]['id'] = $openTickets[$index]["open_ticket_id"];
+            }
+            $this->logger->logDebug(__FUNCTION__ . "(): Get all closed tickets");
+            $closedTickets = $this->getClosedTickets();
+            $max = sizeof($closedTickets);
+            for ($index = 0; $index <= $max; $index++) {
+                $closedTickets[$index]['status'] = 'Closed';
+                $closedTickets[$index]['id'] = $closedTickets[$index]["closed_ticket_id"];
+            }
+            $this->logger->logDebug(__FUNCTION__ . "(): Attempting to merge open and closed tickets");
+            return array_merge($openTickets, $closedTickets);
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get all tickets");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return NULL;
         }
-        $closedTickets = $this->getClosedTickets();
-        $max = sizeof($closedTickets);
-        for ($index = 0; $index <= $max; $index++) {
-            $closedTickets[$index]['status'] = 'Closed';
-            $closedTickets[$index]['id'] = $closedTickets[$index]["closed_ticket_id"];
-        }
-        return array_merge($openTickets, $closedTickets);
     }
+
 }
 ?>

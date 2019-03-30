@@ -14,18 +14,24 @@ trait DaoUsers {
      * @return Returns TRUE if the user exists, else FALSE.
      */
     public function userExists($email){
-        $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT COUNT(*) FROM Users WHERE email = :email;");
-        $query->bindParam(':email', $email);
-        $query->execute();
-        $results = $query->fetch(PDO::FETCH_ASSOC);
-        $result = $results["COUNT(*)"];
-        if ($result) {
-            $this->logger->logDebug(__FUNCTION__ . ": User was found.");
-            return TRUE;
-        } else {
-            $this->logger->logDebug(__FUNCTION__ . ": User unable to be found.");
-            return FALSE;
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("SELECT COUNT(*) FROM Users WHERE email = :email;");
+            $query->bindParam(':email', $email);
+            $query->execute();
+            $results = $query->fetch(PDO::FETCH_ASSOC);
+            $result = $results["COUNT(*)"];
+            if ($result) {
+                $this->logger->logDebug(__FUNCTION__ . "(): User was found.");
+                return TRUE;
+            } else {
+                $this->logger->logDebug(__FUNCTION__ . "(): User unable to be found.");
+                return FALSE;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to check if user exists");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return NULL;
         }
     }
 
@@ -36,26 +42,24 @@ trait DaoUsers {
      * @return $user - The array of user data.
      */
     public function getUser($email) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT * FROM Users AS U JOIN Permissions AS P
-                ON U.permission_id = P.permission_id
-                WHERE email = :email;"
-        );
-        $query->bindParam(":email", $email);
-        $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
-            if ($query->execute()) {
-                $this->logger->logDebug(__FUNCTION__ . ": Get user successful");
-                $user = $query->fetch();
-                return $user;
-            } else {
-                $this->logger->logError(__FUNCTION__ . "Query returned bad status upon completion");
-                return Array();
-            }
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT * FROM Users AS U JOIN Permissions AS P
+                    ON U.permission_id = P.permission_id
+                    WHERE email = :email;"
+            );
+            $query->bindParam(":email", $email);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $user = $query->fetch();
+            $this->logger->logDebug(__FUNCTION__ . ": Get user by email successful");
+            return $user;
+
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . " " . $e->getMessage());
-            return Array();
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get user by email");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return NULL;
         }
         
     }
@@ -67,25 +71,23 @@ trait DaoUsers {
      * @return $user - The array of user data.
      */
     public function getUserById($id) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT * FROM Users AS U JOIN Permissions AS P
-                ON U.permission_id = P.permission_id
-                WHERE user_id = :id;"
-        );
-        $query->bindParam(":id", $id);
-        try {
-            if ($query->execute()) {
-                $this->logger->logDebug(__FUNCTION__ . ": Get user successful");
-                $user = $query->fetch();
-                return $user;
-            } else {
-                $this->logger->logError(__FUNCTION__ . "Query returned bad status upon completion");
-                return Array();
-            }
+        try{
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT * FROM Users AS U JOIN Permissions AS P
+                    ON U.permission_id = P.permission_id
+                    WHERE user_id = :id;"
+            );
+            $query->bindParam(":id", $id);
+            $query->execute();
+            $user = $query->fetch();
+            $this->logger->logDebug(__FUNCTION__ . ": Get user by id successful");
+            return $user;
+
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . " " . $e->getMessage());
-            return Array();
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get user by id");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return NULL;
         }
         
     }
@@ -99,23 +101,29 @@ trait DaoUsers {
      * @return Returns TRUE if the user was created, else FALSE
      */
     public function createUser($email, $firstName=NULL, $lastName=NULL) {
-        $exists = $this->userExists($email);
-        if (!$exists) {
-            $conn = $this->getConnection();
-            $query = $conn->prepare(
-                "INSERT INTO Users (email, first_name, last_name) " .
-                "VALUES (:email, :firstName, :lastName);"
-            );
-            $query->bindParam(":email", $email);
-            $query->bindParam(":firstName", $firstName);
-            $query->bindParam(":lastName", $lastName);
-            $status = $query->execute();
-            if ($status) {
-                $this->logger->logDebug(__FUNCTION__ . ": Get user successful");
+        try {
+            $exists = $this->userExists($email);
+            if (!$exists) {
+                $conn = $this->getConnection();
+                $query = $conn->prepare(
+                    "INSERT INTO Users (email, first_name, last_name) " .
+                    "VALUES (:email, :firstName, :lastName);"
+                );
+                $query->bindParam(":email", $email);
+                $query->bindParam(":firstName", $firstName);
+                $query->bindParam(":lastName", $lastName);
+                $query->execute();
+                $this->logger->logDebug(__FUNCTION__ . "(): Create user successful");
                 return $this->SUCCESS;
+            } else {
+                $this->logger->logWarn(__FUNCTION__ . "(): User exists already");
+                return $this->FAILURE;
             }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to create user");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
         }
-        return $this->FAILURE;
     }
 
     /**
@@ -125,16 +133,23 @@ trait DaoUsers {
      * @return Returns TRUE if the user was deleted, else FALSE.
      */
     public function deleteUser($email) {
-        if ($this->userExists($email)) {
-            $conn = $this->getConnection();
-            $query = $conn->prepare("DELETE FROM Users WHERE email = :email;");
-            $query->bindParam(":email", $email);
-            $status = $query->execute();
-            if (status) {
+        try {
+            if ($this->userExists($email)) {
+                $conn = $this->getConnection();
+                $query = $conn->prepare("DELETE FROM Users WHERE email = :email;");
+                $query->bindParam(":email", $email);
+                $query->execute();
+                $this->logger->logDebug(__FUNCTION__ . "(): Delete user successful");
                 return $this->SUCCESS;
+            } else {
+                $this->logger->logWarn(__FUNCTION__ . "(): User does not exist");
+                return $this->FAILURE;
             }
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to delete user");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
         }
-        return $this->FAILURE;
     }
 
     /**
@@ -144,22 +159,28 @@ trait DaoUsers {
      * @return $users - All of the users from the Users table.
      */
     public function getUsers($limit=NULL){
-        $conn = $this->getConnection();
+        try {
+            $conn = $this->getConnection();
+            $query = "SELECT * FROM Users AS U JOIN Permissions AS P
+                    ON U.permission_id = P.permission_id";
+            if ($limit == NULL) {
+                $query = $conn->prepare($query);
+            } else {
+                $query .= " LIMIT :limit;";
+                $query = $conn->prepare($query);
+                $query->bindParam(":limit", $limit, PDO::PARAM_INT);
+            }
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $users = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all users successful");
+            return $users;
 
-        $query = "SELECT * FROM Users AS U JOIN Permissions AS P
-                  ON U.permission_id = P.permission_id";
-        if ($limit == NULL) {
-            $query = $conn->prepare($query);
-        } else {
-            $query .= " LIMIT :limit;";
-            $query = $conn->prepare($query);
-            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get all users");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
         }
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $users = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__);
-        return $users;
     }
 
     /**
@@ -174,24 +195,21 @@ trait DaoUsers {
             $query = $conn->prepare("SELECT online FROM Users WHERE email = :email;");
             $query->bindParam(":email", $userEmail);
             $status = $query->execute();
-            if ($status) {
-                $onlineStatus = $query->fetch()[0];
-                switch ($onlineStatus) {
-                    case 0:
-                        return "OFFLINE";
-                    case 1:
-                        return "ONLINE";
-                    case 2:
-                        return "AWAY";
-                    default:
-                        return "N/A";
-                }
-            } else {
-                $this->logger->logError(__FUNCTION__ . ": Unable to fetch online status");
-                return $this->FAILURE;
+            $onlineStatus = $query->fetch()[0];
+            $this->logger->logDebug(__FUNCTION__ . "(): Online status found: " . $onlineStatus);
+            switch ($onlineStatus) {
+                case 0:
+                    return "OFFLINE";
+                case 1:
+                    return "ONLINE";
+                case 2:
+                    return "AWAY";
+                default:
+                    return "N/A";
             }
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get online status");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -201,17 +219,24 @@ trait DaoUsers {
      * @return $users - All returned users.
      */
     public function getOnlineUsers(){
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT * FROM Users AS U JOIN Permissions AS P
-             ON U.permission_id = P.permission_id
-             WHERE U.online != 0;"
-        );
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $users = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__);
-        return $users;
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT * FROM Users AS U JOIN Permissions AS P
+                ON U.permission_id = P.permission_id
+                WHERE U.online != 0;"
+            );
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $users = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all online users successful");
+            return $users;
+
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get all online users");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
     }
 
     /**
@@ -221,18 +246,19 @@ trait DaoUsers {
      * @return Returns TRUE if the update was successful, else FALSE.
      */
     public function setUserOnline($userEmail) {
-        $this->logger->logError(__FUNCTION__ . ": Set user online");
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "UPDATE Users SET online = 1, update_date = CURRENT_TIMESTAMP
-            WHERE email = :email;"
-        );
-        $query->bindParam(":email", $userEmail);
         try {
-            $status = $query->execute();
-            return $status;
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "UPDATE Users SET online = 1, update_date = CURRENT_TIMESTAMP
+                WHERE email = :email;"
+            );
+            $query->bindParam(":email", $userEmail);
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Set user online successful");
+            return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . "(): Unable to set user online");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -244,16 +270,19 @@ trait DaoUsers {
      * @return Returns TRUE if the update was successful, else FALSE.
      */
     public function setUserOffline($userEmail) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "UPDATE Users SET online = 0 WHERE email = :email;"
-        );
-        $query->bindParam(":email", $userEmail);
         try {
-            $status = $query->execute();
-            return $status;
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "UPDATE Users SET online = 0 WHERE email = :email;"
+            );
+            $query->bindParam(":email", $userEmail);
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Set the user offline");
+            return $this->SUCCESS;
+
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . "(): Unable to set user offline");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -265,15 +294,18 @@ trait DaoUsers {
      * @return Returns TRUE if the update was successful, else FALSE.
      */
     public function setUserAway($userEmail) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "UPDATE Users SET online = 2 WHERE email = :email;"
-        );
-        $query->bindParam(":email", $userEmail);
         try {
-            $status = $query->execute();
-            return $status;
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "UPDATE Users SET online = 2 WHERE email = :email;"
+            );
+            $query->bindParam(":email", $userEmail);
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Set the user to away");
+            return $this->SUCCESS;
+
         } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to set user away");
             $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
             return $this->FAILURE;
         }
@@ -286,24 +318,44 @@ trait DaoUsers {
      * @return Returns the place the user currently is, else -1.
      */
     public function getQueueNumber($userId) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT Users.user_id, Users.first_name, MIN(Open_Tickets.update_date)
-             FROM Users INNER JOIN Open_Tickets
-             ON Users.user_id = Open_Tickets.creator_user_id
-             WHERE Users.online >= 1
-             GROUP BY Users.user_id
-             ORDER BY MIN(Open_Tickets.update_date) ASC;"
-        );
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $openTicketOrder = $query->fetchAll();
-        for ($i = 0; $i < count($openTicketOrder); $i++) {
-            if ($openTicketOrder[$i]["user_id"] == $userId) {
-                return ($i + 1);
+        try {
+            $conn = $this->getConnection();
+            $query = " SELECT
+                    Users.user_id,
+                    Users.first_name,
+                    MIN(Open_Tickets.update_date)
+                FROM Users INNER JOIN Open_Tickets
+                ON Users.user_id = Open_Tickets.creator_user_id ";
+            
+            if ($this->USE_ONLINE_ONLY) {
+                $query .= " WHERE Users.online != 0 ";
             }
+
+            $query .= "
+                GROUP BY Users.user_id
+                ORDER BY MIN(Open_Tickets.update_date) ASC;";
+            $query = $conn->prepare($query);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $openTicketOrder = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all open tickets");
+
+            // Attempt to find the first occurence of the user's id
+            for ($i = 0; $i < count($openTicketOrder); $i++) {
+                if ($openTicketOrder[$i]["user_id"] == $userId) {
+                    $this->logger->logDebug(__FUNCTION__ . "(): Found user queue number at row " . $i);
+                    return ($i + 1);
+                }
+            }
+
+            $this->logger->logInfo(__FUNCTION__ . "(): User has no open tickets");
+            return -1;
+
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get user's queue number");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return -1;
         }
-        return -1;
     }
 
     /**
@@ -313,35 +365,34 @@ trait DaoUsers {
      * @return $openTickets - The open tickets for that user.
      */
     public function getUserOpenTickts($userEmail) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "SELECT
-                OT.open_ticket_id,
-                OT.description,
-                OT.create_date,
-                AC.course_number
-            FROM
-                Open_Tickets AS OT
-            JOIN
-                Available_Courses AS AC ON OT.available_course_id = AC.available_course_id
-            JOIN
-                Users AS U ON OT.creator_user_id = U.user_id
-            WHERE
-                U.email = :userEmail
-            ;"
-        );
-        $query->bindParam(":userEmail", $userEmail);
-        $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
-            if (!$query->execute()) {
-                $this->logger->logError(__FUNCTION__ . ": Unable to select all open tickets for user.");
-                return Array();
-            }
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT
+                    OT.open_ticket_id,
+                    OT.description,
+                    OT.create_date,
+                    AC.course_number
+                FROM
+                    Open_Tickets AS OT
+                JOIN
+                    Available_Courses AS AC ON OT.available_course_id = AC.available_course_id
+                JOIN
+                    Users AS U ON OT.creator_user_id = U.user_id
+                WHERE
+                    U.email = :userEmail
+                ;"
+            );
+            $query->bindParam(":userEmail", $userEmail);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
             $openTickets = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all open tickets for user");
             return $openTickets;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(__FUNCTION__ . "(): Unable to fetch user's open tickets");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return Array();
         }
     }

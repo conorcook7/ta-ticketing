@@ -12,13 +12,19 @@ trait DaoPermissions {
      * @return $permissionLevels - The array of arrays of permission levels information.
      */
     public function getPermissionLevels() {
-        $conn = $this->getConnection();
-        $query = $conn->prepare("SELECT * FROM Permissions;");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-        $permissionLevels = $query->fetchAll();
-        $this->logger->logDebug(__FUNCTION__ . " " . print_r($permissionLevels,1));
-        return $permissionLevels;
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("SELECT * FROM Permissions;");
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $permissionLevels = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): Obtained permission levels");
+            return $permissionLevels;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get permission levels");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return NULL;
+        }
     }
 
     /**
@@ -29,45 +35,65 @@ trait DaoPermissions {
      * @return Returns TRUE if the creation was successful, else FALSE.
      */
     public function createPermissionsLevel($permissionName) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "INSERT INTO Permissions (permission_name)
-             VALUES (:permissionName);"
-        );
-        $query->bindParam(":permissionName", $permissionName);
-        if ($query->execute()) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "INSERT INTO Permissions (permission_name)
+                VALUES (:permissionName);"
+            );
+            $query->bindParam(":permissionName", $permissionName);
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Created permission level");
             return $this->SUCCESS;
-        } else {
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to create permission level");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
 
     /**
-     * Delete a permission based on id or name.
+     * Delete a permission based on id.
      * 
      * @param $permissionId - The id of the permission to delete.
-     * @param $permissionName - The name of the permission to delete.
      * @return Returns TRUE if the deletion was successful, else FALSE.
      */
-    public function deletePermissionsLevel($permissionId=NULL, $permissionName=NULL) {
-        assert($permissionId !== NULL || $permissionName !== NULL);
-        $conn = $this->getConnection();
-        if ($permissionId !== NULL) {
+    public function deletePermissionById($permissionId) {
+        try {
+            $conn = $this->getConnection();
             $query = $conn->prepare(
-                "DELETE FROM Permissions WHERE permission_id = :permissionId"
-            );
+                    "DELETE FROM Permissions WHERE permission_id = :permissionId"
+                );
             $query->bindParam(":permissionId", $permissionId);
-        } else if ($permissionName !== NULL) {
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Deleted permission by ID");
+            return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to delete permission by ID");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Delete a permission based on name.
+     * 
+     *  @param $permissionName - The name of the permission to delete.
+     * @return Returns TRUE if the deletion was successful, else FALSE.
+     */
+    public function deletePermissionByName($permissionName) {
+        try {
+            $conn = $this->getConnection();
             $query = $conn->prepare(
                 "DELETE FROM Permissions WHERE permission_name = :permissionName"
             );
             $query->bindParam(":permissionName", $permissionName);
-        } else {
-            return $this->FAILURE;
-        }
-        if ($query->execute()) {
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Deleted permission by name");
             return $this->SUCCESS;
-        } else {
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to delete permission by name");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }

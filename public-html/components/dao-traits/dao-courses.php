@@ -89,15 +89,15 @@ trait DaoCourses {
      * @param $courseSection - The section of the course.
      */
     public function createAvailableCourse($courseNumber, $courseName=NULL, $courseSection=NULL) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare(
-            "INSERT INTO Available_Courses (course_number, course_name, section)
-             VALUES (:courseNumber, :courseName, :courseSection);"
-        );
-        $query->bindParam(":courseNumber", $courseNumber);
-        $query->bindParam(":courseName", $courseName);
-        $query->bindParam(":courseSection", $courseSection);
         try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "INSERT INTO Available_Courses (course_number, course_name, section)
+                VALUES (:courseNumber, :courseName, :courseSection);"
+            );
+            $query->bindParam(":courseNumber", $courseNumber);
+            $query->bindParam(":courseName", $courseName);
+            $query->bindParam(":courseSection", $courseSection);
             $query->execute();
             $this->logger->logDebug(__FUNCTION__ . "(): created an available course");
             return $this->SUCCESS;
@@ -115,10 +115,10 @@ trait DaoCourses {
      * @return Returns TRUE if the deletion was successful, else FALSE.
      */
     public function deleteAvailableCourse($courseId) {
-        $conn = $this->getConnection();
-        $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
-        $query->bindParam(":courseId", $courseId);
         try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
+            $query->bindParam(":courseId", $courseId);
             $query->execute();
             $this->logger->logDebug(__FUNCTION__ . "(): Deleted available course");
             return $this->SUCCESS;
@@ -136,17 +136,17 @@ trait DaoCourses {
      * @return $availableCourses - The array of arrays of available courses information.
      */
     public function getAvailableCourses($limit=NULL) {
-        $conn = $this->getConnection();
-        $query = "SELECT * FROM Available_Courses";
-        if ($limit == NULL) {
-            $query = $conn->prepare($query);
-        } else {
-            $query .= " LIMIT :limit;";
-            $query = $conn->prepare($query);
-            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
-        }
-        $query->setFetchMode(PDO::FETCH_ASSOC);
         try {
+            $conn = $this->getConnection();
+            $query = "SELECT * FROM Available_Courses";
+            if ($limit == NULL) {
+                $query = $conn->prepare($query);
+            } else {
+                $query .= " LIMIT :limit;";
+                $query = $conn->prepare($query);
+                $query->bindParam(":limit", $limit, PDO::PARAM_INT);
+            }
+            $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $availableCourses = $query->fetchAll();
             $this->logger->logDebug(__FUNCTION__ . "(): returned the available courses");

@@ -25,14 +25,12 @@ trait DaoFaq {
             $query->bindParam(":adminUserId", $adminUserId);
             $query->bindParam(":question", $question);
             $query->bindParam(":answer", $answer);
-            if ($query->execute()) {
-                return $this->SUCCESS;
-            }
-            $this->logger->logWarning(__FUNCTION__ . ": Unable to create FAQ");
-            return $this->FAILURE;
-
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Created FAQ");
+            return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logWarning(__FUNCTION__ . " " . $e);
+            $this->logger->logError(__FUNCTION__ . "(): Unable to create FAQ");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -50,14 +48,12 @@ trait DaoFaq {
                 "DELETE FROM Frequently_Asked_Questions WHERE faq_id = :faqId;"
             );
             $query->bindParam(":faqId", $faqId);
-            if ($query->execute()) {
-                return $this->SUCCESS;
-            }
-            $this->logger->logWarning(__FUNCTION__ . ": Unable to delete FAQ");
-            return $this->FAILURE;
-
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Deleted FAQ");
+            return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logWarning(__FUNCTION__ . " " . $e);
+            $this->logger->logError(__FUNCTION__ . "(): Unable to delete FAQ");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -76,23 +72,21 @@ trait DaoFaq {
             $conn = $this->getConnection();
             $query = $conn->prepare(
                 "UPDATE TABLE Frequently_Asked_Questions SET 
-                 admin_user_id = :adminUserId,
-                 question = :question, 
-                 answer = :answer
-                 WHERE faq_id = :faqId;"
+                    admin_user_id = :adminUserId,
+                    question = :question, 
+                    answer = :answer
+                    WHERE faq_id = :faqId;"
             );
             $query->bindParam(":faqId", $faqId);
             $query->bindParam(":adminUserId", $adminUserId);
             $query->bindParam(":question", $question);
             $query->bindParam(":answer", $answer);
-            if ($query->execute()) {
-                return $this->SUCCESS;
-            }
-            $this->logger->logWarning(__FUNCTION__ . ": Unable to update FAQ");
-            return $this->FAILURE;
-
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Updated FAQ");
+            return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logWarning(__FUNCTION__ . " " . $e);
+            $this->logger->logError(__FUNCTION__ . "(): Unable to update FAQ");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -103,24 +97,28 @@ trait DaoFaq {
      * @param $limit - (optional) A limit to the number of FAQs to return.
      * @return $FAQs - The array of arrays of FAQs information.
      */
-    public function getFAQs($limit=NULL) {
-        $conn = $this->getConnection();
-        $query = "SELECT * FROM Frequently_Asked_Questions";
-        if ($limit == NULL) {
-            $query = $conn->prepare($query);
-        } else {
-            $query .= " LIMIT :limit;";
-            $query = $conn->prepare($query);
-            $query->bindParam(":limit", $limit, PDO::PARAM_INT);
-        }
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        if ($query->execute()) {
+    public function getFAQs($limit=NULL) {   
+        try {
+            $conn = $this->getConnection();
+            $query = "SELECT * FROM Frequently_Asked_Questions";
+            if ($limit == NULL) {
+                $query = $conn->prepare($query);
+            } else {
+                $query .= " LIMIT :limit;";
+                $query = $conn->prepare($query);
+                $query->bindParam(":limit", $limit, PDO::PARAM_INT);
+            }
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Executed query");
             $FAQs = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all data");
             return $FAQs;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get FAQs");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return NULL;
         }
-        $this->logger->logWarn(__FUNCTION__ . ": Unable to get FAQs");
-        return Array();
-        
     }
 
 }
