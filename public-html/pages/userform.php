@@ -9,9 +9,10 @@ $('textarea').on("input", function(){
   var currentLength = $(this).val().length;
 
   if( currentLength >= maxlength ){
-      console.log("You have reached the maximum number of characters.");
+      $('#charNum').text(' you have reached the limit');
   }else{
-      console.log(maxlength - currentLength + " chars left");
+    var char = maxlength - currentLength;
+  $('#charNum').text(char + ' characters left');
   }
 });
 </script>
@@ -45,7 +46,8 @@ $('textarea').on("input", function(){
             <div class = "card-body">
               <label for="exampleFormControlTextarea1">Problem Description</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "description" maxlength="1000"></textarea>
-              <br>
+              <div id ="charNum"></div>
+              <br/>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </form>
