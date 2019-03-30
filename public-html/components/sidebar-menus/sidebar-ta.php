@@ -19,4 +19,11 @@
         <span>Closed Tickets</span>
     </a>
 </li>
+
+<li class="nav-item <?php if ($page == 'users-table.php') { echo 'active'; }?>">
+    <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users');?>">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Create A Ticket</span>
+    </a>
+</li>
 <!-- End Teaching Assistant Pages -->

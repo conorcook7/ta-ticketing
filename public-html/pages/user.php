@@ -2,7 +2,7 @@
   // Setting for the navbar
   $nav = 'user';
   $page = 'user.php';
-  
+
   require_once '../components/header.php';
   require_once '../components/dao.php';
   $dao = new Dao();
@@ -58,8 +58,8 @@
           <form method="POST" action="../handlers/user-open-ticket-handler.php">
             <input type="hidden" name="open_ticket_id" value="<?php echo $openTickets[$i]['open_ticket_id']; ?>"/>
             <td class="center"><?php echo ($i + 1); ?></td>
-            <td class="center"><?php echo htmlspecialchars($openTickets[$i]["node_number"]); ?></td>
-            <td class="center"><?php echo strtoupper(htmlspecialchars($openTickets[$i]["course_name"])); ?></td>
+            <td class="center"><?php echo htmlentities($openTickets[$i]["node_number"]); ?></td>
+            <td class="center"><?php echo strtoupper(htmlentities($openTickets[$i]["course_name"])); ?></td>
             <td class="center"><?php
               $updateDate = new DateTime($openTickets[$i]["update_date"]);
               echo $updateDate->format("F jS Y \a\\t g:i A");
@@ -80,7 +80,7 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
-                          <div class="modal-body"><?php echo $openTickets[$i]['description']; ?></div>
+                          <div class="modal-body"><?php echo htmlentities($openTickets[$i]['description']); ?></div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
@@ -139,9 +139,9 @@
           <form method="POST" action="../handlers/user-closed-ticket-handler.php">
             <input type="hidden" name="closed_ticket_id" value="<?php echo $closedTickets[$i]['closed_ticket_id']; ?>"/>
             <td class="center"><?php echo $closedTickets[$i]["closed_ticket_id"]; ?></td>
-            <td class="center"><?php echo htmlspecialchars($closedTickets[$i]["student_first_name"] . " " . $closedTickets[$i]["student_last_name"]); ?></td>
-            <td class="center"><?php echo htmlspecialchars($closedTickets[$i]["ta_first_name"] . " " . $closedTickets[$i]["ta_last_name"]); ?></td>
-            <td class="center"><?php echo strtoupper(htmlspecialchars($closedTickets[$i]["course_name"])); ?></td>
+            <td class="center"><?php echo htmlentities($closedTickets[$i]["student_first_name"] . " " . $closedTickets[$i]["student_last_name"]); ?></td>
+            <td class="center"><?php echo htmlentities($closedTickets[$i]["ta_first_name"] . " " . $closedTickets[$i]["ta_last_name"]); ?></td>
+            <td class="center"><?php echo strtoupper(htmlentities($closedTickets[$i]["course_name"])); ?></td>
             <td class="center"><?php
               $updateDate = new DateTime($closedTickets[$i]["update_date"]);
               echo $updateDate->format("F jS Y \a\\t g:i A");
@@ -162,7 +162,7 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
-                          <div class="modal-body"><?php echo $closedTickets[$i]['description']; ?></div>
+                          <div class="modal-body"><?php echo htmlentities($closedTickets[$i]['description']); ?></div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
@@ -213,8 +213,8 @@
           $endTime = new DateTime($ta["end_time_past_midnight"]);
       ?>
 				<tr>
-					<td class="center"><?php echo htmlspecialchars($ta['first_name']) . " " . htmlspecialchars($ta['last_name']); ?></td>
-					<td class="center"><?php echo htmlspecialchars($ta['email']); ?></td>
+					<td class="center"><?php echo htmlentities($ta['first_name']) . " " . htmlentities($ta['last_name']); ?></td>
+					<td class="center"><?php echo htmlentities($ta['email']); ?></td>
           <td class="center"><?php echo $startTime->format("g:i A") . " - " . $endTime->format("g:i A"); ?></td>
 				<tr>
 			<?php } ?>

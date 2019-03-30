@@ -3,6 +3,21 @@
   require_once '../components/dao.php';
   $dao = new Dao();
 ?>
+<script>
+var textarea = document.querySelector("textarea");
+
+textarea.addEventListener("input", function(){
+    var maxlength = this.getAttribute("maxlength");
+    var currentLength = this.value.length;
+
+    if( currentLength >= maxlength ){
+        $('#charNum').text(' you have reached the limit');
+    }else{
+      var char = maxlength - currentLength;
+      $('#charNum').text(char + ' characters left');
+    }
+});
+</script>
  <div id="wrapper">
   <!-- Start of Sidebar -->
   <?php include_once '../components/sidebar.php'; ?>
@@ -25,15 +40,16 @@
               <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                 <?php $courses = $dao->getAvailableCourses();
 				        foreach($courses as $course){ ?>
-                <option value = "<?php echo htmlspecialchars($course['course_name']) ?>"> <?php echo strtoupper(htmlspecialchars($course['course_name'])); ?> </option>
+                <option value = "<?php echo htmlentities($course['course_name']) ?>"> <?php echo strtoupper(htmlentities($course['course_name'])); ?> </option>
                 <?php } ?>
               </div>
             </select>
             </div>
             <div class = "card-body">
               <label for="exampleFormControlTextarea1">Problem Description</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "description"></textarea>
-              <br>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "description" maxlength="1000"></textarea>
+              <div id ="charNum"></div>
+              <br/>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </form>
