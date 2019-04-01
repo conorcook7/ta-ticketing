@@ -1,7 +1,7 @@
 <?php $page = "my-ta-tickets.php";
 $my_ta_id = $_SESSION[user][user_id];
 $my_course_id = $dao->getMyCourseID($my_ta_id);
-// $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
+$myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
 $myTickets = 1;
  ?>
 <div class="container-fluid">  
@@ -15,7 +15,7 @@ $myTickets = 1;
               <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th class = "queue">Queue</th>
+                      <th class="queue">Queue</th>
                       <th class="center">Student Name</th>
                       <th class="center nodeInfo">Node</th>
                       <th class="center courseInfo">Course</th>
