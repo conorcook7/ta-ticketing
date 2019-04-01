@@ -1,7 +1,7 @@
 <?php $page = "my-ta-tickets.php";
 $my_ta_id = $_SESSION[user][user_id];
 $my_course_id = $dao->getMyCourseID($my_ta_id);
-$myTickets = $dao->getMyOpenTickets($my_course_id);
+$myTickets = $dao->getMyOpenTickets($my_course_id['available_course_id']);
 
  ?>
 <div class="container-fluid">  
