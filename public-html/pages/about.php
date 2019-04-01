@@ -110,7 +110,9 @@
                                     </div>
                                 </div>
                                 <p>
-                                Bio
+                                Welcome to the TA-Ticketing Application made from our team! Our efforts this semester will hopefully be
+                                beneficial to students and teaching assistants within the Computer Science program for multiple years to come.
+                                I primarily worked on the Teaching Assistant page as well as the design theme of this application. 
                                 </p>
                             </div>
                         </div>
