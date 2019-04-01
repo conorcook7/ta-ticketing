@@ -8,19 +8,8 @@ require_once '../components/dao.php';
   try{
       $dao = new Dao();
       $users = $dao->getUsers();
-
-      // $my_ta_id = $_SESSION['user']['user_id']; //need a function for this ID for the TA assistant
-      // $my_ta_id = $_SESSION[user][user_id];
       $my_course_id = 1; //need a function for this ID for the courses table
       // $my_course_id =
-
-
-
-      // $allOpenTickets = $dao->getOpenTickets();
-      // $myTickets = $dao->getMyOpenTickets($my_course_id);
-      // $closedTickets = $dao->getClosedTickets();
-      // $availableTAs = $dao->getAvailableTeachingAssistants();
-      // $availableCourses = $dao->getAvailableCourses();
 
   }catch(Exception $e) {
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
