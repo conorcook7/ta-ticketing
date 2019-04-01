@@ -8,7 +8,7 @@ require_once '../components/dao.php';
   try{
       $dao = new Dao();
       $users = $dao->getUsers();
-      // $my_course_id = 1; //need a function for this ID for the courses table
+      $my_course_id = 1; //need a function for this ID for the courses table
       // $my_course_id =
 
   }catch(Exception $e) {
