@@ -38,6 +38,7 @@
               <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th class="center">ID</th>
                       <th class="center">Question</th>
                       <th class="center">Answer</th>
                       <th class="center">Update</th>
@@ -54,6 +55,7 @@
                         <input type="hidden" name="question" value="<?php echo htmlspecialchars($faq['question']); ?>"/>
                         <input type="hidden" name="answer" value="<?php echo htmlspecialchars($faq['answer']); ?>"/>
                         <input type="hidden" name="faqID" value="<?php echo $faq['faq_id']; ?>"/>
+                        <td><?php echo htmlspecialchars($faq['faq_id']); ?></td>
                         <td><?php echo htmlspecialchars($faq['question']); ?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
