@@ -29,7 +29,7 @@
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
 </div>
-<div class="container-fluid">
+<div class="container-fluid mt-4">
         <!-- All Classes Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
