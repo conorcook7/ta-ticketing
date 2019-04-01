@@ -1,12 +1,12 @@
 <?php $page = "my-ta-tickets.php";
 $myTickets = $dao->getMyOpenTickets($my_course_id);
-$myID = $_SESSION[user][user_id];
+// $myID = $_SESSION[user][user_id];
  ?>
 <div class="container-fluid">  
         <!-- Start of My Tickets Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets - <?php print_r($myID);?></h6>
+              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets - <?php print_r($my_ta_id);?></h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
