@@ -24,7 +24,7 @@
         <label for="answer">Answer</label>
         <textarea class="form-control" id="answer" name="answer" rows="3" placeholder="Try clearing your cache and cookies and if that does not work contact Ben Peterson."></textarea>
     </div>
-        <button type="submit" class="btn btn-primary">Add Course</button>
+        <button type="submit" class="btn btn-primary">Add FAQ</button>
     </form>
     </div>
     <div class="container-fluid mt-4">
