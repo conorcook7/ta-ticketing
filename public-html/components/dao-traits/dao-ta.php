@@ -152,10 +152,7 @@ trait DaoTa {
         try {
             $conn = $this->getConnection();
             $query = "SELECT
-                        available_course_id,
-                        course_name,
-                        course_number,
-                        section
+                        available_course_id
                     FROM
                         Available_Courses AC
                     JOIN
