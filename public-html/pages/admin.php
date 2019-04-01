@@ -56,10 +56,10 @@
         <?php
         $selection = $_SESSION['admin-selection'];
         if ($selection == 'UNNAUTHORIZED'){ ?>
-          <!-- 404 Error Text -->
-          <div class="text-center">
-            <div class="error mx-auto" data-text="404">404</div>
-            <p class="lead text-gray-800 mb-5">Page Not Found</p>
+          <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
+            <div class="error mx-auto" data-text="403">403</div>
+            <p class="lead text-gray-800 mb-5">Permission Denied</p>
+            <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
           </div>
         <?php
         } elseif ($selection == 'DEFAULT' || $selection == 'users'){
