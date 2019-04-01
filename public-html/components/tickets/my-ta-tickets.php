@@ -2,7 +2,6 @@
 $my_ta_id = $_SESSION[user][user_id];
 $my_course_id = $dao->getMyCourseID($my_ta_id);
 $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
-$myTickets = 1;
  ?>
 <div class="container-fluid">  
         <!-- Start of My Tickets Table -->
