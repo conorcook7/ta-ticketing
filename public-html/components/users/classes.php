@@ -13,6 +13,7 @@
         unset($_SESSION["success"]);
     ?>
     <form method="POST" action="<?php echo generateUrl('/handlers/create-class-handler.php')?>">
+    <legend class="border-bottom mb-4">Create Classes</legend>
     <div class="form-group">
         <label for="courseName">Course Name</label>
         <input type="text" class="form-control" id="courseName"  name="courseName" placeholder="Computer Science I" required="true">

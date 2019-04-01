@@ -50,7 +50,7 @@
         } else if ($_SESSION["user"]["access_level"] == 2) {
             require_once "sidebar-menus/sidebar-ta.php";
 
-        } else if ($_SESSION["user"]["access_level"] == 1) {
+        } else if ($_SESSION["user"]["access_level"] >= 1) {
             require_once "sidebar-menus/sidebar-user.php";
 
         } else {
