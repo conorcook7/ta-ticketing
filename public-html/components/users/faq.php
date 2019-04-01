@@ -82,7 +82,7 @@
                              </div>
                             </td>
                         <td>
-                            <button type="submit" name="button_id" value="update" class="btn btn-block bg-gradient-warning text-gray-100">
+                            <button type="submit" name="button_id" value="update" class="btn btn-block bg-warning text-gray-100">
                                 Update FAQ
                             </button>
                         </td>
@@ -90,7 +90,7 @@
                     <form method="POST" action="../handlers/delete-faq-handler.php">
                         <input type="hidden" name="faqID" value="<?php echo $faq['faq_id']; ?>"/>
                         <td>
-                            <button type="submit" name="button_id" value="delete" class="btn btn-block bg-gradient-warning text-gray-100">
+                            <button type="submit" name="button_id" value="delete" class="btn btn-block bg-danger text-gray-100">
                                 Delete FAQ
                             </button>
                         </td>
