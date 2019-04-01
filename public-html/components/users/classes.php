@@ -12,8 +12,8 @@
         unset($_SESSION["failure"]);
         unset($_SESSION["success"]);
     ?>
-    <form method="POST" action="<?php echo generateUrl('/handlers/create-class-handler.php')?>">
-    <legend class="border-bottom mb-4">Create Classes</legend>
+    <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
+    <legend class="border-bottom mb-4">Create Class</legend>
     <div class="form-group">
         <label for="courseName">Course Name</label>
         <input type="text" class="form-control" id="courseName"  name="courseName" placeholder="Computer Science I" required="true">
@@ -28,4 +28,58 @@
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
+        <!-- All Classes Table -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">All Classes</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th class="center">Course Number</th>
+                      <th class="center">Course Name</th>
+                      <th class="center">Course Description</th>
+                      <th class="center">Update</th>
+                      <th class="center">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php 
+                    $allClasses = $dao->getClasses();
+                    foreach($allClasses as $class) { 
+                  ?>
+                    <tr>
+                    <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
+                        <input type="hidden" name="courseNumber" value="<?php echo htmlspecialchars($class['course_number']); ?>"/>
+                        <input type="hidden" name="courseName" value="<?php echo htmlspecialchars($class['course_name']); ?>"/>
+                        <input type="hidden" name="courseDescription" value="<?php echo $class['course_description']; ?>"/>
+                        <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
+                        <td><?php echo htmlspecialchars($class['course_number']); ?></td>
+                        <td><?php echo htmlspecialchars($class['course_name']); ?></td>
+                        <td><?php echo htmlspecialchars($class['course_description']); ?></td>
+                        <td>
+                            <button type="submit" name="button_id" value="update" class="btn btn-block bg-gradient-warning text-gray-100">
+                                Update Class
+                            </button>
+                        </td>
+                    </form>
+                    <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
+                        <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
+                        <td>
+                            <button type="submit" name="button_id" value="delete" class="btn btn-block bg-gradient-warning text-gray-100">
+                                Delete Class
+                            </button>
+                        </td>
+                    </form>
+                    </tr>
+                  <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+        <!-- End of All Classes -->
+    
 </div>
