@@ -7,7 +7,7 @@ $my_ta_id = $_SESSION[user][user_id];
         <!-- Start of My Tickets Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets - <?php print_r($my_ta_id);?></h6>
+              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
