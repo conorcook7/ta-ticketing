@@ -62,7 +62,7 @@
                         <td><?php echo htmlspecialchars($class['course_name']); ?></td>
                         <td><?php echo htmlspecialchars($class['course_description']); ?></td>
                         <td>
-                            <button type="submit" name="button_id" value="update" class="btn btn-block bg-gradient-warning text-gray-100">
+                            <button type="submit" name="button_id" value="update" class="btn btn-block bg-danger text-gray-100">
                                 Update Class
                             </button>
                         </td>
@@ -70,7 +70,7 @@
                     <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
                         <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
                         <td>
-                            <button type="submit" name="button_id" value="delete" class="btn btn-block bg-gradient-warning text-gray-100">
+                            <button type="submit" name="button_id" value="delete" class="btn btn-block bg-danger text-gray-100">
                                 Delete Class
                             </button>
                         </td>
