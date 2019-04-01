@@ -62,7 +62,7 @@
                         <td><?php echo htmlspecialchars($class['course_name']); ?></td>
                         <td><?php echo htmlspecialchars($class['course_description']); ?></td>
                         <td>
-                            <button type="submit" name="button_id" value="update" class="btn btn-block bg-danger text-gray-100">
+                            <button type="submit" name="button_id" value="update" class="btn btn-block bg-warning text-gray-100">
                                 Update Class
                             </button>
                         </td>
