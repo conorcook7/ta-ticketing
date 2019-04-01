@@ -5,7 +5,7 @@
   $page = 'admin.php';
   $nav = 'admin';
   
-  if($_SESSION['user']['access-level'] <= 3){
+  if($_SESSION['user']['access_level'] <= 3){
     if(isset($_GET['id'])){
       $_SESSION['admin-selection'] = $_GET['id'];
       $selection = $_SESSION['admin-selection'];

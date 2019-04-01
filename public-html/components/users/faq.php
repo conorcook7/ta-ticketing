@@ -18,7 +18,7 @@
     <legend class="border-bottom mb-4">Create FAQ</legend>
     <div class="form-group">
         <label for="question">Question</label>
-        <input type="number" class="form-control" id="question" name="question" placeholder="Why is nothing displaying?" required="true">
+        <input type="text" class="form-control" id="question" name="question" placeholder="Why is nothing displaying?" required="true">
     </div>
     <div class="form-group">
         <label for="answer">Answer</label>
