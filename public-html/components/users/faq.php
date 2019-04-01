@@ -55,7 +55,32 @@
                         <input type="hidden" name="answer" value="<?php echo htmlspecialchars($faq['answer']); ?>"/>
                         <input type="hidden" name="faqID" value="<?php echo $faq['faq_id']; ?>"/>
                         <td><?php echo htmlspecialchars($faq['question']); ?></td>
-                        <td><?php echo htmlspecialchars($faq['answer']); ?></td>
+                        <td class="center">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
+                                Answer
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                         </button>
+                                         </div>
+                                        <div class="modal-body">
+                                            <?php echo htmlspecialchars($faq['answer']);?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                            </td>
                         <td>
                             <button type="submit" name="button_id" value="update" class="btn btn-block bg-gradient-warning text-gray-100">
                                 Update FAQ
