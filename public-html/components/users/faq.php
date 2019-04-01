@@ -26,7 +26,7 @@
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
-
+    </div>
     <div class="container-fluid">
         <!-- All FAQs Table -->
         <div class="card shadow mb-4">

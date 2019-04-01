@@ -28,6 +28,8 @@
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
+</div>
+<div class="container-fluid">
         <!-- All Classes Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -47,7 +49,7 @@
                   </thead>
                   <tbody>
                   <?php 
-                    $allClasses = $dao->getClasses();
+                    $allClasses = $dao->getAvailableCourses();
                     foreach($allClasses as $class) { 
                   ?>
                     <tr>
