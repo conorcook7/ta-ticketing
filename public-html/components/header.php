@@ -40,8 +40,9 @@
             echo "Test";
         }
         ?>
-    <!-- TA-Ticketing - Dashboard -->
+    
     </title>
+    <!-- TA-Ticketing - Dashboard -->
   <link rel="shortcut icon" href="https://brandstandards.boisestate.edu/wp-content/themes/framewerk/framewerk/frontend/images/layout/favicon.ico">
 
   <!-- Custom fonts for this template-->
