@@ -39,7 +39,7 @@
         }elseif($page == 'about.php' || $nav == 'about'){
             echo "About Page";
         }else{
-            echo "Test";
+            echo "TA-Ticketing";
         }
         ?>
     
