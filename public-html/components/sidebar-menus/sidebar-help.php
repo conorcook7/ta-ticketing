@@ -13,7 +13,7 @@
         aria-controls="collapseHelpPages"
     >
         <i class="fas fa-fw fa-question"></i>
-        <span>Help</span>
+        <span class="LetterSpacing">Help</span>
     </a>
     <div id="collapseHelpPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
