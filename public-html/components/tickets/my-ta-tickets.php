@@ -18,7 +18,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                       <th class="center">Student Name</th>
                       <th class="center nodeInfo">Node</th>
                       <th class="center courseInfo">Course</th>
-                      <th class="center description">Description</th>
+                      <th class="center description">Ticket Description</th>
                       <th class="center action">Status</th>
                     </tr>
                   </thead>
