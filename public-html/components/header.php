@@ -29,7 +29,7 @@
   <meta name="author" content="">
 
   <title>TA-Ticketing - Dashboard</title>
-  <link rel="icon" href="img/bsu_logo.png" type="image/gif" sizes="16x16">
+  <link rel="shortcut icon" href="https://brandstandards.boisestate.edu/wp-content/themes/framewerk/framewerk/frontend/images/layout/favicon.ico">
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo generateUrl('/vendor/fontawesome-free/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
