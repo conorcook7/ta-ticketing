@@ -36,7 +36,7 @@
             echo "TA - Dashboard";
         }elseif($page == 'user.php'){
             echo "Student - Dashboard";
-        }elseif($page == 'about.php'){
+        }elseif($page == 'about.php' || $nav == 'about'){
             echo "About Page";
         }else{
             echo "Test";
