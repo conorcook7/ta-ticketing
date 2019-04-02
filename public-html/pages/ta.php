@@ -13,7 +13,33 @@ require_once '../components/header.php';
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
     exit(0);
   }
-
+  // if($_SESSION['user']['access_level'] == 2){
+  //   if(isset($_GET['page'])){
+  //     $_SESSION['ta-selection'] = $_GET['page'];
+  //     $selection = $_SESSION['ta-selection'];
+  //       if ($selection == 'DEFAULT' || $selection == 'users'){
+  //           $page = 'users-table.php';
+  //       } else if ($selection == 'my-tickets'){
+  //           $page = 'my-ta-tickets.php';
+  //       } else if ($selection == 'tickets'){
+  //           $page = 'tickets-table.php';
+  //       } else if ($selection == 'open-tickets'){
+  //         $page = 'open-tickets-table.php';
+  //       } else if ($selection == 'closed-tickets'){
+  //         $page = 'closed-tickets-table.php';
+  //       } else if ($selection == 'classes'){
+  //         $page = 'classes.php';
+  //       } else if ($selection == 'users-form'){
+  //         $page = 'update-users.php';
+  //       } else if ($selection == 'faq'){
+  //         $page = 'faq.php';
+  //       }
+  //   } else {
+  //     $_SESSION['ta-selection'] = 'DEFAULT';
+  //   }
+  // } else {
+  //   $_SESSION['ta-selection'] = 'UNNAUTHORIZED';
+  // }
 ?>
 
   <!-- Page Wrapper -->
