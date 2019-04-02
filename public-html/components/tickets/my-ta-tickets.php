@@ -65,6 +65,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                             </td>
                           <th class="center">
                             <button type="button" class="btn btn-block bg-danger text-gray-100" data-toggle="modal" data-target="#confirmModal">
+                              <i class="fas fa-times text-white pr-2"></i>  
                                 Close Ticket
                             </button>
                             <!-- Confirmation Modal -->
