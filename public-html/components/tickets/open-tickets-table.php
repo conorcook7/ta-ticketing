@@ -63,7 +63,7 @@
                             </td>
                           <th class="center">
                             <button type="submit" class="btn btn-block bg-danger text-gray-100">
-                              <i class="fas fa-times fa-xl text-white pr-2"></i>  
+                              <!-- <i class="fas fa-times fa-xl text-white pr-2"></i>   -->
                                 Close Ticket
                             </button>
                            </th>
