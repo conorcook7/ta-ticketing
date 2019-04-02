@@ -140,6 +140,10 @@ address {
   .small-title { display: none; }
  }
 
+ .TestSpacing{
+   letter-spacing: 1.5px;
+ }
+
 ol,
 ul,
 dl {

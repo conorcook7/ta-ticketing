@@ -31,7 +31,7 @@
             href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php';?>"
         >
             <i class="fas fa-fw fa-home"></i>
-            <span>Dashboard</span>
+            <span class="TestSpacing">Dashboard</span>
         </a>
     </li>
 
