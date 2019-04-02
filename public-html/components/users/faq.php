@@ -59,12 +59,12 @@
                         <td><?php echo htmlspecialchars($faq['question']); ?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#<?php echo $faq['faq_id']; ?>">
                                 Answer
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="<?php echo $faq['faq_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $faq['faq_id']; ?>Title" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
