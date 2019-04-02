@@ -34,9 +34,8 @@
                 <!-- FAQ heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4 border-bottom">
                     <span class="h3 mb-0 text-gray-800">Frequently Asked Questions</span>
-                    <div class="text-right">
-                        <i class="fas fa-search px-2"></i>
-                        <input id="faq-search" class="border-0 text-gray-800" type="textarea" style="background: inherit" placeholder="Search..." maxlength=1024/>
+                    <div class="text-right my-1">
+                        <input id="faq-search" class="form-control text-gray-800" type="textarea" style="background: inherit" placeholder="Search..." maxlength=1024/>
                     </div>
                 </div>
 
