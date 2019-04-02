@@ -28,7 +28,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TA-Ticketing - Dashboard</title>
+  <title>
+    <?php
+        if ($page == 'admin.php'){
+            echo "Admin - Dashboard";
+        }elseif($page == 'ta.php'){
+            echo "TA - Dashboard";
+        }elseif($page == 'user.php'){
+            echo "Student - Dashboard";
+        }else{
+            echo "Test";
+        }
+        ?>
+    <!-- TA-Ticketing - Dashboard -->
+    </title>
   <link rel="shortcut icon" href="https://brandstandards.boisestate.edu/wp-content/themes/framewerk/framewerk/frontend/images/layout/favicon.ico">
 
   <!-- Custom fonts for this template-->
