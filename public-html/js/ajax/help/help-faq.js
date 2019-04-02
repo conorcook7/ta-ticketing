@@ -50,7 +50,7 @@ $(document).ready(function() {
     let faqs = $(".faq");
     for (let i = 0; i < faqs.length; i++) {
       let faq = faqs[i];
-      let style = faq.innerHTML.toLowerCase().includes(searchPhrase)
+      let style = faq.innerText.toLowerCase().includes(searchPhrase)
         ? ""
         : "none";
       faq.style.display = style;
