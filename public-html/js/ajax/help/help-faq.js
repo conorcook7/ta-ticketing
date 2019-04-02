@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // Ajax function for backfilling FAQs
   $.ajax({
     url: window.location.origin + "/handlers/ajax/help/help-faq.php",
     type: "GET",
@@ -9,7 +10,7 @@ $(document).ready(function() {
       for (let i = numFAQs; i < faqs.length; i++) {
         $(".container-fluid").append(
           `
-      <div class="mb-4">
+      <div class="faq mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
               <div class="row no-gutters align-items-center">
@@ -38,5 +39,21 @@ $(document).ready(function() {
       }
     },
     error: function(request, error) {}
+  });
+
+  // Search functionality
+  $("#faq-search").on("change keyup paste", function() {
+    let searchPhrase = $(this)
+      .val()
+      .toLowerCase();
+
+    let faqs = $(".faq");
+    for (let i = 0; i < faqs.length; i++) {
+      let faq = faqs[i];
+      let style = faq.innerHTML.toLowerCase().includes(searchPhrase)
+        ? ""
+        : "none";
+      faq.style.display = style;
+    }
   });
 });
