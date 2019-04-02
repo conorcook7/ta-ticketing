@@ -33,7 +33,11 @@
             <div class = "card-body">
               <label for="problem_description">Problem Description</label>
               <textarea class="form-control" id="problem_description" rows="3" name = "description" maxlength="1000"></textarea>
-              <div id ="charNum"></div>
+              <div class ="text-right p-1">
+                  <span id="charNum">0</span>
+                  <span>/</span>
+                  <span id="maxLength">1000</span>
+              </div>
               <br/>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -44,4 +48,5 @@
  </div>
 </div>
 <?php require_once '../components/footer.php'; ?>
+<script src="../js/userform.js"></script>
 <?php require_once '../components/scripts.php'; ?>
