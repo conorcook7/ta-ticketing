@@ -216,7 +216,7 @@
 					<td class="center"><?php echo htmlentities($ta['first_name']) . " " . htmlentities($ta['last_name']); ?></td>
 					<td class="center"><?php echo htmlentities($ta['email']); ?></td>
           <td class="center"><?php echo $startTime->format("g:i A") . " - " . $endTime->format("g:i A"); ?></td>
-				<tr>
+				</tr>
 			<?php } ?>
 		  </tbody>
 		</table>
