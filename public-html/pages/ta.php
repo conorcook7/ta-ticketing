@@ -1,6 +1,4 @@
 <?php
-
-// Settings for the navbar
 $nav = 'ta';
 $page = 'ta.php';
 require_once '../components/header.php';
@@ -89,7 +87,7 @@ require_once '../components/header.php';
 
         <!-- Footer -->
         <?php include_once '../components/footer.php' ?>
-        <!-- End of Footer -->
+        
       </div>
       <!-- End of Main Content -->
 
@@ -104,5 +102,4 @@ require_once '../components/header.php';
   require_once '../components/logout-modal.php';
   require_once '../components/scripts.php' 
 ?>
-<!-- End of Scripts -->
 
