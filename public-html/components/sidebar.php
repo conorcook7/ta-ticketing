@@ -39,7 +39,7 @@
     <hr class="sidebar-divider" />
 
     <!-- Heading -->
-    <div class="sidebar-heading">
+    <div class="sidebar-heading LetterSpacing">
         <?php echo strtoupper($_SESSION["user"]["permission"]); ?>
     </div>
 
