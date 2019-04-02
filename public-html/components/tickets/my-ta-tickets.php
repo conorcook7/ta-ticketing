@@ -41,7 +41,8 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                         <td class="center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
-                                More Info
+                              <i class="fas fa-share pr-2"></i>
+                                Click Here
                             </button>
 
                             <!-- Modal -->
