@@ -17,17 +17,17 @@ require_once '../components/header.php';
   //   if(isset($_GET['page'])){
   //     $_SESSION['ta-selection'] = $_GET['page'];
   //     $selection = $_SESSION['ta-selection'];
-  //       if ($selection == 'DEFAULT' || $selection == 'users'){
-  //           $page = 'users-table.php';
+  //       if ($selection == 'DEFAULT' || $selection == 'ta'){
+  //           $page = 'ta.php';
   //       } else if ($selection == 'my-tickets'){
   //           $page = 'my-ta-tickets.php';
-  //       } else if ($selection == 'tickets'){
+  //       } else if ($selection == 'all-tickets'){
   //           $page = 'tickets-table.php';
   //       } else if ($selection == 'open-tickets'){
   //         $page = 'open-tickets-table.php';
   //       } else if ($selection == 'closed-tickets'){
   //         $page = 'closed-tickets-table.php';
-  //       } else if ($selection == 'classes'){
+  //       } else if ($selection == 'create-ticket'){
   //         $page = 'classes.php';
   //       } else if ($selection == 'users-form'){
   //         $page = 'update-users.php';
@@ -64,6 +64,37 @@ require_once '../components/header.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+        <!-- NEW PAGE CONTENT -->
+        <?php
+        // $selection = $_SESSION['admin-selection'];
+        // if ($selection == 'UNNAUTHORIZED'){ ?>
+        <!-- //   <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
+        //     <div class="error mx-auto" data-text="403">403</div>
+        //     <p class="lead text-gray-800 mb-5">Permission Denied</p>
+        //     <a href="<?php //echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
+        //   </div> -->
+         <?php
+        // } elseif ($selection == 'DEFAULT' || $selection == 'users'){
+        //   include_once '../components/users/users-table.php';
+        // } elseif ($selection == 'online-users'){
+        //   include_once '../components/users/online-users-table.php';
+        // } elseif ($selection == 'tickets'){
+        //   include_once '../components/tickets/tickets-table.php';
+        // } elseif ($selection == 'open-tickets'){
+        //   include_once '../components/tickets/open-tickets-table.php';
+        // } elseif ($selection == 'closed-tickets'){
+        //   include_once '../components/tickets/closed-tickets-table.php';
+        // } elseif ($selection == 'classes'){
+        //   include_once '../components/users/classes.php';
+        // } elseif ($selection == 'users-form'){
+        //   include_once '../components/users/update-users.php';
+        // } elseif ($selection == 'faq'){
+        //   include_once '../components/users/faq.php';
+        // }
+        ?>
+        <!-- END NEW CONTENT -->
+
+        
           <!-- MY Open Tickets Table -->
           <?php include_once '../components/tickets/my-ta-tickets.php' ?>
           <!-- End of MY open tickets -->
