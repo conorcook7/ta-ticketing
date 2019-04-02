@@ -38,7 +38,8 @@
                         <td class="center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
-                                Click for Info
+                             <i class="fas fa-share"></i>
+                                Click Here
                             </button>
 
                             <!-- Modal -->
