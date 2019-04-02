@@ -28,7 +28,7 @@
                        <form method="POST" action="../handlers/ta-handler.php"> 
                         <input type='hidden' name='closed_ticket_id' value="<?php echo $closedTickets[$index]['closed_ticket_id'];?>"/>
                         <input type='hidden' name='opener_id' value="<?php echo $closedTickets[$index]['ta_user_id'];?>"/>
-                        <td class="center"><?php echo $closedTickets[$index]['student_first_name'], " ", $closedTickets[$index]['student_first_name']?></td>
+                        <td class="center"><?php echo $closedTickets[$index]['student_first_name'], " ", $closedTickets[$index]['student_last_name']?></td>
                         <td class="center"><?php echo $closedTickets[$index]['ta_first_name'], " ", $closedTickets[$index]['ta_last_name']?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['course_name'])?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['update_date'])?></td>
