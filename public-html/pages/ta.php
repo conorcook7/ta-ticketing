@@ -28,11 +28,7 @@ require_once '../components/header.php';
   //       } else if ($selection == 'closed-tickets'){
   //         $page = 'closed-tickets-table.php';
   //       } else if ($selection == 'create-ticket'){
-  //         $page = 'classes.php';
-  //       } else if ($selection == 'users-form'){
-  //         $page = 'update-users.php';
-  //       } else if ($selection == 'faq'){
-  //         $page = 'faq.php';
+  //         $page = 'userform.php';
   //       }
   //   } else {
   //     $_SESSION['ta-selection'] = 'DEFAULT';
@@ -66,7 +62,7 @@ require_once '../components/header.php';
 
         <!-- NEW PAGE CONTENT -->
         <?php
-        // $selection = $_SESSION['admin-selection'];
+        // $selection = $_SESSION['ta-selection'];
         // if ($selection == 'UNNAUTHORIZED'){ ?>
         <!-- //   <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
         //     <div class="error mx-auto" data-text="403">403</div>
@@ -74,27 +70,25 @@ require_once '../components/header.php';
         //     <a href="<?php //echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
         //   </div> -->
          <?php
-        // } elseif ($selection == 'DEFAULT' || $selection == 'users'){
-        //   include_once '../components/users/users-table.php';
-        // } elseif ($selection == 'online-users'){
-        //   include_once '../components/users/online-users-table.php';
-        // } elseif ($selection == 'tickets'){
+        // } elseif ($selection == 'DEFAULT' || $selection == 'ta'){
+        //   include_once '../components/tickets/my-ta-tickets.php';
+        //   include_once '../components/tickets/open-tickets-table.php';
+        //   include_once '../components/tickets/closed-tickets-table.php';
+        // } elseif ($selection == 'my-tickets'){
+        //   include_once '../components/tickets/my-ta-tickets.php';
+        // } elseif ($selection == 'all-tickets'){
         //   include_once '../components/tickets/tickets-table.php';
         // } elseif ($selection == 'open-tickets'){
         //   include_once '../components/tickets/open-tickets-table.php';
         // } elseif ($selection == 'closed-tickets'){
         //   include_once '../components/tickets/closed-tickets-table.php';
-        // } elseif ($selection == 'classes'){
-        //   include_once '../components/users/classes.php';
-        // } elseif ($selection == 'users-form'){
-        //   include_once '../components/users/update-users.php';
-        // } elseif ($selection == 'faq'){
-        //   include_once '../components/users/faq.php';
+        // } elseif ($selection == 'create-ticket'){
+        //   include_once '../pages/userform.php';
         // }
         ?>
         <!-- END NEW CONTENT -->
 
-        
+
           <!-- MY Open Tickets Table -->
           <?php include_once '../components/tickets/my-ta-tickets.php' ?>
           <!-- End of MY open tickets -->
@@ -109,6 +103,7 @@ require_once '../components/header.php';
 
         </div>
         <!-- End of container-fluid -->
+
         <!-- Footer -->
         <?php include_once '../components/footer.php' ?>
         <!-- End of Footer -->
