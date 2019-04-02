@@ -3,8 +3,8 @@
 // Settings for the navbar
 $nav = 'ta';
 $page = 'ta.php';
-
-require_once '../components/dao.php';
+require_once '../components/header.php';
+// require_once '../components/dao.php';
   try{
       $dao = new Dao();
       $users = $dao->getUsers();
@@ -13,7 +13,7 @@ require_once '../components/dao.php';
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
     exit(0);
   }
-require_once '../components/header.php';
+
 ?>
 
   <!-- Page Wrapper -->
