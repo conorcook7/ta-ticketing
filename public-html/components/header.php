@@ -29,6 +29,7 @@
   <meta name="author" content="">
 
   <title>TA-Ticketing - Dashboard</title>
+  <link rel="icon" href="img/bsu_logo.png" type="image/gif" sizes="16x16">
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo generateUrl('/vendor/fontawesome-free/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
