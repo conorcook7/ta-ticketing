@@ -4,7 +4,6 @@
 $nav = 'ta';
 $page = 'ta.php';
 require_once '../components/header.php';
-// require_once '../components/dao.php';
   try{
       $dao = new Dao();
       $users = $dao->getUsers();
@@ -86,21 +85,6 @@ require_once '../components/header.php';
           include_once '../pages/userform.php';
         }
         ?>
-        <!-- END NEW CONTENT -->
-
-
-          <!-- MY Open Tickets Table -->
-          <?php //include_once '../components/tickets/my-ta-tickets.php' ?>
-          <!-- End of MY open tickets -->
-
-          <!-- All Open Tickets Table -->
-          <?php //include_once '../components/tickets/open-tickets-table.php' ?>
-          <!-- End of All open tickets -->
-
-          <!-- All Closed Tickets Table -->
-          <?php //include_once '../components/tickets/closed-tickets-table.php' ?>
-          <!-- End of Closed tickets. -->
-
         </div>
         <!-- End of container-fluid -->
 
