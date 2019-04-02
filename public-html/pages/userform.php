@@ -45,8 +45,10 @@
         </div>
       </div>
     </div>
- </div>
+    <!-- Footer -->
+    <?php include_once '../components/footer.php' ?>
+    <!-- End of Footer -->
 </div>
-<?php require_once '../components/footer.php'; ?>
+ </div>
 <script src="../js/userform.js"></script>
 <?php require_once '../components/scripts.php'; ?>

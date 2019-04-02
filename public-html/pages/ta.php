@@ -52,13 +52,11 @@ require_once '../components/header.php';
 
         </div>
         <!-- End of container-fluid -->
-
+        <!-- Footer -->
+        <?php include_once '../components/footer.php' ?>
+        <!-- End of Footer -->
       </div>
       <!-- End of Main Content -->
-
-     <!-- Footer -->
-     <?php include_once '../components/footer.php' ?>
-     <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
