@@ -59,7 +59,6 @@ require_once '../components/header.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-        <!-- NEW PAGE CONTENT -->
         <?php
         $selection = $_SESSION['ta-selection'];
         if ($selection == 'UNNAUTHORIZED'){ ?>
@@ -86,7 +85,7 @@ require_once '../components/header.php';
         }
         ?>
         </div>
-        <!-- End of container-fluid -->
+        <!-- End Page Content -->
 
         <!-- Footer -->
         <?php include_once '../components/footer.php' ?>
