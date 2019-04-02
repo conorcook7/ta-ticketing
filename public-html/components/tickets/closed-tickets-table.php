@@ -59,6 +59,7 @@
                             </td>
                           <th class="center">
                             <button type="submit" class="btn btn-block bg-success text-gray-100">
+                             <i class="fas fa-redo fa-xl text-white pr-2"></i>
                                 Reopen Ticket
                             </button>
                            </th>
