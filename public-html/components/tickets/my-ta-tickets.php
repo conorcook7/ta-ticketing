@@ -91,7 +91,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                   <div class="modal-body">
                                     <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
                                             onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
-                                            
+                                             
                                    </div>
                                    <div class="modal-footer">
                                       <div class="mr-auto">
