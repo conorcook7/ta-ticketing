@@ -3,8 +3,8 @@
     require_once "../components/server-functions.php";
     require_once "../components/header.php";
 
-    $page = "403.php";
-    $nav = "403";
+    $page = "500.php";
+    $nav = "500";
 ?>
 
 <!-- Page Wrapper -->
@@ -15,14 +15,11 @@
 
         <?php require_once "../components/topbar.php"; ?>
 
-        <!-- 403 Error Text -->
+        <!-- 404 Error Text -->
         <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
-            <div class="error mx-auto" data-text="403">403</div>
-            <p class="lead text-gray-800 mb-5">Permission Denied</p>
-            <p class="text-gray-800">
-            If you are supposed to be here, try contacting
-            <a href="mailto: BenjaminPeterson@boisestate.edu">Benjamin Peterson</a>.
-            </p>
+            <div class="error mx-auto" data-text="500">500</div>
+            <p class="lead text-gray-800 mb-5">Internal Server Error</p>
+            <p class="text-gray-800">Sorry! We are currently working on things!</p>
             <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
         </div>
 
