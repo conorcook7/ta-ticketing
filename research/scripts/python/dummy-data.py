@@ -1,3 +1,4 @@
+#!/bin/python
 """Creates dummy data for TA Ticketing project."""
 
 import datetime
@@ -252,6 +253,7 @@ if __name__ == '__main__':
                 random.randint(len(contents) // 2 + 1, len(contents) - 1)
             ]
         )
+        description = description[0: 500]
         node_number = random.randint(1, 500)
         room_number = random.randint(1, 900)
 
@@ -286,12 +288,14 @@ if __name__ == '__main__':
                 random.randint(len(contents) // 2 + 1, len(contents) - 1)
             ]
         )
+        description = description[0: 500]
         closing_description = 'CLOSED FOR:' + ' '.join(
             contents[
                 random.randint(0, len(contents) // 2):
                 random.randint(len(contents) // 2 + 1, len(contents) - 1)
             ]
         )
+        closing_description = closing_description[0: 500]
         node_number = random.randint(1, 500)
         room_number = random.randint(1, 900)
 
