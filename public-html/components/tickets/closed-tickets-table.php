@@ -10,7 +10,7 @@
               <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Student Name</th>
+                      <th class="center">Student Name</th>
                       <th class="center">Teaching Assistant</th>
                       <th class="center nodeInfo">Course</th>
                       <!-- <th class="center courseInfo">Date Solved</th> -->
