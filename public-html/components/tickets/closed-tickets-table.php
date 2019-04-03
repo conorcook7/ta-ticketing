@@ -22,6 +22,7 @@
                   <tbody>
                   <?php 
                     $closedTickets = $dao->getClosedTickets();
+                    print_r($closedTickets['0']);
                     $max3 = sizeof($closedTickets);
                     for ($index = 0; $index <= $max3; $index++) {
                    ?>
