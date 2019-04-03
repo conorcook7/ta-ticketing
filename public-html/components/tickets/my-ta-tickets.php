@@ -83,14 +83,12 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                  <div class="modal-header">
-                                  <!-- <h5 class="modal-title">Please Confirm</h5> -->
                                   <h5 class="modal-title">Are you sure you want to close this ticket?</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                  </div>
                                   <div class="modal-body">
-                                    <!-- <p>Are you sure you want to close this ticket?</p> -->
                                     <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
                                             onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
                                             
