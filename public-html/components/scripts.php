@@ -25,6 +25,7 @@
 
   <!-- Page level plugins -->
   <script src="<?php echo generateUrl('/vendor/chart.js/Chart.min.js');?>"></script>
+  <script src="<?php echo generateUrl('/js/limit-inputs.js');?>"></script>
 
   <!-- Page level custom scripts -->
 
