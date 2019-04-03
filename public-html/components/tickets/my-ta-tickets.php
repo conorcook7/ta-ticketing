@@ -110,3 +110,4 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
             </div>
           </div>
         </div>
+</div>
