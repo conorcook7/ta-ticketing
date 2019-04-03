@@ -16,7 +16,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid p-4">
 
-                <div class="row mb-2">
+                <div class="row mb-2 border-bottom">
                     <div class="h2 text-gray-800">How-To</div>
                 </div>
             
@@ -27,7 +27,7 @@
                 ?>
                         <div class="row">
                             <div class="col-xs-12 ">
-                                <nav>
+                                <nav class="mb-4">
                                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                         <a
                                             class="nav-item nav-link active"
@@ -66,7 +66,7 @@
                 <?php  } else if ($permission == "TA") { ?>
                         <div class="row">
                             <div class="col-xs-12 ">
-                                <nav>
+                                <nav class="mb-4">
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         <a
                                             class="nav-item nav-link active"
