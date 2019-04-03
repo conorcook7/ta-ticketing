@@ -153,12 +153,6 @@ if __name__ == '__main__':
         DROP DATABASE IF EXISTS Dummy_TA_Ticketing;
         CREATE DATABASE Dummy_TA_Ticketing;
         USE Dummy_TA_Ticketing;
-
-        DROP USER IF EXISTS 'ta-ticketing'@'localhost';
-        CREATE USER 'ta-ticketing'@'localhost' IDENTIFIED WITH
-        mysql_native_password BY '34$5iu98&7o7%76d4Ss35';
-        GRANT ALL PRIVILEGES ON Dummy_TA_Ticketing.* TO
-        'ta-ticketing'@'localhost' WITH GRANT OPTION;
         """
     )
 
@@ -173,10 +167,10 @@ if __name__ == '__main__':
     sql_script.write('\n')
 
     # Insert permissions
-    sql_script.write(insert_permission('USER'))
-    sql_script.write(insert_permission('TA'))
-    sql_script.write(insert_permission('ADMIN'))
-    sql_script.write('\n')
+    # sql_script.write(insert_permission('USER'))
+    # sql_script.write(insert_permission('TA'))
+    # sql_script.write(insert_permission('ADMIN'))
+    # sql_script.write('\n')
 
     # Insert courses
     courses = []
@@ -358,6 +352,17 @@ if __name__ == '__main__':
         ),
         admin_id=admins[0]
     ))
+
+    # Create the dummy user
+    sql_script.write(
+        """
+        DROP USER IF EXISTS 'ta-ticketing'@'localhost';
+        CREATE USER 'ta-ticketing'@'localhost' IDENTIFIED WITH
+        mysql_native_password BY '34$5iu98&7o7%76d4Ss35';
+        GRANT ALL PRIVILEGES ON Dummy_TA_Ticketing.* TO
+        'ta-ticketing'@'localhost' WITH GRANT OPTION;
+        """
+    )
 
     # Close the script file
     sql_script.close()
