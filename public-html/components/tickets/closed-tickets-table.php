@@ -61,7 +61,7 @@
                             </td>
                           <td class="center">
                             <!-- Button trigger modal for closing descriptions -->
-                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#closed-description">
+                            <button type="button" class="btn btn-block bg-info text-gray-100" data-toggle="modal" data-target="#closed-description">
                              <i class="fas fa-share pr-2"></i>
                                 Click Here
                             </button>
