@@ -23,6 +23,7 @@ trait DaoTicketsClosed {
                     CT.room_number,
                     CT.create_date,
                     CT.update_date,
+                    CT.closing_description,
 
                     AC.available_course_id,
                     AC.course_name,
