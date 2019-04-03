@@ -74,12 +74,12 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                              </div>
                             </td>
                           <th class="center">
-                            <button type="button" class="btn btn-block bg-danger text-gray-100" data-toggle="modal" data-target="#confirmModalMyTicket">
+                            <button type="button" class="btn btn-block bg-danger text-gray-100" data-toggle="modal" data-target=".confirmModalMyTicket">
                               <i class="fas fa-times text-white pr-2"></i>  
                                 Close Ticket
                             </button>
                             <!-- Confirmation Modal -->
-                            <div class="modal fade" id="confirmModalMyTicket" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade confirmModalMyTicket" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                  <div class="modal-header">
@@ -91,7 +91,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                  </div>
                                   <div class="modal-body">
                                     <!-- <p>Are you sure you want to close this ticket?</p> -->
-                                    <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control" id="exampleFormControlTextarea1" rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                                    <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
                                             onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
                                             
                                    </div>
