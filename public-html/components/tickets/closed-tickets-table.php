@@ -1,4 +1,5 @@
-<?php $page = "closed-tickets-table.php"; ?>
+<?php $page = "closed-tickets-table.php";
+$closedTickets = $dao->getClosedTickets(); ?>
 <div class="container-fluid">
           <!-- All Closed Tickets Table -->
           <div class="card shadow mb-4">
@@ -21,7 +22,7 @@
                   </thead>
                   <tbody>
                   <?php 
-                    $closedTickets = $dao->getClosedTickets();
+                    
                     $max3 = sizeof($closedTickets);
                     for ($index = 0; $index <= $max3; $index++) {
                    ?>
