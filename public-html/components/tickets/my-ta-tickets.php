@@ -87,8 +87,8 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                             
                                    </div>
                                    <div class="modal-footer">
-                                      <div class="ml-auto p-2">
-                                        <span>(Maximum characters: 100)</span>
+                                      <div class="ml-auto">
+                                        <span>(Maximum characters: 100)</span><br>
                                         <span>You have <input readonly type="text" name="countdown" size="3" value="100"> characters left.</span>
                                        </div>
                                    <button type="submit" class="btn btn-success">Confirm</button>
