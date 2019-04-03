@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     closer_user_id BIGINT UNSIGNED NOT NULL,
     description TEXT,
     closing_description TEXT,
-    node_number VARCHAR(256) INTEGER NOT NULL,
+    node_number VARCHAR(256) NOT NULL,
     room_number INTEGER,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
