@@ -5,8 +5,11 @@
     $name = $_POST["courseName"];
     $number = $_POST["courseNumber"];
     $description = $_POST["courseDescription"];
-    $dao->createCourse($name, $number, $description);
-    $_SESSION["success"] = "Added the Class: " . name;
+    if($dao->createCourse($name, $number, $description) == TRUE){
+        $_SESSION["success"] = "Added the Class: " . $name;
+    } else {
+        $_SESSION["failure"] = "Failed to add the Class: " . $name;
+    }
     header("Location: ../pages/admin.php?id=classes");
     exit;
 ?>

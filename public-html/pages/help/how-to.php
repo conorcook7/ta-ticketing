@@ -11,12 +11,12 @@
 
         <?php include_once '../../components/topbar.php'; ?>
         <!-- Main Content -->
-        <div id="content" class="p-2">
+        <div id="content" class="px-2">
 
             <!-- Begin Page Content -->
             <div class="container-fluid p-4">
 
-                <div class="row">
+                <div class="row mb-2">
                     <div class="h2 text-gray-800">How-To</div>
                 </div>
             

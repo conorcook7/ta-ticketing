@@ -28,14 +28,15 @@
                        <form method="POST" action="../handlers/ta-handler.php"> 
                         <input type='hidden' name='closed_ticket_id' value="<?php echo $closedTickets[$index]['closed_ticket_id'];?>"/>
                         <input type='hidden' name='opener_id' value="<?php echo $closedTickets[$index]['ta_user_id'];?>"/>
-                        <td class="center"><?php echo $closedTickets[$index]['student_first_name'], " ", $closedTickets[$index]['student_first_name']?></td>
+                        <td class="center"><?php echo $closedTickets[$index]['student_first_name'], " ", $closedTickets[$index]['student_last_name']?></td>
                         <td class="center"><?php echo $closedTickets[$index]['ta_first_name'], " ", $closedTickets[$index]['ta_last_name']?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['course_name'])?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['update_date'])?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
-                                More Info
+                             <i class="fas fa-share pr-2"></i>
+                                Click Here
                             </button>
 
                             <!-- Modal -->
@@ -58,9 +59,30 @@
                              </div>
                             </td>
                           <th class="center">
-                            <button type="submit" class="btn btn-block bg-success text-gray-100">
+                            <button type="button" class="btn btn-block bg-success text-gray-100" data-toggle="modal" data-target="#confirmModalReOpen">
+                             <i class="fas fa-redo text-white pr-2"></i>
                                 Reopen Ticket
                             </button>
+                            <!-- Confirmation Modal -->
+                            <div class="modal fade" id="confirmModalReOpen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                 <div class="modal-header">
+                                  <h5 class="modal-title">Please Confirm</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                  <div class="modal-body">
+                                    <p>Are you sure you want to reopen this ticket?</p>
+                                   </div>
+                                   <div class="modal-footer">
+                                   <button type="submit" class="btn btn-success">Confirm</button>
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                   </div>
+                                  </div>
+                                </div>
+                              </div>
                            </th>
                         </form> 
                        </tr>

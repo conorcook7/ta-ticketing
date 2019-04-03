@@ -17,7 +17,7 @@
 
         <?php require_once "../components/topbar.php"; ?>
 
-        <!-- 404 Error Text -->
+        <!-- 403 Error Text -->
         <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
             <div class="error mx-auto" data-text="403">403</div>
             <p class="lead text-gray-800 mb-5">Permission Denied</p>

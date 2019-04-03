@@ -148,6 +148,38 @@ trait DaoTa {
         }
     }
 
+    public function getMyCourseID($ta_user_id) {
+        try {
+            $conn = $this->getConnection();
+            $query = "SELECT
+                        AC.available_course_id
+                    FROM
+                        Available_Courses AC
+                    JOIN
+                        Teaching_Assistants TA ON TA.available_course_id=AC.available_course_id
+                    WHERE
+                        TA.user_id = :ta_id_input";
+            if ($limit == NULL) {
+                $query = $conn->prepare($query);
+            } else {
+                $query .= " LIMIT :limit;";
+                $query = $conn->prepare($query);
+                $query->bindParam(":limit", $limit, PDO::PARAM_INT);
+            }
+            $query->bindParam(":ta_id_input", $ta_user_id);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): Query completed");
+            $myID = $query->fetchAll();
+            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all data completed");
+            return $myID;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to get my open tickets");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
     /**
      * Get all of the teaching assistants online right now.
      * 

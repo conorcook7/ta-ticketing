@@ -29,8 +29,11 @@
         <div class="container-fluid p-4">
 
           <!-- Available Courses heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Available Courses</h1>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4 border-bottom">
+              <span class="h3 mb-0 text-gray-800">Available Courses</span>
+              <div class="text-right my-1">
+                  <input id="ac-search" class="form-control text-gray-800" type="textarea" style="background: inherit" placeholder="Search..." maxlength=1024/>
+            </div>
           </div>
 
           <!-- Available Courses -->
@@ -39,7 +42,7 @@
             $courses = $dao->getAvailableCourses(10);
             foreach ($courses as $course) {
           ?>
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 ac">
               <div class="card-header py-3">
                 <h1 class="h5 m-0 font-weight-bold text-primary"><?php echo strtoupper($course["course_name"]); ?></h1>
               </div>

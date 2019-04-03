@@ -3,21 +3,6 @@
   require_once '../components/dao.php';
   $dao = new Dao();
 ?>
-<script>
-var textarea = document.querySelector("textarea");
-
-textarea.addEventListener("input", function(){
-    var maxlength = this.getAttribute("maxlength");
-    var currentLength = this.value.length;
-
-    if( currentLength >= maxlength ){
-        $('#charNum').text(' you have reached the limit');
-    }else{
-      var char = maxlength - currentLength;
-      $('#charNum').text(char + ' characters left');
-    }
-});
-</script>
  <div id="wrapper">
   <!-- Start of Sidebar -->
   <?php include_once '../components/sidebar.php'; ?>
@@ -46,9 +31,13 @@ textarea.addEventListener("input", function(){
             </select>
             </div>
             <div class = "card-body">
-              <label for="exampleFormControlTextarea1">Problem Description</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "description" maxlength="1000"></textarea>
-              <div id ="charNum"></div>
+              <label for="problem_description">Problem Description</label>
+              <textarea class="form-control" id="problem_description" rows="3" name = "description" maxlength="1000"></textarea>
+              <div class ="text-right p-1">
+                  <span id="charNum">0</span>
+                  <span>/</span>
+                  <span id="maxLength">1000</span>
+              </div>
               <br/>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -56,7 +45,10 @@ textarea.addEventListener("input", function(){
         </div>
       </div>
     </div>
- </div>
+    <!-- Footer -->
+    <?php include_once '../components/footer.php' ?>
+    <!-- End of Footer -->
 </div>
-<?php require_once '../components/footer.php'; ?>
+ </div>
+<script src="../js/userform.js"></script>
 <?php require_once '../components/scripts.php'; ?>
