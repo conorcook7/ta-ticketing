@@ -14,7 +14,8 @@
                       <th class="center">Teaching Assistant</th>
                       <th class="center nodeInfo">Course</th>
                       <th class="center courseInfo">Date Solved</th>
-                      <th class="center description">Description</th>
+                      <th class="center description">Ticket Description</th>
+                      <th class="center description">Closing Remarks</th>
                       <th class="center action">Status</th>
                     </tr>
                   </thead>
@@ -33,14 +34,14 @@
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['course_name'])?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['update_date'])?></td>
                         <td class="center">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
+                            <!-- Button trigger modal for ticket descriptions-->
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description">
                              <i class="fas fa-share pr-2"></i>
                                 Click Here
                             </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <!-- Modal for ticket descriptions-->
+                            <div class="modal fade" id="ticket-description" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -58,6 +59,32 @@
                                  </div>
                              </div>
                             </td>
+                          <td class="center">
+                            <!-- Button trigger modal for closing descriptions -->
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#closed-description">
+                             <i class="fas fa-share pr-2"></i>
+                                Click Here
+                            </button>
+
+                            <!-- Modal for closing descriptions-->
+                            <div class="modal fade" id="closed-description" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLongTitle">Why this ticket was closed...</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                         </button>
+                                         </div>
+                                        <div class="modal-body"><?php //echo $closedTickets[$index]['description']?>
+                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                           </td>
                           <th class="center">
                             <button type="button" class="btn btn-block bg-success text-gray-100" data-toggle="modal" data-target="#confirmModalReOpen">
                              <i class="fas fa-redo text-white pr-2"></i>
