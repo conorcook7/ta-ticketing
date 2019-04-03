@@ -31,7 +31,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                         $queue1++;
                    ?>
                       <tr>
-                      <form method="POST" action="../handlers/ta-handler.php"> 
+                       <form method="POST" action="../handlers/ta-handler.php"> 
                         <input type='hidden' name='my_open_ticket_id_input' value="<?php echo $myTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='my_closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue1?></td>
@@ -89,15 +89,15 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                         <span>(Maximum characters: 500)</span><br>
                                         <span>You have <input readonly type="text" name="countdown" size="3" value="500"> characters left.</span>
                                        </div>
-                                   <button type="submit" class="btn btn-success">Confirm</button>
-                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Confirm</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                    </div>
                                   </div>
                                 </div>
                               </div>
                            </th>
                           </form> 
-                        </tr>
+                       </tr>
                     <?php
                     }
                     if($index == 500){
