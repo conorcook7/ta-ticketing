@@ -13,7 +13,7 @@
                       <th>Student Name</th>
                       <th class="center">Teaching Assistant</th>
                       <th class="center nodeInfo">Course</th>
-                      <th class="center courseInfo">Date Solved</th>
+                      <!-- <th class="center courseInfo">Date Solved</th> -->
                       <th class="center description">Ticket Description</th>
                       <th class="center description">Closing Remarks</th>
                       <th class="center action">Status</th>
@@ -32,7 +32,7 @@
                         <td class="center"><?php echo $closedTickets[$index]['student_first_name'], " ", $closedTickets[$index]['student_last_name']?></td>
                         <td class="center"><?php echo $closedTickets[$index]['ta_first_name'], " ", $closedTickets[$index]['ta_last_name']?></td>
                         <td class="center"><?php echo strtoupper($closedTickets[$index]['course_name'])?></td>
-                        <td class="center"><?php echo strtoupper($closedTickets[$index]['update_date'])?></td>
+                        <!-- <td class="center"><?php //echo strtoupper($closedTickets[$index]['update_date'])?></td> -->
                         <td class="center">
                             <!-- Button trigger modal for ticket descriptions-->
                             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description">
