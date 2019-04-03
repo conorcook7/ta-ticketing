@@ -19,16 +19,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <?php 
+                    <?php 
                     $allOpenTickets = $dao->getOpenTickets();
                     $max = sizeof($allOpenTickets);
                     $queue = 0;
                     for ($index = 0; $index <= $max; $index++) {
                       if($allOpenTickets[$index]['online'] == 1){
                         $queue++;
-                   ?>
+                    ?>
                       <tr>
-                      <form method="POST" action="../handlers/ta-handler.php">
+                       <form method="POST" action="../handlers/ta-handler.php">
                         <input type='hidden' name='open_ticket_id_input' value="<?php echo $allOpenTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue?></td>
@@ -61,7 +61,7 @@
                                      </div>
                                  </div>
                              </div>
-                            </td>
+                           </td>
                           <th class="center">
                             <button type="button" class="btn btn-block bg-danger text-gray-100" data-toggle="modal" data-target="#confirmModalAllTicket<?php echo $index?>">
                               <i class="fas fa-times text-white pr-2"></i>  
@@ -72,13 +72,13 @@
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                  <div class="modal-header">
-                                 <h5 class="modal-title">Are you sure you want to close this ticket?</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <h5 class="modal-title">Are you sure you want to close this ticket?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                  </div>
                                   <div class="modal-body">
-                                  <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                                      <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
                                             onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
                                      
                                    </div>
@@ -87,15 +87,15 @@
                                         <span>(Maximum characters: 500)</span><br>
                                         <span>You have <input readonly type="text" name="countdown" size="3" value="500"> characters left.</span>
                                        </div>
-                                   <button type="submit" class="btn btn-success">Confirm</button>
-                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                      <button type="submit" class="btn btn-success">Confirm</button>
+                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                    </div>
                                   </div>
                                 </div>
                               </div>
                            </th>
-                          </form> 
-                        </tr>
+                        </form> 
+                       </tr>
                     <?php
                     }
                     if($index == 500){
