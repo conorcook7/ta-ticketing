@@ -1,13 +1,4 @@
 <?php $page = "open-tickets-table.php"; ?>
-<!-- <script>
- function limitText(limitField, limitCount, limitNum) {
-	if (limitField.value.length > limitNum) {
-		limitField.value = limitField.value.substring(0, limitNum);
-	} else {
-		limitCount.value = limitNum - limitField.value.length;
-	}
-}
- </script> -->
 <div class="container-fluid">
         <!-- All Open Tickets Table -->
         <div class="card shadow mb-4">
@@ -37,7 +28,7 @@
                         $queue++;
                    ?>
                       <tr>
-                      <form method="POST" action="../handlers/ta-handler.php"> <!-- need to add linking -->
+                      <form method="POST" action="../handlers/ta-handler.php">
                         <input type='hidden' name='open_ticket_id_input' value="<?php echo $allOpenTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue?></td>
