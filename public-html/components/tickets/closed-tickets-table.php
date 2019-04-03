@@ -1,10 +1,9 @@
-<?php $page = "closed-tickets-table.php";
-$closedTickets = $dao->getClosedTickets(); ?>
+<?php $page = "closed-tickets-table.php";?>
 <div class="container-fluid">
           <!-- All Closed Tickets Table -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Closed Tickets <?php print_r($closedTickets["0"]); ?></h6>
+              <h6 class="m-0 font-weight-bold text-primary">Closed Tickets</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -22,7 +21,7 @@ $closedTickets = $dao->getClosedTickets(); ?>
                   </thead>
                   <tbody>
                   <?php 
-                    
+                    $closedTickets = $dao->getClosedTickets();
                     $max3 = sizeof($closedTickets);
                     for ($index = 0; $index <= $max3; $index++) {
                    ?>
