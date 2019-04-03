@@ -38,5 +38,11 @@
      * @return $nodeNumber - The node number from the IP address hostname.
      */
     function getNodeNumber() {
-        return gethostbyaddr($_SERVER['REMOTE_ADDR']);
+        $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+        preg_match('/.*onyxnode(\d+)\.boisestate\.edu.*/', $hostname, $matches);
+        if (!empty($matches) && isset($matches[1])) {
+            return $matches[1];
+        } else {
+            return $hostname;
+        }
     }
