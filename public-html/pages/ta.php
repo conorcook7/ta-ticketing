@@ -68,7 +68,7 @@ require_once '../components/header.php';
          <?php
         } elseif ($selection == 'DEFAULT' || $selection == 'ta'){
           include_once '../components/tickets/my-ta-tickets.php';
-          include_once '../components/tickets/open-tickets-table.php';
+          // include_once '../components/tickets/open-tickets-table.php';
           include_once '../components/tickets/closed-tickets-table.php';
         } elseif ($selection == 'my-tickets'){
           include_once '../components/tickets/my-ta-tickets.php';

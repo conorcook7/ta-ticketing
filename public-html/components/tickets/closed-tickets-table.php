@@ -61,13 +61,13 @@
                             </td>
                           <td class="center">
                             <!-- Button trigger modal for closing descriptions -->
-                            <button type="button" class="btn btn-block bg-info text-gray-100" data-toggle="modal" data-target="#closed-description">
+                            <button type="button" class="btn btn-block bg-info text-gray-100" data-toggle="modal" data-target="#closed-description<?php echo $index?>">
                             <i class="fas fa-exclamation-circle pr-2"></i>
                                 Click Here
                             </button>
 
                             <!-- Modal for closing descriptions-->
-                            <div class="modal fade" id="closed-description" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="closed-description<?php echo $index?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -86,12 +86,12 @@
                              </div>
                            </td>
                           <th class="center">
-                            <button type="button" class="btn btn-block bg-success text-gray-100" data-toggle="modal" data-target="#confirmModalReOpen">
+                            <button type="button" class="btn btn-block bg-success text-gray-100" data-toggle="modal" data-target="#confirmModalReOpen<?php echo $index?>">
                              <i class="fas fa-redo text-white pr-2"></i>
                                 Reopen Ticket
                             </button>
                             <!-- Confirmation Modal -->
-                            <div class="modal fade" id="confirmModalReOpen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="confirmModalReOpen<?php echo $index?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                  <div class="modal-header">
