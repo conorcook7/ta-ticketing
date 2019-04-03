@@ -65,8 +65,9 @@
   <script src="<?php echo generateUrl('/vendor/datatables/jquery.dataTables.min.js');?>"></script>
   <script src="<?php echo generateUrl('/vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>
   <script src="<?php echo generateUrl('/js/demo/datatables-demo.js');?>"></script>
+  <script src="<?php echo generateUrl('/js/limit-inputs.js');?>"></script>
   <!-- I will move this script after done testing -->
-  <script>
+  <!-- <script>
     function limitText(limitField, limitCount, limitNum) {
 	if (limitField.value.length > limitNum) {
 		limitField.value = limitField.value.substring(0, limitNum);
@@ -74,7 +75,7 @@
 		limitCount.value = limitNum - limitField.value.length;
 	}
 }
- </script>
+ </script> -->
 </head>
 
 <body id="page-top">
