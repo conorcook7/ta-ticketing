@@ -1,5 +1,5 @@
 <?php $page = "open-tickets-table.php"; ?>
-<script>
+<!-- <script>
  function limitText(limitField, limitCount, limitNum) {
 	if (limitField.value.length > limitNum) {
 		limitField.value = limitField.value.substring(0, limitNum);
@@ -7,7 +7,7 @@
 		limitCount.value = limitNum - limitField.value.length;
 	}
 }
- </script>
+ </script> -->
 <div class="container-fluid">
         <!-- All Open Tickets Table -->
         <div class="card shadow mb-4">
