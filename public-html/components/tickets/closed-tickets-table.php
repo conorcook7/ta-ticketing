@@ -62,7 +62,7 @@
                           <td class="center">
                             <!-- Button trigger modal for closing descriptions -->
                             <button type="button" class="btn btn-block bg-info text-gray-100" data-toggle="modal" data-target="#closed-description">
-                            <i class="fas fa-comment-exclamation pr-2"></i>
+                            <i class="fas fa-exclamation-circle pr-2"></i>
                                 Click Here
                             </button>
 
