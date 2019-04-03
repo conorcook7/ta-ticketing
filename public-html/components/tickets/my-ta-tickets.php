@@ -3,6 +3,15 @@ $my_ta_id = $_SESSION[user][user_id];
 $my_course_id = $dao->getMyCourseID($my_ta_id);
 $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
  ?>
+ <script>
+ function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+ </script>
 <div class="container-fluid">  
         <!-- Start of My Tickets Table -->
         <div class="card shadow mb-4">
