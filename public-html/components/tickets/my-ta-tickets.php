@@ -83,13 +83,13 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                   <div class="modal-body">
                                     <!-- <p>Are you sure you want to close this ticket?</p> -->
                                     <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control" id="exampleFormControlTextarea1" rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,100);" 
-                                            onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,100);"></textarea>
+                                            onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,1000);"></textarea>
                                             
                                    </div>
                                    <div class="modal-footer">
                                       <div class="mr-auto">
-                                        <span>(Maximum characters: 100)</span><br>
-                                        <span>You have <input readonly type="text" name="countdown" size="3" value="100"> characters left.</span>
+                                        <span>(Maximum characters: 1000)</span><br>
+                                        <span>You have <input readonly type="text" name="countdown" size="3" value="1000"> characters left.</span>
                                        </div>
                                    <button type="submit" class="btn btn-success">Confirm</button>
                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
