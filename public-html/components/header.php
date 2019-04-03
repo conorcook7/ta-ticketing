@@ -65,7 +65,7 @@
   <script src="<?php echo generateUrl('/vendor/datatables/jquery.dataTables.min.js');?>"></script>
   <script src="<?php echo generateUrl('/vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>
   <script src="<?php echo generateUrl('/js/demo/datatables-demo.js');?>"></script>
-  <script src="<?php echo generateUrl('/js/limit-inputs.js');?>"></script>
+  <script src="<?php echo generateUrl('/js/limit-input.js');?>"></script>
   <!-- I will move this script after done testing -->
   <!-- <script>
     function limitText(limitField, limitCount, limitNum) {
