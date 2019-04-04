@@ -35,9 +35,9 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                         <input type='hidden' name='my_open_ticket_id_input' value="<?php echo $myTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='my_closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue1?></td>
-                        <td class="center"><?php echo $myTickets[$index]['first_name'], " ", $myTickets[$index]['last_name']?></td>
-                        <td class="center"><?php echo $myTickets[$index]['node_number']?></td>
-                        <td class="center"><?php echo strtoupper($myTickets[$index]['course_name'])?></td>
+                        <td class="center"><?php echo htmlspecialchars($myTickets[$index]['first_name']), " ", htmlspecialchars($myTickets[$index]['last_name']);?></td>
+                        <td class="center"><?php echo htmlspecialchars($myTickets[$index]['node_number']);?></td>
+                        <td class="center"><?php echo htmlspecialchars(strtoupper($myTickets[$index]['course_name']));?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#my-ta-tickets-modal<?php echo $index?>">
@@ -55,7 +55,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                             <span aria-hidden="true">&times;</span>
                                          </button>
                                          </div>
-                                        <div class="modal-body"><?php echo $myTickets[$index]['description']?>
+                                        <div class="modal-body"><?php echo htmlspecialchars($myTickets[$index]['description']);?>
                                          </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -80,7 +80,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                     </button>
                                  </div>
                                   <div class="modal-body">
-                                    <textarea placeholder="Please describe how you helped with this ticket..." form="my_ticket_form<?php echo $index?>" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                                    <textarea placeholder="Please describe how you helped with this ticket..." required form="my_ticket_form<?php echo $index?>" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
                                             onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
                                              
                                    </div>
