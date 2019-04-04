@@ -6,7 +6,7 @@
     $number = $_POST["courseNumber"];
     $description = $_POST["courseDescription"];
     if(isset($_POST["classID"])){
-        $id = $_POST["classID"]
+        $id = $_POST["classID"];
         if($dao->updateCourse($id, $name, $number, $description) == TRUE){
             $_SESSION["success"] = "Updated the Class: " . $name;
         } else {
