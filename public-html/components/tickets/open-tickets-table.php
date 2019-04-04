@@ -1,5 +1,5 @@
 <?php $page = "open-tickets-table.php"; 
-$my_ta_id = $_SESSION[user][user_id];?>
+$my_ta_id = $_SESSION["user"]["user_id"];?>
 <div class="container-fluid">
         <!-- All Open Tickets Table -->
         <div class="card shadow mb-4">

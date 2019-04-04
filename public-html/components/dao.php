@@ -64,8 +64,8 @@ class Dao {
             $this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get connection");
-            $this->logger->logFatal(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get connection");
+            $this->logger->logFatal(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -107,25 +107,25 @@ class Dao {
      */
     public function getAllTickets() {
         try {
-            $this->logger->logDebug(__FUNCTION__ . "(): Get all open tickets");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Get all open tickets");
             $openTickets = $this->getOpenTickets();
             $max = sizeof($openTickets);
             for ($index = 0; $index <= $max; $index++) {
                 $openTickets[$index]['status'] = 'Open';
                 $openTickets[$index]['id'] = $openTickets[$index]["open_ticket_id"];
             }
-            $this->logger->logDebug(__FUNCTION__ . "(): Get all closed tickets");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Get all closed tickets");
             $closedTickets = $this->getClosedTickets();
             $max = sizeof($closedTickets);
             for ($index = 0; $index <= $max; $index++) {
                 $closedTickets[$index]['status'] = 'Closed';
                 $closedTickets[$index]['id'] = $closedTickets[$index]["closed_ticket_id"];
             }
-            $this->logger->logDebug(__FUNCTION__ . "(): Attempting to merge open and closed tickets");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Attempting to merge open and closed tickets");
             return array_merge($openTickets, $closedTickets);
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get all tickets");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get all tickets");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
     }

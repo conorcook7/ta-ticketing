@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once "../components/dao.php";
-    require_once "../components/KLogger.php";
+    require_once "../components/server-functions.php";
 
     $dao = new Dao();
 
@@ -14,7 +14,7 @@
     unset($_POST);
     
     if (!$status) {
-        $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
+        $logger = getServerLogger();
         $logger->logError(__FILE__ . ": Unable to delete closed ticket {" . $_POST["closed_ticket_id"] . "}");
     }
 
