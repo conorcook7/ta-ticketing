@@ -31,7 +31,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                         $queue1++;
                    ?>
                       <tr>
-                       <form method="POST" action="../handlers/ta-handler.php"> 
+                       <form method="POST" action="../handlers/ta-handler.php" id="my_ticket_form<?php echo $index?>"> 
                         <input type='hidden' name='my_open_ticket_id_input' value="<?php echo $myTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='my_closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue1?></td>
