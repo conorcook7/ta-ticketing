@@ -31,10 +31,10 @@
     <div class="form-group">
         <label for="courseDescription">Course Description</label>
         <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" placeholder="Introduction to Java Programming"><?php
-        if(isset($_POST["answer"])){
-            echo htmlspecialchars($_POST["answer"]);
+        if(isset($_POST["courseDescription"])){
+            echo htmlspecialchars($_POST["courseDescription"]);
         }
-        ?><</textarea>
+        ?></textarea>
     </div>
         <button type="submit" class="btn btn-primary">Add/Update Course</button>
     </form>
