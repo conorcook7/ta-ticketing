@@ -20,25 +20,25 @@
                   </thead>
                   <tbody>
                   <?php 
-                    $allTickets = $dao->getAllTickets();
+                    $allTickets = $dao->getOpenTickets();
                     $max = sizeof($allTickets);
                     $queue = 0;
                     for ($index = 0; $index <= $max; $index++) {
                    ?>
                       <tr>
-                        <td class="center"><?php echo $allTickets[$index]['id']?></td>
+                        <td class="center"><?php echo $allTickets[$index]['open_ticket_id']?></td>
                         <td class="center"><?php echo $allTickets[$index]['first_name'], " ", $allTickets[$index]['last_name']?></td>
                         <td class="center"><?php echo $allTickets[$index]['node_number']?></td>
                         <td class="center"><?php echo strtoupper($allTickets[$index]['course_name'])?></td>
-                        <td class="center"><?php echo $allTickets[$index]['status']?></td>
+                        <td class="center">Open</td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block bg-gradient-primary text-gray-100" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-block bg-gradient-primary text-gray-100" data-toggle="modal" data-target="#ticket-modal<?php echo "O-" . $index;?>">
                                 More Info
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="ticket-modal<?php echo "O-" . $index;?>" tabindex="-1" role="dialog" aria-labelledby="ticket-modal<?php echo "O-" . $index;?>Title" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -57,7 +57,46 @@
                              </div>
                             </td>
                         </tr>
-                    <?php } ?>
+                  <?php } ?>
+                  <?php 
+                    $allTickets = $dao->getClosedTickets();
+                    $max = sizeof($allTickets);
+                    $queue = 0;
+                    for ($index = 0; $index <= $max; $index++) {
+                  ?>
+                      <tr>
+                        <td class="center"><?php echo $allTickets[$index]['closed_ticket_id']?></td>
+                        <td class="center"><?php echo $allTickets[$index]['student_first_name'], " ", $allTickets[$index]['student_last_name']?></td>
+                        <td class="center"><?php echo $allTickets[$index]['node_number']?></td>
+                        <td class="center"><?php echo strtoupper($allTickets[$index]['course_name'])?></td>
+                        <td class="center">Closed</td>
+                        <td class="center">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-block bg-gradient-primary text-gray-100" data-toggle="modal" data-target="#ticket-modal<?php echo "C-" . $index;?>">
+                                More Info
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="ticket-modal<?php echo "C-" . $index;?>" tabindex="-1" role="dialog" aria-labelledby="ticket-modal<?php echo "C-" . $index;?>Title" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                         </button>
+                                         </div>
+                                        <div class="modal-body"><?php echo $allTickets[$index]['description']?>
+                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                            </td>
+                        </tr>
+                  <?php } ?>
                   </tbody>
                 </table>
               </div>

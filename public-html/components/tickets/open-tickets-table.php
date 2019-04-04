@@ -38,13 +38,13 @@ $my_ta_id = $_SESSION[user][user_id];?>
                         <td class="center"><?php echo strtoupper($allOpenTickets[$index]['course_name'])?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description-all">
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description-all<?php echo $index?>">
                              <i class="fas fa-share pr-2"></i>
                                 Click Here
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="ticket-description-all" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="ticket-description-all<?php echo $index?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
