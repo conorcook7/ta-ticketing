@@ -13,6 +13,12 @@
         unset($_SESSION["success"]);
     ?>
     <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
+    <?php
+        if(isset($_POST["classID"])){?>
+        <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
+    <?php    
+        }
+    ?>
     <legend class="border-bottom mb-4">Create Class</legend>
     <div class="form-group">
         <label for="courseName">Course Name</label>
