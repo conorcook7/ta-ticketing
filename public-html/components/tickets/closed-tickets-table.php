@@ -35,13 +35,13 @@
                         <!-- <td class="center"><?php //echo strtoupper($closedTickets[$index]['update_date'])?></td> -->
                         <td class="center">
                             <!-- Button trigger modal for ticket descriptions-->
-                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description">
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description<?php echo $index?>">
                              <i class="fas fa-share pr-2"></i>
                                 Click Here
                             </button>
 
                             <!-- Modal for ticket descriptions-->
-                            <div class="modal fade" id="ticket-description" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="ticket-description<?php echo $index?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
