@@ -5,7 +5,8 @@
     $id = $_SESSION['user']['user_id'];
     $question = $_POST["question"];
     $answer = $_POST["answer"];
-    if($dao->updateFAQ($id, $question, $answer) == TRUE){
+    $faqID = $_POST["faqID"]
+    if($dao->updateFAQ($faqID, $id, $question, $answer) == TRUE){
         $_SESSION["success"] = "Updated the Question: " . $question;
     } else {
         if($dao->createFAQ($id, $question, $answer) == TRUE){
