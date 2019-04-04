@@ -7,7 +7,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
         <!-- Start of My Tickets Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets <?php if(isset($tempPost)){print_r($_POST);} ?></h6>
+              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets <?php //ÍÍif(isset($tempPost)){print_r($_POST);} ?></h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
