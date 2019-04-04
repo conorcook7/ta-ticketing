@@ -7,11 +7,10 @@ require_once '../components/dao.php';
 
 $dao = new Dao();
 if(isset($_POST['open_ticket_id_input'])){
-    $closeTicket = $dao->closeTicket($_POST["open_ticket_id_input"] ,$_POST["closer_id_input"]);
+    $closeTicket = $dao->closeTicket($_POST["open_ticket_id_input"] ,$_POST["closer_id_input"], $_POST["limitedtextarea"]);
 }
 
 if(isset($_POST['my_open_ticket_id_input'])){
-    // $_SESSION['temp_post'] = $_POST;
     $closeTicket = $dao->closeTicket($_POST["my_open_ticket_id_input"] ,$_POST["my_closer_id_input"], $_POST["limitedtextarea"]);
 }
 
