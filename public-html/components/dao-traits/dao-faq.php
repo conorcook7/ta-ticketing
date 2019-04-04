@@ -71,7 +71,7 @@ trait DaoFaq {
         try {
             $conn = $this->getConnection();
             $query = $conn->prepare(
-                "UPDATE TABLE Frequently_Asked_Questions SET 
+                "UPDATE Frequently_Asked_Questions SET 
                     admin_user_id = :adminUserId,
                     question = :question, 
                     answer = :answer
