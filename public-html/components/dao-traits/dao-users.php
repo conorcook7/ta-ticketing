@@ -162,12 +162,11 @@ trait DaoUsers {
             $conn = $this->getConnection();
             $query = $conn->prepare(
                 "UPDATE Users SET 
-                    user_id = :user_id,
                     email = :email,
                     first_name = :first_name, 
                     last_name = :last_name,
                     permission_id = :permission_id
-                    WHERE faq_id = :faqId;"
+                    WHERE user_id = :user_id;"
             );
             $query->bindParam(":user_id", $user_id);
             $query->bindParam(":email", $email);
