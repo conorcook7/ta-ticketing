@@ -79,7 +79,7 @@ $my_ta_id = $_SESSION["user"]["user_id"];?>
                                     </button>
                                  </div>
                                   <div class="modal-body">
-                                      <textarea placeholder="Please describe how you helped with this ticket..." form="all_ticket_form<?php echo $index?>" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                                      <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form<?php echo $index?>" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
                                             onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
                                      
                                    </div>
