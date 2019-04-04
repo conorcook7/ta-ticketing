@@ -33,6 +33,17 @@
     }
 
     /**
+     * Returns the logger object for the server.
+     * 
+     * @return $logger - The logger object for the server.
+     */
+    function getServerLogger() {
+        require_once "KLogger.php";
+        $logger = new KLogger("/var/log/taticketing/",KLogger::DEBUG);
+        return $logger;
+    }
+
+    /**
      * Returns the onyx node number from the hostname.
      * 
      * @return $nodeNumber - The node number from the IP address hostname.
