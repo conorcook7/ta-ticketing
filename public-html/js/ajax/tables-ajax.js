@@ -21,6 +21,10 @@ $(document).ready(function() {
     ]
   });
 
-  // Reload the data
+  // Add more tables here
+  // TODO: Add more tables
+
+  // Reload the data for all tables
   closedTicketsTable.ajax.reload();
+  // TODO: Add more table reloads here
 });
