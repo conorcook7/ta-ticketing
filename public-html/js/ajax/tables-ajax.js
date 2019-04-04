@@ -5,7 +5,15 @@ $(document).ready(function() {
     ajax: {
       type: "POST",
       dataType: "json",
-      url: window.origin + "/handlers/ajax/closed-tickets-table-handler.php"
+      url: function() {
+        let numPaths = window.location.pathname.split("/").length - 1;
+        let path = "";
+        for (let i = 0; i < numPaths; i++) {
+          path += "../";
+        }
+        path += "handlers/ajax/closed-tickets-table-handler.php";
+        return path;
+      }
     },
     processing: true,
     columns: [
