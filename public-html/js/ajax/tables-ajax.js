@@ -36,6 +36,7 @@ $(document).ready(function() {
     ]
   });
   
+  $("#dataTable").DataTable();
   // Add more tables here
   // TODO: Add more tables
 
