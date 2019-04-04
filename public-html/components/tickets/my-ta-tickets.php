@@ -7,7 +7,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
         <!-- Start of My Tickets Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets </h6>
+              <h6 class="m-0 font-weight-bold text-primary">My Open Tickets <?php if(isset($tempPost)){print_r($_POST);} ?></h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -31,7 +31,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                         $queue1++;
                    ?>
                       <tr>
-                       <form method="POST" action="../handlers/ta-handler.php"> 
+                       <form method="POST" action="../handlers/ta-handler.php" id="my_ticket_form"> 
                         <input type='hidden' name='my_open_ticket_id_input' value="<?php echo $myTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='my_closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue1?></td>
@@ -80,7 +80,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                     </button>
                                  </div>
                                   <div class="modal-body">
-                                    <textarea placeholder="Please describe how you helped with this ticket..." name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                                    <textarea placeholder="Please describe how you helped with this ticket..." form="my_ticket_form" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
                                             onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
                                              
                                    </div>
