@@ -1,17 +1,19 @@
 <?php $page = "users-table.php"; ?>
 <div class="container-fluid">
-  <?php if (isset($_SESSION["success"])){ ?>
-          <div class="alert alert-success">
-              <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
-          </div>
-      <?php } elseif (isset($_SESSION["failure"])) { ?>
-          <div class="alert alert-danger">
-              <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
-          </div>
-      <?php }
-          unset($_SESSION["failure"]);
-          unset($_SESSION["success"]);
-  ?>
+        <div>
+          <?php if (isset($_SESSION["success"])){ ?>
+                  <div class="alert alert-success">
+                      <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
+                  </div>
+              <?php } elseif (isset($_SESSION["failure"])) { ?>
+                  <div class="alert alert-danger">
+                      <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
+                  </div>
+              <?php }
+                  unset($_SESSION["failure"]);
+                  unset($_SESSION["success"]);
+          ?>
+        </div>
         <!-- All Users Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
