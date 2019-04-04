@@ -7,11 +7,10 @@
     $dao = new Dao();
 
     $closedTickets = $dao->getClosedTickets();
-    //$openTickets = $dao->getOpenTickets();
+    $openTickets = $dao->getOpenTickets();
     $cleanTickets = [
         "data" => array()
     ];
-    /*
     foreach ($openTickets as $ticket) {
         $cleanTicket = Array();
         $cleanTicket["id"] = $ticket['open_ticket_id'];
@@ -45,7 +44,6 @@
         '; 
         $cleanTickets["data"][] = $cleanTicket;
     }
-    */
     foreach ($closedTickets as $ticket) {
         $cleanTicket = Array();
         $cleanTicket["id"] = $ticket["closed_ticket_id"];
