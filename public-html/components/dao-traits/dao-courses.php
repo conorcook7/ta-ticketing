@@ -117,7 +117,7 @@ trait DaoCourses {
     public function deleteAvailableCourse($courseId) {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("DELETE FROM Available_Courses WHERE course_id = :courseId;");
+            $query = $conn->prepare("DELETE FROM Available_Courses WHERE available_course_id = :courseId;");
             $query->bindParam(":courseId", $courseId);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted available course");
