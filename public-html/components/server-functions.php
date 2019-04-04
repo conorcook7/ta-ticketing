@@ -64,3 +64,21 @@
         $operatingSystem = !empty($matches) ? $matches[0] : "";
         return "Personal: " . $operatingSystem;
     }
+
+    /**
+     * Update the user's permission in the session variable
+     * 
+     * @param $userId - The user id to get the permissions for.
+     */
+    function updateSession($userId) {
+        session_start();
+        require_once "dao.php";
+        $dao = new Dao();
+        $user = $dao->getUserById($userId);
+        if (isset($user["permission_name"])) {
+            $_SESSION["user"]["permission"] = $user["permission_name"];
+        }
+        if (isset($user["permission_id"])) {
+            $_SESSION["user"]["access_level"] = $user["permission_id"];
+        }
+    }
