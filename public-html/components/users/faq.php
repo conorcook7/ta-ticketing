@@ -23,8 +23,11 @@
     </div>
     <div class="form-group">
         <label for="answer">Answer</label>
-        <textarea class="form-control" id="answer" name="answer" rows="3" placeholder="Try clearing your cache and cookies and if that does not work contact Ben Peterson.">
-        </textarea>
+        <textarea class="form-control" id="answer" name="answer" rows="3" placeholder="Try clearing your cache and cookies and if that does not work contact Ben Peterson."><?php
+        if(isset($_POST["answer"])){
+            echo htmlspecialchars($_POST["answer"]);
+        }
+        ?></textarea>
     </div>
         <button type="submit" class="btn btn-primary">Add/Update FAQ</button>
     </form>
