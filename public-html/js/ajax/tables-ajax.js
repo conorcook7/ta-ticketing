@@ -21,10 +21,25 @@ $(document).ready(function() {
     ]
   });
 
+  // All of the tables ajax calls here
+  let allTicketsTable = $("#all-tickets-table").DataTable({
+    ajax: ajaxPath + "all-tickets-table-handler.php",
+    processing: true,
+    columns: [
+      { data: "id" },
+      { data: "studentName" },
+      { data: "nodeNumber" },
+      { data: "course" },
+      { data: "status" },
+      { data: "ticketDescription"}
+    ]
+  });
+  
   // Add more tables here
   // TODO: Add more tables
 
   // Reload the data for all tables
   closedTicketsTable.ajax.reload();
+  allTicketsTable.ajax.reload();
   // TODO: Add more table reloads her
 });
