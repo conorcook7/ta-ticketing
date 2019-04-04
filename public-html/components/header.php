@@ -28,7 +28,24 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TA-Ticketing - Dashboard</title>
+  <title>
+    <?php
+        if ($page == 'admin.php'){
+            echo "Admin - Dashboard";
+        }elseif($page == 'ta.php'){
+            echo "TA - Dashboard";
+        }elseif($page == 'user.php'){
+            echo "Student - Dashboard";
+        }elseif($page == 'about.php' || $nav == 'about'){
+            echo "About Page";
+        }else{
+            echo "TA-Ticketing";
+        }
+        ?>
+    
+    </title>
+    <!-- TA-Ticketing - Dashboard -->
+  <link rel="shortcut icon" href="https://brandstandards.boisestate.edu/wp-content/themes/framewerk/framewerk/frontend/images/layout/favicon.ico">
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo generateUrl('/vendor/fontawesome-free/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
@@ -48,6 +65,7 @@
   <script src="<?php echo generateUrl('/vendor/datatables/jquery.dataTables.min.js');?>"></script>
   <script src="<?php echo generateUrl('/vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>
   <script src="<?php echo generateUrl('/js/demo/datatables-demo.js');?>"></script>
+  <script src="<?php echo generateUrl('/js/limit-input.js');?>"></script>
 </head>
 
 <body id="page-top">

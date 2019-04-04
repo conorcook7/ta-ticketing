@@ -10,8 +10,6 @@
 <!-- Page Wrapper -->
 <div id="wrapper" class="h-100">
 
-    <?php require_once "../components/sidebar.php"; ?>
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column h-100">
 
@@ -21,6 +19,10 @@
         <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
             <div class="error mx-auto" data-text="403">403</div>
             <p class="lead text-gray-800 mb-5">Permission Denied</p>
+            <p class="text-gray-800">
+            If you are supposed to be able to reach this page, try contacting
+            <a href="mailto: BenjaminPeterson@boisestate.edu">Benjamin Peterson</a>.
+            </p>
             <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
         </div>
 

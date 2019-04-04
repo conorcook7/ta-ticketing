@@ -13,7 +13,7 @@
         aria-controls="collapseHelpPages"
     >
         <i class="fas fa-fw fa-question"></i>
-        <span>Help</span>
+        <span class="LetterSpacing">Help</span>
     </a>
     <div id="collapseHelpPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -21,10 +21,6 @@
                 class="collapse-item <?php if($nav == 'help' && $page == 'available-courses.php'){echo 'active';}?>"
                 href="<?php echo generateUrl('/pages/help/available-courses.php');?>"
             >Available Courses</a>
-            <a 
-                class="collapse-item <?php if($nav == 'help' && $page == 'new-ticket.php'){echo 'active';}?>"
-                href="<?php echo generateUrl('/pages/help/new-ticket.php');?>"
-            >Create a ticket</a>
             <a
                 class="collapse-item <?php if($nav == 'help' && $page == 'faq.php'){echo 'active';}?>"
                 href="<?php echo generateUrl('/pages/help/faq.php');?>"

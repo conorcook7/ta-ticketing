@@ -31,7 +31,7 @@
             href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php';?>"
         >
             <i class="fas fa-fw fa-home"></i>
-            <span>Dashboard</span>
+            <span class="LetterSpacing">Dashboard</span>
         </a>
     </li>
 
@@ -39,7 +39,7 @@
     <hr class="sidebar-divider" />
 
     <!-- Heading -->
-    <div class="sidebar-heading">
+    <div class="sidebar-heading LetterSpacing">
         <?php echo strtoupper($_SESSION["user"]["permission"]); ?>
     </div>
 
@@ -64,7 +64,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
-    <div class="sidebar-heading">INFO</div>
+    <div class="sidebar-heading LetterSpacing">INFO</div>
 
     <?php require_once "sidebar-menus/sidebar-help.php"; ?>
 
@@ -72,7 +72,7 @@
     <li class="nav-item <?php if ($nav == 'about') { echo 'active'; }?>">
         <a class="nav-link" href="<?php echo generateUrl('/pages/about.php');?>">
             <i class="fas fa-fw fa-info"></i>
-            <span>About</span>
+            <span class="LetterSpacing">About</span>
         </a>
     </li>
 

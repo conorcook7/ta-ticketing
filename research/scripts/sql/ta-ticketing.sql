@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Open_Tickets (
     creator_user_id BIGINT UNSIGNED NOT NULL,
     opener_user_id BIGINT UNSIGNED DEFAULT NULL,
     description TEXT,
-    node_number INTEGER NOT NULL,
+    node_number VARCHAR(256) NOT NULL,
     room_number INTEGER,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     closer_user_id BIGINT UNSIGNED NOT NULL,
     description TEXT,
     closing_description TEXT,
-    node_number INTEGER NOT NULL,
+    node_number VARCHAR(256) NOT NULL,
     room_number INTEGER,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -90,6 +90,11 @@ CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
     FOREIGN KEY (admin_user_id) REFERENCES Users(user_id)
 );
 
+INSERT INTO Permissions VALUES (1, 'USER');
+INSERT INTO Permissions VALUES (2, 'TA');
+INSERT INTO Permissions VALUES (3, 'ADMIN');
+INSERT INTO Permissions VALUES (4, 'DENIED');
+
 CREATE EVENT IF NOT EXISTS Logout
     ON SCHEDULE EVERY 1 MINUTE
     DO
@@ -101,8 +106,3 @@ CREATE EVENT IF NOT EXISTS Delete_Old_Tickets
     DO
         DELETE FROM Closed_Tickets
         WHERE DATE_ADD(update_date, INTERVAL 1 YEAR) < NOW();
-
-INSERT INTO Permissions VALUES('USER');
-INSERT INTO Permissions VALUES('TA');
-INSERT INTO Permissions VALUES('ADMIN');
-INSERT INTO Permissions VALUES('DENIED');

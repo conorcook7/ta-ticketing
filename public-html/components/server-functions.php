@@ -39,7 +39,10 @@
      */
     function getNodeNumber() {
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-        // TODO: Update the node number!
-        $nodeNumber = 1;
-        return $nodeNumber;
+        preg_match('/.*onyxnode(\d+)\.boisestate\.edu.*/', $hostname, $matches);
+        if (!empty($matches) && isset($matches[1])) {
+            return $matches[1];
+        } else {
+            return $hostname;
+        }
     }

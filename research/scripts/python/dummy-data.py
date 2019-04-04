@@ -1,3 +1,4 @@
+#!/bin/python
 """Creates dummy data for TA Ticketing project."""
 
 import datetime
@@ -22,8 +23,8 @@ def insert_course(course_name):
     course_number = course_name.split('cs')[1]
     section = str(random.randint(1, 20)).zfill(3)
     return (
-        'INSERT INTO Available_Courses (course_name, course_number, course_description)'
-        ' VALUES(\'{}\', \'{}\', \'{}\');\n'
+        'INSERT INTO Available_Courses (course_name, course_number, '
+        'course_description) VALUES(\'{}\', \'{}\', \'{}\');\n'
     ).format(
         course_name,
         course_number,
@@ -46,8 +47,9 @@ def insert_user(permission_id, online, email, first_name, last_name):
 
 def insert_ta(user_id, available_course_id, start, end):
     return (
-        'INSERT INTO Teaching_Assistants (user_id, available_course_id, start_time_past_midnight, '
-        'end_time_past_midnight) VALUES(\'{}\', \'{}\', \'{}\', \'{}\');\n'
+        'INSERT INTO Teaching_Assistants (user_id, available_course_id, '
+        'start_time_past_midnight, end_time_past_midnight) VALUES(\'{}\', '
+        '\'{}\', \'{}\', \'{}\');\n'
     ).format(
         user_id,
         available_course_id,
@@ -89,16 +91,19 @@ def insert_open_ticket(available_course_id, user_id, opener_id, description,
 
 
 def insert_closed_ticket(available_course_id, user_id, closer_id, description,
-                         node_number, room_number, update_date):
+                         closing_description, node_number, room_number,
+                         update_date):
     return (
         'INSERT INTO Closed_Tickets (available_course_id, creator_user_id,'
-        'closer_user_id, description, node_number, room_number, update_date) '
-        'VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\');\n'
+        'closer_user_id, description, closing_description, node_number, '
+        'room_number, update_date) VALUES(\'{}\', \'{}\', \'{}\', \'{}\', '
+        '\'{}\', \'{}\', \'{}\', \'{}\');\n'
     ).format(
         available_course_id,
         user_id,
         closer_id,
         description,
+        closing_description,
         node_number,
         room_number,
         update_date
@@ -149,11 +154,6 @@ if __name__ == '__main__':
         DROP DATABASE IF EXISTS Dummy_TA_Ticketing;
         CREATE DATABASE Dummy_TA_Ticketing;
         USE Dummy_TA_Ticketing;
-
-        DROP USER IF EXISTS 'ta-ticketing'@'localhost';
-        CREATE USER 'ta-ticketing'@'localhost' IDENTIFIED WITH
-        mysql_native_password BY '34$5iu98&7o7%76d4Ss35';
-        GRANT ALL PRIVILEGES ON Dummy_TA_Ticketing.* TO 'ta-ticketing'@'localhost' WITH GRANT OPTION;
         """
     )
 
@@ -168,10 +168,10 @@ if __name__ == '__main__':
     sql_script.write('\n')
 
     # Insert permissions
-    sql_script.write(insert_permission('USER'))
-    sql_script.write(insert_permission('TA'))
-    sql_script.write(insert_permission('ADMIN'))
-    sql_script.write('\n')
+    # sql_script.write(insert_permission('USER'))
+    # sql_script.write(insert_permission('TA'))
+    # sql_script.write(insert_permission('ADMIN'))
+    # sql_script.write('\n')
 
     # Insert courses
     courses = []
@@ -229,8 +229,12 @@ if __name__ == '__main__':
         )
         course_taught = random.randint(1, len(courses))
 
-        sql_script.write(
-            insert_ta(user_id, course_taught, start_time_past_midnight, end_time_past_midnight))
+        sql_script.write(insert_ta(
+            user_id,
+            course_taught,
+            start_time_past_midnight,
+            end_time_past_midnight
+        ))
 
     sql_script.write('\n')
 
@@ -249,6 +253,7 @@ if __name__ == '__main__':
                 random.randint(len(contents) // 2 + 1, len(contents) - 1)
             ]
         )
+        description = description[0: 500]
         node_number = random.randint(1, 500)
         room_number = random.randint(1, 900)
 
@@ -283,6 +288,14 @@ if __name__ == '__main__':
                 random.randint(len(contents) // 2 + 1, len(contents) - 1)
             ]
         )
+        description = description[0: 500]
+        closing_description = 'CLOSED FOR:' + ' '.join(
+            contents[
+                random.randint(0, len(contents) // 2):
+                random.randint(len(contents) // 2 + 1, len(contents) - 1)
+            ]
+        )
+        closing_description = closing_description[0: 500]
         node_number = random.randint(1, 500)
         room_number = random.randint(1, 900)
 
@@ -296,6 +309,7 @@ if __name__ == '__main__':
             user_id,
             ta_id,
             description,
+            closing_description,
             node_number,
             room_number,
             get_random_date()
@@ -325,9 +339,10 @@ if __name__ == '__main__':
     sql_script.write(insert_faq(
         question='Who do I contact if my information is wrong?',
         answer=(
-            'Benjamin Perterson, IT Systems Engineer at Boise State University. '
-            'You can contact him at BenjaminPeterson@boisestate.edu. More '
-            'information can be found on the about page under \"Sponsor\".'
+            'Benjamin Perterson, IT Systems Engineer at Boise State '
+            'University. You can contact him at '
+            'BenjaminPeterson@boisestate.edu. More information can be found '
+            'on the about page under \"Sponsor\".'
         ),
         admin_id=admins[0]
     ))
@@ -335,12 +350,23 @@ if __name__ == '__main__':
     sql_script.write(insert_faq(
         question='Where do I find information about TAs?',
         answer=(
-            'The information is located on the Users Dashboard'
+            'The information is located on the Users Dashboard. '
             'You can contact him at BenjaminPeterson@boisestate.edu. More '
             'information can be found on the about page under \"Sponsor\".'
         ),
         admin_id=admins[0]
     ))
+
+    # Create the dummy user
+    sql_script.write(
+        """
+        DROP USER IF EXISTS 'ta-ticketing'@'localhost';
+        CREATE USER 'ta-ticketing'@'localhost' IDENTIFIED WITH
+        mysql_native_password BY '34$5iu98&7o7%76d4Ss35';
+        GRANT ALL PRIVILEGES ON Dummy_TA_Ticketing.* TO
+        'ta-ticketing'@'localhost' WITH GRANT OPTION;
+        """
+    )
 
     # Close the script file
     sql_script.close()
