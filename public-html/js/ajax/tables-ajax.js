@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   // All of the tables ajax calls here
   let closedTicketsTable = $("#closed-tickets-table").DataTable({
-    ajax: url: ajaxPath + "closed-tickets-table-handler.php",
+    ajax: ajaxPath + "closed-tickets-table-handler.php",
     processing: true,
     columns: [
       { data: "studentName" },
