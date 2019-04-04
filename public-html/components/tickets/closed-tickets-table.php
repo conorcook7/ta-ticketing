@@ -7,7 +7,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-              <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-bordered data_table" id="closed-tickets-table" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th class="center">Student Name</th>
@@ -77,7 +77,6 @@
                                          </button>
                                          </div>
                                         <div class="modal-body"><?php echo $closedTickets[$index]['closing_description']?>
-                                        <!-- <div class="modal-body"><?php //echo $closedTickets[$index]['description']?> -->
                                          </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
