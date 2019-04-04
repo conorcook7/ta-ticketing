@@ -56,9 +56,9 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                          </button>
                                          </div>
                                         <div class="modal-body"><?php echo $myTickets[$index]['description']
-                                          if(isset($tempPost)){
-                                            echo $tempPost;
-                                          }
+                                          // if(isset($tempPost)){
+                                          //   echo $tempPost;
+                                          // }
                                         ?>
                                          </div>
                                         <div class="modal-footer">
