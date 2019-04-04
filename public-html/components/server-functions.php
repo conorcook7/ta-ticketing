@@ -62,12 +62,5 @@
         $operatingSystem = NULL;
         preg_match("/(linux)|(macintosh)|(windows)|(mobile)/i", $_SERVER["HTTP_USER_AGENT"], $matches);
         $operatingSystem = !empty($matches) ? $matches[0] : "";
-
-        // Check that hostname is an IP address or a mobile device
-        preg_match("/(\d{1,3}\.\d{1,3}\.\d{1,3})|(mobile)/i", $hostname, $matches);
-        if (!empty($matches)) {
-            return "Personal: " . $operatingSystem;
-        }
-
-        return "Personal: " . $operatingSystem . ": ". $hostname;
+        return "Personal: " . $operatingSystem;
     }
