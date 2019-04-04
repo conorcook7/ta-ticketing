@@ -153,6 +153,38 @@ trait DaoUsers {
     }
 
     /**
+     * Updates a user from the database
+     * 
+     * @return Returns TRUE if the user was updated, else FALSE.
+     */
+    public function updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id){
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "UPDATE Users SET 
+                    user_id = :user_id,
+                    email = :email,
+                    first_name = :first_name, 
+                    last_name = :last_name,
+                    permission_id = :permission_id
+                    WHERE faq_id = :faqId;"
+            );
+            $query->bindParam(":user_id", $user_id);
+            $query->bindParam(":email", $email);
+            $query->bindParam(":first_name", $firstName);
+            $query->bindParam(":last_name", $lastName);
+            $query->bindParam(":permission_id", $permissionID);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Admin: " . $admin_id . " has Updated User " . $user_id);
+            return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Admin: " . $admin_id . " unable to update User " . $user_id);
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
      * Returns all of the users.
      * 
      * @param $limit - (optional) A limit to the number of users to get.
