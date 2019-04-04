@@ -33,9 +33,9 @@ $my_ta_id = $_SESSION["user"]["user_id"];?>
                         <input type='hidden' name='open_ticket_id_input' value="<?php echo $allOpenTickets[$index]['open_ticket_id'];?>"/>
                         <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue?></td>
-                        <td class="center"><?php echo $allOpenTickets[$index]['first_name'], " ", $allOpenTickets[$index]['last_name']?></td>
-                        <td class="center"><?php echo $allOpenTickets[$index]['node_number']?></td>
-                        <td class="center"><?php echo strtoupper($allOpenTickets[$index]['course_name'])?></td>
+                        <td class="center"><?php echo htmlspecialchars($allOpenTickets[$index]['first_name']), " ", htmlspecialchars($allOpenTickets[$index]['last_name']);?></td>
+                        <td class="center"><?php echo htmlspecialchars($allOpenTickets[$index]['node_number']);?></td>
+                        <td class="center"><?php echo htmlspecialchars(strtoupper($allOpenTickets[$index]['course_name']));?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description-all<?php echo $index?>">
@@ -54,7 +54,7 @@ $my_ta_id = $_SESSION["user"]["user_id"];?>
                                          </button>
                                          </div>
                                         <div class="modal-body">
-                                          <?php echo $allOpenTickets[$index]['description']?>
+                                          <?php echo htmlspecialchars($allOpenTickets[$index]['description']);?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
