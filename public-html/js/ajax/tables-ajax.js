@@ -1,19 +1,18 @@
 $(document).ready(function() {
-  console.log(window.origin);
+  // Figure out relative pathing
+  let numPaths = window.location.pathname.split("/").length - 1;
+  let ajaxPath = "";
+  for (let i = 0; i < numPaths; i++) {
+    ajaxPath += "../";
+  }
+  ajaxPath += "handlers/ajax/";
+
   // All of the tables ajax calls here
   let closedTicketsTable = $("#closed-tickets-table").DataTable({
     ajax: {
       type: "POST",
       dataType: "json",
-      url: function() {
-        let numPaths = window.location.pathname.split("/").length - 1;
-        let path = "";
-        for (let i = 0; i < numPaths; i++) {
-          path += "../";
-        }
-        path += "handlers/ajax/closed-tickets-table-handler.php";
-        return path;
-      }
+      url: ajaxPath + "closed-tickets-table-handler.php"
     },
     processing: true,
     columns: [
