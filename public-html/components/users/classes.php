@@ -28,6 +28,7 @@
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
+    <?php unset($_POST); ?>
 </div>
 <div class="container-fluid mt-4">
         <!-- All Classes Table -->
@@ -53,7 +54,7 @@
                     foreach($allClasses as $class) { 
                   ?>
                     <tr>
-                    <form method="POST" action="<?php echo generateUrl('/components/users/classes.php')?>">
+                    <form method="POST" action="<?php echo generateUrl('admin.php?id=classes')?>">
                         <input type="hidden" name="courseNumber" value="<?php echo htmlspecialchars($class['course_number']); ?>"/>
                         <input type="hidden" name="courseName" value="<?php echo htmlspecialchars($class['course_name']); ?>"/>
                         <input type="hidden" name="courseDescription" value="<?php echo $class['course_description']; ?>"/>
