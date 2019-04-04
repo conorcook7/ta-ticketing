@@ -37,6 +37,37 @@ trait DaoCourses {
     }
 
     /**
+     * Create a user if they do not exist in the database.
+     * 
+     * @param $id - The course ID that will be updated
+     * @param $email - The email address of the user to create.
+     * @param $firstName - The first name of the user if given, else NULL.
+     * @param $lastName - The last name of the user if given, else NULL.
+     * @return Returns TRUE if the user was created, else FALSE
+     */
+    public function updateCourse($id, $name, $number, $description) {
+        $conn = $this->getConnection();
+        $query = $conn->prepare(
+            "UPDATE Available_Courses " .
+            "SET course_name=:name, course_number=:number, course_description=:description " .
+            "WHERE available_course_id = :id"
+        );
+        $query->bindParam(":name", $name);
+        $query->bindParam(":number", $number);
+        $query->bindParam(":description", $description);
+        $query->bindParam(":id", $id);
+        try {
+            $query->execute();
+            $this->logger->logDebug(__FUNCTION__ . "(): create course successful");
+            return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(__FUNCTION__ . "(): Unable to create course");
+            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
      * Get the available course by name.
      * @param $courseName - The course name to search for.
      * @return $availableCourse - The array of course information, else and empty array.
