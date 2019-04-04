@@ -21,8 +21,7 @@
         $cleanTicket["ticketDescription"] = '
             <!-- Button trigger modal for ticket descriptions-->
             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description-OPEN' . $ticket["open_ticket_id"] . '">
-                <i class="fas fa-share pr-2"></i>
-                Click Here
+                More Info
             </button>
             <!-- Modal for ticket descriptions-->
             <div class="modal fade" id="ticket-description-OPEN' . $ticket["open_ticket_id"] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -53,8 +52,7 @@
         $cleanTicket["ticketDescription"] = '
             <!-- Button trigger modal for ticket descriptions-->
             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description' . $ticket["closed_ticket_id"] . '">
-                <i class="fas fa-share pr-2"></i>
-                Click Here
+                More Info
             </button>
             <!-- Modal for ticket descriptions-->
             <div class="modal fade" id="ticket-description' . $ticket["closed_ticket_id"] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
