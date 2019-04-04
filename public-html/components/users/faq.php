@@ -69,8 +69,7 @@
                         <td class="center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#answer<?php echo $faq['faq_id']?>">
-                             <i class="fas fa-share pr-2"></i>
-                                Click Here
+                                Answer
                             </button>
 
                             <!-- Modal -->
@@ -78,7 +77,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                         <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                                         <h5 class="modal-title" id="exampleModalLongTitle">Answer to <?php echo $faq['faq_id']?></h5>
                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                          </button>
