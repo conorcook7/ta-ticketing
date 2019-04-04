@@ -55,11 +55,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                             <span aria-hidden="true">&times;</span>
                                          </button>
                                          </div>
-                                        <div class="modal-body"><?php echo $myTickets[$index]['description']
-                                          // if(isset($tempPost)){
-                                          //   echo $tempPost;
-                                          // }
-                                        ?>
+                                        <div class="modal-body"><?php echo $myTickets[$index]['description']?>
                                          </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
