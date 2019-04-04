@@ -28,7 +28,7 @@ $(document).ready(function() {
   //   closedTicketsTable.ajax.reload();
   //   // TODO: Add more table reloads here
   $("#closed-ticket-table").DataTable({
-    ajax: ajaxPath + "closed-tickets-table-handler.php",
+    ajax: ajaxPath + "closed-ssp-handler.php",
     processing: true,
     serverSide: true
   });
