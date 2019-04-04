@@ -5,6 +5,10 @@
 
     $page = "403.php";
     $nav = "403";
+
+    $logger = getServerLogger();
+    $logger->logWarn(basename(__FILE__) . ": User access forbidden for user: " . $_SESSION["user"]["user_id"]);
+    $logger->logWarn(basename(__FILE__) . ": User attempted to access from " . gethostbyaddr($_SERVER["REMOTE_ADDR"]) . " at " . $_SERVER["REMOTE_ADDR"]);
 ?>
 
 <!-- Page Wrapper -->
