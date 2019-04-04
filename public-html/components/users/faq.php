@@ -19,7 +19,7 @@
     <legend class="border-bottom mb-4">Create FAQ</legend>
     <div class="form-group">
         <label for="question">Question</label>
-        <input type="text" class="form-control" id="question" name="question" placeholder="Why is nothing displaying?" required="true">
+        <input type="text" class="form-control" id="question" name="question" value="<?php echo isset($_POST["question"]) ? $_POST["question"] : "What's going on?" ?>" required="true">
     </div>
     <div class="form-group">
         <label for="answer">Answer</label>
