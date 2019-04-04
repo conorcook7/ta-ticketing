@@ -2,11 +2,17 @@
     session_start();
     require_once "../components/dao.php";
     $dao = new Dao();
-    $id = $_POST["userID"];
-    $name = $_POST["firstName"] . " " . $_POST["lastName"];
-    $permission = $_POST["permissionID"];
-    $dao->updateUser($id, $permission);
-    $_SESSION["success"] = "Updated the user: " . $name;
-    header("Location: ../pages/admin.php?id=users-form");
+    $admin_id = $_SESSION['user']['user_id'];
+    $user_id = $_POST["userID"];
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $email = $_POST["email"];
+    $permissionID = $_POST["permissionID"];
+    if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
+        $_SESSION["success"] = "Updated the user: " . $name;
+    } else {
+        $_SESSION["failure"] = "Failed to update the user " . $name;
+    }
+    header("Location: ../pages/admin.php?id=users");
     exit;
 ?>
