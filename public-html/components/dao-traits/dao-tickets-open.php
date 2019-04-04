@@ -121,7 +121,7 @@ trait DaoTicketsOpen {
      * @param $closerUserId - The user id that closed the ticket.
      * @return Returns TRUE if the ticket was closed, else FALSE.
      */
-    public function closeTicket($openTicketId, $closerUserId) {
+    public function closeTicket($openTicketId, $closerUserId, $textInput) {
         try {
             $conn = $this->getConnection();
             
@@ -142,7 +142,7 @@ trait DaoTicketsOpen {
             // Insert the ticket data into the closed tickets table.
             $query = $conn->prepare(
                 "INSERT INTO Closed_Tickets (available_course_id, creator_user_id,
-                node_number, closer_user_id, description, room_number) VALUES (
+                node_number, closer_user_id, description, closing_description, room_number) VALUES (
                 :availableCourseId, :userId, :nodeNumber, :closerUserId,
                 :description, :roomNumber);"
             );
@@ -151,6 +151,7 @@ trait DaoTicketsOpen {
             $query->bindParam(":nodeNumber", $ticket["node_number"]);
             $query->bindParam(":closerUserId", $closerUserId);
             $query->bindParam(":description", $ticket["description"]);
+            $query->bindParam(":closing_description", $textInput);
             $query->bindParam(":roomNumber", $ticket["room_number"]);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Insert the open ticket data to closed tickets");
