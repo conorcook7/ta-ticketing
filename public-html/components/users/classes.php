@@ -16,15 +16,15 @@
     <legend class="border-bottom mb-4">Create Class</legend>
     <div class="form-group">
         <label for="courseName">Course Name</label>
-        <input type="text" class="form-control" id="courseName"  name="courseName" placeholder="Computer Science I" required="true">
+        <input type="text" class="form-control" id="courseName"  name="courseName" value="<?php echo (isset($_POST["courseName"]) ? $_POST["courseName"] : "Computer Science 1");?>" required="true">
     </div>
     <div class="form-group">
         <label for="courseNumber">Course Number</label>
-        <input type="number" class="form-control" id="courseNumber" name="courseNumber" placeholder="121" required="true">
+        <input type="number" class="form-control" id="courseNumber" name="courseNumber" value="<?php echo (isset($_POST["courseNumber"]) ? $_POST["courseNumber"] : "121");?>" required="true">
     </div>
     <div class="form-group">
         <label for="courseDescription">Course Description</label>
-        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3"></textarea>
+        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" value="<?php echo (isset($_POST["courseDescription"]) ? $_POST["courseDescription"] : "Introduction to Java Programming");?>"></textarea>
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
@@ -53,7 +53,7 @@
                     foreach($allClasses as $class) { 
                   ?>
                     <tr>
-                    <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
+                    <form method="POST" action="<?php echo generateUrl('/components/users/classes.php')?>">
                         <input type="hidden" name="courseNumber" value="<?php echo htmlspecialchars($class['course_number']); ?>"/>
                         <input type="hidden" name="courseName" value="<?php echo htmlspecialchars($class['course_name']); ?>"/>
                         <input type="hidden" name="courseDescription" value="<?php echo $class['course_description']; ?>"/>
