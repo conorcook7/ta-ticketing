@@ -68,12 +68,13 @@
                         <td><?php echo htmlspecialchars($faq['question']); ?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#<?php echo $faq['faq_id']; ?>">
-                                Answer
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#answer<?php echo $faq['faq_id']?>">
+                             <i class="fas fa-share pr-2"></i>
+                                Click Here
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="<?php echo $faq['faq_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $faq['faq_id']; ?>Title" aria-hidden="true">
+                            <div class="modal fade" id="answer<?php echo $faq['faq_id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -83,7 +84,7 @@
                                          </button>
                                          </div>
                                         <div class="modal-body">
-                                            <?php echo htmlspecialchars($faq['answer']);?>
+                                          <?php echo htmlspecialchars($faq["answer"]);?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -91,7 +92,7 @@
                                      </div>
                                  </div>
                              </div>
-                            </td>
+                        </td>
                         <td>
                             <button type="submit" name="button_id" value="update" class="btn btn-block bg-warning text-gray-100">
                                 Update FAQ
