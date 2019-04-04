@@ -14,7 +14,7 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
               <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th class="queue">Queue<?php if(isset($_SESSION['temp_post'])){echo $_SESSION['temp_post'];}?></th>
+                      <th class="queue">Queue<?php if(isset($_SESSION['temp_post'])){echo "Hello"; print_r($_SESSION['temp_post']);}?></th>
                       <th class="center">Student Name</th>
                       <th class="center nodeInfo">Node</th>
                       <th class="center courseInfo">Course</th>
