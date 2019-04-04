@@ -6,7 +6,7 @@
 ?>
 
 <!-- Create a ticket -->
-<div class="row">
+<div class="<?php echo strtoupper($_SESSION["user"]["permission"]) == "USER" ? "row" : ""; ?>">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h1 class="h2 m-0 font-weight-bold text-primary">Create a ticket</h1>
@@ -83,7 +83,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="<?php echo strtoupper($_SESSION["user"]["permission"]) == "USER" ? "row" : ""; ?>">
     <!-- Close a ticket -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -160,7 +160,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="<?php echo strtoupper($_SESSION["user"]["permission"]) == "USER" ? "row" : ""; ?>">
     <!-- Reopen a ticket -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
