@@ -47,11 +47,11 @@ trait DaoTicketsOpen {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $openTickets = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all open tickets completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all open tickets completed");
             return $openTickets;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get open tickets");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get open tickets");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -80,12 +80,12 @@ trait DaoTicketsOpen {
             $query->bindParam(":nodeNumber", $nodeNumber);
             $query->bindParam(":description", $description);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Created new ticket.");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Created new ticket.");
             return $this->SUCCESS;
             
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to create ticket");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to create ticket");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -104,12 +104,12 @@ trait DaoTicketsOpen {
             );
             $query->bindParam(":openTicketId", $openTicketId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Deleted open ticket");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted open ticket");
             return $this->SUCCESS;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to delete open ticket");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to delete open ticket");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -134,10 +134,10 @@ trait DaoTicketsOpen {
             $query->execute();
             $ticket = $query->fetch();
             if (!isset($ticket)) {
-                $this->logger->logError(__FUNCTION__ . ": Unable to fetch the open ticket data.");
+                $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . ": Unable to fetch the open ticket data.");
                 return $this->FAILURE;
             }
-            $this->logger->logDebug(__FUNCTION__ . "(): Obtained open ticket data.");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Obtained open ticket data.");
 
             // Insert the ticket data into the closed tickets table.
             $query = $conn->prepare(
@@ -153,7 +153,7 @@ trait DaoTicketsOpen {
             $query->bindParam(":description", $ticket["description"]);
             $query->bindParam(":roomNumber", $ticket["room_number"]);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Insert the open ticket data to closed tickets");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Insert the open ticket data to closed tickets");
             
             // Delete the open ticket from the open ticket table.
             $query = $conn->prepare(
@@ -161,13 +161,13 @@ trait DaoTicketsOpen {
             );
             $query->bindParam(":openTicketId", $openTicketId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Deleted open ticket from table");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted open ticket from table");
             
             return $this->SUCCESS;
             
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to close the open ticket");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to close the open ticket");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -188,15 +188,15 @@ trait DaoTicketsOpen {
             $queue = $query->fetchAll();
             for ($i = 0; $i < sizeof($queue); $i++) {
                 if ($queue[$i]["open_ticket_id"] == $openTicketId) {
-                    $this->logger->logDebug(__FUNCTION__ . "(): found queue number at row " . $i);
+                    $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): found queue number at row " . $i);
                     return ($i + 1);
                 }
             }
-            $this->logger->logError(__FUNCTION__ . "(): Unable to find queue nubmer by comparison.");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to find queue nubmer by comparison.");
             return -1;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get ticket queue number");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get ticket queue number");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return -1;
         }
     }

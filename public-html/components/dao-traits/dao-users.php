@@ -22,15 +22,15 @@ trait DaoUsers {
             $results = $query->fetch(PDO::FETCH_ASSOC);
             $result = $results["COUNT(*)"];
             if ($result) {
-                $this->logger->logDebug(__FUNCTION__ . "(): User was found.");
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): User was found.");
                 return TRUE;
             } else {
-                $this->logger->logDebug(__FUNCTION__ . "(): User unable to be found.");
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): User unable to be found.");
                 return FALSE;
             }
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to check if user exists");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to check if user exists");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
     }
@@ -53,12 +53,12 @@ trait DaoUsers {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $user = $query->fetch();
-            $this->logger->logDebug(__FUNCTION__ . ": Get user by email successful");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . ": Get user by email successful");
             return $user;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get user by email");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get user by email");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
         
@@ -81,12 +81,12 @@ trait DaoUsers {
             $query->bindParam(":id", $id);
             $query->execute();
             $user = $query->fetch();
-            $this->logger->logDebug(__FUNCTION__ . ": Get user by id successful");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . ": Get user by id successful");
             return $user;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get user by id");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get user by id");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
         
@@ -113,15 +113,15 @@ trait DaoUsers {
                 $query->bindParam(":firstName", $firstName);
                 $query->bindParam(":lastName", $lastName);
                 $query->execute();
-                $this->logger->logDebug(__FUNCTION__ . "(): Create user successful");
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Create user successful");
                 return $this->SUCCESS;
             } else {
-                $this->logger->logWarn(__FUNCTION__ . "(): User exists already");
+                $this->logger->logWarn(basename(__FILE__) . ":" . __FUNCTION__ . "(): User exists already");
                 return $this->FAILURE;
             }
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to create user");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to create user");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -139,15 +139,15 @@ trait DaoUsers {
                 $query = $conn->prepare("DELETE FROM Users WHERE email = :email;");
                 $query->bindParam(":email", $email);
                 $query->execute();
-                $this->logger->logDebug(__FUNCTION__ . "(): Delete user successful");
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Delete user successful");
                 return $this->SUCCESS;
             } else {
-                $this->logger->logWarn(__FUNCTION__ . "(): User does not exist");
+                $this->logger->logWarn(basename(__FILE__) . ":" . __FUNCTION__ . "(): User does not exist");
                 return $this->FAILURE;
             }
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to delete user");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to delete user");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -173,12 +173,12 @@ trait DaoUsers {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $users = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all users successful");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all users successful");
             return $users;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get all users");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get all users");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -196,7 +196,7 @@ trait DaoUsers {
             $query->bindParam(":email", $userEmail);
             $status = $query->execute();
             $onlineStatus = $query->fetch()[0];
-            $this->logger->logDebug(__FUNCTION__ . "(): Online status found: " . $onlineStatus);
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Online status found: " . $onlineStatus);
             switch ($onlineStatus) {
                 case 0:
                     return "OFFLINE";
@@ -208,8 +208,8 @@ trait DaoUsers {
                     return "N/A";
             }
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get online status");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get online status");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -229,12 +229,12 @@ trait DaoUsers {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $users = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all online users successful");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all online users successful");
             return $users;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get all online users");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get all online users");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -254,11 +254,11 @@ trait DaoUsers {
             );
             $query->bindParam(":email", $userEmail);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Set user online successful");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Set user online successful");
             return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to set user online");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to set user online");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -277,12 +277,12 @@ trait DaoUsers {
             );
             $query->bindParam(":email", $userEmail);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Set the user offline");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Set the user offline");
             return $this->SUCCESS;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to set user offline");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to set user offline");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -301,12 +301,12 @@ trait DaoUsers {
             );
             $query->bindParam(":email", $userEmail);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Set the user to away");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Set the user to away");
             return $this->SUCCESS;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to set user away");
-            $this->logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to set user away");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . ": " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -338,22 +338,22 @@ trait DaoUsers {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $openTicketOrder = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all open tickets");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all open tickets");
 
             // Attempt to find the first occurence of the user's id
             for ($i = 0; $i < count($openTicketOrder); $i++) {
                 if ($openTicketOrder[$i]["user_id"] == $userId) {
-                    $this->logger->logDebug(__FUNCTION__ . "(): Found user queue number at row " . $i);
+                    $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Found user queue number at row " . $i);
                     return ($i + 1);
                 }
             }
 
-            $this->logger->logInfo(__FUNCTION__ . "(): User has no open tickets");
+            $this->logger->logInfo(basename(__FILE__) . ":" . __FUNCTION__ . "(): User has no open tickets");
             return -1;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get user's queue number");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get user's queue number");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return -1;
         }
     }
@@ -387,12 +387,12 @@ trait DaoUsers {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $openTickets = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all open tickets for user");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all open tickets for user");
             return $openTickets;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to fetch user's open tickets");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to fetch user's open tickets");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return Array();
         }
     }

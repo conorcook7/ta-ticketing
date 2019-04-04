@@ -22,20 +22,20 @@ trait DaoTa {
             $query->bindParam(":userId", $userId);
             $query->execute();
             $results = $query->fetch(PDO::FETCH_ASSOC);
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetching count");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetching count");
             $result = $results["COUNT(*)"];
             if ($result) {
-                $this->logger->logDebug(__FUNCTION__ . "(): result is true");
-                $this->logger->logDebug(__FUNCTION__ . "(): count = " . $result);
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): result is true");
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): count = " . $result);
                 return TRUE;
             } else {
-                $this->logger->logDebug(__FUNCTION__ . "(): result is false");
-                $this->logger->logDebug(__FUNCTION__ . "(): count = " . $result);
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): result is false");
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): count = " . $result);
                 return FALSE;
             }
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to verify if user is a TA");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to verify if user is a TA");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
     }
@@ -63,13 +63,13 @@ trait DaoTa {
             }
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Query complete");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query complete");
             $teachingAssistants = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all results complete");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all results complete");
             return $teachingAssistants;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get all TAs");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get all TAs");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -98,7 +98,7 @@ trait DaoTa {
             $query->bindParam(":startTime", $startTime);
             $query->bindParam(":endTime", $endTime);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): TA was created");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): TA was created");
 
             // Update the users permission level
             $query = $conn->prepare(
@@ -106,12 +106,12 @@ trait DaoTa {
             );
             $query->bindParam(":userId", $userId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Updated the user's permissions");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Updated the user's permissions");
             return $this->SUCCESS;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to create TA");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to create TA");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -131,19 +131,19 @@ trait DaoTa {
             );
             $query->bindParam(":userId", $userId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Updated the user's permissions");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Updated the user's permissions");
             $query = $conn->prepare(
                 "DELETE FROM Teaching_Assistants
                  WHERE user_id = :userId;"
             );
             $query->bindParam(":userId", $userId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Deleted teaching assistant");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted teaching assistant");
             return $this->SUCCESS;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to delete teaching assistant");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to delete teaching assistant");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -169,13 +169,13 @@ trait DaoTa {
             $query->bindParam(":ta_id_input", $ta_user_id);
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Query completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query completed");
             $myID = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all data completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all data completed");
             return $myID;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get my open tickets");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get my open tickets");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -195,13 +195,13 @@ trait DaoTa {
             );
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Query completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query completed");
             $availableTeachingAssistants = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all data completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all data completed");
             return $availableTeachingAssistants;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get available teaching assistants");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get available teaching assistants");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -243,13 +243,13 @@ trait DaoTa {
             $query->bindParam(":ta_course_input", $teaching_assistant_id);
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Query completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query completed");
             $myTickets = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all data completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all data completed");
             return $myTickets;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get my open tickets");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get my open tickets");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
