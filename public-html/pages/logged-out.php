@@ -44,7 +44,7 @@
       <p class="text-gray mb-0">Please use your Boise State email address to continue.</p>
       <form class="my-4" action="../auth/google-auth/google.php">
         <button id="google-card" class="card p-3 m-auto text-center" type="submit">
-          <span><img id="google-logo" src="../img/google-logo.png" alt="google-logo"/><span>
+          <span><img id="google-logo" src="../img/google-logo-transparent.png" alt="google-logo"/><span>
           <span class="pl-2">Sign in with Google</span>
         </button>
       <!-- Footer -->
