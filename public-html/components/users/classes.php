@@ -15,7 +15,7 @@
     <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
     <?php
         if(isset($_POST["classID"])){?>
-        <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
+        <input type="hidden" name="classID" value="<?php echo $_POST["classID"]; ?>"/>
     <?php    
         }
     ?>
@@ -32,7 +32,7 @@
         <label for="courseDescription">Course Description</label>
         <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" placeholder="<?php echo (isset($_POST["courseDescription"]) ? $_POST["courseDescription"] : "Introduction to Java Programming");?>"></textarea>
     </div>
-        <button type="submit" class="btn btn-primary">Add Course</button>
+        <button type="submit" class="btn btn-primary">Add/Update Course</button>
     </form>
     <?php
         unset($_POST["courseName"]);
@@ -80,6 +80,7 @@
                     </form>
                     <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
                         <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
+                        <input type="hidden" name="delete" value=1 />
                         <td>
                             <button type="submit" name="button_id" value="delete" class="btn btn-block bg-danger text-gray-100">
                                 Delete Class
