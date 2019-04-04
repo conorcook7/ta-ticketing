@@ -29,9 +29,6 @@ $my_ta_id = $_SESSION["user"]["user_id"];?>
                         $queue++;
                     ?>
                       <tr>
-                       <form method="POST" action="../handlers/ta-handler.php" id="all_ticket_form<?php echo $index?>">
-                        <input type='hidden' name='open_ticket_id_input' value="<?php echo $allOpenTickets[$index]['open_ticket_id'];?>"/>
-                        <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                         <td class="center"><?php echo $queue?></td>
                         <td class="center"><?php echo htmlspecialchars($allOpenTickets[$index]['first_name']), " ", htmlspecialchars($allOpenTickets[$index]['last_name']);?></td>
                         <td class="center"><?php echo htmlspecialchars($allOpenTickets[$index]['node_number']);?></td>
@@ -72,6 +69,9 @@ $my_ta_id = $_SESSION["user"]["user_id"];?>
                             <div class="modal fade" id="confirmModalAllTicket<?php echo $index?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
+                                  <form method="POST" action="../handlers/ta-handler.php" id="all_ticket_form<?php echo $index?>">
+                                    <input type='hidden' name='open_ticket_id_input' value="<?php echo $allOpenTickets[$index]['open_ticket_id'];?>"/>
+                                    <input type='hidden' name='closer_id_input' value="<?php echo "$my_ta_id";?>"/>
                                  <div class="modal-header">
                                     <h5 class="modal-title">Are you sure you want to close this ticket?</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -92,10 +92,10 @@ $my_ta_id = $_SESSION["user"]["user_id"];?>
                                       <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                    </div>
                                   </div>
+                                  </form>
                                 </div>
                               </div>
                            </th>
-                        </form> 
                        </tr>
                     <?php
                     }

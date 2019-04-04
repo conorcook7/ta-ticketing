@@ -35,6 +35,19 @@ $(document).ready(function() {
       { data: "status" }
     ]
   });
+
+  let openTicketsTable = $("#open-tickets-table").DataTable({
+    ajax: ajaxPath + "open-tickets-table-handler.php",
+    processing: true,
+    columns: [
+      { data: "studentName" },
+      { data: "teachingAssistant" },
+      { data: "course" },
+      { data: "ticketDescription" },
+      { data: "closingRemarks" },
+      { data: "status" }
+    ]
+  });
   
   $("#dataTable").DataTable();
   // Add more tables here

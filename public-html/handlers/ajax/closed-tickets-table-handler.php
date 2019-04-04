@@ -66,35 +66,37 @@
                 </div>
             </div>
         ';
-        $cleanTicket["status"] = '
-            <button type="button" class="btn btn-block bg-success text-gray-100" data-toggle="modal" data-target="#confirmModalReOpen' . $ticket["closed_ticket_id"] . '">
-                <i class="fas fa-redo text-white pr-2"></i>
-                Reopen Ticket
-            </button>
-            <!-- Confirmation Modal -->
-            <div class="modal fade" id="confirmModalReOpen' . $ticket["closed_ticket_id"] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Please Confirm</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure you want to reopen this ticket?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <form method="POST" action="../handlers/ta-handler.php"> 
-                                <input type="hidden" name="closed_ticket_id" value="' . $ticket["closed_ticket_id"] . '"/>
-                                <input type="hidden" name="opener_id" value="' . $ticket["ta_user_id"] . '"/>
-                                <button type="submit" class="btn btn-success">Confirm</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        $cleanTicket["closeTicket"] = '
+        <button type="button" class="btn btn-block bg-danger text-gray-100" data-toggle="modal" data-target="#confirmModalAllTicket'.$index .'">
+          <i class="fas fa-times text-white pr-2"></i>  
+            Close Ticket
+        </button>
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confirmModalAllTicket'.$index.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title">Are you sure you want to close this ticket?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+              <div class="modal-body">
+                  <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form<?php echo $index?>" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                        onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
+                 
+               </div>
+               <div class="modal-footer">
+                  <div class="mr-auto">
+                    <span>(Maximum characters: 500)</span><br>
+                    <span>You have <input readonly type="text" name="countdown" size="3" value="500"> characters left.</span>
+                   </div>
+                  <button type="submit" class="btn btn-success">Confirm</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+               </div>
+              </div>
             </div>
+          </div>
         ';
         $cleanTickets["data"][] = $cleanTicket;
     }
