@@ -24,7 +24,6 @@
     <div class="form-group">
         <label for="answer">Answer</label>
         <textarea class="form-control" id="answer" name="answer" rows="3" placeholder="Try clearing your cache and cookies and if that does not work contact Ben Peterson.">
-        <?php echo isset($_POST["answer"]) ? $_POST["answer"]; ?>
         </textarea>
     </div>
         <button type="submit" class="btn btn-primary">Add/Update FAQ</button>
