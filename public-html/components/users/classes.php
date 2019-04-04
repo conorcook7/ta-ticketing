@@ -28,7 +28,11 @@
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
-    <?php unset($_POST); ?>
+    <?php
+        unset($_POST["courseName"]);
+        unset($_POST["courseNumber"]);
+        unset($_POST["courseDescription"]); 
+    ?>
 </div>
 <div class="container-fluid mt-4">
         <!-- All Classes Table -->
