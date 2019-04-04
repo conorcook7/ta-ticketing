@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <label for="courseDescription">Course Description</label>
-        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" value="<?php echo (isset($_POST["courseDescription"]) ? $_POST["courseDescription"] : "Introduction to Java Programming");?>"></textarea>
+        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" placeholder="<?php echo (isset($_POST["courseDescription"]) ? $_POST["courseDescription"] : "Introduction to Java Programming");?>"></textarea>
     </div>
         <button type="submit" class="btn btn-primary">Add Course</button>
     </form>
