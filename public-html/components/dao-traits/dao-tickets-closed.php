@@ -156,4 +156,29 @@ trait DaoTicketsClosed {
         }
     }
 
+    /**
+     * Return the closed ticket by the id
+     * 
+     * @param $closedTicketId - The id of the ticket to get
+     */
+    public function getClosedTicketById($closedTicketId) {
+        try {
+            $conn = $this->getConnection();
+            
+            // Get the ticket data to insert into the closed tickets table.
+            $query = $conn->prepare(
+                "SELECT * FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId;"
+            );
+            $query->bindParam(":closedTicketId", $closedTicketId);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $ticket = $query->fetch();
+            return $ticket;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get the closed ticket");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
 }
