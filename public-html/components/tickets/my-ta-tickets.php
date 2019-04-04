@@ -80,8 +80,8 @@ $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
                                     </button>
                                  </div>
                                   <div class="modal-body">
-                                    <textarea placeholder="Please describe how you helped with this ticket..." form="my_ticket_form<?php echo $index?>" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
-                                            onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
+                                    <textarea placeholder="Please describe how you helped with this ticket..." form="my_ticket_form<?php echo $index?>" name="limitedtextarea<?php echo $index?>" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                                            onKeyUp="limitText(this.form.limitedtextarea<?php echo $index?>,this.form.countdown,500);"></textarea>
                                              
                                    </div>
                                    <div class="modal-footer">
