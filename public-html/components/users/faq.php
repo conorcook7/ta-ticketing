@@ -2,7 +2,7 @@
     $page = "faq.php"; 
 ?>
 <div class="container">
-    <div><?php echo $_POST; ?></div>
+    <div><?php echo print_r($_POST, 1) ?></div>
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">
             <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
