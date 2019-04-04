@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL);
+session_start();
 ini_set("display_errors","On");
 
 require_once '../components/dao.php';
@@ -10,7 +11,7 @@ if(isset($_POST['open_ticket_id_input'])){
 }
 
 if(isset($_POST['my_open_ticket_id_input'])){
-    // $tempPost = $_POST;
+    $_SESSION['temp_post'] = $_POST;
     $closeTicket = $dao->closeTicket($_POST["my_open_ticket_id_input"] ,$_POST["my_closer_id_input"]);
 }
 

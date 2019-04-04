@@ -17,6 +17,10 @@
     ?>
     <form method="POST" action="<?php echo generateUrl('/handlers/create-faq-handler.php')?>">
     <legend class="border-bottom mb-4">Create FAQ</legend>
+    <?php
+    if(isset($_POST['faqID'])){ ?>
+        <input type="hidden" name="faqID" value="<?php echo $_POST['faqID']; ?>"/>
+    <?php } ?>
     <div class="form-group">
         <label for="question">Question</label>
         <input type="text" class="form-control" id="question" name="question" <?php echo isset($_POST["question"]) ? "value=\"" . $_POST["question"] . "\"" : "placeholder=\"Why is nothing displaying?\""; ?>required="true">
