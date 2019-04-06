@@ -19,7 +19,6 @@
         $cleanTicket["studentName"] = htmlentities($ticket["first_name"] . " " . $ticket["last_name"]);
         $cleanTicket["nodeNumber"] = $ticket['node_number'];
         $cleanTicket["course"] = htmlentities($ticket["course_name"]);
-        $cleanTicket["status"] = 'Open';
         $cleanTicket["ticketDescription"] = '
             <!-- Button trigger modal for ticket descriptions-->
             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description-OPEN' . $ticket["open_ticket_id"] . '">
@@ -44,8 +43,7 @@
             </div>
         ';
         $cleanTicket["status"] = '
-        <button type="button" class="btn btn-block bg-danger text-gray-100" data-toggle="modal" data-target="#confirmModalAllTicket'.$ticket['open_ticket_id'].'">
-          <i class="fas fa-times text-white pr-2"></i>  
+        <button type="button" class="btn btn-block bg-danger text-gray-100" data-toggle="modal" data-target="#confirmModalAllTicket'.$ticket['open_ticket_id'].'"> 
             Close Ticket
         </button>
         <!-- Confirmation Modal -->

@@ -40,11 +40,11 @@ $(document).ready(function() {
     ajax: ajaxPath + "open-tickets-table-handler.php",
     processing: true,
     columns: [
+      { data: "queue" },
       { data: "studentName" },
-      { data: "teachingAssistant" },
+      { data: "nodeNumber" },
       { data: "course" },
       { data: "ticketDescription" },
-      { data: "closingRemarks" },
       { data: "status" }
     ]
   });
@@ -56,5 +56,6 @@ $(document).ready(function() {
   // Reload the data for all tables
   allTicketsTable.ajax.reload();
   closedTicketsTable.ajax.reload();
+  openTicketsTable.ajax.reload();
   // TODO: Add more table reloads her
 });
