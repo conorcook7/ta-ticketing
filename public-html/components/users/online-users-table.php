@@ -36,7 +36,7 @@
                             <td><?php echo $user['permission_id']; ?></td>
                             <td><?php echo $user['user_id']; ?></td>
                             <td>
-                                <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
+                                <button type="submit" class="btn btn-block bg-warning text-gray-100">
                                     Update User
                                 </button>
                             </td>
