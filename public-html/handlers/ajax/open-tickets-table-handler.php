@@ -7,14 +7,14 @@
     $dao = new Dao();
  
     $my_ta_id = $_SESSION["user"]["user_id"];
-    $closedTickets = $dao->getOpenTickets();
+    $openTickets = $dao->getOpenTickets();
     $cleanTickets = [
         "data" => array()
     ];
 
     // Sanitize the tickets
     $queue = 0;
-    foreach ($closedTickets as $ticket) {
+    foreach ($openTickets as $ticket) {
         $queue++;
         $cleanTicket = Array();
         $cleanTicket["queue"] = $queue;

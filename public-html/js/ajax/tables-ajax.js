@@ -46,6 +46,18 @@ $(document).ready(function() {
       { data: "status" }
     ]
   });
+
+  let taOpenTicketsTable = $("#ta-open-tickets-table").DataTable({
+    ajax: ajaxPath + "ta-open-tickets-table-handler.php",
+    columns: [
+      { data: "queue" },
+      { data: "studentName" },
+      { data: "nodeInfo" },
+      { data: "course" },
+      { data: "ticketDescription" },
+      { data: "status" }
+    ]
+  });
   
   $("#dataTable").DataTable();
   // Add more tables here
@@ -55,5 +67,6 @@ $(document).ready(function() {
   allTicketsTable.ajax.reload();
   closedTicketsTable.ajax.reload();
   openTicketsTable.ajax.reload();
+  taOpenTicketsTable.ajax.reload();
   // TODO: Add more table reloads her
 });

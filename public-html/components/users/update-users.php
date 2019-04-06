@@ -56,6 +56,6 @@
         <label for="userID">User ID</label>
         <input type="number" class="form-control" id="userID" name="userID" required="true" value=<?php echo (isset($_POST["userID"]) ? $_POST["userID"] : -1);?> readonly>
     </div>
-        <button type="submit" class="btn btn-primary">Add User</button>
+        <button type="submit" class="btn btn-primary">Add/Update User</button>
     </form>
 </div>
