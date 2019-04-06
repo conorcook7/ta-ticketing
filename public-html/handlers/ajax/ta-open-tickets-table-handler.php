@@ -1,6 +1,4 @@
-<?php
-    /*
-    <?php $page = "my-ta-tickets.php";
+<?php $page = "my-ta-tickets.php";
     session_start();
     require_once "../../components/server-functions.php";
     require_once "../../components/dao.php";
@@ -11,23 +9,13 @@
     $my_ta_id = $_SESSION["user"]["user_id"];
     $my_course_id = $dao->getMyCourseID($my_ta_id);
     $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
-    */
-    session_start();
-    require_once "../../components/server-functions.php";
-    require_once "../../components/dao.php";
-
-    $logger = getServerLogger();
-    $dao = new Dao();
- 
-    $my_ta_id = $_SESSION["user"]["user_id"];
-    $openTickets = $dao->getOpenTickets();
     $cleanTickets = [
         "data" => array()
     ];
 
     // Sanitize the tickets
     $queue = 0;
-    foreach ($openTickets as $ticket) {
+    foreach ($myTickets as $ticket) {
         $queue++;
         $cleanTicket = Array();
         $cleanTicket["queue"] = $queue;
