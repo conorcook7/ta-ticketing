@@ -24,7 +24,6 @@
         $cleanTicket["ticketDescription"] = '
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description-all' . $queue . '">
-         <i class="fas fa-share pr-2"></i>
             Click Here
         </button>
 
