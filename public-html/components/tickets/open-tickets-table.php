@@ -8,7 +8,7 @@ $my_ta_id = $_SESSION["user"]["user_id"];?>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-              <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-bordered data_table" id="#open-tickets-table" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th class ="center">Queue</th>
