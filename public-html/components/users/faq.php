@@ -1,7 +1,6 @@
 <?php 
     $page = "faq.php"; 
 ?>
-<div class="container justify-content-left">
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">
             <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
@@ -34,7 +33,6 @@
     </div>
         <button type="submit" class="btn btn-primary">Add/Update FAQ</button>
     </form>
-    </div>
     <div class="container-fluid mt-4">
         <!-- All FAQs Table -->
         <div class="card shadow mb-4">
