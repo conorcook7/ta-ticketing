@@ -32,7 +32,7 @@
   } else {
     $_SESSION['admin-selection'] = 'UNNAUTHORIZED';
   }
-  
+  unset($_GET['id']);
 ?>
 
   <div id="wrapper">
