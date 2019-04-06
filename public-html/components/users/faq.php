@@ -99,6 +99,8 @@
                     </form>
                     <form method="POST" action="../handlers/delete-faq-handler.php">
                         <input type="hidden" name="faqID" value="<?php echo $faq['faq_id']; ?>"/>
+                        <input type="hidden" name="question" value="<?php echo $faq['question']; ?>" />
+                        <input type="hidden" name="answer" value="<?php echo $faq['answer']; ?>" />
                         <td>
                             <button type="submit" name="button_id" value="delete" class="btn btn-block bg-danger text-gray-100">
                                 Delete FAQ
