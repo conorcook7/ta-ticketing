@@ -36,15 +36,16 @@ $(document).ready(function() {
     ]
   });
 
+  // All of the tables ajax calls here
   let openTicketsTable = $("#open-tickets-table").DataTable({
     ajax: ajaxPath + "open-tickets-table-handler.php",
     processing: true,
     columns: [
-      { data: "queue" },
       { data: "studentName" },
-      { data: "nodeNumber" },
+      { data: "teachingAssistant" },
       { data: "course" },
       { data: "ticketDescription" },
+      { data: "closingRemarks" },
       { data: "status" }
     ]
   });
