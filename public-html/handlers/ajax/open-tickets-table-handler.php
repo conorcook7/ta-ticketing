@@ -6,7 +6,7 @@
     $logger = getServerLogger();
     $dao = new Dao();
  
-    $my_ta_id = $_SESSION["user"]["user_id"];?>
+    $my_ta_id = $_SESSION["user"]["user_id"];
     $closedTickets = $dao->getOpenTickets();
     $cleanTickets = [
         "data" => array()
