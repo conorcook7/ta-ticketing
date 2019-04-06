@@ -10,7 +10,7 @@ require_once '../components/header.php';
     echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
     exit(0);
   }
-  if($_SESSION['user']['access_level'] == 2){
+  if($_SESSION['user']['access_level'] >= 2){
     if(isset($_GET['page'])){
       $_SESSION['ta-selection'] = $_GET['page'];
       $selection = $_SESSION['ta-selection'];
