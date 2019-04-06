@@ -11,7 +11,6 @@ $(document).ready(function() {
   // All of the tables ajax calls here
   let allTicketsTable = $("#all-tickets-table").DataTable({
     ajax: ajaxPath + "all-tickets-table-handler.php",
-    processing: true,
     columns: [
       { data: "id" },
       { data: "studentName" },
@@ -25,7 +24,6 @@ $(document).ready(function() {
   // All of the tables ajax calls here
   let closedTicketsTable = $("#closed-tickets-table").DataTable({
     ajax: ajaxPath + "closed-tickets-table-handler.php",
-    processing: true,
     columns: [
       { data: "studentName" },
       { data: "teachingAssistant" },
@@ -39,13 +37,12 @@ $(document).ready(function() {
   // All of the tables ajax calls here
   let openTicketsTable = $("#open-tickets-table").DataTable({
     ajax: ajaxPath + "open-tickets-table-handler.php",
-    processing: true,
     columns: [
+      { data: "queue" },
       { data: "studentName" },
-      { data: "teachingAssistant" },
+      { data: "nodeInfo" },
       { data: "course" },
       { data: "ticketDescription" },
-      { data: "closingRemarks" },
       { data: "status" }
     ]
   });
