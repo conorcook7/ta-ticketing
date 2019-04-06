@@ -1,8 +1,7 @@
 <?php 
     $page = "faq.php"; 
 ?>
-<div class="container">
-    <div><?php echo print_r($_POST, 1) ?></div>
+<div class="container justify-content-left">
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">
             <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
