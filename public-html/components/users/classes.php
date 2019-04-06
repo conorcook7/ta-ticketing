@@ -1,5 +1,5 @@
 <?php $page = "classes.php"; ?>
-<div class="container">
+<div class="container-fluid">
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">
             <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
