@@ -21,7 +21,6 @@
         $cleanTicket["ticketDescription"] = '
             <!-- Button trigger modal for ticket descriptions-->
             <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#ticket-description' . $ticket["closed_ticket_id"] . '">
-                <i class="fas fa-share pr-2"></i>
                 Click Here
             </button>
             <!-- Modal for ticket descriptions-->
@@ -45,7 +44,6 @@
         $cleanTicket["closingRemarks"] = '
             <!-- Button trigger modal for closing descriptions -->
             <button type="button" class="btn btn-block bg-info text-gray-100" data-toggle="modal" data-target="#closed-description' . $ticket["closed_ticket_id"] . '">
-                <i class="fas fa-exclamation-circle pr-2"></i>
                 Click Here
             </button>
             <!-- Modal for closing descriptions-->
@@ -68,7 +66,6 @@
         ';
         $cleanTicket["status"] = '
             <button type="button" class="btn btn-block bg-success text-gray-100" data-toggle="modal" data-target="#confirmModalReOpen' . $ticket["closed_ticket_id"] . '">
-                <i class="fas fa-redo text-white pr-2"></i>
                 Reopen Ticket
             </button>
             <!-- Confirmation Modal -->
