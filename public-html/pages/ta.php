@@ -1,15 +1,7 @@
 <?php
 $nav = 'ta';
 $page = 'ta.php';
-require_once '../components/header.php';
-  try{
-      $dao = new Dao();
-      $users = $dao->getUsers();
-
-  }catch(Exception $e) {
-    echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
-    exit(0);
-  }
+  
   if($_SESSION['user']['access_level'] >= 2){
     if(isset($_GET['page'])){
       $_SESSION['ta-selection'] = $_GET['page'];
@@ -32,7 +24,20 @@ require_once '../components/header.php';
     }
   } else {
     $_SESSION['ta-selection'] = 'UNNAUTHORIZED';
+    header("Location: 403.php");
+    exit();
   }
+  try{
+    $dao = new Dao();
+    $users = $dao->getUsers();
+
+  }catch(Exception $e) {
+    // Really shouldn't print to the website
+    // Maybe use logger here?
+    echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
+    exit(0);
+  }
+  require_once '../components/header.php';
 ?>
 
   <!-- Page Wrapper -->
