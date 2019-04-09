@@ -40,7 +40,7 @@ trait DaoBugReport {
     function getBugReports() {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("SELECT * FROM Bug_Reports");
+            $query = $conn->prepare("SELECT * FROM Bug_Reports AS BR JOIN Users AS U ON BR.user_id = U.user_id;");
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $bugReport = $query->fetchAll();
@@ -61,7 +61,11 @@ trait DaoBugReport {
     function getBugReportById($bugReportId) {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("SELECT * FROM Bug_Reports WHERE bug_report_id = :bugReportId;");
+            $query = $conn->prepare(
+                "SELECT * FROM Bug_Reports AS BR
+                JOIN Users AS U ON BR.user_id = U.user_id
+                WHERE bug_report_id = :bugReportId;"
+            );
             $query->bindParam($bugReportId);
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();

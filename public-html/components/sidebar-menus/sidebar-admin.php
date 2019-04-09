@@ -34,6 +34,13 @@
     </a>
 </li>
 
+<li class="nav-item <?php if ($nav == 'admin' && $page == 'bug-reports.php') { echo 'active'; }?>">
+    <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=bug-reports');?>">
+        <i class="fas fa-fw fa-bug"></i>
+        <span class="LetterSpacing">Bug Reports</span>
+    </a>
+</li>
+
 <li class="nav-item <?php if ($page == 'classes.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=classes');?>">
         <i class="fas fa-fw fa-chalkboard-teacher"></i>

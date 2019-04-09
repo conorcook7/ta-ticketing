@@ -25,6 +25,8 @@
           $page = 'update-users.php';
         } else if ($selection == 'faq'){
           $page = 'faq.php';
+        } else if ($selection == 'bug-reports') {
+          $page = 'bug-reports.php';
         }
     } else {
       $_SESSION['admin-selection'] = 'DEFAULT';
@@ -87,6 +89,8 @@
           include_once '../components/users/update-users.php';
         } elseif ($selection == 'faq'){
           include_once '../components/users/faq.php';
+        } elseif ($selection == 'bug-reports') {
+          include_once '../components/users/bug-reports.php';
         }
         ?>
       </div>
