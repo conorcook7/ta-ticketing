@@ -90,6 +90,17 @@ CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
     FOREIGN KEY (admin_user_id) REFERENCES Users(user_id)
 );
 
+CREATE TABLE IF NOT EXISTS Bug_Reports (
+    bug_report_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+    user_id BIGINT UNSIGNED NOT NULL,
+    title TEXT,
+    description TEXT,
+    create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FULLTEXT (title),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
 INSERT INTO Permissions VALUES (1, 'USER');
 INSERT INTO Permissions VALUES (2, 'TA');
 INSERT INTO Permissions VALUES (3, 'ADMIN');
