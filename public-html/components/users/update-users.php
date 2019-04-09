@@ -28,28 +28,22 @@
     </div>
     <label for="permissionID">Permission Level</label>
     <select class="form-control" id="permissionID" name="permissionID">
-      <?php if($_POST["permissionID"] == 1) { ?>
-        <option selected="selected">1</option>
+    <?php 
+    $dao = new Dao();
+    $permissions = $dao->getPermissionLevels();
+    $count = 0;
+    foreach ($permissions as $perm) { 
+      $count++;
+      if($_POST["permissionID"] == $count) { ?>
+        <option selected="selected"><?php echo $perm['permission_id'] . " - " . $perm['permission_name'];?></option>
       <?php } else { ?>
-        <option>1</option>
+        <option><?php echo $perm['permission_id'] . " - " . $perm['permission_name'];?></option>
       <?php } ?>
-
-      <?php if($_POST["permissionID"] == 2) { ?>
-        <option selected="selected">2</option>
-      <?php } else { ?>
-        <option>2</option>
-      <?php } ?>
-
-      <?php if($_POST["permissionID"] == 3) { ?>
-        <option selected="selected">3</option>
-      <?php } else { ?>
-        <option>3</option>
-      <?php } ?>
-      
+    <?php } ?>
       <?php if($_POST["permissionID"] == 0) { ?>
-        <option selected="selected">0</option>
+        <option selected="selected">0 - Delete User</option>
       <?php } else { ?>
-        <option>0</option>
+        <option>0 - Delete User</option>
       <?php } ?>
     </select>
     <div class="form-group">
