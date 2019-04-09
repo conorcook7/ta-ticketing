@@ -27,7 +27,7 @@ class Dao {
     private $FAILURE = FALSE;
 
     // MySQL generic user
-    private $db = "Dummy_TA_Ticketing";
+    private $db = "TA_Ticketing";
     private $user = "ta-ticketing";
     private $pass = "34$5iu98&7o7%76d4Ss35";
 
