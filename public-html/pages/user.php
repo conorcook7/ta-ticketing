@@ -115,6 +115,9 @@
 		  </tbody>
 		</table><br />
   </div>
+  <div id="bug-report-link" class="text-right p-0 m-0">
+        <a href="<?php echo generateUrl('/pages/help/bug-report.php'); ?>">Having issues?</a>
+  </div>
   </div>
   </div>
 </div>
