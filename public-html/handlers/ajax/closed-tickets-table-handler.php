@@ -82,7 +82,7 @@
                             <p>Are you sure you want to reopen this ticket?</p>
                         </div>
                         <div class="modal-footer">
-                            <form method="POST" action="../handlers/ta-handler.php"> 
+                            <form method="POST" action="../handlers/ticket-handler.php"> 
                                 <input type="hidden" name="closed_ticket_id" value="' . $ticket["closed_ticket_id"] . '"/>
                                 <input type="hidden" name="opener_id" value="' . $ticket["ta_user_id"] . '"/>
                                 <button type="submit" class="btn btn-success">Confirm</button>
