@@ -40,6 +40,7 @@ class Dao {
     use DaoTicketsClosed;
     use DaoTicketsOpen;
     use DaoUsers;
+    use DaoBugReport;
 
     /**
      * Constructor for the Dao object.
