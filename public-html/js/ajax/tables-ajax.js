@@ -70,6 +70,7 @@ $(document).ready(function() {
 
   // Reload the tables based on an interval
   setInterval(function() {
-    taOpenTicketsTable.ajax.reload();
+    console.log("Reloading the data");
+    // taOpenTicketsTable.ajax.reload();
   }, 30 * 1000);
 });
