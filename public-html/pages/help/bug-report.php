@@ -57,7 +57,7 @@
                                 name="description"
                                 class="form-control"
                                 rows=5
-                                maxlength=1000
+                                maxlength=4000
                                 placeholder="I was unable to create a ticket because..."
                                 required="true"
                             ><?php echo isset($_SESSION["presets"]["description"]) ? $_SESSION["presets"]["description"] : ""; ?></textarea>
