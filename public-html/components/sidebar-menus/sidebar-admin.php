@@ -1,5 +1,5 @@
 <!-- Admin Pages -->
-<li class="nav-item <?php if ($page == 'users-table.php') { echo 'active'; }?>">
+<li class="nav-item <?php if ($page == 'users-table.php' || $page == 'admin.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users');?>">
         <i class="fas fa-fw fa-users"></i>
         <span class="LetterSpacing">View Users</span>
