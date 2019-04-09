@@ -1,5 +1,5 @@
 <!-- Teaching Assistant Pages -->
-<li class="nav-item <?php if ($page == 'my-ta-tickets.php') { echo 'active'; }?>">
+<li class="nav-item <?php if ($page == 'my-ta-tickets.php' || $page == 'ta.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/ta.php?page=my-tickets');?>">
         <i class="fas fa-fw fa-ticket-alt"></i>
         <span class="LetterSpacing">My Tickets</span>
