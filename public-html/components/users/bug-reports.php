@@ -68,10 +68,10 @@
                             <td>
                                 <button
                                     type="button"
-                                    class="btn btn-block bg-danger text-gray-100"
+                                    class="btn btn-block bg-success text-gray-100"
                                     data-toggle="modal"
                                     data-target="<?php echo "#confirmModalReOpen" . $bugReport["bug_report_id"]; ?>"
-                                >Delete</button>
+                                >Resolve</button>
                                 <div
                                     class="modal fade"
                                     id="<?php echo "confirmModalReOpen" . $bugReport["bug_report_id"]; ?>"
@@ -90,7 +90,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p>Bug Report: <strong><?php echo htmlentities($bugReport["title"]); ?></strong></p>
-                                                <p>Are you sure you want to delete this bug report?</p>
+                                                <p>Are you sure you want to resolve this bug report?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <form method="POST" action="../handlers/delete-bug-report-handler.php">
