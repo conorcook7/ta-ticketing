@@ -1,4 +1,5 @@
 <?php
+session_start();
 $nav = 'ta';
 $page = 'ta.php';
   
@@ -27,17 +28,20 @@ $page = 'ta.php';
     header("Location: 403.php");
     exit();
   }
+
+  require_once "../components/header.php";
+  require_once "../components/dao.php";
+  require_once "../components/server-functions.php";
+
   try{
     $dao = new Dao();
     $users = $dao->getUsers();
 
   }catch(Exception $e) {
-    // Really shouldn't print to the website
-    // Maybe use logger here?
-    echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
+    $logger = getServerLogger();
+    $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
     exit(0);
   }
-  require_once '../components/header.php';
 ?>
 
   <!-- Page Wrapper -->
