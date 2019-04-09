@@ -4,7 +4,7 @@ session_start();
 ini_set("display_errors","On");
 
 require_once '../components/dao.php';
-$id = 'DEFAULT'
+$id = 'DEFAULT';
 
 $dao = new Dao();
 if(isset($_POST['open_ticket_id_input'])){
@@ -43,8 +43,10 @@ if(isset($_POST['closed_ticket_id'])){
     }
 }
 if($_SESSION['user']['access_level'] >= 3){
-    header("Location: ../pages/admin.php?id={$id}");
+    $page = "Location: ../pages/admin.php?id=" . $id;
+    header($page);
 } else {
-    header("Location: ../pages/ta.php?page={$id}");
+    $page = "Location: ../pages/ta.php?page=" . $id;
+    header($page);
 }
 exit;
