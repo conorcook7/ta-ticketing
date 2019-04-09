@@ -7,7 +7,6 @@ $(document).ready(function() {
   }
   ajaxPath += "handlers/ajax/";
 
-
   // All of the tables ajax calls here
   let allTicketsTable = $("#all-tickets-table").DataTable({
     ajax: ajaxPath + "all-tickets-table-handler.php",
@@ -17,7 +16,7 @@ $(document).ready(function() {
       { data: "nodeNumber" },
       { data: "course" },
       { data: "status" },
-      { data: "ticketDescription"}
+      { data: "ticketDescription" }
     ]
   });
 
@@ -58,7 +57,7 @@ $(document).ready(function() {
       { data: "status" }
     ]
   });
-  
+
   $("#dataTable").DataTable();
   // Add more tables here
   // TODO: Add more tables
@@ -68,5 +67,9 @@ $(document).ready(function() {
   closedTicketsTable.ajax.reload();
   openTicketsTable.ajax.reload();
   taOpenTicketsTable.ajax.reload();
-  // TODO: Add more table reloads her
+
+  // Reload the tables based on an interval
+  setInterval(function() {
+    taOpenTicketsTable.ajax.reload();
+  }, 30 * 1000);
 });
