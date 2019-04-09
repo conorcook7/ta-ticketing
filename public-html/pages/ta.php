@@ -1,4 +1,5 @@
 <?php
+session_start();
 $nav = 'ta';
 $page = 'ta.php';
   
@@ -27,17 +28,20 @@ $page = 'ta.php';
     header("Location: 403.php");
     exit();
   }
+
+  require_once "../components/header.php";
+  require_once "../components/dao.php";
+  require_once "../components/server-functions.php";
+
   try{
     $dao = new Dao();
     $users = $dao->getUsers();
 
   }catch(Exception $e) {
-    // Really shouldn't print to the website
-    // Maybe use logger here?
-    echo 'Unable to get DAO information: ',  $e->getMessage(), "\n";
+    $logger = getServerLogger();
+    $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
     exit(0);
   }
-  require_once '../components/header.php';
 ?>
 
   <!-- Page Wrapper -->
@@ -61,7 +65,18 @@ $page = 'ta.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+        <?php if (isset($_SESSION["success"])){ ?>
+          <div class="alert alert-success">
+              <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
+          </div>
+          <?php } elseif (isset($_SESSION["failure"])) { ?>
+              <div class="alert alert-danger">
+                  <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
+              </div>
+          <?php }
+              unset($_SESSION["failure"]);
+              unset($_SESSION["success"]);
+        ?>
         <?php
         $selection = $_SESSION['ta-selection'];
         if ($selection == 'UNNAUTHORIZED'){ ?>
@@ -71,11 +86,7 @@ $page = 'ta.php';
              <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
            </div>
          <?php
-        } elseif ($selection == 'DEFAULT' || $selection == 'ta'){
-          include_once '../components/tickets/my-ta-tickets.php';
-          include_once '../components/tickets/open-tickets-table.php';
-          include_once '../components/tickets/closed-tickets-table.php';
-        } elseif ($selection == 'my-tickets'){
+        } elseif ($selection == 'DEFAULT' || $selection == 'ta' || $selection == 'my-tickets'){
           include_once '../components/tickets/my-ta-tickets.php';
         } elseif ($selection == 'all-tickets'){
           include_once '../components/tickets/tickets-table.php';

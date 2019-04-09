@@ -16,15 +16,15 @@
     <form method="POST" action="<?php echo generateUrl('/handlers/update-user-handler.php')?>">
     <div class="form-group">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName"  name="firstName" required="true" value="<?php echo (isset($_POST["firstName"]) ? $_POST["firstName"] : "First Name");?>">
+        <input type="text" class="form-control" id="firstName"  name="firstName" required="true" <?php echo (isset($_POST["firstName"]) ? "value=\"" . $_POST["firstName"] : "placeholder=\"First Name");?>">
     </div>
     <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName"  name="lastName" required="true" value="<?php echo (isset($_POST["lastName"]) ? $_POST["lastName"] : "Last Name");?>">
+        <input type="text" class="form-control" id="lastName"  name="lastName" required="true" <?php echo (isset($_POST["lastName"]) ? "value=\"" . $_POST["lastName"] : "placeholder=\"Last Name");?>">
     </div>
     <div class="form-group">
         <label for="userEmail">Email</label>
-        <input type="email" class="form-control" id="userEmail" name="userEmail" required="true" value="<?php echo (isset($_POST["email"]) ? $_POST["email"] : "Email");?>">
+        <input type="email" class="form-control" id="userEmail" name="userEmail" required="true" <?php echo (isset($_POST["email"]) ? "value=\"" . $_POST["email"] : "placeholder=\"Email");?>">
     </div>
     <label for="permissionID">Permission Level</label>
     <select class="form-control" id="permissionID" name="permissionID">

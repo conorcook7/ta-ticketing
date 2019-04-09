@@ -3,6 +3,8 @@
 require_once 'KLogger.php';
 
 // Require all of the dao traits
+
+require_once 'dao-traits/dao-bug-report.php';
 require_once 'dao-traits/dao-courses.php';
 require_once 'dao-traits/dao-faq.php';
 require_once 'dao-traits/dao-permissions.php';
@@ -25,7 +27,7 @@ class Dao {
     private $FAILURE = FALSE;
 
     // MySQL generic user
-    private $db = "Dummy_TA_Ticketing";
+    private $db = "TA_Ticketing";
     private $user = "ta-ticketing";
     private $pass = "34$5iu98&7o7%76d4Ss35";
 
@@ -33,6 +35,7 @@ class Dao {
     protected $logger;
 
     // Use all of the dao traits
+    use DaoBugReport;
     use DaoCourses;
     use DaoFaq;
     use DaoPermissions;

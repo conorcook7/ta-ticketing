@@ -59,6 +59,7 @@ $(document).ready(function() {
   });
 
   $("#dataTable").DataTable();
+  $(".generic-data-table").DataTable();
   // Add more tables here
   // TODO: Add more tables
 
@@ -67,9 +68,10 @@ $(document).ready(function() {
   closedTicketsTable.ajax.reload();
   openTicketsTable.ajax.reload();
   taOpenTicketsTable.ajax.reload();
-  // TODO: Add more table reloads her
 
+  // Reload the tables based on an interval
   setInterval(function() {
-    taOpenTicketsTable.ajax.reload();
+    console.log("Reloading the data");
+    // taOpenTicketsTable.ajax.reload();
   }, 30 * 1000);
 });
