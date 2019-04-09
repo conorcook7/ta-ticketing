@@ -89,6 +89,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <p>Bug Report: <strong><?php echo htmlentities($bugReport["title"]); ?></strong></p>
                                                 <p>Are you sure you want to delete this bug report?</p>
                                             </div>
                                             <div class="modal-footer">
