@@ -37,7 +37,7 @@
                         unset($_SESSION["success"]);
                     ?>
                     <form id="bug-form" method="POST" action="../../handlers/bug-report-handler.php">
-                        <label for="title">Title</label>
+                        <label for="title">Issue</label>
                         <div class="form-group w-25">
                             <input
                                 type="text"
