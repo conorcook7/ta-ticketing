@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id)
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Open_Tickets (
@@ -56,14 +56,14 @@ CREATE TABLE IF NOT EXISTS Open_Tickets (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
-    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
     FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
     FOREIGN KEY (opener_user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Closed_Tickets (
     closed_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-    available_course_id BIGINT UNSIGNED NOT NULL,
+    available_course_id BIGINT UNSIGNED NULL,
     creator_user_id BIGINT UNSIGNED NOT NULL,
     closer_user_id BIGINT UNSIGNED NOT NULL,
     description TEXT,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
     FULLTEXT (closing_description),
-    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
     FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
     FOREIGN KEY (closer_user_id) REFERENCES Users(user_id)
 );
