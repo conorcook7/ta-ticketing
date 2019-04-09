@@ -59,7 +59,6 @@
                                 rows=5
                                 maxlength=4000
                                 placeholder="I was unable to create a ticket because..."
-                                required="true"
                             ><?php echo isset($_SESSION["presets"]["description"]) ? $_SESSION["presets"]["description"] : ""; ?></textarea>
                             <div class="text-right">
                                 <span id="char-count">0</span>
