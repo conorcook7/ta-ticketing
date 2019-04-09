@@ -75,11 +75,7 @@ $page = 'ta.php';
              <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
            </div>
          <?php
-        } elseif ($selection == 'DEFAULT' || $selection == 'ta'){
-          include_once '../components/tickets/my-ta-tickets.php';
-          include_once '../components/tickets/open-tickets-table.php';
-          include_once '../components/tickets/closed-tickets-table.php';
-        } elseif ($selection == 'my-tickets'){
+        } elseif ($selection == 'DEFAULT' || $selection == 'ta' || $selection == 'my-tickets'){
           include_once '../components/tickets/my-ta-tickets.php';
         } elseif ($selection == 'all-tickets'){
           include_once '../components/tickets/tickets-table.php';
