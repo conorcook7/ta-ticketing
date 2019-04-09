@@ -14,7 +14,7 @@ trait DaoPermissions {
     public function getPermissionLevels() {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("SELECT * FROM Permissions;");
+            $query = $conn->prepare("SELECT * FROM Permissions ORDER BY permission_id ASC;");
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $permissionLevels = $query->fetchAll();

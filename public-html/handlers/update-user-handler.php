@@ -7,7 +7,6 @@
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
     $email = $_POST["userEmail"];
-    
     $permissionID = intval(explode(" ", $_POST["permissionID"])[0]);
     if($permissionID == 0){
         if($dao->deleteUser($email) == TRUE){
