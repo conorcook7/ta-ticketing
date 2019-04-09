@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 session_start();
 ini_set("display_errors","On");
-$_SESSION['success'] = 'We got to the page';
 require_once '../components/dao.php';
 $id = 'DEFAULT';
 

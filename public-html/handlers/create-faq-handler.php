@@ -12,7 +12,7 @@
         } else {
             $_SESSION["failure"] = "Failed to update the Question: " . $question;
         }
-    } else {
+    } else if(isset($question, $answer)) {
         if($dao->createFAQ($id, $question, $answer) == TRUE){
             $_SESSION["success"] = "Added the Question: " . $question;
         } else {

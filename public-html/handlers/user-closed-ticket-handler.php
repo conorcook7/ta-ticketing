@@ -15,8 +15,10 @@
     
     if (!$status) {
         $logger = getServerLogger();
-        $logger->logError(__FILE__ . ": Unable to delete closed ticket {" . $_POST["closed_ticket_id"] . "}");
+        $logger->logError(__FILE__ . ": Unable to reopen closed ticket {" . $_POST["closed_ticket_id"] . "}");
+        $_SESSION['failure'] = 'Unable to reopen ticket';
+    } else {
+        $_SESSION['success'] = 'Reopened ticket';
     }
-
     header("Location: ../pages/user.php");
     exit();

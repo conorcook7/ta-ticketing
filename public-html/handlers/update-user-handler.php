@@ -14,7 +14,7 @@
         } else {
             $_SESSION["failure"] = "Failed to delete the user: " . $firstName . " " . $lastName;
         }
-    } elseif($user_id == -1){
+    } else if($user_id == -1){
         if($dao->createUser($email, $firstName, $lastName) == TRUE){
             if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
                 $_SESSION["success"] = "Created the user: " . $firstName . " " . $lastName;
@@ -25,7 +25,7 @@
         } else {
             $_SESSION["failure"] = "Failed to create the user: " . $firstName . " " . $lastName;
         }  
-    } else {
+    } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
         if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
             $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
         } else {

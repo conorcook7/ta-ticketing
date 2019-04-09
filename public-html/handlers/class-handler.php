@@ -19,7 +19,7 @@
         } else {
             $_SESSION["failure"] = "Failed to update the Class: " . $name;
         }
-    } else {
+    } else if(isset($name, $number, $description)) {
         if($dao->createCourse($name, $number, $description) == TRUE){
             $_SESSION["success"] = "Added the Class: " . $name;
         } else {
