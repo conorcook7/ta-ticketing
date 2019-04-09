@@ -10,21 +10,45 @@
 
     // Attempt to save the issue ot the database
     try {
+        $title = isset($_POST["title"]) ? $_POST["title"] : "";
+        $description = isset($_POST["description"]) ? $_POST["description"] : "";
+
+        if ($title == "" && $description == "") {
+            $_SESSION["presets"]["title"] = $title;
+            $_SESSION["presets"]["description"] = $description;
+
+            // Set the failure message
+            $_SESSION["failure"] = "We are having issues saving your concern. You may contact 
+                <a href='mailto: BenjaminPeterson@boisestate.edu'>Benjamin Peterson</a> for further assistance.";
+
+            // Unset the post array and redirect to the bug report page
+            unset($_POST);
+            header("Location: ../pages/help/bug-report.php");
+            exit();
+        }
+
+        // Attempt to insert the bug report
         $dao = new Dao();
         if ($dao->createBugReport($_SESSION["user"]["user_id"], $_POST["title"], $_POST["description"])) {
             $_SESSION["success"] = "Your concern has been saved for an administrator to view.";
-        } else {
-            $_SESSION["presets"]["title"] = isset($_POST["title"]) ? $_POST["title"] : "";
-            $_SESSION["presets"]["description"] = isset($_POST["description"]) ? $_POST["description"] : "";
-            $_SESSION["failure"] = "Unable to save your concern. Please try again later.";
+            if (isset($_SESSION["presets"])) {
+                unset($_SESSION["presets"]);
+            }
+            unset($_POST);
+            header("Location: ../pages/help/bug-report.php");
+            exit();
         }
     } catch (Exception $e) {
         $logger->logError(basename(__FILE__) . ": Unable to save the user's issue to the database.");
         $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
-        $_SESSION["presets"]["title"] = isset($_POST["title"]) ? $_POST["title"] : "";
-        $_SESSION["presets"]["description"] = isset($_POST["description"]) ? $_POST["description"] : "";
-        $_SESSION["failure"] = "We are having issues saving your concern. You may contact Benjamin Peterson at BenjaminPeterson@boisestate.edu for further assistance.";
     }
+
+    $_SESSION["presets"]["title"] = $title;
+    $_SESSION["presets"]["description"] = $description;
+
+    // Set the failure message
+    $_SESSION["failure"] = "We are having issues saving your concern. You may contact 
+        <a href='mailto: BenjaminPeterson@boisestate.edu'>Benjamin Peterson</a> for further assistance.";
 
     // Unset the post array and redirect to the bug report page
     unset($_POST);

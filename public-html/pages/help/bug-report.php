@@ -44,7 +44,7 @@
                                 id="title"
                                 name="title"
                                 class="form-control"
-                                placeholder="Unable to create ticket"
+                                placeholder="Unable to create ticket..."
                                 value="<?php echo isset($_SESSION["presets"]["title"]) ? $_SESSION["presets"]["title"] : ""; ?>"
                                 required="true"
                                 maxlength=45
