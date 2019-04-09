@@ -4,7 +4,7 @@ session_start();
 ini_set("display_errors","On");
 
 require_once '../components/dao.php';
-$id = 'DEFAULT'
+$id = 'DEFAULT';
 
 $dao = new Dao();
 if(isset($_POST['open_ticket_id_input'])){
