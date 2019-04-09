@@ -55,7 +55,7 @@
         <div class="modal fade" id="confirmModalAllTicket' . $queue . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <form method="POST" action="../handlers/ta-handler.php" id="all_ticket_form' . $queue . '">
+              <form method="POST" action="../handlers/ticket-handler.php" id="all_ticket_form' . $queue . '">
                 <input type="hidden" name="open_ticket_id_input" value="' . $ticket['open_ticket_id'] . '"/>
                 <input type="hidden" name="closer_id_input" value="' . $my_ta_id . '"/>
              <div class="modal-header">
