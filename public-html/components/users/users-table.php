@@ -29,7 +29,6 @@
                       <th class="center">Last Name</th>
                       <th class="center">Email</th>
                       <th class="center">Permission Level</th>
-                      <th class="center">User ID</th>
                       <th class="center">Update User</th>
                     </tr>
                   </thead>
@@ -50,7 +49,6 @@
                             <td><?php echo htmlspecialchars($user['last_name']); ?></td>
                             <td><?php echo htmlspecialchars($user['email']); ?></td>
                             <td><?php echo $user['permission_id']; ?></td>
-                            <td><?php echo $user['user_id']; ?></td>
                             <td>
                                 <button type="submit" class="btn btn-block bg-warning text-gray-100">
                                     Update User
