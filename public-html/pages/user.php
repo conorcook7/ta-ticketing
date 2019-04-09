@@ -49,7 +49,7 @@
   </div>
     <div class="card-body">
       <div class="table-responsive">
-		    <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+		    <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
             <th class="center">Queue #</th>
@@ -132,7 +132,7 @@
   </div>
     <div class="card-body">
       <div class="table-responsive">
-		    <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+		    <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
             <th class="center">Ticket #</th>
@@ -212,7 +212,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
         <thead>
         <tr>
           <th class="center">TA Name</th>

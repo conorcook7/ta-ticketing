@@ -59,6 +59,7 @@ $(document).ready(function() {
   });
 
   $("#dataTable").DataTable();
+  $(".generic-data-table").DataTable();
   // Add more tables here
   // TODO: Add more tables
 
