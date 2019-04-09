@@ -33,7 +33,10 @@
                                     <i class="fas fa-plus-square fa-2x text-gray-300"></i>
                                 </div>
                             </div>
-                            <p>Create a new ticket with the "New Ticket" button on your dashboard.</p>
+                            <p>
+                                Create a ticket with the <strong>New Ticket</strong> button at the top right of the
+                                <strong>My Open Tickets</strong> table on your dashboard page.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +76,9 @@
                                 </div>
                             </div>
                             <p>Continue working on other parts of the homework, while a teaching assistant
-                            becomes available.
+                            becomes available. You can always see the available teaching assistants in the
+                            <strong>Available Teaching Assistants</strong> table below the <strong>My Closed Tickets</strong>
+                            table on the dashboard page.
                             </p>
                         </div>
                     </div>
@@ -93,7 +98,7 @@
             <div class="card-title mb-4">
                 <div class="text-gray-800">
                 You have the option to close your own tickets. A great example is if you have
-                created a ticket, but figured out the answer on your own (nice job!).
+                created a ticket, but figured out the answer on your own (<strong>nice job!</strong>).
                 </div>
             </div>
             <div class="row">
@@ -104,13 +109,13 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
                                     <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 1</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">New Ticket Button</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Go to Your Dashboard</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-plus-square fa-2x text-gray-300"></i>
+                                    <i class="fas fa-home fa-2x text-gray-300"></i>
                                 </div>
                             </div>
-                            <p>Create a new ticket with the "New Ticket" button on your dashboard.</p>
+                            <p>You can browse to your dashboard using the navigation bar on the left side of your screen.</p>
                         </div>
                     </div>
                 </div>
@@ -122,15 +127,14 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
                                     <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 2</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Fill in Information</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Find the Ticket</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    <i class="fas fa-list-alt fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                             <p>
-                            Write about your issue so that the teaching assistant can start to become
-                            familiar with your problem.
+                                In order to close one of your own tickets, you need to find the ticket in the <strong>My Open Tickets</strong> table.
                             </p>
                         </div>
                     </div>
@@ -143,14 +147,16 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
                                     <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 3</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Wait for Assistance</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Close Ticket Button</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-clock fa-2x text-gray-300"></i>
+                                    <i class="fas fa-times fa-2x text-gray-300"></i>
                                 </div>
                             </div>
-                            <p>Continue working on other parts of the homework, while a teaching assistant
-                            becomes available.
+                            <p>
+                                Simply press the <strong>Cancel Ticket</strong> button that is on the same row as the
+                                ticket you would like to close. You should now be able to see the cancelled ticket in your
+                                <strong>My Closed Tickets</strong> table.
                             </p>
                         </div>
                     </div>
@@ -181,13 +187,13 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
                                     <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 1</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">New Ticket Button</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Go to Your Dashboard</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-plus-square fa-2x text-gray-300"></i>
+                                    <i class="fas fa-home fa-2x text-gray-300"></i>
                                 </div>
                             </div>
-                            <p>Create a new ticket with the "New Ticket" button on your dashboard.</p>
+                            <p>You can browse to your dashboard using the navigation bar on the left side of your screen.</p>
                         </div>
                     </div>
                 </div>
@@ -199,15 +205,14 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
                                     <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 2</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Fill in Information</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Find the Ticket</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    <i class="fas fa-list-alt fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                             <p>
-                            Write about your issue so that the teaching assistant can start to become
-                            familiar with your problem.
+                                In order to reopen one of your own tickets, you need to find the ticket in the <strong>My Closed Tickets</strong> table.
                             </p>
                         </div>
                     </div>
@@ -220,14 +225,16 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
                                     <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 3</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Wait for Assistance</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Reopen Ticket Button</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-clock fa-2x text-gray-300"></i>
+                                    <i class="fas fa-redo fa-2x text-gray-300"></i>
                                 </div>
                             </div>
-                            <p>Continue working on other parts of the homework, while a teaching assistant
-                            becomes available.
+                            <p>
+                                Simply press the <strong>Reopen Ticket</strong> button that is on the same row as the
+                                ticket you found in Step 2. You should now be able to see the opened ticket in your
+                                <strong>My Open Tickets</strong> table.
                             </p>
                         </div>
                     </div>
