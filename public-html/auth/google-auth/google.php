@@ -40,7 +40,8 @@
 
         } catch (Exception $e) {
             $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
-            header("Location: ./google.php");
+            $_SESSION["login-error"] = "Unable to find Google account.";
+            header("Location: " . generateUrl("/pages/logged-out.php"));
             exit();
         }
 
@@ -61,7 +62,8 @@
                 $splitEmail = explode("@", $payload["email"]);
                 $emailDomain = $splitEmail[1];
                 if ($emailDomain != "u.boisestate.edu" && $emailDomain != "boisestate.edu") {
-                    header("Location: ./google.php");
+                    $_SESSION["login-error"] = "You must use a <strong>Boise State</strong> email address. If this is a mistake you may contact the system admin.";
+                    header("Location: " . generateUrl("/pages/logged-out.php"));
                     exit();
                 }
 
@@ -85,7 +87,8 @@
                     );
                     if (!$querySuccessful) {
                         $logger->logError(basename(__FILE__) . ": Unable to create user with dao method.");
-                        header("Location: ./google.php");
+                        $_SESSION["login-error"] = "Unable to get your account. Please try again later.";
+                        header("Location: " . generateUrl("/pages/logged-out.php"));
                         exit();
                     }
                 }
@@ -117,11 +120,13 @@
 
         } catch (Exception $e) {
             $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
-            header("Location: ./google.php");
+            $_SESSION["login-error"] = "Unable to get your account. Please try again later.";
+            header("Location: " . generateUrl("/pages/logged-out.php"));
             exit();
         }
 
     }
 
-    header("Location: ./google.php");
+    $_SESSION["login-error"] = "Unable to authenticate your account. Please try again later.";
+    header("Location: " . generateUrl("/pages/logged-out.php"));
     exit();
