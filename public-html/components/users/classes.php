@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
         <label for="courseNumber">Course Number</label>
-        <input type="text" class="form-control" id="courseNumber" name="courseNumber" <?php echo (isset($_POST["courseNumber"]) ? "value=\"" . $_POST["courseNumber"] : "placeholder=\"121");?>" required="true">
+        <input type="text" class="form-control" id="courseNumber" name="courseNumber" <?php echo (isset($_POST["courseNumber"]) ? "value=\"" . $_POST["courseNumber"] : "placeholder=\"CS121");?>" required="true">
     </div>
     <div class="form-group">
         <label for="courseDescription">Course Description</label>
