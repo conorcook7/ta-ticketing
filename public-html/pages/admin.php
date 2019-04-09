@@ -5,7 +5,7 @@
   $page = 'admin.php';
   $nav = 'admin';
   
-  if($_SESSION['user']['access_level'] <= 3){
+  if($_SESSION['user']['access_level'] >= 3){
     if(isset($_GET['id'])){
       $_SESSION['admin-selection'] = $_GET['id'];
       $selection = $_SESSION['admin-selection'];
@@ -47,12 +47,21 @@
       <!-- Main Content -->
       <div id="content">
 
-
-
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
-        
+        <?php if (isset($_SESSION["success"])){ ?>
+          <div class="alert alert-success">
+              <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
+          </div>
+        <?php } elseif (isset($_SESSION["failure"])) { ?>
+            <div class="alert alert-danger">
+                <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
+            </div>
+        <?php }
+            unset($_SESSION["failure"]);
+            unset($_SESSION["success"]);
+        ?>
         <?php
         $selection = $_SESSION['admin-selection'];
         if ($selection == 'UNNAUTHORIZED'){ ?>

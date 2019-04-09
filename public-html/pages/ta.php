@@ -65,7 +65,18 @@ $page = 'ta.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+        <?php if (isset($_SESSION["success"])){ ?>
+          <div class="alert alert-success">
+              <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
+          </div>
+          <?php } elseif (isset($_SESSION["failure"])) { ?>
+              <div class="alert alert-danger">
+                  <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
+              </div>
+          <?php }
+              unset($_SESSION["failure"]);
+              unset($_SESSION["success"]);
+        ?>
         <?php
         $selection = $_SESSION['ta-selection'];
         if ($selection == 'UNNAUTHORIZED'){ ?>
@@ -75,11 +86,7 @@ $page = 'ta.php';
              <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
            </div>
          <?php
-        } elseif ($selection == 'DEFAULT' || $selection == 'ta'){
-          include_once '../components/tickets/my-ta-tickets.php';
-          include_once '../components/tickets/open-tickets-table.php';
-          include_once '../components/tickets/closed-tickets-table.php';
-        } elseif ($selection == 'my-tickets'){
+        } elseif ($selection == 'DEFAULT' || $selection == 'ta' || $selection == 'my-tickets'){
           include_once '../components/tickets/my-ta-tickets.php';
         } elseif ($selection == 'all-tickets'){
           include_once '../components/tickets/tickets-table.php';
