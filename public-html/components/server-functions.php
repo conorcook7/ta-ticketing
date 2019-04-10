@@ -51,15 +51,14 @@
     function getNodeNumber() {
         $logger = getServerLogger();
         $hostname = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
-        
+        $logger->logInfo(basename(__FILE__) . ": get host name: " . gethostbyname(gethostname()));
+        $logger->logInfo(basename(__FILE__) . ": get host name: " . getHostByName(getHostName()));
+        $logger->logInfo(basename(__FILE__) . ": get host name: " . getHostByName(php_uname('n')));
         // Search for onyx node
         preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
         if (!empty($matches) && isset($matches[2])) {
             return "Node " . $matches[2];
         } else {
-            $logger->logInfo(basename(__FILE__) . ": get host name: " . gethostbyname(gethostname()));
-            $logger->logInfo(basename(__FILE__) . ": get host name: " . getHostByName(getHostName()));
-            $logger->logInfo(basename(__FILE__) . ": get host name: " . getHostByName(php_uname('n')));
             $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
         }
 
