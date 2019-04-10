@@ -53,9 +53,9 @@
         $hostname = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
         
         // Search for onyx node
-        preg_match("/.*onyxnode(\d+)\.boisestate\.edu.*/", $hostname, $matches);
-        if (!empty($matches) && isset($matches[1])) {
-            return "Node " . $matches[1];
+        preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
+        if (!empty($matches) && isset($matches[2])) {
+            return "Node " . $matches[2];
         } else {
             $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
         }
