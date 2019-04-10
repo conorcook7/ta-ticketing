@@ -95,7 +95,7 @@ $page = 'ta.php';
         } elseif ($selection == 'closed-tickets'){
           include_once '../components/tickets/closed-tickets-table.php';
         } elseif ($selection == 'create-ticket'){
-          header('Location: ../pages/userform.php');
+          header('Location: userform.php');
           exit();
         }
         ?>
