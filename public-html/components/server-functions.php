@@ -51,9 +51,7 @@
     function getNodeNumber() {
         $logger = getServerLogger();
         $hostname = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
-        $logger->logInfo(basename(__FILE__) . ": get host name: " . gethostbyname(gethostname()));
-        $logger->logInfo(basename(__FILE__) . ": get host name: " . getHostByName(getHostName()));
-        $logger->logInfo(basename(__FILE__) . ": get host name: " . getHostByName(php_uname('n')));
+        $logger->logInfo(basename(__FILE__) . ": get host name: " . $_SERVER["REMOTE_HOST"]);
         // Search for onyx node
         preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
         if (!empty($matches) && isset($matches[2])) {
