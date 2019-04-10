@@ -56,6 +56,8 @@
         preg_match("/.*onyxnode(\d+)\.boisestate\.edu.*/", $hostname, $matches);
         if (!empty($matches) && isset($matches[1])) {
             return "Node " . $matches[1];
+        } else {
+            $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
         }
 
         // Search for os type
