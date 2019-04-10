@@ -15,6 +15,9 @@
     if (!$status) {
         $logger = getServerLogger();
         $logger->logError(__FILE__ . ": Unable to delete open ticket {" . $_POST["open_ticket_id"] . "}");
+        $_SESSION['failure'] = 'Ticket has not been closed.';
+    }else {
+        $_SESSION['success'] = 'Ticket has been closed.';
     }
 
     header("Location: ../pages/user.php");
