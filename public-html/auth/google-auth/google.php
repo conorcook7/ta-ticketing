@@ -9,8 +9,8 @@
 
     // Step 1: Set up the google client
     $googleClient = new Google_Client();
-    $googleClient->setClientId("153288048540-sogdggkb32ugai855a0uffo0d7h2hqnq.apps.googleusercontent.com");
-    $googleClient->setClientSecret("ZyXV3mVUVs89rDkuq8RjFaH4");
+    $googleClient->setClientId("479242747472-coohl2sguq463l7rlvpitp8hijsmm5cc.apps.googleusercontent.com");
+    $googleClient->setClientSecret("Yz1FgBF9oTfyQFq3woL6_abY");
     $googleClient->setRedirectUri(generateUrl("/auth/google-auth/google.php"));
     $googleClient->setScopes("email profile");
 
