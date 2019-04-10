@@ -20,7 +20,13 @@ if(isset($_POST['courseName']) && isset($_POST['description']) && $user_id != 0 
     $newTicket = $dao->createTicket($course_id,$user_id,$nodeNum, $description = $descript);
 }
 if($newTicket){
-  header("Location: ../pages/user.php");
-  exit;
+  $_SESSION['success'] = 'New Ticket Has Been Created.';
+}else {
+  $logger = getServerLogger();
+  $logger->logError(__FILE__ . ": Unable to create new ticket from user {" . $user["user_id"] . "}");
+  $_SESSION['failure'] = 'Unable to create new ticket';
 }
+
+header("Location: ../pages/user.php");
+exit;
 ?>
