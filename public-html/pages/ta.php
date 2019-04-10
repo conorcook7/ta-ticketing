@@ -79,7 +79,8 @@ require_once '../components/header.php';
         } elseif ($selection == 'closed-tickets'){
           include_once '../components/tickets/closed-tickets-table.php';
         } elseif ($selection == 'create-ticket'){
-          include_once '../pages/userform.php';
+          header('Location: ../pages/userform.php');
+          exit();
         }
         ?>
         </div>
