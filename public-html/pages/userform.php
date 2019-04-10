@@ -2,6 +2,7 @@
   require_once '../components/header.php';
   require_once '../components/dao.php';
   $dao = new Dao();
+  $page = 'userform.php';
 ?>
 <div id="wrapper">
   <!-- Start of Sidebar -->
