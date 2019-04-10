@@ -1,5 +1,5 @@
 <!-- Admin Pages -->
-<li class="nav-item <?php if ($page == 'users-table.php') { echo 'active'; }?>">
+<li class="nav-item <?php if ($page == 'users-table.php' || $page == 'admin.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users');?>">
         <i class="fas fa-fw fa-users"></i>
         <span class="LetterSpacing">View Users</span>
@@ -31,6 +31,13 @@
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=closed-tickets');?>">
         <i class="fas fa-fw fa-tasks"></i>
         <span class="LetterSpacing">View Closed Tickets</span>
+    </a>
+</li>
+
+<li class="nav-item <?php if ($nav == 'admin' && $page == 'bug-reports.php') { echo 'active'; }?>">
+    <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=bug-reports');?>">
+        <i class="fas fa-fw fa-bug"></i>
+        <span class="LetterSpacing">Bug Reports</span>
     </a>
 </li>
 

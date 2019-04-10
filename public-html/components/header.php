@@ -6,7 +6,7 @@
 
     $dao = new Dao();
     if (!isset($_SESSION["user"]) ||
-    $dao->getOnlineStatus($_SESSION["user"]["email"]) == "OFFLINE") {
+            $dao->getOnlineStatus($_SESSION["user"]["email"]) == "OFFLINE") {
         header("Location: " . generateUrl("/handlers/logout-handler.php"));
         exit();
     }
@@ -16,6 +16,7 @@
         exit();
     }
     
+    updateSession($_SESSION["user"]["user_id"]);
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -64,7 +65,6 @@
   <!-- Page level plugins -->
   <script src="<?php echo generateUrl('/vendor/datatables/jquery.dataTables.min.js');?>"></script>
   <script src="<?php echo generateUrl('/vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>
-  <script src="<?php echo generateUrl('/js/demo/datatables-demo.js');?>"></script>
   <script src="<?php echo generateUrl('/js/limit-input.js');?>"></script>
 </head>
 

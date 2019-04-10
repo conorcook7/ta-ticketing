@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once "../components/dao.php";
-    require_once "../components/KLogger.php";
+    require_once "../components/server-functions.php";
 
     $dao = new Dao();
 
@@ -14,9 +14,11 @@
     unset($_POST);
     
     if (!$status) {
-        $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
-        $logger->logError(__FILE__ . ": Unable to delete closed ticket {" . $_POST["closed_ticket_id"] . "}");
+        $logger = getServerLogger();
+        $logger->logError(__FILE__ . ": Unable to reopen closed ticket {" . $_POST["closed_ticket_id"] . "}");
+        $_SESSION['failure'] = 'Unable to reopen ticket';
+    } else {
+        $_SESSION['success'] = 'Reopened ticket';
     }
-
     header("Location: ../pages/user.php");
     exit();

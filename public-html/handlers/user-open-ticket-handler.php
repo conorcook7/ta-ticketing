@@ -1,19 +1,23 @@
 <?php
     session_start();
     require_once "../components/dao.php";
-    require_once "../components/KLogger.php";
+    require_once "../components/server-functions.php";
 
     $dao = new Dao();
 
     if (isset($_POST["open_ticket_id"]) && isset($_SESSION["user"]["user_id"])) {
-        $status = $dao->closeTicket($_POST["open_ticket_id"], $_SESSION["user"]["user_id"]);
+        $closingDescription = isset($_POST["closing_description"]) ? $_POST["closing_description"] : "Self Closed";
+        $status = $dao->closeTicket($_POST["open_ticket_id"], $_SESSION["user"]["user_id"], $closingDescription);
     } else {
         $status = 0;
     }
     
     if (!$status) {
-        $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
+        $logger = getServerLogger();
         $logger->logError(__FILE__ . ": Unable to delete open ticket {" . $_POST["open_ticket_id"] . "}");
+        $_SESSION['failure'] = 'Ticket has not been closed.';
+    }else {
+        $_SESSION['success'] = 'Ticket has been closed.';
     }
 
     header("Location: ../pages/user.php");

@@ -26,11 +26,11 @@ trait DaoFaq {
             $query->bindParam(":question", $question);
             $query->bindParam(":answer", $answer);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Created FAQ");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Created FAQ");
             return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to create FAQ");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to create FAQ");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -49,11 +49,11 @@ trait DaoFaq {
             );
             $query->bindParam(":faqId", $faqId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Deleted FAQ");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted FAQ");
             return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to delete FAQ");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to delete FAQ");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -71,7 +71,7 @@ trait DaoFaq {
         try {
             $conn = $this->getConnection();
             $query = $conn->prepare(
-                "UPDATE TABLE Frequently_Asked_Questions SET 
+                "UPDATE Frequently_Asked_Questions SET 
                     admin_user_id = :adminUserId,
                     question = :question, 
                     answer = :answer
@@ -82,11 +82,11 @@ trait DaoFaq {
             $query->bindParam(":question", $question);
             $query->bindParam(":answer", $answer);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Updated FAQ");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Updated FAQ");
             return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to update FAQ");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to update FAQ");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -110,13 +110,13 @@ trait DaoFaq {
             }
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Executed query");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Executed query");
             $FAQs = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all data");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all data");
             return $FAQs;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get FAQs");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get FAQs");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
     }

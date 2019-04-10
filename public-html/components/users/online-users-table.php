@@ -3,7 +3,7 @@
         <!-- All Users Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">All Users</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Online Users</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -36,7 +36,7 @@
                             <td><?php echo $user['permission_id']; ?></td>
                             <td><?php echo $user['user_id']; ?></td>
                             <td>
-                                <button type="submit" class="btn btn-block bg-gradient-warning text-gray-100">
+                                <button type="submit" class="btn btn-block bg-warning text-gray-100">
                                     Update User
                                 </button>
                             </td>

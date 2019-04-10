@@ -1,7 +1,7 @@
 <?php 
     $page = "faq.php"; 
 ?>
-<div class="container">
+<div class="container-fluid">
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">
             <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
@@ -16,17 +16,25 @@
     ?>
     <form method="POST" action="<?php echo generateUrl('/handlers/create-faq-handler.php')?>">
     <legend class="border-bottom mb-4">Create FAQ</legend>
+    <?php
+    if(isset($_POST['faqID'])){ ?>
+        <input type="hidden" name="faqID" value="<?php echo $_POST['faqID']; ?>"/>
+    <?php } ?>
     <div class="form-group">
         <label for="question">Question</label>
-        <input type="text" class="form-control" id="question" name="question" placeholder="Why is nothing displaying?" required="true">
+        <input type="text" class="form-control" id="question" name="question" <?php echo isset($_POST["question"]) ? "value=\"" . $_POST["question"] . "\"" : "placeholder=\"Why is nothing displaying?\""; ?>required="true">
     </div>
     <div class="form-group">
         <label for="answer">Answer</label>
-        <textarea class="form-control" id="answer" name="answer" rows="3" placeholder="Try clearing your cache and cookies and if that does not work contact Ben Peterson."></textarea>
+        <textarea class="form-control" id="answer" name="answer" rows="3" placeholder="Try clearing your cache and cookies and if that does not work contact Ben Peterson."><?php
+        if(isset($_POST["answer"])){
+            echo htmlspecialchars($_POST["answer"]);
+        }
+        ?></textarea>
     </div>
-        <button type="submit" class="btn btn-primary">Add FAQ</button>
+        <button type="submit" class="btn btn-primary">Add/Update FAQ</button>
     </form>
-    </div>
+</div>
     <div class="container-fluid mt-4">
         <!-- All FAQs Table -->
         <div class="card shadow mb-4">
@@ -59,22 +67,22 @@
                         <td><?php echo htmlspecialchars($faq['question']); ?></td>
                         <td class="center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#<?php echo $faq['faq_id']; ?>">
+                            <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#answer<?php echo $faq['faq_id']?>">
                                 Answer
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="<?php echo $faq['faq_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $faq['faq_id']; ?>Title" aria-hidden="true">
+                            <div class="modal fade" id="answer<?php echo $faq['faq_id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                         <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                                         <h5 class="modal-title" id="exampleModalLongTitle">Answer to <?php echo $faq['faq_id']?></h5>
                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                          </button>
                                          </div>
                                         <div class="modal-body">
-                                            <?php echo htmlspecialchars($faq['answer']);?>
+                                          <?php echo htmlspecialchars($faq["answer"]);?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -82,7 +90,7 @@
                                      </div>
                                  </div>
                              </div>
-                            </td>
+                        </td>
                         <td>
                             <button type="submit" name="button_id" value="update" class="btn btn-block bg-warning text-gray-100">
                                 Update FAQ
@@ -91,6 +99,8 @@
                     </form>
                     <form method="POST" action="../handlers/delete-faq-handler.php">
                         <input type="hidden" name="faqID" value="<?php echo $faq['faq_id']; ?>"/>
+                        <input type="hidden" name="question" value="<?php echo $faq['question']; ?>" />
+                        <input type="hidden" name="answer" value="<?php echo $faq['answer']; ?>" />
                         <td>
                             <button type="submit" name="button_id" value="delete" class="btn btn-block bg-danger text-gray-100">
                                 Delete FAQ

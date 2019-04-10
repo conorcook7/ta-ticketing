@@ -18,24 +18,6 @@
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0" />
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item <?php
-        if ($nav == 'dashboard' || ($nav == 'admin' && $page == 'admin.php') ||
-        ($nav == 'ta' && $page == 'ta.php') || ($nav == 'user' && $page == 'user.php')) {
-            echo 'active';
-        }?>"
-    >
-        <a class="nav-link"
-            href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php';?>"
-        >
-            <i class="fas fa-fw fa-home"></i>
-            <span class="LetterSpacing">Dashboard</span>
-        </a>
-    </li>
-
-    <!-- Divider -->
     <hr class="sidebar-divider" />
 
     <!-- Heading -->

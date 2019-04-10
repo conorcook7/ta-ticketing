@@ -25,6 +25,18 @@
         <!-- Topbar -->
         <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
+        <?php if (isset($_SESSION["success"])){ ?>
+          <div class="alert alert-success">
+              <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
+          </div>
+        <?php } elseif (isset($_SESSION["failure"])) { ?>
+            <div class="alert alert-danger">
+                <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
+            </div>
+        <?php }
+            unset($_SESSION["failure"]);
+            unset($_SESSION["success"]);
+        ?>
   <div class="container-fluid">
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -37,7 +49,7 @@
   </div>
     <div class="card-body">
       <div class="table-responsive">
-		    <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+		    <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
             <th class="center">Queue #</th>
@@ -103,6 +115,9 @@
 		  </tbody>
 		</table><br />
   </div>
+  <div id="bug-report-link" class="text-right p-0 m-0">
+        <a href="<?php echo generateUrl('/pages/help/bug-report.php'); ?>">Having issues?</a>
+  </div>
   </div>
   </div>
 </div>
@@ -117,7 +132,7 @@
   </div>
     <div class="card-body">
       <div class="table-responsive">
-		    <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+		    <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
             <th class="center">Ticket #</th>
@@ -193,11 +208,11 @@
 <div class="container-fluid">
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Teaching Assistants</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Available Teaching Assistants</h6>
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
         <thead>
         <tr>
           <th class="center">TA Name</th>

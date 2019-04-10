@@ -29,6 +29,10 @@
                 class="collapse-item <?php if($nav == 'help' && $page == 'how-to.php'){echo 'active';}?>"
                 href="<?php echo generateUrl('/pages/help/how-to.php');?>"
             >How-To</a>
+            <a
+                class="collapse-item <?php if($nav == 'help' && $page == 'bug-report.php'){echo 'active';}?>"
+                href="<?php echo generateUrl('/pages/help/bug-report.php');?>"
+            >Report a problem</a>
         </div>
     </div>
 </li>

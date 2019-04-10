@@ -23,7 +23,7 @@ trait DaoTicketsClosed {
                     CT.room_number,
                     CT.create_date,
                     CT.update_date,
-                    -- CT.closing_description,
+                    CT.closing_description,
 
                     AC.available_course_id,
                     AC.course_name,
@@ -86,13 +86,13 @@ trait DaoTicketsClosed {
             }
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Query completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query completed");
             $closedTickets = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Fetch all data completed");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch all data completed");
             return $closedTickets;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get closed tickets");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get closed tickets");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -116,10 +116,10 @@ trait DaoTicketsClosed {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $ticket = $query->fetch();
-            $this->logger->logDebug(__FUNCTION__ . "(): Obtained ticket data");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Obtained ticket data");
 
             if (!$ticket) {
-                $this->logger->logError(__FUNCTION__ . "(): Unable to fetch select data for closed ticket.");
+                $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to fetch select data for closed ticket.");
                 return $this->FAILURE;
             }
 
@@ -137,7 +137,7 @@ trait DaoTicketsClosed {
             $query->bindParam(":description", $ticket["description"]);
             $query->bindParam(":roomNumber", $ticket["room_number"]);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Inserted data into open tickets");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Inserted data into open tickets");
         
             // Delete the open ticket from the open ticket table.
             $query = $conn->prepare(
@@ -145,13 +145,38 @@ trait DaoTicketsClosed {
             );
             $query->bindParam(":closedTicketId", $closedTicketId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Deleted closed ticket");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted closed ticket");
         
             return $this->SUCCESS;
 
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to open the closed ticket");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to open the closed ticket");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Return the closed ticket by the id
+     * 
+     * @param $closedTicketId - The id of the ticket to get
+     */
+    public function getClosedTicketById($closedTicketId) {
+        try {
+            $conn = $this->getConnection();
+            
+            // Get the ticket data to insert into the closed tickets table.
+            $query = $conn->prepare(
+                "SELECT * FROM Closed_Tickets WHERE closed_ticket_id = :closedTicketId;"
+            );
+            $query->bindParam(":closedTicketId", $closedTicketId);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $ticket = $query->fetch();
+            return $ticket;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get the closed ticket");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }

@@ -33,16 +33,52 @@
     }
 
     /**
+     * Returns the logger object for the server.
+     * 
+     * @return $logger - The logger object for the server.
+     */
+    function getServerLogger() {
+        require_once "KLogger.php";
+        $logger = new KLogger("/var/log/taticketing/",KLogger::DEBUG);
+        return $logger;
+    }
+
+    /**
      * Returns the onyx node number from the hostname.
      * 
      * @return $nodeNumber - The node number from the IP address hostname.
      */
     function getNodeNumber() {
-        $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-        preg_match('/.*onyxnode(\d+)\.boisestate\.edu.*/', $hostname, $matches);
+        $logger = getServerLogger();
+        $hostname = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
+        
+        // Search for onyx node
+        preg_match("/.*onyxnode(\d+)\.boisestate\.edu.*/", $hostname, $matches);
         if (!empty($matches) && isset($matches[1])) {
-            return $matches[1];
-        } else {
-            return $hostname;
+            return "Node " . $matches[1];
+        }
+
+        // Search for os type
+        $operatingSystem = NULL;
+        preg_match("/(linux)|(macintosh)|(windows)|(mobile)/i", $_SERVER["HTTP_USER_AGENT"], $matches);
+        $operatingSystem = !empty($matches) ? $matches[0] : "";
+        return "Personal: " . $operatingSystem;
+    }
+
+    /**
+     * Update the user's permission in the session variable
+     * 
+     * @param $userId - The user id to get the permissions for.
+     */
+    function updateSession($userId) {
+        session_start();
+        require_once "dao.php";
+        $dao = new Dao();
+        $user = $dao->getUserById($userId);
+        if (isset($user["permission_name"])) {
+            $_SESSION["user"]["permission"] = $user["permission_name"];
+        }
+        if (isset($user["permission_id"])) {
+            $_SESSION["user"]["access_level"] = $user["permission_id"];
         }
     }

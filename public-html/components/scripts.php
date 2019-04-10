@@ -27,6 +27,6 @@
   <script src="<?php echo generateUrl('/vendor/chart.js/Chart.min.js');?>"></script>
 
   <!-- Page level custom scripts -->
-
+  <script src="<?php echo generateUrl('/js/ajax/tables-ajax.js');?>"></script>
 </body>
 </html>

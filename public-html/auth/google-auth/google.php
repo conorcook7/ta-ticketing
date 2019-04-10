@@ -2,32 +2,31 @@
     session_start();
 
     require_once "../google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
-    require_once "../../components/KLogger.php";
     require_once "../../components/dao.php";
     require_once "../../components/server-functions.php";
 
-    $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
+    $logger = getServerLogger();
 
     // Step 1: Set up the google client
     $googleClient = new Google_Client();
-    $googleClient->setClientId("153288048540-sogdggkb32ugai855a0uffo0d7h2hqnq.apps.googleusercontent.com");
-    $googleClient->setClientSecret("ZyXV3mVUVs89rDkuq8RjFaH4");
+    $googleClient->setClientId("479242747472-coohl2sguq463l7rlvpitp8hijsmm5cc.apps.googleusercontent.com");
+    $googleClient->setClientSecret("Yz1FgBF9oTfyQFq3woL6_abY");
     $googleClient->setRedirectUri(generateUrl("/auth/google-auth/google.php"));
     $googleClient->setScopes("email profile");
 
-    $logger->logDebug(__FUNCTION__ . ": Google client created");
+    $logger->logDebug(basename(__FILE__) . ": Google client created");
 
     // Step 2: Create the authorization url
     $authUrl = $googleClient->createAuthUrl();
-    $logger->logDebug(__FUNCTION__ . ": Google authorization url created");
+    $logger->logDebug(basename(__FILE__) . ": Google authorization url created");
 
     // Step 3: Get the authorization code
     if (!isset($_GET["code"])) {
-        $logger->logDebug(__FUNCTION__ . ": Google access code not set");
+        $logger->logDebug(basename(__FILE__) . ": Google access code not set");
         header("Location: " . $authUrl);
         exit();
     } else {
-        $logger->logDebug(__FUNCTION__ . ": Google access code set");
+        $logger->logDebug(basename(__FILE__) . ": Google access code set");
     }
     $authCode = isset($_GET["code"]) ? $_GET["code"] : NULL;
     
@@ -37,32 +36,34 @@
         try {
             $accessToken = $googleClient->fetchAccessTokenWithAuthCode($authCode);
             $googleClient->setAccessToken($accessToken);
-            $logger->logDebug(__FUNCTION__ . ": Google access token received");
+            $logger->logDebug(basename(__FILE__) . ": Google access token received");
 
         } catch (Exception $e) {
-            $logger->logError(__FUNCTION__ . ": " . $e->getMessage());
-            header("Location: ./google.php");
+            $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
+            $_SESSION["login-error"] = "Unable to find Google account.";
+            header("Location: " . generateUrl("/pages/logged-out.php"));
             exit();
         }
 
         try {
             // Set the timezone to Mountain Time (Boise, ID)
             date_default_timezone_set("America/Boise");
-            $logger->logDebug(__FUNCTION__ . ": Set time zone to Mountain Time");
+            $logger->logDebug(basename(__FILE__) . ": Set time zone to Mountain Time");
 
             // Verify the google client
             $payload = $googleClient->verifyIdToken();
-            $logger->logDebug(__FUNCTION__ . ": Google client was verified");
+            $logger->logDebug(basename(__FILE__) . ": Google client was verified");
 
             if (isset($payload)) {
                 // Setup session from payload
-                $logger->logDebug(__FUNCTION__ . ": Google OAuth payload contains data");
+                $logger->logDebug(basename(__FILE__) . ": Google OAuth payload contains data");
 
                 // Check payload email for boisestate
                 $splitEmail = explode("@", $payload["email"]);
                 $emailDomain = $splitEmail[1];
                 if ($emailDomain != "u.boisestate.edu" && $emailDomain != "boisestate.edu") {
-                    header("Location: ./google.php");
+                    $_SESSION["login-error"] = "You must use a <strong>Boise State</strong> email address. If this is a mistake you may contact the system admin.";
+                    header("Location: " . generateUrl("/pages/logged-out.php"));
                     exit();
                 }
 
@@ -85,8 +86,9 @@
                         $_SESSION["user"]["family_name"]
                     );
                     if (!$querySuccessful) {
-                        $logger->logError(__FUNCTION__ . ": Unable to create user with dao method.");
-                        header("Location: ./google.php");
+                        $logger->logError(basename(__FILE__) . ": Unable to create user with dao method.");
+                        $_SESSION["login-error"] = "Unable to get your account. Please try again later.";
+                        header("Location: " . generateUrl("/pages/logged-out.php"));
                         exit();
                     }
                 }
@@ -117,12 +119,14 @@
             }
 
         } catch (Exception $e) {
-            $logger->logError(__FUNCTION__ . ": " . $e->getMessage());
-            header("Location: ./google.php");
+            $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
+            $_SESSION["login-error"] = "Unable to get your account. Please try again later.";
+            header("Location: " . generateUrl("/pages/logged-out.php"));
             exit();
         }
 
     }
 
-    header("Location: ./google.php");
+    $_SESSION["login-error"] = "Unable to authenticate your account. Please try again later.";
+    header("Location: " . generateUrl("/pages/logged-out.php"));
     exit();

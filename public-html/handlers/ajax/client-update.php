@@ -2,7 +2,6 @@
     session_start();
 
     require_once "../../components/dao.php";
-    require_once "../../components/KLogger.php";
     require_once "../../components/server-functions.php";
 
     // Tolerance for check in with units of seconds
@@ -41,7 +40,7 @@
                     if ($_POST["unload"] === "true") {
                         $status = $dao->setUserAway($_SESSION["user"]["email"]);
                         if (!$status) {
-                            $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
+                            $logger = getServerLogger();
                             $logger->logError(__FILE__ . ": Unable to set user away");
                         }
                         $_SESSION["user"]["online"] = "AWAY";
@@ -50,14 +49,14 @@
                     } else if ($_POST["unload"] === "false") {
                         $status = $dao->setUserOnline($_SESSION["user"]["email"]);
                         if (!$status) {
-                            $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
+                            $logger = getServerLogger();
                             $logger->logError(__FILE__ . ": Unable to set user online");
                         }
                         $_SESSION["user"]["online"] = "ONLINE";
                     }
                 } catch (Exception $e) {
-                    $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
-                    $logger->logError(__FUNCTION__ . ": " . $e->getMessage());
+                    $logger = getServerLogger();
+                    $logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . ": " . $e->getMessage());
                 }
             
             // If check-in was not within tolerance

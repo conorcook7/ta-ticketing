@@ -1,5 +1,5 @@
 <?php $page = "classes.php"; ?>
-<div class="container">
+<div class="container-fluid">
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">
             <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
@@ -13,21 +13,36 @@
         unset($_SESSION["success"]);
     ?>
     <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
+    <?php
+        if(isset($_POST["classID"])){?>
+        <input type="hidden" name="classID" value="<?php echo $_POST["classID"]; ?>"/>
+    <?php    
+        }
+    ?>
     <legend class="border-bottom mb-4">Create Class</legend>
     <div class="form-group">
         <label for="courseName">Course Name</label>
-        <input type="text" class="form-control" id="courseName"  name="courseName" placeholder="Computer Science I" required="true">
+        <input type="text" class="form-control" id="courseName"  name="courseName" <?php echo (isset($_POST["courseName"]) ? "value=\"" . $_POST["courseName"] : "placeholder=\"Computer Science 1");?>" required="true">
     </div>
     <div class="form-group">
         <label for="courseNumber">Course Number</label>
-        <input type="number" class="form-control" id="courseNumber" name="courseNumber" placeholder="121" required="true">
+        <input type="text" class="form-control" id="courseNumber" name="courseNumber" <?php echo (isset($_POST["courseNumber"]) ? "value=\"" . $_POST["courseNumber"] : "placeholder=\"CS121");?>" required="true">
     </div>
     <div class="form-group">
         <label for="courseDescription">Course Description</label>
-        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3"></textarea>
+        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" placeholder="Introduction to Java Programming"><?php
+        if(isset($_POST["courseDescription"])){
+            echo htmlspecialchars($_POST["courseDescription"]);
+        }
+        ?></textarea>
     </div>
-        <button type="submit" class="btn btn-primary">Add Course</button>
+        <button type="submit" class="btn btn-primary">Add/Update Course</button>
     </form>
+    <?php
+        unset($_POST["courseName"]);
+        unset($_POST["courseNumber"]);
+        unset($_POST["courseDescription"]); 
+    ?>
 </div>
 <div class="container-fluid mt-4">
         <!-- All Classes Table -->
@@ -53,7 +68,7 @@
                     foreach($allClasses as $class) { 
                   ?>
                     <tr>
-                    <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
+                    <form method="POST" action="<?php echo generateUrl('/pages/admin.php?id=classes')?>">
                         <input type="hidden" name="courseNumber" value="<?php echo htmlspecialchars($class['course_number']); ?>"/>
                         <input type="hidden" name="courseName" value="<?php echo htmlspecialchars($class['course_name']); ?>"/>
                         <input type="hidden" name="courseDescription" value="<?php echo $class['course_description']; ?>"/>
@@ -69,6 +84,7 @@
                     </form>
                     <form method="POST" action="<?php echo generateUrl('/handlers/class-handler.php')?>">
                         <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
+                        <input type="hidden" name="delete" value=1 />
                         <td>
                             <button type="submit" name="button_id" value="delete" class="btn btn-block bg-danger text-gray-100">
                                 Delete Class

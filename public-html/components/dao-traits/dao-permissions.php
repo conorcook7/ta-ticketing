@@ -14,15 +14,15 @@ trait DaoPermissions {
     public function getPermissionLevels() {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("SELECT * FROM Permissions;");
+            $query = $conn->prepare("SELECT * FROM Permissions ORDER BY permission_id ASC;");
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $permissionLevels = $query->fetchAll();
-            $this->logger->logDebug(__FUNCTION__ . "(): Obtained permission levels");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Obtained permission levels");
             return $permissionLevels;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to get permission levels");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get permission levels");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
     }
@@ -43,11 +43,11 @@ trait DaoPermissions {
             );
             $query->bindParam(":permissionName", $permissionName);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Created permission level");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Created permission level");
             return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to create permission level");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to create permission level");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -66,11 +66,11 @@ trait DaoPermissions {
                 );
             $query->bindParam(":permissionId", $permissionId);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Deleted permission by ID");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted permission by ID");
             return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to delete permission by ID");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to delete permission by ID");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }
@@ -89,11 +89,11 @@ trait DaoPermissions {
             );
             $query->bindParam(":permissionName", $permissionName);
             $query->execute();
-            $this->logger->logDebug(__FUNCTION__ . "(): Deleted permission by name");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted permission by name");
             return $this->SUCCESS;
         } catch (Exception $e) {
-            $this->logger->logError(__FUNCTION__ . "(): Unable to delete permission by name");
-            $this->logger->logError(__FUNCTION__ . "(): " . $e->getMessage());
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to delete permission by name");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return $this->FAILURE;
         }
     }

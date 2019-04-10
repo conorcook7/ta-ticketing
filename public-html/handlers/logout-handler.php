@@ -1,12 +1,11 @@
 <?php
     require_once "../auth/google-api-php-client-2.2.2_PHP54/vendor/autoload.php";
     require_once "../components/dao.php";
-    require_once "../components/KLogger.php";
     require_once "../components/server-functions.php";
 
     session_start();
 
-    $logger = new KLogger("/var/log/taticketing/", KLogger::DEBUG);
+    $logger = getServerLogger();
 
     if (isset($_SESSION["user"]["accessToken"])) {
         // Revoke Google OAuth

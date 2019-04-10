@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id)
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Open_Tickets (
@@ -56,14 +56,14 @@ CREATE TABLE IF NOT EXISTS Open_Tickets (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
-    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
     FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
     FOREIGN KEY (opener_user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Closed_Tickets (
     closed_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-    available_course_id BIGINT UNSIGNED NOT NULL,
+    available_course_id BIGINT UNSIGNED NULL,
     creator_user_id BIGINT UNSIGNED NOT NULL,
     closer_user_id BIGINT UNSIGNED NOT NULL,
     description TEXT,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
     FULLTEXT (closing_description),
-    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id),
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
     FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
     FOREIGN KEY (closer_user_id) REFERENCES Users(user_id)
 );
@@ -82,12 +82,23 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
 CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
     faq_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     admin_user_id BIGINT UNSIGNED NOT NULL,
-    question TEXT,
-    answer TEXT,
+    question TEXT NOT NULL,
+    answer TEXT NOT NULL,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (question),
     FOREIGN KEY (admin_user_id) REFERENCES Users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS Bug_Reports (
+    bug_report_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+    user_id BIGINT UNSIGNED NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT,
+    create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FULLTEXT (title),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 INSERT INTO Permissions VALUES (1, 'USER');
