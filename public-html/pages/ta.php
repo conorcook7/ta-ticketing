@@ -18,7 +18,8 @@ $page = 'ta.php';
         } else if ($selection == 'closed-tickets'){
           $page = 'closed-tickets-table.php';
         } else if ($selection == 'create-ticket'){
-          $page = 'userform.php';
+          header('Location: userform.php');
+          exit();
         }
     } else {
       $_SESSION['ta-selection'] = 'DEFAULT';
@@ -94,9 +95,6 @@ $page = 'ta.php';
           include_once '../components/tickets/open-tickets-table.php';
         } elseif ($selection == 'closed-tickets'){
           include_once '../components/tickets/closed-tickets-table.php';
-        } elseif ($selection == 'create-ticket'){
-          header('Location: userform.php');
-          exit();
         }
         ?>
         </div>
