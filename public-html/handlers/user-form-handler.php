@@ -14,10 +14,10 @@ if(isset($_POST['courseName'])){
   $course = $dao->getAvailableCourse($_POST['courseName']);
   $course_id = $course['available_course_id'];
 }
-$nodeNum = getNodeNumber();
+
 if(isset($_POST['courseName']) && isset($_POST['description']) && $user_id != 0 && $course_id != 0){
     $descript = $_POST['description'];
-    $newTicket = $dao->createTicket($course_id,$user_id,$nodeNum, $description = $descript);
+    $newTicket = $dao->createTicket($course_id,$user_id, $_SESSION["user"]["computer_name"], $description = $descript);
 }
 if($newTicket){
   $_SESSION['success'] = 'New Ticket Has Been Created.';
