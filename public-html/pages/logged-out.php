@@ -80,7 +80,7 @@
             } else {
                 console.log(ip);
             }
-        <script>
+        </script>
 <?php
   require_once "../components/scripts.php";
 ?>
