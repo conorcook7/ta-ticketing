@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     end_time_past_midnight TIME NOT NULL,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE
 );
 
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS Open_Tickets (
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
-    FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (opener_user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (opener_user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Closed_Tickets (
@@ -75,8 +75,8 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     FULLTEXT (description),
     FULLTEXT (closing_description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
-    FOREIGN KEY (creator_user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (closer_user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (closer_user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (question),
-    FOREIGN KEY (admin_user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (admin_user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Bug_Reports (
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS Bug_Reports (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (title),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 INSERT INTO Permissions VALUES (1, 'USER');
