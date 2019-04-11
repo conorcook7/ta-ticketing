@@ -48,8 +48,8 @@
         <form class="my-4" method="POST" action="../auth/google-auth/google.php">
             <input id="local-ip" type="hidden" name="local_ip" value="" />
             <button id="google-card" class="card p-3 m-auto text-center" type="submit">
-            <span><img id="google-logo" src="../img/google-logo-transparent.png" alt="google-logo"/><span>
-            <span class="pl-2">Sign in with Google</span>
+                <span><img id="google-logo" src="../img/google-logo-transparent.png" alt="google-logo"/><span>
+                <span class="pl-2">Sign in with Google</span>
             </button>
         <!-- Footer -->
         <?php include_once '../components/footer.php' ?>

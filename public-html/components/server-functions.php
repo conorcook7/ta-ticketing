@@ -81,7 +81,10 @@
 
         // If the user is on an onyx machine
         preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
+        $logger->logDebug(basename(__FILE__) . ": local IP: " . $localIP);
+        
         if (!empty($matches) && $localIP != "") {
+            $logger->logDebug(basename(__FILE__) . ": Boise State computer found");
             for ($i = 1; $i < 1000; $i++) {
                 $nodeName = "onyxnode";
                 if ($i < 10) {
