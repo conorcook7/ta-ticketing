@@ -45,13 +45,12 @@ trait DaoBugReport {
 
             // Create the message to send
             if(!empty($adminEmails)) {
-                $this->logger->logDebug(var_dump($adminEmails));
-                $to = $adminEmails[0];
+                $to = $adminEmails[0]["email"];
                 $subject = "TA Ticketing Bug Report";
                 $message = wordwrap($title . "\n" . $description, 70);
                 $headers = "From: no-reply@taticketing.boisestate.edu" . "\n" . "CC: ";
                 for ($i = 1; $i < count($adminEmails); $i++) {
-                    $headers .= $adminEmails[$i] . " ";
+                    $headers .= $adminEmails[$i]["email"] . " ";
                 }
                 $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
                 $sent = mail($to, $subject, $message, $headers);
