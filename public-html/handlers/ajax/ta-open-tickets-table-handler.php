@@ -73,7 +73,7 @@
                <div class="modal-footer">
                   <div class="mr-auto">
                     <span>(Maximum characters: 500)</span><br>
-                    <span>You have <input readonly type="text" name="countdown" size="3" value="500"> characters left.</span>
+                    <span>You have <input class="removeStyling" readonly type="text" name="countdown" size="3" value="500"> characters left.</span>
                    </div>
                   <button type="submit" class="btn btn-success">Confirm</button>
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

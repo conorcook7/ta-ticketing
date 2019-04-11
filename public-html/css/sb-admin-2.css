@@ -114,6 +114,9 @@ address {
   padding: 6px;
   /* text-align: center; */
 }
+.removeStyling{
+  border:none;
+}
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 645px) { 
   .big-title { display: none; }
