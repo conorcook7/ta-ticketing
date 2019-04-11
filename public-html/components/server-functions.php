@@ -75,7 +75,9 @@
      */
     function getComputerName($localIP) {
         session_start();
+        require_once "dao.php";
 
+        $dao = new Dao();
         $logger = getServerLogger();
         $hostname = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
 
@@ -100,8 +102,6 @@
                     $errorDescription = "onyx node number {" . $i . "} is not equal to IP address {" . $onyxIP . "}";
                     $logger->logError(basename(__FILE__) . ": " . $errorDescription);
                     try {
-                        include "dao.php";
-                        $dao = new Dao();
                         $dao->createBugReport(1, "Onyx Nodes IP Missmatch", $errorDescription);
                         $bugReportCreated = TRUE;
                     } catch (Exception $e) {
@@ -116,8 +116,6 @@
                 }
             }
             try {
-                include "dao.php";
-                $dao = new Dao();
                 $dao->createBugReport(1, "Unable to find onyx node",
                     "Searched first 1000 nodes by hostname like {onyxnode00.boisestate.edu}");
             } catch (Exception $e) {
