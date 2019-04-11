@@ -47,7 +47,7 @@ trait DaoBugReport {
                 $to = $adminEmails[0];
                 $subject = "TA Ticketing Bug Report";
                 $message = wordwrap($title . "\n" . $description, 70);
-                $headers = "From: no-reply@taticketing.boisestate.edu" . "\r\n" . "CC: ";
+                $headers = "From: no-reply@taticketing.boisestate.edu" . "\n" . "CC: ";
                 for ($i = 1; $i < count($adminEmails); $i++) {
                     $headers .= $adminEmails[$i] . " ";
                 }
