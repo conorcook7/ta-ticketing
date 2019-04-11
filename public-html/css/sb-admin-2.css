@@ -116,6 +116,8 @@ address {
 }
 .removeStyling{
   border:none;
+  color:#858796;
+  font-weight: 400;
 }
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 645px) { 
