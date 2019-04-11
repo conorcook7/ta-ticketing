@@ -40,7 +40,7 @@ trait DaoBugReport {
             );
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $adminEmails = $query->fetchAll();
-            $logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Obtained all of the admin emails");
+            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Obtained all of the admin emails");
 
             // Create the message to send
             if(!empty($adminEmails)) {
@@ -51,10 +51,10 @@ trait DaoBugReport {
                 for ($i = 1; $i < count($adminEmails); $i++) {
                     $headers .= $adminEmails[$i] . " ";
                 }
-                $logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
+                $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
                 mail($to, $subject, $message, $headers);
             }
-            $logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all adminsj");
+            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all adminsj");
             
         } catch (Exception $e) {
             $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to send bug report email.");
