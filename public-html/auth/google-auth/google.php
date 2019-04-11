@@ -7,6 +7,11 @@
 
     $logger = getServerLogger();
 
+    if (isset($_POST)) {
+        $localIP = isset($_POST["local_ip"]) ? $_POST["local_ip"] : "";
+        unset($_POST["local_ip"]);
+    }
+
     // Step 1: Set up the google client
     $googleClient = new Google_Client();
     $googleClient->setClientId("479242747472-coohl2sguq463l7rlvpitp8hijsmm5cc.apps.googleusercontent.com");
@@ -111,9 +116,8 @@
                 $_SESSION["user"]["online"] = "ONLINE";
                 
                 // Set the users computer name
-                $localIP = isset($_POST["local_ip"]) ? $_POST["local_ip"] : "";
+                
                 $logger->logDebug(basename(__FILE__) . ": local IP: " . $localIP);
-                unset($_POST);
                 $_SESSION["user"]["computer_name"] = getComputerName($localIP);
 
                 // Redirect to the dashboard
