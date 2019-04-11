@@ -82,7 +82,7 @@
         // If the user is on an onyx machine
         preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
         $logger->logDebug(basename(__FILE__) . ": local IP: " . $localIP);
-        
+
         if (!empty($matches) && $localIP != "") {
             $logger->logDebug(basename(__FILE__) . ": Boise State computer found");
             for ($i = 1; $i < 1000; $i++) {
@@ -104,6 +104,7 @@
         }
 
         // Search for os type
+        $logger->logDebug("Not a Boise State computer");
         $operatingSystem = NULL;
         preg_match("/(linux)|(macintosh)|(windows)|(mobile)/i", $_SERVER["HTTP_USER_AGENT"], $matches);
         $operatingSystem = !empty($matches) ? $matches[0] : "";
