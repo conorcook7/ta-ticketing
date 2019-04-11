@@ -8,6 +8,7 @@
     $logger = getServerLogger();
 
     if (isset($_POST)) {
+        $logger->logDebug("Setting local ip");
         $_SESSION["local_ip"] = isset($_POST["local_ip"]) ? $_POST["local_ip"] : "";
     }
 
