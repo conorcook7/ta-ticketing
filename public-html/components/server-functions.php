@@ -85,6 +85,7 @@
 
         if (!empty($matches) && $localIP != "") {
             $logger->logDebug(basename(__FILE__) . ": Boise State computer found");
+            $bugReportCreated = FALSE;
             for ($i = 1; $i < 1000; $i++) {
                 $nodeName = "onyxnode";
                 if ($i < 10) {
@@ -93,11 +94,38 @@
                     $nodeName .= $i;
                 }
                 $nodeName .= ".boisestate.edu";
-                if (gethostbyname($nodeName) == $localIP) {
+                $onyxIP = gethostbyname($nodeName);
+                preg_match("/\d+\.\d+\.(\d+)/", $onyxIP, $matches);
+                if (!empty($matches) && $matches[1] != $i && !$bugReportCreated) {
+                    $errorDescription = "onyx node number {" . $i . "} is not equal to IP address {" . $onyxIP . "}";
+                    $logger->logError(basename(__FILE__) . ": " . $errorDescription);
+                    try {
+                        include "dao.php";
+                        $dao = new Dao();
+                        $dao->createBugReport(0, "Onyx Nodes IP Missmatch", $errorDescription);
+                        $bugReportCreated = TRUE;
+                    } catch (Exception $e) {
+                        $logger->logError(basename(__FILE__) . ": Unable to create bug report");
+                        $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
+                    }
+                }
+                if ($onyxIP == $localIP) {
                     return "Node " . $i;
                 } else {
-                    $logger->logDebug(basename(__FILE__) . ": " . gethostbyname($nodeName) . " != " . $localIP);
+                    $logger->logDebug(basename(__FILE__) . ": " . $onyxIP . " != " . $localIP);
                 }
+            }
+            try {
+                include "dao.php";
+                $dao = new Dao();
+                $dao->createBugReport(
+                    0,
+                    "Unable to find onyx node",
+                    "Searched first 1000 nodes by hostname like {onyxnode00.boisestate.edu}"
+                );
+            } catch (Exception $e) {
+                $logger->logError(basename(__FILE__) . ": Unable to create bug report");
+                $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
             }
         } else {
             $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
