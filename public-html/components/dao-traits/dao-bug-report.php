@@ -52,9 +52,13 @@ trait DaoBugReport {
                     $headers .= $adminEmails[$i] . " ";
                 }
                 $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
-                mail($to, $subject, $message, $headers);
+                $sent = mail($to, $subject, $message, $headers);
+                if ($sent) {
+                    $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all admins");
+                } else {
+                    $this->logger->logWarning(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Unable to send email to all admins");
+                }
             }
-            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all adminsj");
             
         } catch (Exception $e) {
             $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to send bug report email.");
