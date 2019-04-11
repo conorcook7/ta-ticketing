@@ -76,6 +76,32 @@
                         <td><?php echo htmlspecialchars($class['course_number']); ?></td>
                         <td><?php echo htmlspecialchars($class['course_name']); ?></td>
                         <td><?php echo htmlspecialchars($class['course_description']); ?></td>
+                        <!-- Button trigger modal for ticket descriptions-->
+                        <?php echo ('
+                        <td>
+                        <button type="button" class="btn btn-block bg-primary text-gray-100" data-toggle="modal" data-target="#course-description' . $class["available_course_id"] . '">
+                            More Info
+                        </button>
+                        <!-- Modal for ticket descriptions-->
+                        <div class="modal fade" id="course-description' . $class["available_course_id"] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">' . htmlentities($class["course_description"]) . '</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </td>
+                        ')
+                        ?>
                         <td>
                             <button type="submit" name="button_id" value="update" class="btn btn-block bg-warning text-gray-100">
                                 Update Class
