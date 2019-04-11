@@ -5,8 +5,7 @@
         header("Location: ../403.php");
         exit();
     }
-?>
-
+    ?>
 <div class="tab-pane fade show active" id="nav-how-to-admin" role="tabpanel" aria-labelledby="nav-how-to-admin-tab">
     <!-- Update a user -->
     <div class="card shadow mb-4">
@@ -46,8 +45,8 @@
                                 </div>
                             </div>
                             <p>
-                            Write about your issue so that the teaching assistant can start to become
-                            familiar with your problem.
+                                Write about your issue so that the teaching assistant can start to become
+                                familiar with your problem.
                             </p>
                         </div>
                     </div>
@@ -66,7 +65,7 @@
                                 </div>
                             </div>
                             <p>Continue working on other parts of the homework, while a teaching assistant
-                            becomes available.
+                                becomes available.
                             </p>
                         </div>
                     </div>
@@ -112,8 +111,8 @@
                                 </div>
                             </div>
                             <p>
-                            Write about your issue so that the teaching assistant can start to become
-                            familiar with your problem.
+                                Write about your issue so that the teaching assistant can start to become
+                                familiar with your problem.
                             </p>
                         </div>
                     </div>
@@ -132,7 +131,7 @@
                                 </div>
                             </div>
                             <p>Continue working on other parts of the homework, while a teaching assistant
-                            becomes available.
+                                becomes available.
                             </p>
                         </div>
                     </div>

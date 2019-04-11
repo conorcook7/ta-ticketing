@@ -3,8 +3,7 @@
     require_once '../../components/header.php';
     $page = 'how-to-user.php';
     $nav = 'help';
-?>
-
+    ?>
 <!-- Create a ticket -->
 <div class="<?php echo strtoupper($_SESSION["user"]["permission"]) == "USER" ? "row" : ""; ?>">
     <div class="card shadow mb-4">
@@ -14,9 +13,9 @@
         <div class="card-body">
             <div class="card-title mb-4">
                 <div class="text-gray-800">
-                In order to create a new ticket, you will need to follow 3 easy steps. These
-                steps are completed through the dashboard page. If you are a teaching assistant,
-                then you will need to complete these steps in the tickets page.
+                    In order to create a new ticket, you will need to follow 3 easy steps. These
+                    steps are completed through the dashboard page. If you are a teaching assistant,
+                    then you will need to complete these steps in the tickets page.
                 </div>
             </div>
             <div class="row">
@@ -40,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Step 2 - Information -->
                 <div class="col-xl-4 col-md-6">
                     <div class="card border-left-primary h-100 floating-step">
@@ -55,13 +53,12 @@
                                 </div>
                             </div>
                             <p>
-                            Write about your issue so that the teaching assistant can start to become
-                            familiar with your problem.
+                                Write about your issue so that the teaching assistant can start to become
+                                familiar with your problem.
                             </p>
                         </div>
                     </div>
                 </div>
-
                 <!-- Step 3 - Wait for assistance -->
                 <div class="col-xl-4 col-md-6">
                     <div class="card border-left-primary h-100 floating-step">
@@ -76,9 +73,9 @@
                                 </div>
                             </div>
                             <p>Continue working on other parts of the homework, while a teaching assistant
-                            becomes available. You can always see the available teaching assistants in the
-                            <strong>Available Teaching Assistants</strong> table below the <strong>My Closed Tickets</strong>
-                            table on the dashboard page.
+                                becomes available. You can always see the available teaching assistants in the
+                                <strong>Available Teaching Assistants</strong> table below the <strong>My Closed Tickets</strong>
+                                table on the dashboard page.
                             </p>
                         </div>
                     </div>
@@ -87,7 +84,6 @@
         </div>
     </div>
 </div>
-
 <div class="<?php echo strtoupper($_SESSION["user"]["permission"]) == "USER" ? "row" : ""; ?>">
     <!-- Close a ticket -->
     <div class="card shadow mb-4">
@@ -97,8 +93,8 @@
         <div class="card-body">
             <div class="card-title mb-4">
                 <div class="text-gray-800">
-                You have the option to close your own tickets. A great example is if you have
-                created a ticket, but figured out the answer on your own (<strong>nice job!</strong>).
+                    You have the option to close your own tickets. A great example is if you have
+                    created a ticket, but figured out the answer on your own (<strong>nice job!</strong>).
                 </div>
             </div>
             <div class="row">
@@ -119,7 +115,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Step 2 - Information -->
                 <div class="col-xl-4 col-md-6">
                     <div class="card border-left-primary h-100 floating-step">
@@ -139,7 +134,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Step 3 - Wait for assistance -->
                 <div class="col-xl-4 col-md-6">
                     <div class="card border-left-primary h-100 floating-step">
@@ -165,7 +159,6 @@
         </div>
     </div>
 </div>
-
 <div class="<?php echo strtoupper($_SESSION["user"]["permission"]) == "USER" ? "row" : ""; ?>">
     <!-- Reopen a ticket -->
     <div class="card shadow mb-4">
@@ -175,8 +168,8 @@
         <div class="card-body">
             <div class="card-title mb-4">
                 <div class="text-gray-800">
-                You have the option to open your old tickets that have been closed. Each closed
-                ticket will have a description stating the reason as to why the ticket was closed.
+                    You have the option to open your old tickets that have been closed. Each closed
+                    ticket will have a description stating the reason as to why the ticket was closed.
                 </div>
             </div>
             <div class="row">
@@ -197,7 +190,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Step 2 - Information -->
                 <div class="col-xl-4 col-md-6">
                     <div class="card border-left-primary h-100 floating-step">
@@ -217,7 +209,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Step 3 - Wait for assistance -->
                 <div class="col-xl-4 col-md-6">
                     <div class="card border-left-primary h-100 floating-step">
