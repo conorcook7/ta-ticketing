@@ -84,6 +84,5 @@
         ';
         $cleanTickets["data"][] = $cleanTicket;
     }
-    ?><script src="../../js/bug-report.js"></script><?php 
     header("Content-Type: application/json");
     echo json_encode($cleanTickets);
