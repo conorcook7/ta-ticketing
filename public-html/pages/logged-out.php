@@ -57,40 +57,33 @@
      
   
         <script>
-            function localIp() {
-                let mytimeout;
-                let ip = null;
-                if ( window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection ) {
-                    mytimeout = setTimeout(function() {
-                        console.log('timeout');
-                        console.log(ip);
-                        return ip;
-                    }, 3000);
-                    window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-                    let pc = new RTCPeerConnection({iceServers:[]});
-                    let noop = function(){};
-                    pc.createDataChannel('');
-                    pc.createOffer(pc.setLocalDescription.bind(pc), noop);
-                    pc.onicecandidate = function(ice) {
-                        clearTimeout(mytimeout);
-                        if(!ice || !ice.candidate || !ice.candidate.candidate) {
-                            console.log('not ice');
-                            console.log(ip)
-                            return ip;
-                        } else {
-                            ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-                            pc.onicecandidate = noop;
-                            console.log('correct ip');
-                            console.log(ip);
-                            return ip;
+            $(function() {
+                local_ip();
+            });
+            function local_ip() {
+                var $mytimeout;
+                if (window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection) {
+                    $mytimeout = setTimeout(function(){$("#lanip").html("Local IP address is not supported in this browser");},3000);
+                    window.RTCPeerConnection = window.RTCPeerConnection  window.mozRTCPeerConnection  window.webkitRTCPeerConnection;
+                    var $pc = new RTCPeerConnection({iceServers:[]}), $noop = function(){};
+                    $pc.createDataChannel("");
+                    $pc.createOffer($pc.setLocalDescription.bind($pc), $noop);
+                    $pc.onicecandidate = function($ice) {
+                        clearTimeout($mytimeout);
+                        if (!$ice || !$ice.candidate || !$ice.candidate.candidate) {
+                            console.log('no ip - no ice');
+                            return;
                         }
+                        $ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec($ice.candidate.candidate)[1];
+                        $pc.onicecandidate = $noop;
+                        $("#lanip").html($ip);
+                        console.log($ip);
                     };
                 } else {
-                    console.log(ip);
-                    return ip;
+                    $("#lanip").html("Local IP address is not supported in this browser");
+                    console.log('no ip -- end');
                 }
             }
-            console.log("this is the local ip address: " + localIp()); 
         </script>
 <?php
   require_once "../components/scripts.php";
