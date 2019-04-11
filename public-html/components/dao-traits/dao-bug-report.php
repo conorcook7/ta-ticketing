@@ -39,6 +39,7 @@ trait DaoBugReport {
                 WHERE permission_name = 'ADMIN';"
             );
             $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
             $adminEmails = $query->fetchAll();
             $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Obtained all of the admin emails");
 
