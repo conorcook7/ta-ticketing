@@ -112,6 +112,7 @@
                 
                 // Set the users computer name
                 $localIP = isset($_POST["local_ip"]) ? $_POST["local_ip"] : "";
+                $logger->logDebug(basename(__FILE__) . ": local IP: " . $localIP);
                 unset($_POST);
                 $_SESSION["user"]["computer_name"] = getComputerName($localIP);
 
