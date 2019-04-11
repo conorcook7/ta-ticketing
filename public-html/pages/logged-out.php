@@ -70,7 +70,7 @@
                 pc.createOffer(pc.setLocalDescription.bind(pc), noop);
                 pc.onicecandidate = function(ice) {
                     clearTimeout(mytimeout);
-                    if(!ice || !ice.candidate || !$ice.candidate.candidate) {
+                    if(!ice || !ice.candidate || !ice.candidate.candidate) {
                         return;
                     }
                     ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
