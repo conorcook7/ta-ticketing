@@ -113,7 +113,7 @@
                 // Set the users computer name
                 $localIP = isset($_POST["local_ip"]) ? $_POST["local_ip"] : "";
                 unset($_POST);
-                $_SESSION["user"]["computer_name"] = getComputerName();
+                $_SESSION["user"]["computer_name"] = getComputerName($localIP);
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");
