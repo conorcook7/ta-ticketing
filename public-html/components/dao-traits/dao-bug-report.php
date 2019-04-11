@@ -18,6 +18,7 @@ trait DaoBugReport {
      */
     function createBugReport($userId, $title, $description) {
         try {
+            // Create the bug report for the server
             $conn = $this->getConnection();
             $query = $conn->prepare("INSERT INTO Bug_Reports (user_id, title, description) VALUES (:userId, :title, :description);");
             $query->bindParam(":userId", $userId);
@@ -25,12 +26,39 @@ trait DaoBugReport {
             $query->bindParam(":description", $description);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Bug report created by user {" . $userId . "}");
-            return $this->SUCCESS;
         } catch (Exception $e) {
             $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to create bug report.");
             $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
             return $this->FAILURE;
         }
+        try {
+            // Attempt to send the email to all admins
+            $query = $conn->prepare(
+                "SELECT email FROM Users
+                JOIN Permissions ON Users.permission_id = Permissions.permission_id
+                WHERE permission_name = 'ADMIN';"
+            );
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $adminEmails = $query->fetchAll();
+
+            // Create the message to send
+            if(!empty($adminEmails)) {
+                $to = $adminEmails[0];
+                $subject = "TA Ticketing Bug Report";
+                $message = wordwrap($title . "\n" . $description, 70);
+                $headers = "From: no-reply@taticketing.boisestate.edu" . "\r\n" . "CC: ";
+                for ($i = 1; $i < count($adminEmails); $i++) {
+                    $headers .= $adminEmails[$i] . " ";
+                }
+                mail($to, $subject, $message, $headers);
+            }
+            
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to send bug report email.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+        return $this->SUCCESS;
     }
 
     /**
