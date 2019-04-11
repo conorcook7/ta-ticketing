@@ -111,7 +111,33 @@
                 $_SESSION["user"]["online"] = "ONLINE";
                 
                 // Set the users computer name
-                $_SESSION["user"]["computer_name"] = getComputerName();
+                
+                echo "
+                <script>
+                    let mytimeout;
+                    let ip = null;
+                    if ( window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection ) {
+                        mytimeout = setTimeout(function() {
+                            console.log(ip);
+                        }, 3000);
+                        window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+                        let pc = new RTCPeerConnection({iceServers:[]});
+                        let noop = function(){};
+                        pc.createDataChannel('');
+                        pc.createOffer(pc.setLocalDescription.bind(pc), noop);
+                        pc.onicecandidate = function(ice) {
+                            clearTimeout(mytimeout);
+                            if(!ice || !ice.candidate || !$ice.candidate.candidate) {
+                                return;
+                            }
+                            ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+                            pc.onicecandidate = noop;
+                            console.log(ip);
+                        };
+                    } else {
+                        console.log(ip);
+                    }
+                <script>";
 
                 // Adding the hostname to the session
                 $_SESSION["user"]["computer"] = gethostbyaddr($_SERVER['REMOTE_ADDR']);
@@ -129,35 +155,7 @@
         }
 
     }
-?>
 
-<script>
-    let mytimeout;
-    let ip = null;
-    if ( window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection ) {
-        mytimeout = setTimeout(function() {
-            console.log(ip);
-        }, 3000);
-        window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-        let pc = new RTCPeerConnection({iceServers:[]});
-        let noop = function(){};
-        pc.createDataChannel("");
-        pc.createOffer(pc.setLocalDescription.bind(pc), noop);
-        pc.onicecandidate = function(ice) {
-            clearTimeout(mytimeout);
-            if(!ice || !ice.candidate || !$ice.candidate.candidate) {
-                return;
-            }
-            ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-            pc.onicecandidate = noop;
-            console.log(ip);
-        };
-    } else {
-        console.log(ip);
-    }
-<script>
-
-<?php
     $_SESSION["login-error"] = "Unable to authenticate your account. Please try again later.";
     header("Location: " . generateUrl("/pages/logged-out.php"));
     exit();
