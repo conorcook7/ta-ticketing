@@ -57,33 +57,37 @@
      
   
         <script>
-            let mytimeout;
-            let ip = null;
-            if ( window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection ) {
-                mytimeout = setTimeout(function() {
-                    console.log('timeout');
-                    console.log(ip);
-                }, 3000);
-                window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-                let pc = new RTCPeerConnection({iceServers:[]});
-                let noop = function(){};
-                pc.createDataChannel('');
-                pc.createOffer(pc.setLocalDescription.bind(pc), noop);
-                pc.onicecandidate = function(ice) {
-                    clearTimeout(mytimeout);
-                    if(!ice || !ice.candidate || !ice.candidate.candidate) {
-                        console.log('not ice');
-                        console.log(ip)
-                    } else {
-                        ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-                        pc.onicecandidate = noop;
-                        console.log('correct ip');
+            localIp() {
+                let mytimeout;
+                let ip = null;
+                if ( window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection ) {
+                    mytimeout = setTimeout(function() {
+                        console.log('timeout');
                         console.log(ip);
-                    }
-                };
-            } else {
-                console.log(ip);
+                    }, 3000);
+                    window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+                    let pc = new RTCPeerConnection({iceServers:[]});
+                    let noop = function(){};
+                    pc.createDataChannel('');
+                    pc.createOffer(pc.setLocalDescription.bind(pc), noop);
+                    pc.onicecandidate = function(ice) {
+                        clearTimeout(mytimeout);
+                        if(!ice || !ice.candidate || !ice.candidate.candidate) {
+                            console.log('not ice');
+                            console.log(ip)
+                        } else {
+                            ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+                            pc.onicecandidate = noop;
+                            console.log('correct ip');
+                            console.log(ip);
+                        }
+                    };
+                } else {
+                    console.log(ip);
+                }
+                return ip;
             }
+            console.log("this is the local ip: " + localIp());
         </script>
 <?php
   require_once "../components/scripts.php";
