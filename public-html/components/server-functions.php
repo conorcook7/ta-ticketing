@@ -68,6 +68,46 @@
     }
 
     /**
+     * Returns the computer name from the hostname.
+     * 
+     * @param $localIP - The local ip address of the user.
+     * @return $computerName - The node name or the personal computer name
+     */
+    function getComputerName($localIP) {
+        session_start();
+
+        $logger = getServerLogger();
+        $hostname = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
+
+        // If the user is on an onyx machine
+        preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
+        if (!empty($matches) && $localIP != "") {
+            for ($i = 1; $i < 1000; $i++) {
+                $nodeName = "onyxnode";
+                if ($i < 10) {
+                    $nodeName .= "0" . $i;
+                } else {
+                    $nodeName .= $i;
+                }
+                $nodeName .= ".boisestate.edu";
+                if (gethostbyname($nodeName) == $localIP) {
+                    return "Node " . $i;
+                } else {
+                    $logger->logDebug(basename(__FILE__) . ": " . gethostbyname($nodeName) . " != " . $localIP);
+                }
+            }
+        } else {
+            $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
+        }
+
+        // Search for os type
+        $operatingSystem = NULL;
+        preg_match("/(linux)|(macintosh)|(windows)|(mobile)/i", $_SERVER["HTTP_USER_AGENT"], $matches);
+        $operatingSystem = !empty($matches) ? $matches[0] : "";
+        return "Personal: " . $operatingSystem;
+    }
+
+    /**
      * Update the user's permission in the session variable
      * 
      * @param $userId - The user id to get the permissions for.

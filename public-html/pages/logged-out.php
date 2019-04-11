@@ -46,7 +46,7 @@
         <div class="h1 mx-auto my-5">You are signed out.</div>
         <p class="text-gray mb-0">Please use your Boise State email address to continue.</p>
         <form class="my-4" method="POST" action="../auth/google-auth/google.php">
-            <input id="local-ip" type="hidden" name="local_ip" val="" />
+            <input id="local-ip" type="hidden" name="local_ip" value="" />
             <button id="google-card" class="card p-3 m-auto text-center" type="submit">
             <span><img id="google-logo" src="../img/google-logo-transparent.png" alt="google-logo"/><span>
             <span class="pl-2">Sign in with Google</span>
@@ -65,8 +65,7 @@
             pc.onicecandidate = function(ice) {
                 if (ice && ice.candidate && ice.candidate.candidate) {
                     let localIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-                    console.log('my IP: ', localIP);
-                    $("#local-ip").val(localIP); 
+                    $("#local-ip").val(localIP);
                     pc.onicecandidate = noop;
                 }
             };

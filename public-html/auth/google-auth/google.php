@@ -111,10 +111,9 @@
                 $_SESSION["user"]["online"] = "ONLINE";
                 
                 // Set the users computer name
-                
-
-                // Adding the hostname to the session
-                $_SESSION["user"]["computer"] = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+                $localIP = isset($_POST["local_ip"]) ? $_POST["local_ip"] : "";
+                unset($_POST);
+                $_SESSION["user"]["computer_name"] = getComputerName();
 
                 // Redirect to the dashboard
                 header("Location: ../../pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");
