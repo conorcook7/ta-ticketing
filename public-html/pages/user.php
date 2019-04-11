@@ -153,6 +153,7 @@
 				<tr>
           <form method="POST" action="../handlers/user-closed-ticket-handler.php">
             <input type="hidden" name="closed_ticket_id" value="<?php echo $closedTickets[$i]['closed_ticket_id']; ?>"/>
+            <input type="hidden" name="student_user_id" value="<?php echo $closedTickets[$i]['student_user_id']; ?>" />
             <td class="center"><?php echo $closedTickets[$i]["closed_ticket_id"]; ?></td>
             <td class="center"><?php echo htmlentities($closedTickets[$i]["student_first_name"] . " " . $closedTickets[$i]["student_last_name"]); ?></td>
             <td class="center"><?php echo htmlentities($closedTickets[$i]["ta_first_name"] . " " . $closedTickets[$i]["ta_last_name"]); ?></td>

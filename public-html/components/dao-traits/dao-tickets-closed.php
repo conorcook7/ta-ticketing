@@ -102,9 +102,10 @@ trait DaoTicketsClosed {
      * 
      * @param $closedTicketId - The ticket id to be opened again.
      * @param $openerTicketId - The person that opened the ticket again.
+     * @param $computerName - The computer name of the person reopenning the ticket.
      * @return Returns TRUE if the ticket was able to be opened again, else FALSE.
      */
-    public function openClosedTicket($closedTicketId, $openerUserId) {
+    public function openClosedTicket($closedTicketId, $openerUserId, $computerName=NULL) {
         try {
             $conn = $this->getConnection();
             
@@ -132,7 +133,8 @@ trait DaoTicketsClosed {
             );
             $query->bindParam(":availableCourseId", $ticket["available_course_id"]);
             $query->bindParam(":userId", $ticket["creator_user_id"]);
-            $query->bindParam(":nodeNumber", $ticket["node_number"]);
+            $nodeNumber = ($computerName == NULL) ? $ticket["node_number"] : $computerName;
+            $query->bindParam(":nodeNumber", $nodeNumber);
             $query->bindParam(":openerUserId", $openerUserId);
             $query->bindParam(":description", $ticket["description"]);
             $query->bindParam(":roomNumber", $ticket["room_number"]);
