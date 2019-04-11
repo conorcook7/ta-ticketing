@@ -45,6 +45,7 @@ trait DaoBugReport {
 
             // Create the message to send
             if(!empty($adminEmails)) {
+                $this->logger->logDebug(var_dump($adminEmails));
                 $to = $adminEmails[0];
                 $subject = "TA Ticketing Bug Report";
                 $message = wordwrap($title . "\n" . $description, 70);
