@@ -66,13 +66,13 @@
                 </button>
              </div>
               <div class="modal-body">
-                  <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form' . $queue . '" name="limitedtextarea" id="description-form" class="form-control"  rows="5" ></textarea>
+                  <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form' . $queue . '" name="limitedtextarea" class="form-control description-form"  rows="5" ></textarea>
                  
                </div>
                <div class="modal-footer">
                   <div class="mr-auto">
                     <span>(Maximum characters: 500)</span><br>
-                    <span>You have <span id="char-count">0</span> <span>/</span> <span id="max-char-count">1000</span> characters left.</span>
+                    <span>You have <span class="char-count">0</span> <span>/</span> <span class="max-char-count">1000</span> characters left.</span>
                    </div>
                   <button type="submit" class="btn btn-success">Confirm</button>
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

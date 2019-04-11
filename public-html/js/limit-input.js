@@ -8,10 +8,10 @@ function limitText(limitField, limitCount, limitNum) {
 
 $(document).ready(function() {
 	// Set the max character count for the description
-	let description = $("#description-form");
-	$("#max-char-count").html(description.attr("maxlength"));
+	let description = $(".description-form");
+	$(".max-char-count").html(description.attr("maxlength"));
 	description.on("change keyup mousedown paste", function() {
-	  $("#char-count").html(description.val().length);
+	  $(".char-count").html(description.val().length);
 	});
   
 	// Fade out the success alert.
