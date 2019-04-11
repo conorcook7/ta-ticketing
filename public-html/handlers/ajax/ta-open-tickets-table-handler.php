@@ -66,13 +66,14 @@
                 </button>
              </div>
               <div class="modal-body">
-                  <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form' . $queue . '" name="description" id="description" class="form-control"  rows="5" ></textarea>
+                  <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form' . $queue . '" name="limitedtextarea" class="form-control"  rows="5" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,500);" 
+                  onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,500);"></textarea>
                  
                </div>
                <div class="modal-footer">
                   <div class="mr-auto">
                     <span>(Maximum characters: 500)</span><br>
-                    <span>You have <span id="char-count">0</span> characters left.</span>
+                    <span>You have <input class="removeStyling" readonly type="text" name="countdown" size="2" value="500">characters left.</span>
                    </div>
                   <button type="submit" class="btn btn-success">Confirm</button>
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
