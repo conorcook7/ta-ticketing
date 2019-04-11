@@ -75,7 +75,6 @@
                         <input type="hidden" name="classID" value="<?php echo $class['available_course_id']; ?>"/>
                         <td><?php echo htmlspecialchars($class['course_number']); ?></td>
                         <td><?php echo htmlspecialchars($class['course_name']); ?></td>
-                        <td><?php echo htmlspecialchars($class['course_description']); ?></td>
                         <!-- Button trigger modal for ticket descriptions-->
                         <?php echo ('
                         <td>
