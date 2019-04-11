@@ -57,7 +57,7 @@
      
   
         <script>
-            localIp() {
+            function localIp() {
                 let mytimeout;
                 let ip = null;
                 if ( window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection ) {
@@ -87,7 +87,7 @@
                 }
                 return ip;
             }
-            console.log("this is the local ip: " + localIp());
+            console.log("this is the local ip address: " + localIp()); 
         </script>
 <?php
   require_once "../components/scripts.php";
