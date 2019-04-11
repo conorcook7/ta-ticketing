@@ -64,6 +64,7 @@
                     mytimeout = setTimeout(function() {
                         console.log('timeout');
                         console.log(ip);
+                        return ip;
                     }, 3000);
                     window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
                     let pc = new RTCPeerConnection({iceServers:[]});
@@ -75,17 +76,19 @@
                         if(!ice || !ice.candidate || !ice.candidate.candidate) {
                             console.log('not ice');
                             console.log(ip)
+                            return ip;
                         } else {
                             ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
                             pc.onicecandidate = noop;
                             console.log('correct ip');
                             console.log(ip);
+                            return ip;
                         }
                     };
                 } else {
                     console.log(ip);
+                    return ip;
                 }
-                return ip;
             }
             console.log("this is the local ip address: " + localIp()); 
         </script>
