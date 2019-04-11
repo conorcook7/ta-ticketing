@@ -102,7 +102,7 @@
                     try {
                         include "dao.php";
                         $dao = new Dao();
-                        $dao->createBugReport(0, "Onyx Nodes IP Missmatch", $errorDescription);
+                        $dao->createBugReport(1, "Onyx Nodes IP Missmatch", $errorDescription);
                         $bugReportCreated = TRUE;
                     } catch (Exception $e) {
                         $logger->logError(basename(__FILE__) . ": Unable to create bug report");
@@ -118,11 +118,8 @@
             try {
                 include "dao.php";
                 $dao = new Dao();
-                $dao->createBugReport(
-                    0,
-                    "Unable to find onyx node",
-                    "Searched first 1000 nodes by hostname like {onyxnode00.boisestate.edu}"
-                );
+                $dao->createBugReport(1, "Unable to find onyx node",
+                    "Searched first 1000 nodes by hostname like {onyxnode00.boisestate.edu}");
             } catch (Exception $e) {
                 $logger->logError(basename(__FILE__) . ": Unable to create bug report");
                 $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
