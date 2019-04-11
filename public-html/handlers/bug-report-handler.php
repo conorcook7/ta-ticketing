@@ -30,7 +30,7 @@
         // Attempt to insert the bug report
         $dao = new Dao();
         if ($dao->createBugReport($_SESSION["user"]["user_id"], $_POST["title"], $_POST["description"])) {
-            $_SESSION["success"] = "Your concern has been saved for an administrator to view.";
+            $_SESSION["success"] = "Your concern has been emailed to the administrators to view.";
             if (isset($_SESSION["presets"])) {
                 unset($_SESSION["presets"]);
             }
