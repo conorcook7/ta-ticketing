@@ -66,7 +66,7 @@
                 </button>
              </div>
               <div class="modal-body">
-                  <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form' . $queue . '" name="limitedtextarea" class="form-control description-form"  rows="5" ></textarea>
+                  <textarea placeholder="Please describe how you helped with this ticket..." required form="all_ticket_form' . $queue . '" name="description-form" class="form-control description-form"  rows="5" ></textarea>
                  
                </div>
                <div class="modal-footer">
