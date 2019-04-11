@@ -44,30 +44,6 @@
     }
 
     /**
-     * Returns the onyx node number from the hostname.
-     * 
-     * @return $nodeNumber - The node number from the IP address hostname.
-     */
-    function getNodeNumber() {
-        $logger = getServerLogger();
-        $hostname = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
-        $logger->logInfo(basename(__FILE__) . ": get host name: " . $_SERVER["REMOTE_HOST"]);
-        // Search for onyx node
-        preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
-        if (!empty($matches) && isset($matches[2])) {
-            return "Node " . $matches[2];
-        } else {
-            $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
-        }
-
-        // Search for os type
-        $operatingSystem = NULL;
-        preg_match("/(linux)|(macintosh)|(windows)|(mobile)/i", $_SERVER["HTTP_USER_AGENT"], $matches);
-        $operatingSystem = !empty($matches) ? $matches[0] : "";
-        return "Personal: " . $operatingSystem;
-    }
-
-    /**
      * Returns the computer name from the hostname.
      * 
      * @param $localIP - The local ip address of the user.
