@@ -72,7 +72,7 @@
                <div class="modal-footer">
                   <div class="mr-auto">
                     <span>(Maximum characters: 500)</span><br>
-                    <span>You have <span id="char-count">0</span><span>/</span> <span id="max-char-count">1000</span>characters left.</span>
+                    <span>You have <span id="char-count">0</span> <span>/</span> <span id="max-char-count">1000</span> characters left.</span>
                    </div>
                   <button type="submit" class="btn btn-success">Confirm</button>
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
