@@ -54,7 +54,7 @@ trait DaoBugReport {
                 $logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
                 mail($to, $subject, $message, $headers);
             }
-            $logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all admins");
+            $logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all adminsj");
             
         } catch (Exception $e) {
             $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to send bug report email.");
