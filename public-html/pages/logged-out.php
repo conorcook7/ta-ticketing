@@ -54,36 +54,19 @@
         <?php include_once '../components/footer.php' ?>
         <!-- End of Footer -->
         </div>
-     
   
         <script>
-            $(function() {
-                local_ip();
-            });
-            function local_ip() {
-                var $mytimeout;
-                if (window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection) {
-                    $mytimeout = setTimeout(function(){$("#lanip").html("Local IP address is not supported in this browser");},3000);
-                    window.RTCPeerConnection = window.RTCPeerConnection  window.mozRTCPeerConnection  window.webkitRTCPeerConnection;
-                    var $pc = new RTCPeerConnection({iceServers:[]}), $noop = function(){};
-                    $pc.createDataChannel("");
-                    $pc.createOffer($pc.setLocalDescription.bind($pc), $noop);
-                    $pc.onicecandidate = function($ice) {
-                        clearTimeout($mytimeout);
-                        if (!$ice || !$ice.candidate || !$ice.candidate.candidate) {
-                            console.log('no ip - no ice');
-                            return;
-                        }
-                        $ip = /([0-9]{1,3}(.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec($ice.candidate.candidate)[1];
-                        $pc.onicecandidate = $noop;
-                        $("#lanip").html($ip);
-                        console.log($ip);
-                    };
-                } else {
-                    $("#lanip").html("Local IP address is not supported in this browser");
-                    console.log('no ip -- end');
+            window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
+            var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
+            pc.createDataChannel('');//create a bogus data channel
+            pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
+            pc.onicecandidate = function(ice) {
+                if (ice && ice.candidate && ice.candidate.candidate) {
+                    var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+                    console.log('my IP: ', myIP);   
+                    pc.onicecandidate = noop;
                 }
-            }
+            };
         </script>
 <?php
   require_once "../components/scripts.php";
