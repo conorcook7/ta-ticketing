@@ -84,7 +84,7 @@
         // If the user is on an onyx machine
         preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
         $logger->logDebug(basename(__FILE__) . ": local IP: " . $localIP);
-
+        // 
         if (!empty($matches) && $localIP != "") {
             $logger->logDebug(basename(__FILE__) . ": Boise State computer found");
             $bugReportCreated = FALSE;
@@ -98,24 +98,23 @@
                 $nodeName .= ".boisestate.edu";
                 $onyxIP = gethostbyname($nodeName);
                 preg_match("/\d+\.\d+\.(\d+)/", $onyxIP, $matches);
-                if (!empty($matches) && $matches[1] != $i && !$bugReportCreated) {
-                    $errorDescription = "onyx node number {" . $i . "} is not equal to IP address {" . $onyxIP . "}";
+                if (!empty($matches) && intval($matches[1]) != $i && !$bugReportCreated) {
+                    $errorDescription = $nodeName . "is not equal to IP address {" . $onyxIP . "}";
                     $logger->logError(basename(__FILE__) . ": " . $errorDescription);
-                    try {
-                        $dao->createBugReport(1, "Onyx Nodes IP Missmatch", $errorDescription);
-                        $bugReportCreated = TRUE;
-                    } catch (Exception $e) {
-                        $logger->logError(basename(__FILE__) . ": Unable to create bug report");
-                        $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
-                    }
+                    // try {
+                    //     $dao->createBugReport(1, "Onyx Nodes IP Missmatch", $errorDescription);
+                    //     $bugReportCreated = TRUE;
+                    // } catch (Exception $e) {
+                    //     $logger->logError(basename(__FILE__) . ": Unable to create bug report");
+                    //     $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
+                    // }
                 }
                 if ($onyxIP == $localIP) {
                     return "Node " . $i;
-                } else {
-                    $logger->logDebug(basename(__FILE__) . ": " . $onyxIP . " != " . $localIP);
                 }
             }
             try {
+                $logger->logError(basename(__FILE__) . ": Unable to find IP address {" . $localIP . "} in the first 1000 onyx nodes");
                 $dao->createBugReport(1, "Unable to find onyx node",
                     "Searched first 1000 nodes by hostname like {onyxnode00.boisestate.edu}");
             } catch (Exception $e) {
