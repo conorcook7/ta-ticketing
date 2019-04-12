@@ -16,7 +16,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-3 col-md-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -37,7 +37,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -58,7 +58,7 @@
                 </div>
                 <!-- Step 3 -->
                 <div class="col-xl-5 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -91,7 +91,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-5 col-md-5 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -112,7 +112,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-7 col-md-7 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -144,7 +144,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-3 col-md-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -164,7 +164,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -185,7 +185,7 @@
                 </div>
                 <!-- Step 3 -->
                 <div class="col-xl-6 col-md-8 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -218,7 +218,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-3 col-md-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -239,7 +239,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -259,7 +259,7 @@
                 </div>
                 <!-- Step 3 -->
                 <div class="col-xl-5 col-md-8 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -292,7 +292,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -313,7 +313,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -344,7 +344,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-3 col-md-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -364,7 +364,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -384,7 +384,7 @@
                 </div>
                 <!-- Step 3 -->
                 <div class="col-xl-6 col-md-8 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -416,7 +416,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-3 col-md-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -437,7 +437,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -457,7 +457,7 @@
                 </div>
                 <!-- Step 3 -->
                 <div class="col-xl-5 col-md-8 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -489,7 +489,7 @@
             <div class="row">
                 <!-- Step 1 -->
                 <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
@@ -510,7 +510,7 @@
                 </div>
                 <!-- Step 2 -->
                 <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card border-left-primary h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
