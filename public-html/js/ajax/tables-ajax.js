@@ -67,7 +67,17 @@ $(document).ready(function() {
   allTicketsTable.ajax.reload();
   closedTicketsTable.ajax.reload();
   openTicketsTable.ajax.reload();
-  taOpenTicketsTable.ajax.reload();
+  taOpenTicketsTable.ajax.reload(function(json) {
+    $(".toggle-close-form").on("click", function(event) {
+      event.stopPropagation();
+      $("#ta-close").css({ display: "" });
+      let inputs = event.target.children;
+      let openTicketId = inputs[0].value;
+      let closerUserId = inputs[1].value;
+      $("#my-open-ticket-id").val(openTicketId);
+      $("#my-closer-user-id").val(closerUserId);
+    });
+  });
 
   // Reload the tables based on an interval
   setInterval(function() {

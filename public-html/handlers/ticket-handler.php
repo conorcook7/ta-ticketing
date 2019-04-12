@@ -17,19 +17,20 @@ if(isset($_POST['open_ticket_id_input'])){
     }
 }
 
-if(isset($_POST['my_open_ticket_id_input'])){
-    $cleanTextMyTicket = strip_tags($_POST["limitedtextarea"]);
-    $closeTicket = $dao->closeTicket($_POST["my_open_ticket_id_input"] ,$_POST["my_closer_id_input"], $cleanTextMyTicket);
+if(isset($_POST['my_open_ticket_id']) && isset($_POST['my_closer_user_id']) && isset($_POST['my_closing_description'])){
+    $ticketClosed = $dao->closeTicket($_POST["my_open_ticket_id"] ,$_POST["my_closer_user_id"], $_POST['my_closing_description']);
     if($_SESSION['user']['access_level'] >= 3){
         $id = 'open-tickets';
     } else {
         $id = 'my-tickets';
     }
-    if($closeTicket){
+    if($ticketClosed){
         $_SESSION['success'] = 'Ticket has been closed.';
     } else {
-        $_SESSION['failure'] = 'Ticket has not been closed.';
+        $_SESSION['failure'] = 'Ticket was unable to be closed.';
     }
+} else {
+    $_SESSION['failure'] = 'Ticket has not been closed.';
 }
 
 if(isset($_POST['closed_ticket_id'])){
