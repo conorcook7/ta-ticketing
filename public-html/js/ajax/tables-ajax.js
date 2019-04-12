@@ -85,7 +85,6 @@ $(document).ready(function() {
 
     // Reload 30 seconds after it has finished loading
     setTimeout(function() {
-      console.log(Date.now());
       taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
     }, 30 * 1000);
   }
