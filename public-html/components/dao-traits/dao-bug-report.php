@@ -45,6 +45,7 @@ trait DaoBugReport {
 
             // Get the user's information that generated the bug report
             $query = $conn->prepare("SELECT first_name, last_name, email FROM Users WHERE user_id = :userId;");
+            $query->bindParam(":userId", $userId);
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $creator = $query->fetch();
