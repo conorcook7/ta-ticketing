@@ -58,10 +58,36 @@ $(document).ready(function() {
     ]
   });
 
+  // Initialize the generic data tables
   $("#dataTable").DataTable();
   $(".generic-data-table").DataTable();
-  // Add more tables here
-  // TODO: Add more tables
+
+  // Get the description textarea
+  let description = $("#closing-description");
+
+  // Set the max character for the character counter
+  $("#max-char-count").html(description.attr("maxlength"));
+
+  // Set the character counter to update when the description is changed
+  description.on("change keyup paste mousedown", function() {
+    $("#char-count").html($(this).val().length);
+  });
+
+  // Setup the form toggle display
+  let formDiv = $("#toggle-close-ticket"); // Get the closing form with jQuery
+  formDiv.css({ display: "none" }); // Hide the form initially
+
+  // Hide the form on window click
+  $(window).on("click", function() {
+    formDiv.css({ display: "none" });
+    $("#my-open-ticket-id").val(null);
+    $("#my-closer-user-id").val(null);
+  });
+
+  // Stop the form from hiding if the form is being clicked
+  formDiv.on("click", function(event) {
+    event.stopPropagation();
+  });
 
   // Reload the data for all tables
   allTicketsTable.ajax.reload();
@@ -69,7 +95,6 @@ $(document).ready(function() {
 
   // Reload all open tickets table
   openTicketsTable.ajax.reload(callbackOpenTicketsTable);
-
   /**
    * Callback function for recursively updating the "All Open Tickets" table.
    */
@@ -84,7 +109,6 @@ $(document).ready(function() {
 
   // Reload the My Open Tickets table for TAs
   taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
-
   /**
    * Callback function for recursively updating the "My Open Tickets" table for TAs
    */
@@ -103,12 +127,12 @@ $(document).ready(function() {
   function setFormToggle() {
     $(".toggle-close-form").on("click", function(event) {
       event.stopPropagation();
-      $("#ta-close").css({ display: "" });
+      $("#toggle-close-ticket").css({ display: "" });
       let inputs = event.target.children;
       let openTicketId = inputs[0].value;
       let closerUserId = inputs[1].value;
-      $("#my-open-ticket-id").val(openTicketId);
-      $("#my-closer-user-id").val(closerUserId);
+      $("#open-ticket-id").val(openTicketId);
+      $("#closer-user-id").val(closerUserId);
     });
   }
 });

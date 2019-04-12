@@ -50,8 +50,8 @@
         ';
         $cleanTicket["status"] = '
         <button type="button" class="toggle-close-form btn btn-block bg-danger text-gray-100">
-          <input id="my-open-ticket-id-info" type="hidden" value="' . $ticket['open_ticket_id'] . '"/>
-          <input id="my-closer-user-id-info" type="hidden" value="' . $my_ta_id . '"/>
+          <input id="open-ticket-id-info" type="hidden" value="' . $ticket['open_ticket_id'] . '"/>
+          <input id="closer-user-id-info" type="hidden" value="' . $my_ta_id . '"/>
             Close Ticket
         </button>
         ';

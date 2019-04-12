@@ -3,6 +3,29 @@
     $my_course_id = $dao->getMyCourseID($my_ta_id);
     $myTickets = $dao->getMyOpenTickets($my_course_id['0']['available_course_id']);
      ?>
+<div id="toggle-close-ticket" class="p-4 mb-4" style="display: none">
+    <form method="POST" id="close-ticket-form" action="../handlers/ticket-handler.php">
+        <input id="open-ticket-id" type="hidden" name="open_ticket_id" value="" />
+        <input id="closer-user-id" type="hidden" name="closer_user_id" value="" />
+        <label for="closing_description">Ticket Closing Description</label>
+        <textarea
+            class="form-control py-2 w-50"
+            id="closing-description"
+            name="closing_description"
+            rows=4
+            maxlength=500
+            required="true"
+            placeholder="Please describe how you helped with this ticket..."></textarea>
+        <div class="text-right w-50">
+            <span id="char-count">0</span>
+            <span>/</span>
+            <span id="max-char-count">500</span>
+        </div>
+        <div class="d-flex justify-content-start w-50">
+            <button type="submit" class="btn btn-danger">Finish Closing</button>
+        </div>
+    </form>
+</div>
 <div class="container-fluid">
     <!-- Start of My Tickets Table -->
     <div class="card shadow mb-4">

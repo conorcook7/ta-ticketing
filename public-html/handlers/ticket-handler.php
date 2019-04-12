@@ -6,19 +6,9 @@ require_once '../components/dao.php';
 $id = 'DEFAULT';
 
 $dao = new Dao();
-if(isset($_POST['open_ticket_id_input'])){
-    $cleanTextAllTicket = strip_tags($_POST["limitedtextarea"]);
-    $closeTicket = $dao->closeTicket($_POST["open_ticket_id_input"] ,$_POST["closer_id_input"], $cleanTextAllTicket);
-    $id = 'open-tickets';
-    if($closeTicket){
-        $_SESSION['success'] = 'Ticket has been closed.';
-    } else {
-        $_SESSION['failure'] = 'Ticket has not been closed.';
-    }
-}
 
-if(isset($_POST['my_open_ticket_id']) && isset($_POST['my_closer_user_id']) && isset($_POST['my_closing_description'])){
-    $ticketClosed = $dao->closeTicket($_POST["my_open_ticket_id"] ,$_POST["my_closer_user_id"], $_POST['my_closing_description']);
+if(isset($_POST['open_ticket_id']) && isset($_POST['closer_user_id']) && isset($_POST['closing_description'])){
+    $ticketClosed = $dao->closeTicket($_POST["open_ticket_id"] ,$_POST["closer_user_id"], $_POST['closing_description']);
     if($_SESSION['user']['access_level'] >= 3){
         $id = 'open-tickets';
     } else {

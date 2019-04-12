@@ -75,32 +75,6 @@
                     unset($_SESSION["failure"]);
                     unset($_SESSION["success"]);
                     ?>
-
-                <div id="ta-close" class="p-4 mb-4" style="display: none">
-                  <form method="POST" id="ta-close-form" action="../handlers/ticket-handler.php">
-                    <input id="my-open-ticket-id" type="hidden" name="my_open_ticket_id" value="" />
-                    <input id="my-closer-user-id" type="hidden" name="my_closer_user_id" value="" />
-                    <label for="closing_description">Ticket Closing Description</label>
-                    <textarea
-                      class="form-control py-2 w-50"
-                      id="closing-description"
-                      name="my_closing_description"
-                      rows=4
-                      maxlength=500
-                      required="true"
-                      placeholder="Please describe how you helped with this ticket..."></textarea>
-                    <div class="text-right w-50">
-                      <span id="char-count">0</span>
-                      <span>/</span>
-                      <span id="max-char-count">500</span>
-                    </div>
-                    <div class="d-flex justify-content-start w-50">
-                      <button type="submit" class="btn btn-danger">Finish Closing</button>
-                    </div>
-                  </form>
-                </div>
-
-
                 <?php
                     $selection = $_SESSION['ta-selection'];
                     if ($selection == 'UNNAUTHORIZED'){ ?>
@@ -133,8 +107,7 @@
 </div>
 <!-- End of Page Wrapper -->
 <!-- Scripts -->
-<script src="../js/ta.js"></script>
 <?php 
     require_once '../components/logout-modal.php';
     require_once '../components/scripts.php' 
-    ?>
+?>
