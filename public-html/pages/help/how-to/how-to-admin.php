@@ -532,4 +532,3 @@
         </div>
     </div>
 </div>
-<?php require_once "how-to/how-to-ta.php"; ?>

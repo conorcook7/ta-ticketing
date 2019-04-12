@@ -157,7 +157,5 @@
                 </div>
             </div>
         </div>
-</div>
-<div class="tab-pane fade" id="nav-how-to-user" role="tabpanel" aria-labelledby="nav-how-to-user-tab">
-    <?php require_once "how-to/how-to-user.php"; ?>
+    </div>
 </div>
