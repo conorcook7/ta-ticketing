@@ -66,13 +66,41 @@ $(document).ready(function() {
   // Reload the data for all tables
   allTicketsTable.ajax.reload();
   closedTicketsTable.ajax.reload();
-  openTicketsTable.ajax.reload();
+
+  // Reload all open tickets table
+  openTicketsTable.ajax.reload(callbackOpenTicketsTable);
+
+  /**
+   * Callback function for recursively updating the "All Open Tickets" table.
+   */
+  function callbackOpenTicketsTable() {
+    // Toggle the closing form
+    setFormToggle();
+    // Reload 30 seconds after it has finished loading
+    setTimeout(function() {
+      taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
+    }, 30 * 1000);
+  }
 
   // Reload the My Open Tickets table for TAs
   taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
 
+  /**
+   * Callback function for recursively updating the "My Open Tickets" table for TAs
+   */
   function callbackTaOpenTicketsTable() {
     // Toggle the closing form
+    setFormToggle();
+    // Reload 30 seconds after it has finished loading
+    setTimeout(function() {
+      taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
+    }, 30 * 1000);
+  }
+
+  /**
+   * Function to toggle the form based on the buttons in the class
+   */
+  function setFormToggle() {
     $(".toggle-close-form").on("click", function(event) {
       event.stopPropagation();
       $("#ta-close").css({ display: "" });
@@ -82,10 +110,5 @@ $(document).ready(function() {
       $("#my-open-ticket-id").val(openTicketId);
       $("#my-closer-user-id").val(closerUserId);
     });
-
-    // Reload 30 seconds after it has finished loading
-    setTimeout(function() {
-      taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
-    }, 30 * 1000);
   }
 });

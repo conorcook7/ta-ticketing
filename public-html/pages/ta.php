@@ -76,7 +76,7 @@
                     unset($_SESSION["success"]);
                     ?>
 
-                <div id="ta-close" class="p-4 mb-4">
+                <div id="ta-close" class="p-4 mb-4" style="display: none">
                   <form method="POST" id="ta-close-form" action="../handlers/ticket-handler.php">
                     <input id="my-open-ticket-id" type="hidden" name="my_open_ticket_id" value="" />
                     <input id="my-closer-user-id" type="hidden" name="my_closer_user_id" value="" />
