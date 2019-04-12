@@ -23,7 +23,7 @@
                     if ($permission == "ADMIN") {
                     ?>
                 <div class="row">
-                    <div class="col-xs-12 ">
+                    <div class="col-xs-12">
                         <nav class="mb-4">
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a
@@ -64,9 +64,9 @@
                 </div>
                 <?php  } else if ($permission == "TA") { ?>
                 <div class="row">
-                    <div class="col-xs-12 ">
+                    <div class="col-xs-12">
                         <nav class="mb-4">
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a
                                     class="nav-item nav-link active"
                                     id="nav-how-to-ta-tab"
