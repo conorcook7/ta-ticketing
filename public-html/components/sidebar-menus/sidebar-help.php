@@ -2,19 +2,24 @@
     session_start();
     ?>
 <!-- Help Page -->
-<li class="nav-item <?php if ($nav == 'help') { echo 'active'; } ?>">
+<li class="nav-item <?php echo ($nav == 'help') ? 'active' : ''; ?>">
     <a
-        class="nav-link collapsed"
+        class="nav-link <?php echo ($nav != 'help') ? 'collapsed' : ''; ?>"
         href="#"
         data-toggle="collapse"
         data-target="#collapseHelpPages"
-        aria-expanded="true"
+        aria-expanded="<?php echo ($nav == 'help') ? 'true' : 'false'; ?>"
         aria-controls="collapseHelpPages"
         >
     <i class="fas fa-fw fa-question"></i>
     <span class="LetterSpacing">Help</span>
     </a>
-    <div id="collapseHelpPages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <div
+        id="collapseHelpPages"
+        class="collapse <?php echo ($nav == 'help') ? 'show' : ''; ?>"
+        aria-labelledby="headingPages"
+        data-parent="#accordionSidebar"
+    >
         <div class="bg-white py-2 collapse-inner rounded">
             <a
                 class="collapse-item <?php if($nav == 'help' && $page == 'available-courses.php'){echo 'active';}?>"
