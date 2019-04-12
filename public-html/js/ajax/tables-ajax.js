@@ -78,7 +78,7 @@ $(document).ready(function() {
     setFormToggle();
     // Reload 30 seconds after it has finished loading
     setTimeout(function() {
-      taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
+      openTicketsTable.ajax.reload(callbackOpenTicketsTable);
     }, 30 * 1000);
   }
 
