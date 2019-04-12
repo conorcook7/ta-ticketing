@@ -100,7 +100,7 @@ $(document).ready(function() {
    */
   function callbackOpenTicketsTable() {
     // Toggle the closing form
-    setFormToggle();
+    toggleForm();
     // Reload 30 seconds after it has finished loading
     setTimeout(function() {
       openTicketsTable.ajax.reload(callbackOpenTicketsTable);
@@ -114,7 +114,7 @@ $(document).ready(function() {
    */
   function callbackTaOpenTicketsTable() {
     // Toggle the closing form
-    setFormToggle();
+    toggleForm();
     // Reload 30 seconds after it has finished loading
     setTimeout(function() {
       taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
@@ -124,7 +124,7 @@ $(document).ready(function() {
   /**
    * Function to toggle the form based on the buttons in the class
    */
-  function setFormToggle() {
+  function toggleForm() {
     $(".toggle-close-form").on("click", function(event) {
       event.stopPropagation();
       $("#toggle-close-ticket").css({ display: "" });
@@ -133,6 +133,7 @@ $(document).ready(function() {
       let closerUserId = inputs[1].value;
       $("#open-ticket-id").val(openTicketId);
       $("#closer-user-id").val(closerUserId);
+      $("html, body").animate({ scrollTop: 0 }, "slow");
     });
   }
 });

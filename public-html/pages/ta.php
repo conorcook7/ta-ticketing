@@ -55,14 +55,14 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content" class="h-100">
+        <div id="content" class="">
 
             <!-- Topbar -->
             <?php include_once '../components/topbar.php'; ?>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid h-100">
+            <div class="container-fluid">
                 <?php if (isset($_SESSION["success"])){ ?>
                 <div class="alert alert-success">
                     <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
