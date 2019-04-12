@@ -67,7 +67,12 @@ $(document).ready(function() {
   allTicketsTable.ajax.reload();
   closedTicketsTable.ajax.reload();
   openTicketsTable.ajax.reload();
-  taOpenTicketsTable.ajax.reload(function(json) {
+
+  // Reload the My Open Tickets table for TAs
+  taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
+
+  function callbackTaOpenTicketsTable() {
+    // Toggle the closing form
     $(".toggle-close-form").on("click", function(event) {
       event.stopPropagation();
       $("#ta-close").css({ display: "" });
@@ -77,11 +82,11 @@ $(document).ready(function() {
       $("#my-open-ticket-id").val(openTicketId);
       $("#my-closer-user-id").val(closerUserId);
     });
-  });
 
-  // Reload the tables based on an interval
-  setInterval(function() {
-    console.log("Reloading the data");
-    // taOpenTicketsTable.ajax.reload();
-  }, 30 * 1000);
+    // Reload 30 seconds after it has finished loading
+    setTimeout(function() {
+      console.log(Date.now());
+      taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
+    }, 30 * 1000);
+  }
 });

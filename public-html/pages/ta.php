@@ -95,10 +95,7 @@
                       <span id="max-char-count">500</span>
                     </div>
                     <div class="d-flex justify-content-start w-50">
-                      <button type="submit" class="btn btn-danger">
-                        <i class="fas fa-times"></i>
-                        <span class="px-1">Close Ticket</span>
-                      </button>
+                      <button type="submit" class="btn btn-danger">Finish Closing</button>
                     </div>
                   </form>
                 </div>
