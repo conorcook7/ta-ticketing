@@ -54,10 +54,10 @@ trait DaoBugReport {
             if(!empty($adminEmails)) {
                 $to = $adminEmails[0]["email"];
                 $subject = "TA Ticketing Bug Report";
-                $message = "Hello!\n\nA new bug report was just created by " . htmlentities($creator["first_name"] . " " . $creator["last_name"]) . "!\n\n";
-                $message .= "Author Email: <a href='mailto: " . htmlentities($creator["email"]) . "'>" . htmlentities($creator["email"]) . "</a>\n\n";
-                $message .= "Title: " . $title . "\n\nDescription:\n" . $description . "\n\n";
-                $message .= "This message was automated from the TA Ticketing Server at Boise State University.";
+                $message = "Hello!\n\n" . htmlentities($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!\n\n";
+                $message .= "Author's Email: " . htmlentities($creator["email"]) . "\n\n";
+                $message .= "Title: " . $title . "\n\nDescription:\n" . $description . "\n\n\n";
+                $message .= "This message was automated by the TA Ticketing Server at Boise State University.";
                 $headers = "From: no-reply@taticketing.boisestate.edu" . "\n" . "CC: ";
                 for ($i = 1; $i < count($adminEmails); $i++) {
                     $headers .= $adminEmails[$i]["email"] . " ";
