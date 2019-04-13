@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once "../components/dao.php";
 $dao = new Dao();
 
@@ -13,8 +14,8 @@ if (isset($_POST["blacklistId"]) && !isset($_POST["blacklistEmailUpdate"]) && !i
     }
 
 // Add a blacklist entry
-} else if (isset($_POST["blacklistEmail"])) {
-    $created = $dao->createBlacklistEntry($_POST["blacklistEmail"]);
+} else if (isset($_POST["blacklistEmail"]) && isset($_SESSION["user"]["user_id"])) {
+    $created = $dao->createBlacklistEntry($_SESSION["user"]["user_id"], $_POST["blacklistEmail"]);
     if ($created) {
         $_SESSION["blacklist-success"] = "Email was added to the blacklist.";
     } else {
@@ -22,8 +23,8 @@ if (isset($_POST["blacklistId"]) && !isset($_POST["blacklistEmailUpdate"]) && !i
     }
 
 // Update an email in the blacklist
-} else if (isset($_POST["blacklistId"]) && isset($_POST["blacklistEmailUpdate"])) {
-    $updated = $dao->updateBlacklistEntry($_POST["blacklistId"], $_POST["blacklistEmailUpdate"]);
+} else if (isset($_POST["blacklistId"]) && isset($_POST["blacklistEmailUpdate"]) && isset($_SESSION["user"]["user_id"])) {
+    $updated = $dao->updateBlacklistEntry($_SESSION["user"]["user_id"], $_POST["blacklistId"], $_POST["blacklistEmailUpdate"]);
     if ($deleted) {
         $_SESSION["blacklist-success"] = "Email was updated in the blacklist.";
     } else {
