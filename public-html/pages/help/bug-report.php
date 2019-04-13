@@ -29,6 +29,7 @@
                         <div class="mb-4 border-bottom">
                             <span class="h3 mb-0 text-gray-800">Report a Problem</span>
                         </div>
+                        <p class="text-gray-800"><i class="fas fa-exclamation-circle"></i> Reporting an issue will notify all of the website administrators via email.</p>
                         <?php if (isset($_SESSION["success"])){ ?>
                         <div class="alert alert-success">
                             <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
