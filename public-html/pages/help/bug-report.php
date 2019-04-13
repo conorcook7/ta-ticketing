@@ -25,7 +25,7 @@
         <div id="content">
             <div class="container-fluid px-4">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4 border-bottom">
-                    <span class="h3 mb-0 text-gray-800">Report a problem</span>
+                    <span class="h3 mb-0 text-gray-800">Report a Problem</span>
                 </div>
                 <div>
                     <?php if (isset($_SESSION["success"])){ ?>
