@@ -66,7 +66,7 @@ if (isset($_SESSION["blacklist-success"])){ ?>
                     ?>
                         <tr>
                             <td><?php echo htmlentities($blacklistEntry["blacklist_id"]); ?></td>
-                            <td><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["blacklisted_email"]) . "'>" . htmlentities($blacklistEntry["blacklisted_email"]) . "</a>"; ?></td>
+                            <td><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["blacklist_email"]) . "'>" . htmlentities($blacklistEntry["blacklist_email"]) . "</a>"; ?></td>
                             <td><?php echo $updateDate->format("F jS, Y @ g:i A"); ?></td>
                             <td><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["email"]) . "'>" . htmlentities($blacklistEntry["email"]) . "</a>"; ?></td>
                             <td class="center">
