@@ -51,9 +51,9 @@ if (isset($_SESSION["blacklist-success"])){ ?>
                     <thead>
                         <tr>
                             <th class="center">ID</th>
-                            <th class="center">Email</th>
+                            <th class="center">Blacklisted Email</th>
                             <th class="center">Blacklist Date</th>
-                            <th class="center">Last Updated</th>
+                            <th class="center">Created By</th>
                             <th class="center">Update</th>
                             <th class="center">Delete</th>
                         </tr>
@@ -62,14 +62,13 @@ if (isset($_SESSION["blacklist-success"])){ ?>
                     <?php 
                         $blacklistEntries = $dao->getBlacklistEntries();
                         foreach($blacklistEntries as $blacklistEntry) {
-                            $createDate = new DateTime($blacklistEntry["create_date"]);
                             $updateDate = new DateTime($blacklistEntry["update_date"]);
                     ?>
                         <tr>
                             <td><?php echo htmlentities($blacklistEntry["blacklist_id"]); ?></td>
-                            <td><?php echo htmlentities($blacklistEntry["email"]); ?></td>
-                            <td><?php echo $createDate->format("F jS Y \a\\t g:i A"); ?></td>
-                            <td><?php echo $updateDate->format("F jS Y \a\\t g:i A"); ?></td>
+                            <td><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["blacklisted_email"]) . "'>" . htmlentities($blacklistEntry["blacklisted_email"]) . "</a>"; ?></td>
+                            <td><?php echo $updateDate->format("F jS, Y @ g:i A"); ?></td>
+                            <td><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["email"]) . "'>" . htmlentities($blacklistEntry["email"]) . "</a>"; ?></td>
                             <td class="center">
                                 <button type="button" class="blacklist-update-btn btn btn-warning btn-block text-white">Update Email</button>
                             </td>
