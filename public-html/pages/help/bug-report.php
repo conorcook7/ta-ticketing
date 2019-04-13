@@ -66,12 +66,13 @@
                                     class="form-control"
                                     rows=10
                                     maxlength=4000
+                                    style="resize: none"
                                     placeholder="I was unable to create a ticket because..."
                                     ><?php echo isset($_SESSION["presets"]["description"]) ? $_SESSION["presets"]["description"] : ""; ?></textarea>
                                 <div class="text-right">
                                     <span id="char-count">0</span>
                                     <span>/</span>
-                                    <span id="max-char-count">1000</span>
+                                    <span id="max-char-count">4000</span>
                                 </div>
                             </div>
                             <div class="d-flex form-group justify-content-end">
