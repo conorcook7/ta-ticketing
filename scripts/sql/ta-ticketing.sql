@@ -36,13 +36,13 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Teaching_Assistants (
     teaching_assistant_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,
-    available_course_id BIGINT UNSIGNED NOT NULL,
+    available_course_id BIGINT UNSIGNED,
     start_time_past_midnight TIME NOT NULL,
     end_time_past_midnight TIME NOT NULL,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE
+    FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Open_Tickets (
@@ -58,14 +58,14 @@ CREATE TABLE IF NOT EXISTS Open_Tickets (
     FULLTEXT (description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
     FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (opener_user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (opener_user_id) REFERENCES Users(user_id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Closed_Tickets (
     closed_ticket_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     available_course_id BIGINT UNSIGNED NULL,
     creator_user_id BIGINT UNSIGNED NOT NULL,
-    closer_user_id BIGINT UNSIGNED NOT NULL,
+    closer_user_id BIGINT UNSIGNED,
     description TEXT,
     closing_description TEXT,
     node_number VARCHAR(256) NOT NULL,
@@ -76,18 +76,18 @@ CREATE TABLE IF NOT EXISTS Closed_Tickets (
     FULLTEXT (closing_description),
     FOREIGN KEY (available_course_id) REFERENCES Available_Courses(available_course_id) ON DELETE CASCADE,
     FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (closer_user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (closer_user_id) REFERENCES Users(user_id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
     faq_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-    admin_user_id BIGINT UNSIGNED NOT NULL,
+    admin_user_id BIGINT UNSIGNED,
     question TEXT NOT NULL,
     answer TEXT NOT NULL,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (question),
-    FOREIGN KEY (admin_user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (admin_user_id) REFERENCES Users(user_id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Bug_Reports (
