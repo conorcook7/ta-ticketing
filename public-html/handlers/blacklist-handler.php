@@ -25,7 +25,7 @@ if (isset($_POST["blacklistId"]) && !isset($_POST["blacklistEmailUpdate"]) && !i
 // Update an email in the blacklist
 } else if (isset($_POST["blacklistId"]) && isset($_POST["blacklistEmailUpdate"]) && isset($_SESSION["user"]["user_id"])) {
     $updated = $dao->updateBlacklistEntry($_SESSION["user"]["user_id"], $_POST["blacklistId"], $_POST["blacklistEmailUpdate"]);
-    if ($deleted) {
+    if ($updated) {
         $_SESSION["blacklist-success"] = "Email was updated in the blacklist.";
     } else {
         $_SESSION["blacklist-failure"] = "Unable to update email in the blacklist.";

@@ -50,12 +50,12 @@ if (isset($_SESSION["blacklist-success"])){ ?>
                 <table class="table table-bordered data_table" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th class="center">ID</th>
-                            <th class="center">Blacklisted Email</th>
-                            <th class="center">Blacklist Date</th>
-                            <th class="center">Created By</th>
-                            <th class="center">Update</th>
-                            <th class="center">Delete</th>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Blacklisted Email</th>
+                            <th class="text-center">Blacklist Date</th>
+                            <th class="text-center">Created By</th>
+                            <th class="text-center">Update</th>
+                            <th class="text-center">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,11 +65,11 @@ if (isset($_SESSION["blacklist-success"])){ ?>
                             $updateDate = new DateTime($blacklistEntry["update_date"]);
                     ?>
                         <tr>
-                            <td><?php echo htmlentities($blacklistEntry["blacklist_id"]); ?></td>
-                            <td><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["blacklist_email"]) . "'>" . htmlentities($blacklistEntry["blacklist_email"]) . "</a>"; ?></td>
-                            <td><?php echo $updateDate->format("F jS, Y @ g:i A"); ?></td>
-                            <td><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["email"]) . "'>" . htmlentities($blacklistEntry["email"]) . "</a>"; ?></td>
-                            <td class="center">
+                            <td class="text-center"><?php echo htmlentities($blacklistEntry["blacklist_id"]); ?></td>
+                            <td class="text-center"><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["blacklist_email"]) . "'>" . htmlentities($blacklistEntry["blacklist_email"]) . "</a>"; ?></td>
+                            <td class="text-center"><?php echo $updateDate->format("F jS, Y @ g:i A"); ?></td>
+                            <td class="text-center"><?php echo "<a href='mailto: " . htmlentities($blacklistEntry["email"]) . "'>" . htmlentities($blacklistEntry["email"]) . "</a>"; ?></td>
+                            <td>
                                 <button type="button" class="blacklist-update-btn btn btn-warning btn-block text-white">Update Email</button>
                             </td>
                             <td>

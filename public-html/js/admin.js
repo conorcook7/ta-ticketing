@@ -7,11 +7,11 @@ $(document).ready(function() {
   let blacklistSubmit = $("#blacklist-submit");
 
   // Hide the form on window click
-  $(window).on("click", function() {
+  $("#content, #content-wrapper").on("click", function() {
     blacklist.css({ display: "none" });
   });
 
-  // Show form on form click
+  // Keep form from hiding
   blacklist.on("click", function(event) {
     event.stopPropagation();
   });
@@ -50,7 +50,7 @@ $(document).ready(function() {
   $(".blacklist-update-btn").on("click", function(event) {
     let row = event.target.parentElement.parentElement;
     let id = row.children[0].innerHTML;
-    let email = row.children[1].innerHTML;
+    let email = row.children[1].children[0].innerHTML;
 
     // Show the blacklist form
     event.stopPropagation();
