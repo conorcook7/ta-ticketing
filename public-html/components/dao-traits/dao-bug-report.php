@@ -72,7 +72,7 @@ trait DaoBugReport {
                 if ($sent) {
                     $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all admins");
                 } else {
-                    $this->logger->logWarning(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Unable to send email to all admins");
+                    $this->logger->logWarn(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Unable to send email to all admins");
                 }
             }
             
