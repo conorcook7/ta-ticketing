@@ -15,11 +15,12 @@ trait DaoBlacklist {
      * @param $email - The email address to blacklist
      * @return Returns TRUE on successful creation, else FALSE.
      */
-    function createBlacklistEntry($email) {
+    function createBlacklistEntry($userId, $email) {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("INSERT INTO Blacklist (email) VALUES (:email);");
-            $query->bindParam(":email", $email);
+            $query = $conn->prepare("INSERT INTO Blacklist (blacklist_email, creator_user_id) VALUES (:blacklistEmail, :userId);");
+            $query->bindParam(":blacklistEmail", $email);
+            $query->bindParam(":userId", $userId);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Created new blacklist entry.");
             return $this->SUCCESS;
@@ -39,7 +40,7 @@ trait DaoBlacklist {
     function getBlacklistEntries() {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("SELECT * FROM Blacklist;");
+            $query = $conn->prepare("SELECT * FROM Blacklist LEFT JOIN Users ON Blacklist.creator_user_id = Users.user_id;");
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $blacklistEntries = $query->fetchAll();
@@ -55,15 +56,17 @@ trait DaoBlacklist {
     /**
      * Update an email address that is in the blacklist.
      * 
+     * @param $userId - The user changing the blacklist entry
      * @param $blacklistId - The blacklist entry to update
      * @param $email - The new email address
      * @return Returns TRUE if the email was updated, else FALSE
      */
-    function updateBlacklistEntry($blacklistId, $email) {
+    function updateBlacklistEntry($userId, $blacklistId, $email) {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("UPDATE Blacklist SET email = :email WHERE blacklist_id = :blacklistId;");
-            $query->bindParam(":email", $email);
+            $query = $conn->prepare("UPDATE Blacklist SET blacklist_email = :blacklistEmail, creator_user_id = :userId WHERE blacklist_id = :blacklistId;");
+            $query->bindParam(":blacklistEmail", $email);
+            $query->bindParam(":userId", $userId);
             $query->bindParam(":blacklistId", $blacklistId);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Updated a blacklist entry email address.");
@@ -105,8 +108,8 @@ trait DaoBlacklist {
     function deleteBlacklistEntryByEmail($email) {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("DELETE FROM Blacklist WHERE email = :email;");
-            $query->bindParam(":email", $email);
+            $query = $conn->prepare("DELETE FROM Blacklist WHERE blacklist_email = :blacklistEmail;");
+            $query->bindParam(":blacklistEmail", $email);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Deleted a blacklist entry.");
             return $this->SUCCESS;
@@ -126,8 +129,8 @@ trait DaoBlacklist {
     function isBlacklisted($email) {
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare("SELECT COUNT(*) FROM Blacklist WHERE email = :email;");
-            $query->bindParam(":email", $email);
+            $query = $conn->prepare("SELECT COUNT(*) FROM Blacklist WHERE blacklist_email = :blacklistEmail;");
+            $query->bindParam(":blacklistEmail", $email);
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $query->execute();
             $result = $query->fetch()["COUNT(*)"];
