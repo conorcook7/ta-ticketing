@@ -1,0 +1,148 @@
+<?php
+
+/**
+ * Blacklist trait to deal with users. The blacklist is going to deal with
+ * users at first, however, it may be expanded later.
+ * 
+ * Traits are used to abstract the functions out of a class. The class can
+ * then require the file and use this trait.
+ */
+trait DaoBlacklist {
+
+    /**
+     * Create a blacklist entry in the database.
+     * 
+     * @param $email - The email address to blacklist
+     * @return Returns TRUE on successful creation, else FALSE.
+     */
+    function createBlacklistEntry($email) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("INSERT INTO Blacklist (email) VALUES (:email);");
+            $query->bindParam(":email", $email);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Created new blacklist entry.");
+            return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to create new blacklist entry.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Get all of the blacklist entries from the database.
+     * This function is mainly used to populate the admin page.
+     * 
+     * @return $blacklistEntries - The list of blacklisted email addresses, else FALSE.
+     */
+    function getBlacklistEntries() {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("SELECT * FROM Blacklist;");
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $blacklistEntries = $query->fetchAll();
+            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Retrieved all blacklist entries");
+            return $blacklistEntries;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to create new blacklist entry.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Update an email address that is in the blacklist.
+     * 
+     * @param $blacklistId - The blacklist entry to update
+     * @param $email - The new email address
+     * @return Returns TRUE if the email was updated, else FALSE
+     */
+    function updateBlacklistEntry($blacklistId, $email) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("UPDATE Blacklist SET email = :email WHERE blacklist_id = :blacklistId;");
+            $query->bindParam(":email", $email);
+            $query->bindParam(":blacklistId", $blacklistId);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Updated a blacklist entry email address.");
+            return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to update a blacklist entry email address.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Remove an email from the blacklist by ID
+     * 
+     * @param $blacklistId - The blacklist_id of the entry to delete
+     * @return Returns TRUE if the deletion was successful, else FALSE
+     */
+    function deleteBlacklistEntryById($blacklistId) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("DELETE FROM Blacklist WHERE blacklist_id = :blacklistId;");
+            $query->bindParam(":blacklistId", $blacklistId);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Deleted a blacklist entry.");
+            return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to delete a blacklist entry.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Remove an email from the blacklist by email
+     * 
+     * @param $email - The email to remove from the blacklist
+     * @return Returns TRUE if the deletion was successful, else FALSE
+     */
+    function deleteBlacklistEntryByEmail($email) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("DELETE FROM Blacklist WHERE email = :email;");
+            $query->bindParam(":email", $email);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Deleted a blacklist entry.");
+            return $this->SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to create new blacklist entry.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Check if the email address is blacklisted
+     * 
+     * @param $email - The email to check for a blacklist entry
+     * @return Returns TRUE if the email is in the blacklist, else FALSE
+     */
+    function isBlacklisted($email) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare("SELECT COUNT(*) FROM Blacklist WHERE email = :email;");
+            $query->bindParam(":email", $email);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $result = $query->fetch()["COUNT(*)"];
+            if ($result) {
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Blacklisted email found.");
+                return TRUE;
+            } else {
+                $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Email is not blacklisted.");
+                return FALSE;
+            }
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Unable to check if the email is blacklisted.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": Treating the email as non-blacklisted.");
+            $this->logger->logError(basename(__FILE__) . ": " . __FUNCTION__ . ": " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+}
