@@ -44,6 +44,9 @@
                     </thead>
                 </table>
             </div>
+            <div id="bug-report-link" class="text-right pt-4 m-0">
+                <a href="<?php echo generateUrl('/pages/help/bug-report.php'); ?>">Having issues?</a>
+            </div>
         </div>
     </div>
     <!-- End of All open tickets -->

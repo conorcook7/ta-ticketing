@@ -110,9 +110,8 @@
                                         ?>
                                 </tbody>
                             </table>
-                            <br />
                         </div>
-                        <div id="bug-report-link" class="text-right p-0 m-0">
+                        <div id="bug-report-link" class="text-right pt-4 m-0">
                             <a href="<?php echo generateUrl('/pages/help/bug-report.php'); ?>">Having issues?</a>
                         </div>
                     </div>
@@ -195,7 +194,9 @@
                                         ?>
                                 </tbody>
                             </table>
-                            <br />
+                        </div>
+                        <div id="bug-report-link" class="text-right pt-4 m-0">
+                            <a href="<?php echo generateUrl('/pages/help/bug-report.php'); ?>">Having issues?</a>
                         </div>
                     </div>
                 </div>
@@ -234,6 +235,9 @@
                                     <?php } ?>
                                 </tbody>
                             </table>
+                        </div>
+                        <div id="bug-report-link" class="text-right pt-4 m-0">
+                            <a href="<?php echo generateUrl('/pages/help/bug-report.php'); ?>">Having issues?</a>
                         </div>
                     </div>
                 </div>
