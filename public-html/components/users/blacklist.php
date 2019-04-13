@@ -96,7 +96,7 @@ if (isset($_SESSION["blacklist-success"])){ ?>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Email: <strong class="text-gray-800"><?php echo htmlentities($blacklistEntry["email"]); ?></strong></p>
+                                                <p>Email: <strong class="text-gray-800"><?php echo htmlentities($blacklistEntry["blacklist_email"]); ?></strong></p>
                                                 <p>Are you sure you want to remove this email from the list of emails that are unable to access the website?</p>
                                             </div>
                                             <div class="modal-footer">
