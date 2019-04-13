@@ -29,7 +29,7 @@ if (isset($_SESSION["blacklist-success"])){ ?>
     <form method="POST" action="../handlers/blacklist-handler.php">
         <input type="hidden" id="blacklist-id" name="blacklistId" />
         <label id="blacklist-label" for="blacklistEmail">Email to blacklist</label>
-        <input type="text" id="blacklist-email" class="form-control w-50" name="blacklistEmail" placeholder="Type email here..." maxlength=512 required="true" />
+        <input type="email" id="blacklist-email" class="form-control w-50" name="blacklistEmail" placeholder="Type email here..." maxlength=512 required="true" />
         <button type="submit" id="blacklist-submit" class="btn btn-primary my-2">Add Email</button>
     </form>
 </div>
