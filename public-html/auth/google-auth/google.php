@@ -69,7 +69,7 @@
                 $splitEmail = explode("@", $payload["email"]);
                 $emailDomain = $splitEmail[1];
                 if ($emailDomain != "u.boisestate.edu" && $emailDomain != "boisestate.edu") {
-                    $_SESSION["login-error"] = "You must use a <strong class='text-gray-800'>Boise State</strong> email address. If this is a mistake, you may contact the system administrator.";
+                    $_SESSION["login-error"] = "You must use a <strong class='text-gray-800'>Boise State</strong> email address. If this is a mistake, please contact the system administrator.";
                     header("Location: " . generateUrl("/handlers/logout-handler.php"));
                     exit();
                 }
