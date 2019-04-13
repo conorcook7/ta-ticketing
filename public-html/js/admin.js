@@ -41,6 +41,9 @@ $(document).ready(function() {
 
     // Update the submit button
     blacklistSubmit.html("Add");
+
+    // Scroll to top
+    $("html, body").animate({ scrollTop: 0 }, "slow");
   });
 
   // Catch the update button
@@ -72,5 +75,8 @@ $(document).ready(function() {
 
     // Update the submit button
     blacklistSubmit.html("Update");
+
+    // Scroll to top
+    $("html, body").animate({ scrollTop: 0 }, "slow");
   });
 });
