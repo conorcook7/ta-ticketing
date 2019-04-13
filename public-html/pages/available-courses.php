@@ -1,24 +1,24 @@
 <?php
-    require_once '../../components/dao.php';
-    require_once '../../components/header.php';
+    require_once '../components/dao.php';
+    require_once '../components/header.php';
     
     session_start();
     
     $page = 'available-courses.php';
-    $nav = 'help';
-    ?>
+    $nav = 'courses';
+?>
 <!-- Page Wrapper -->
 <div id="wrapper">
 
     <!-- Start of Sidebar -->
-    <?php include_once '../../components/sidebar.php'; ?>
+    <?php include_once '../components/sidebar.php'; ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Topbar -->
-        <?php include_once '../../components/topbar.php'; ?>
+        <?php include_once '../components/topbar.php'; ?>
         <!-- End of Topbar -->
 
         <!-- Main Content -->
@@ -57,14 +57,14 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <?php include_once '../../components/footer.php'; ?>
+        <?php include_once '../components/footer.php'; ?>
         <!-- End of Footer -->
         
     </div>
     <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
-<script src="../../js/ajax/help/help-available-courses.js"></script>
+<script src="../js/ajax/help/help-available-courses.js"></script>
 <?php
-    require_once "../../components/scripts.php";
-    ?>
+    require_once "../components/scripts.php";
+?>

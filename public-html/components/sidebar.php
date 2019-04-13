@@ -48,6 +48,15 @@
 
     <div class="sidebar-heading LetterSpacing">INFO</div>
 
+    <!-- Courses -->
+    <li class="nav-item <?php if ($nav == 'courses') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/available-courses.php');?>">
+            <i class="fas fa-fw fa-school"></i>
+            <span class="LetterSpacing">Courses</span>
+        </a>
+    </li>
+
+    <!-- Help Dropdown -->
     <?php require_once "sidebar-menus/sidebar-help.php"; ?>
 
     <!-- About Page -->
