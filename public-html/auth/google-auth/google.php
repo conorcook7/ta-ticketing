@@ -69,7 +69,7 @@
                 $splitEmail = explode("@", $payload["email"]);
                 $emailDomain = $splitEmail[1];
                 if ($emailDomain != "u.boisestate.edu" && $emailDomain != "boisestate.edu") {
-                    $_SESSION["login-error"] = "You must use a <strong class='text-gray-800'>Boise State</strong> email address. If this is a mistake you may contact the system administrator.";
+                    $_SESSION["login-error"] = "You must use a <strong class='text-gray-800'>Boise State</strong> email address. If this is a mistake, you may contact the system administrator.";
                     header("Location: " . generateUrl("/handlers/logout-handler.php"));
                     exit();
                 }
@@ -94,7 +94,7 @@
                     );
                     if (!$querySuccessful) {
                         $logger->logError(basename(__FILE__) . ": Unable to create user with dao method.");
-                        $_SESSION["login-error"] = "Unable to get your account. Please try again later.";
+                        $_SESSION["login-error"] = "Unable to create your account. Please try again later.";
                         header("Location: " . generateUrl("/handlers/logout-handler.php"));
                         exit();
                     }
