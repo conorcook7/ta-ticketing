@@ -79,17 +79,15 @@ $(document).ready(function() {
     // Scroll to top
     $("html, body").animate({ scrollTop: 0 }, "slow");
   });
-  //Hides and Unhides Teaching Assistant Times
-  function toggleTATimes(){
+
+  $('#permissionID').on("change", function(event){
+    let value = $('#permissionID').children("option:selected").val();
     let tadiv = $('#ta-time');
-    if (tadiv.css("display") == "none"){
+    if(value.includes("TA")){
       tadiv.css({display: ""});
     } else {
       tadiv.css({display: "none"});
     }
-    
-  }
-  $('#permissionID').on("change", function(event){
-    console.log($('#permissionID').children("option:selected").val());
-  })
+  });
+  $('#ta-time').css({display: "none"});
 });
