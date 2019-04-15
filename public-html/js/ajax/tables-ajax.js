@@ -90,8 +90,22 @@ $(document).ready(function() {
   });
 
   // Reload the data for all tables
-  allTicketsTable.ajax.reload();
-  closedTicketsTable.ajax.reload();
+  closedTicketsTable.ajax.reload(callbackClosedTicketsTable);
+  function callbackClosedTicketsTable() {
+    // Reload 30 seconds after it has finished loading
+    setTimeout(function() {
+      closedTicketsTable.ajax.reload(callbackClosedTicketsTable);
+    }, 30 * 1000);
+  }
+
+  // Reload the all tickets table
+  allTicketsTable.ajax.reload(callbackAllTicketsTable);
+  function callbackAllTicketsTable() {
+    // Reload 30 seconds after it has finished loading
+    setTimeout(function() {
+      allTicketsTable.ajax.reload(callbackAllTicketsTable);
+    }, 30 * 1000);
+  }
 
   // Reload all open tickets table
   openTicketsTable.ajax.reload(callbackOpenTicketsTable);
