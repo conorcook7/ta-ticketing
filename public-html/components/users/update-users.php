@@ -48,11 +48,17 @@
         <?php } ?>
       </select>
     </div>
-    <div class="form-group" id="ta-time">
+    <div class="form-group" id="ta-creation">
           <label for="startTime">Start Time</label>
           <input type="time" class="form-control" id="startTime" name="startTime">
           <label for="endTime">End Time</label>
           <input type="time" class="form-control" id="endTime" name="endTime">
+          <select class="form-control"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName'>
+            <?php $courses = $dao->getAvailableCourses();
+            foreach($courses as $course){ ?>
+                <option value = "<?php echo htmlentities($course['available_course_id']) ?>"> <?php echo strtoupper(htmlentities($course['course_name'])); ?> </option>
+            <?php } ?>
+          </select>
     </div>
     <div class="form-group">
         <label for="userID">User ID</label>
