@@ -61,34 +61,38 @@ function getComputerName($localIP) {
     preg_match("/(onyx|onyxnode)(\d+)\.boisestate\.edu/", $hostname, $matches);
     $logger->logDebug(basename(__FILE__) . ": local IP: " . $localIP);
     // 
-    if (!empty($matches) && $localIP != "") {
-        $logger->logDebug(basename(__FILE__) . ": Boise State computer found");
-        $bugReportCreated = FALSE;
-        for ($i = 1; $i < 1000; $i++) {
-            $nodeName = "onyxnode";
-            if ($i < 10) {
-                $nodeName .= "0" . $i;
-            } else {
-                $nodeName .= $i;
+    if (!empty($matches)) {
+        if ($localIP != "") {
+            $logger->logDebug(basename(__FILE__) . ": Boise State computer found");
+            $bugReportCreated = FALSE;
+            for ($i = 1; $i < 1000; $i++) {
+                $nodeName = "onyxnode";
+                if ($i < 10) {
+                    $nodeName .= "0" . $i;
+                } else {
+                    $nodeName .= $i;
+                }
+                $nodeName .= ".boisestate.edu";
+                $onyxIP = gethostbyname($nodeName);
+                preg_match("/\d+\.\d+\.(\d+)/", $onyxIP, $matches);
+                if (!empty($matches) && intval($matches[1]) != $i && !$bugReportCreated) {
+                    $errorDescription = $nodeName . "is not equal to IP address {" . $onyxIP . "}";
+                    $logger->logError(basename(__FILE__) . ": " . $errorDescription);
+                }
+                if ($onyxIP == $localIP) {
+                    return "Node " . $i;
+                }
             }
-            $nodeName .= ".boisestate.edu";
-            $onyxIP = gethostbyname($nodeName);
-            preg_match("/\d+\.\d+\.(\d+)/", $onyxIP, $matches);
-            if (!empty($matches) && intval($matches[1]) != $i && !$bugReportCreated) {
-                $errorDescription = $nodeName . "is not equal to IP address {" . $onyxIP . "}";
-                $logger->logError(basename(__FILE__) . ": " . $errorDescription);
+            try {
+                $logger->logError(basename(__FILE__) . ": Unable to find IP address {" . $localIP . "} in the first 1000 onyx nodes");
+                $dao->createBugReport(1, "Unable to find onyx node",
+                    "Searched first 1000 nodes by hostname like {onyxnode00.boisestate.edu}");
+            } catch (Exception $e) {
+                $logger->logError(basename(__FILE__) . ": Unable to create bug report");
+                $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
             }
-            if ($onyxIP == $localIP) {
-                return "Node " . $i;
-            }
-        }
-        try {
-            $logger->logError(basename(__FILE__) . ": Unable to find IP address {" . $localIP . "} in the first 1000 onyx nodes");
-            $dao->createBugReport(1, "Unable to find onyx node",
-                "Searched first 1000 nodes by hostname like {onyxnode00.boisestate.edu}");
-        } catch (Exception $e) {
-            $logger->logError(basename(__FILE__) . ": Unable to create bug report");
-            $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
+        } else {
+            $logger->logWarn(basename(__FILE__) . ": Local IP address could not be determined.");
         }
     } else {
         $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
