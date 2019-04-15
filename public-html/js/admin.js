@@ -79,4 +79,17 @@ $(document).ready(function() {
     // Scroll to top
     $("html, body").animate({ scrollTop: 0 }, "slow");
   });
+  //Hides and Unhides Teaching Assistant Times
+  function toggleTATimes(){
+    let tadiv = $('#ta-time');
+    if (tadiv.css("display") == "none"){
+      tadiv.css({display: ""});
+    } else {
+      tadiv.css({display: "none"});
+    }
+    
+  }
+  $('#permissionID').on("change", function(event){
+    console.log(event.target);
+  })
 });
