@@ -136,6 +136,7 @@
                                         <th class="center">Course Name</th>
                                         <th class="center">Date Solved</th>
                                         <th class="center description">Ticket Description</th>
+                                        <th class="center description">Closing Description</th>
                                         <th class="center">Action</th>
                                     </tr>
                                 </thead>
@@ -180,6 +181,28 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td class = "center">
+                                                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#closed-description" . $closedTickets[$i]["closed_ticket_id"]; ?>">
+                                                More Info
+                                                </button>
+                                                <!-- Modal for closing descriptions-->
+                                                <div class="modal fade" id="<?php echo "closed-description" . $closedTickets[$i]["closed_ticket_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Why this ticket was closed...</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body"><?php echo htmlentities($closedTickets[$i]["closing_description"]); ?></div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                          </td>
                                             <th class="center">
                                                 <button type="submit" class="btn btn-block btn-success">
                                                 <i class="fas fa-redo fa-xl text-white pr-2"></i>
