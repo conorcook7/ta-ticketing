@@ -90,6 +90,6 @@ $(document).ready(function() {
     
   }
   $('#permissionID').on("change", function(event){
-    console.log(event.target);
+    console.log(event.target.children("option:selected").val());
   })
 });
