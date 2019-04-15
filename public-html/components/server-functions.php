@@ -92,7 +92,8 @@ function getComputerName($localIP) {
                 $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
             }
         } else {
-            $logger->logWarn(basename(__FILE__) . ": Local IP address could not be determined.");
+            $logger->logWarn(basename(__FILE__) . ": Local IP address could not be determined {" . $localIP . "}");
+            return "Unknown Onyx Node";
         }
     } else {
         $logger->logInfo(basename(__FILE__) . ": Host is not a lab machine: " . $hostname);
