@@ -89,10 +89,10 @@ $(document).ready(function() {
       tadiv.css({display: "none"});
     }
   });
-  let tadiv = $('#ta-time');
-  if(value.includes("TA")){
-    tadiv.css({display: ""});
+  
+  if($('#permissionID').children("option:selected").val().includes("TA")){
+    $('#ta-time').css({display: ""});
   } else {
-    tadiv.css({display: "none"});
+    $('#ta-time').css({display: "none"});
   }
 });
