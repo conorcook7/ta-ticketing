@@ -89,5 +89,10 @@ $(document).ready(function() {
       tadiv.css({display: "none"});
     }
   });
-  $('#ta-time').css({display: "none"});
+  let tadiv = $('#ta-time');
+  if(value.includes("TA")){
+    tadiv.css({display: ""});
+  } else {
+    tadiv.css({display: "none"});
+  }
 });
