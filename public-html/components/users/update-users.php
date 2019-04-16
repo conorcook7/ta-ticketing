@@ -62,7 +62,9 @@
           <select class="form-control" id="courseId" name="courseId">
               <?php $courses = $dao->getAvailableCourses();
               foreach($courses as $course){ ?>
-                  <option value = "<?php echo htmlentities($course['available_course_id']) ?>"> <?php echo strtoupper(htmlentities($course['course_name'])); ?> </option>
+                  <option value = "<?php echo htmlentities($course['available_course_id']) ?>">
+                      <?php echo strtoupper(htmlentities($course['course_number'] . ' - ' . $course['course_name'])); ?>
+                  </option>
               <?php } ?>
           </select>
         </div>
