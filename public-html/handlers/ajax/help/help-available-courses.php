@@ -1,7 +1,7 @@
 <?php
 
     require_once "../../../components/dao.php";
-    require_once "../../components/server-functions.php";
+    require_once "../../../components/server-functions.php";
 
     $logger = getServerLogger();
     $dao = new Dao();
