@@ -26,7 +26,7 @@
                             <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                 <?php $courses = $dao->getAvailableCourses();
                                     foreach($courses as $course){ ?>
-                                <option value = "<?php echo htmlentities($course['course_name']) ?>"> <?php echo strtoupper(htmlentities($course['course_name'])); ?> </option>
+                                <option value = "<?php echo htmlentities($course['course_number'] . " - " . $course['course_name']) ?>"> <?php echo strtoupper(htmlentities($course['course_name'])); ?> </option>
                                 <?php } ?>
                             </div>
                         </select>
