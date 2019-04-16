@@ -36,13 +36,13 @@
         foreach ($permissions as $perm) { 
           $count++;
           if($_POST["permissionID"] == $count) { ?>
-            <option selected="selected"><?php echo $perm['permission_id'] . " - " . $perm['permission_name'];?></option>
+            <option selected="selected" value="<?php echo $perm['permission_id']; ?>"><?php echo $perm['permission_id'] . " - " . $perm['permission_name'];?></option>
           <?php } else { ?>
-            <option><?php echo $perm['permission_id'] . " - " . $perm['permission_name'];?></option>
+            <option value="<?php echo $perm['permission_id']; ?>"><?php echo $perm['permission_id'] . " - " . $perm['permission_name'];?></option>
           <?php } ?>
         <?php } ?>
           <?php if($_POST["permissionID"] == 0) { ?>
-            <option selected="selected">0 - Delete User</option>
+            <option selected="selected" value="0" >0 - Delete User</option>
           <?php } else { ?>
             <option>0 - Delete User</option>
           <?php } ?>
