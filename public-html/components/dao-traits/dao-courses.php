@@ -169,7 +169,7 @@ trait DaoCourses {
     public function getAvailableCourses($limit=NULL) {
         try {
             $conn = $this->getConnection();
-            $query = "SELECT * FROM Available_Courses";
+            $query = "SELECT * FROM Available_Courses ORDER BY course_number ASC";
             if ($limit == NULL) {
                 $query = $conn->prepare($query);
             } else {
