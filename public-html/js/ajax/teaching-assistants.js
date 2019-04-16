@@ -32,7 +32,7 @@ $(document).ready(function() {
                 <div class="h5 text-gray-800">
                     <span class="text-gray-600">Course: </span>` +
             TAs[i]["course_name"] +
-            `<p class="my-4 ml-4">` +
+            `<p class="my-4 mx-4">` +
             TAs[i]["course_description"] +
             `</p>
                 </div>
