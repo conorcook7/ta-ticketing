@@ -160,13 +160,6 @@ trait DaoTa {
         try {
             $conn = $this->getConnection();
             $query = $conn->prepare(
-                "UPDATE Users SET permission_id = 1
-                 WHERE user_id = :userId"
-            );
-            $query->bindParam(":userId", $userId);
-            $query->execute();
-            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Updated the user's permissions");
-            $query = $conn->prepare(
                 "DELETE FROM Teaching_Assistants
                  WHERE user_id = :userId;"
             );
@@ -174,7 +167,6 @@ trait DaoTa {
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Deleted teaching assistant");
             return $this->SUCCESS;
-
         } catch (Exception $e) {
             $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to delete teaching assistant");
             $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());

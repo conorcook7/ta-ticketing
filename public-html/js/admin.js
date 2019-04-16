@@ -80,19 +80,30 @@ $(document).ready(function() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
   });
 
-  $('#permissionID').on("change", function(event){
-    let value = $('#permissionID').children("option:selected").val();
-    let tadiv = $('#ta-creation');
-    if(value.includes("TA")){
-      tadiv.css({display: ""});
+  /**
+   * Hide/Show permissions on Admin Users Update page
+   */
+  let taDiv = $("#ta-creation");
+  let permission = $("#permissionID");
+  permission.on("change", function(event) {
+    let value = permission.children("option:selected").html();
+    if (value.includes("TA")) {
+      taDiv.css({ display: "" });
     } else {
-      tadiv.css({display: "none"});
+      taDiv.css({ display: "none" });
     }
   });
-
-  if($('#permissionID').children("option:selected").val().includes("TA")){
-    $('#ta-creation').css({display: ""});
-  } else {
-    $('#ta-creation').css({display: "none"});
+  // Set the initial state of the ta form div
+  if (permission.length > 0) {
+    if (
+      permission
+        .children("option:selected")
+        .html()
+        .includes("TA")
+    ) {
+      taDiv.css({ display: "" });
+    } else {
+      taDiv.css({ display: "none" });
+    }
   }
 });

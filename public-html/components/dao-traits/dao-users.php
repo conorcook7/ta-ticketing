@@ -175,7 +175,6 @@ trait DaoUsers {
             $query->bindParam(":permission_id", $permissionID);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Admin: " . $admin_id . " has Updated User " . $user_id);
-            $this->deleteTeachingAssistant($user_id);
             return $this->SUCCESS;
         } catch (Exception $e) {
             $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Admin: " . $admin_id . " unable to update User " . $user_id);

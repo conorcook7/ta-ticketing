@@ -10,7 +10,7 @@
     $courseId = $_POST["courseId"];
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
-    $permissionID = intval(explode(" ", $_POST["permissionID"])[0]);
+    $permissionID = $_POST["permissionID"];
     if($permissionID == 0){
         if($dao->deleteUser($email) == TRUE){
             $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
@@ -30,11 +30,17 @@
         }  
     } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
         if($permissionID != 2){
-            if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
+            if($dao->isTeachingAssistant($user_id)) {
+                if (!$dao->deleteTeachingAssistant($user_id)) {
+                    $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
+                }
+            }
+            if(!isset($_SESSION["failure"]) && $dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
                 $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
-            }   
+            } 
+              
         } else {
             if ($dao->isTeachingAssistant($user_id)) {
                 if ($dao->updateTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE) {
@@ -52,6 +58,8 @@
             }
         }
     }
+    // echo "<pre>" . print_r($_POST, 1) . "</pre>";
+    // echo isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id);
     header("Location: ../pages/admin.php?id=users");
     exit;
 ?>
