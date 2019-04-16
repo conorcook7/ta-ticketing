@@ -40,7 +40,16 @@
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
             } 
-              
+            if($permissionID == 4){
+                $created = $dao->createBlacklistEntry($admin_id, $email);
+                if ($created && isset($_SESSION["success"])) {
+                    $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName . " and blacklisted them.";
+                } elseif ($created) {
+                    $_SESSION["success"] = "Email was added to the blacklist.";
+                } else {
+                    $_SESSION["failure"] = "Unable to add email to the blacklist.";
+                }
+            }
         } else {
             if ($dao->isTeachingAssistant($user_id)) {
                 if ($dao->updateTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE) {
