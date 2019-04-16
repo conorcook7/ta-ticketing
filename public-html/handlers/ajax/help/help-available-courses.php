@@ -20,6 +20,7 @@
     foreach ($availableCourses as $course) {
         $cleanCourse["course_name"] = htmlentities($course["course_name"]);
         $cleanCourse["course_description"] = htmlentities($course["course_description"]);
+        $cleanCourse["course_number"] = htmlentities($course["course_number"]);
         $cleanCourses[] = $cleanCourse;
     }
     

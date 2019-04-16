@@ -42,7 +42,10 @@
                     ?>
                 <div class="card shadow mb-4 ac">
                     <div class="card-header py-3">
-                        <h1 class="h5 m-0 font-weight-bold text-primary"><?php echo strtoupper($course["course_name"]); ?></h1>
+                        <div class="d-flex justify-content-between">
+                            <span class="h5 m-0 font-weight-bold text-primary"><?php echo strtoupper($course["course_name"]); ?></span>
+                            <span class="h5 m-0 font-weight-bold text-primary"><?php echo strtoupper($course["course_number"]); ?></span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <p><?php echo $course["course_description"]; ?></p>
