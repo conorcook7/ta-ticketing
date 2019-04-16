@@ -143,7 +143,7 @@ $(document).ready(function() {
     userOpenTicketsTable.ajax.reload();
     userOpenTicketsTable.ajax.reload();
     userClosedTicketsTable.ajax.reload();
-  }, 15 * 1000);
+  }, 30 * 1000);
 
   /**
    * Function to toggle the form based on the buttons in the class
