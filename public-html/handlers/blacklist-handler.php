@@ -6,7 +6,7 @@ $dao = new Dao();
 
 // Delete blacklist entry
 if (isset($_POST["blacklistId"]) && !isset($_POST["blacklistEmailUpdate"]) && !isset($_POST["blacklistEmail"])) {
-    $deleted = $dao->deleteBlacklistEntryById($_POST["blacklistId"]);
+    $deleted = $dao->deleteBlacklistEntryById($_POST["blacklistId"], TRUE);
     if ($deleted) {
         $_SESSION["blacklist-success"] = "Email was removed from the blacklist.";
     } else {
