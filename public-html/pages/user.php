@@ -40,13 +40,15 @@
                         <div class="d-sm-flex align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">My Open Tickets</h6>
                             <form action = "userform.php">
-                                <button type="submit" class="d-none d-sm-inline-block btn btn-success"><i class="fas fa-plus-square fa-xl text-white pr-2"></i>Create New Ticket</button>
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-success">
+                                    <i class="fas fa-plus-square fa-xl text-white pr-2"></i>Create New Ticket
+                                </button>
                             </form>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered data_table" id="user-open-tickets-table" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th class="center">Queue #</th>
@@ -57,58 +59,6 @@
                                         <th class="center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                        $openTickets = $dao->getOpenTickets();
-                                        for ($i = 0; $i < sizeof($openTickets); $i++) {
-                                              if ($openTickets[$i]["creator_user_id"] == $_SESSION["user"]["user_id"]) {
-                                          ?>
-                                    <tr>
-                                        <form method="POST" action="../handlers/user-open-ticket-handler.php">
-                                            <input type="hidden" name="open_ticket_id" value="<?php echo $openTickets[$i]['open_ticket_id']; ?>"/>
-                                            <td class="center"><?php echo ($i + 1); ?></td>
-                                            <td class="center"><?php echo htmlentities($openTickets[$i]["node_number"]); ?></td>
-                                            <td class="center"><?php echo strtoupper(htmlentities($openTickets[$i]["course_name"])); ?></td>
-                                            <td class="center"><?php
-                                                $updateDate = new DateTime($openTickets[$i]["update_date"]);
-                                                echo $updateDate->format("F jS Y \a\\t g:i A");
-                                                ?></td>
-                                            <td class="center">
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#my-ticket-" . $i;?>">
-                                                More Info
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="<?php echo "my-ticket-" . $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body"><?php echo htmlentities($openTickets[$i]['description']); ?></div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <th class="center">
-                                                <button type="submit" class="btn btn-block btn-danger">
-                                                <i class="fas fa-times fa-xl text-white pr-2"></i>
-                                                Cancel Ticket
-                                                </button>
-                                            </th>
-                                        </form>
-                                    </tr>
-                                    <?php
-                                        }
-                                        }
-                                        ?>
-                                </tbody>
                             </table>
                         </div>
                         <div id="bug-report-link" class="text-right pt-4 m-0">
@@ -127,7 +77,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered data_table" id="user-closed-tickets-table" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th class="center">Ticket #</th>
@@ -140,82 +90,6 @@
                                         <th class="center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                        $closedTickets = $dao->getClosedTickets();
-                                        for ($i = 0; $i < sizeof($closedTickets); $i++) {
-                                          if ($closedTickets[$i]["student_user_id"] == $_SESSION["user"]["user_id"]) {
-                                        ?>
-                                    <tr>
-                                        <form method="POST" action="../handlers/user-closed-ticket-handler.php">
-                                            <input type="hidden" name="closed_ticket_id" value="<?php echo $closedTickets[$i]['closed_ticket_id']; ?>"/>
-                                            <input type="hidden" name="student_user_id" value="<?php echo $closedTickets[$i]['student_user_id']; ?>" />
-                                            <td class="center"><?php echo $closedTickets[$i]["closed_ticket_id"]; ?></td>
-                                            <td class="center"><?php echo htmlentities($closedTickets[$i]["student_first_name"] . " " . $closedTickets[$i]["student_last_name"]); ?></td>
-                                            <td class="center"><?php echo htmlentities($closedTickets[$i]["ta_first_name"] . " " . $closedTickets[$i]["ta_last_name"]); ?></td>
-                                            <td class="center"><?php echo strtoupper(htmlentities($closedTickets[$i]["course_name"])); ?></td>
-                                            <td class="center"><?php
-                                                $updateDate = new DateTime($closedTickets[$i]["update_date"]);
-                                                echo $updateDate->format("F jS Y \a\\t g:i A");
-                                                ?></td>
-                                            <td class="center">
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#my-closed-ticket-" . $i;?>">
-                                                More Info
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="<?php echo "my-closed-ticket-" . $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body"><?php echo htmlentities($closedTickets[$i]['description']); ?></div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class = "center">
-                                                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="<?php echo "#closed-description" . $closedTickets[$i]["closed_ticket_id"]; ?>">
-                                                More Info
-                                                </button>
-                                                <!-- Modal for closing descriptions-->
-                                                <div class="modal fade" id="<?php echo "closed-description" . $closedTickets[$i]["closed_ticket_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Why this ticket was closed...</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body"><?php echo htmlentities($closedTickets[$i]["closing_description"]); ?></div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                          </td>
-                                            <th class="center">
-                                                <button type="submit" class="btn btn-block btn-success">
-                                                <i class="fas fa-redo fa-xl text-white pr-2"></i>
-                                                Reopen Ticket
-                                                </button>
-                                            </th>
-                                        </form>
-                                    </tr>
-                                    <?php
-                                        }
-                                        }
-                                        ?>
-                                </tbody>
                             </table>
                         </div>
                     </div>

@@ -58,6 +58,46 @@ $(document).ready(function() {
     ]
   });
 
+  // Student Dashboard
+  let userOpenTicketsTable = $("#user-open-tickets-table").DataTable({
+    ajax: ajaxPath + "users-open-tickets-table-handler.php",
+    columns: [
+      { data: "queue" },
+      { data: "node" },
+      { data: "courseName" },
+      { data: "queueTime" },
+      { data: "ticketDescription" },
+      { data: "action" }
+    ]
+  });
+  userOpenTicketsTable.ajax.reload(callbackUsersOpenTicketsTable);
+  function callbackUsersOpenTicketsTable() {
+    // Reload the data 30 seconds after data finishes loading
+    setTimeout(function() {
+      userOpenTicketsTable.ajax.reload(callbackUsersOpenTicketsTable);
+    }, 30 * 1000);
+  }
+  let userClosedTicketsTable = $("#user-closed-tickets-table").DataTable({
+    ajax: ajaxPath + "users-closed-tickets-table-handler.php",
+    columns: [
+      { data: "ticketNumber" },
+      { data: "ticketCreator" },
+      { data: "ticketCloser" },
+      { data: "courseName" },
+      { data: "dateSolved" },
+      { data: "ticketDescription" },
+      { data: "closingDescription" },
+      { data: "action" }
+    ]
+  });
+  userClosedTicketsTable.ajax.reload(callbackUsersClosedTicketsTable);
+  function callbackUsersClosedTicketsTable() {
+    // Reload the data 30 seconds after data finishes loading
+    setTimeout(function() {
+      userClosedTicketsTable.ajax.reload(callbackUsersClosedTicketsTable);
+    }, 30 * 1000);
+  }
+
   // Initialize the generic data tables
   $("#dataTable").DataTable();
   $(".generic-data-table").DataTable();
@@ -149,5 +189,19 @@ $(document).ready(function() {
       $("#closer-user-id").val(closerUserId);
       $("html, body").animate({ scrollTop: 0 }, "slow");
     });
+  }
+
+  /**
+   * Abort AJAX requests on modal open
+   */
+  function isModalActive() {
+    let modals = document.getElementsByClassName("modal");
+    for (let i = 0; i < modals.length; i++) {
+      let modal = modals[i];
+      if (modals[i].attributes.class.value.includes("show") === true) {
+        return true;
+      }
+    }
+    return false;
   }
 });
