@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $.ajax({
     url:
-      window.location.origin + "/handlers/ajax/help/help-available-courses.php",
+      window.location.origin + "/handlers/ajax/available-courses.php",
     type: "GET",
     data: {},
     dataType: "json",
