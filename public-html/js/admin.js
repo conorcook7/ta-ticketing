@@ -82,17 +82,17 @@ $(document).ready(function() {
 
   $('#permissionID').on("change", function(event){
     let value = $('#permissionID').children("option:selected").val();
-    let tadiv = $('#ta-time');
+    let tadiv = $('#ta-creation');
     if(value.includes("TA")){
       tadiv.css({display: ""});
     } else {
       tadiv.css({display: "none"});
     }
   });
-  
+
   if($('#permissionID').children("option:selected").val().includes("TA")){
-    $('#ta-time').css({display: ""});
+    $('#ta-creation').css({display: ""});
   } else {
-    $('#ta-time').css({display: "none"});
+    $('#ta-creation').css({display: "none"});
   }
 });

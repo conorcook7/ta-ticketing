@@ -26,11 +26,19 @@
             $_SESSION["failure"] = "Failed to create the user: " . $firstName . " " . $lastName;
         }  
     } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
-        if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
-            $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
+        if($permissionID != 2){
+            if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
+                $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
+            } else {
+                $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
+            }   
         } else {
-            $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
-        }        
+            if($dao->createTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE){
+                $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
+            } else {
+                $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
+            }  
+        }
     }
     header("Location: ../pages/admin.php?id=users");
     exit;

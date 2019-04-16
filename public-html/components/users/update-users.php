@@ -53,7 +53,8 @@
           <input type="time" class="form-control" id="startTime" name="startTime">
           <label for="endTime">End Time</label>
           <input type="time" class="form-control" id="endTime" name="endTime">
-          <select class="form-control"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName'>
+          <label for="courseName">Course</label>
+          <select class="form-control" id="courseName" name="courseName">
             <?php $courses = $dao->getAvailableCourses();
             foreach($courses as $course){ ?>
                 <option value = "<?php echo htmlentities($course['available_course_id']) ?>"> <?php echo strtoupper(htmlentities($course['course_name'])); ?> </option>
