@@ -102,11 +102,45 @@ trait DaoTa {
 
             // Update the users permission level
             $query = $conn->prepare(
-                "UPDATE TABLE Users SET permission_id = 2 WHERE user_id = :userId;"
+                "UPDATE Users SET permission_id = 2 WHERE user_id = :userId;"
             );
             $query->bindParam(":userId", $userId);
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Updated the user's permissions");
+            return $this->SUCCESS;
+
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to create TA");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Update a teaching assistant based on an existing user.
+     * 
+     * @param $userId - The user id of the TA to update.
+     * @param $courseId - The course id of the class the TA is hired for.
+     * @param $startTime - The start time past midnight for the TA to work.
+     * @param $endTime - The end time past midnight for the TA to stop work.
+     * @return Returns TRUE if the creation was successful, else FALSE.
+     */
+    public function updateTeachingAssistant($userId, $courseId, $startTime, $endTime) {
+        try {
+            $conn = $this->getConnection();
+
+            // Create the TA row 
+            $query = $conn->prepare(
+                "UPDATE Teaching_Assistants SET available_course_id = :courseId,
+                start_time_past_midnight = :startTime, end_time_past_midnight = :endTime
+                WHERE user_id = :userId;"
+            );
+            $query->bindParam(":userId", $userId);
+            $query->bindParam(":courseId", $courseId);
+            $query->bindParam(":startTime", $startTime);
+            $query->bindParam(":endTime", $endTime);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): TA was updated");
             return $this->SUCCESS;
 
         } catch (Exception $e) {
@@ -126,7 +160,7 @@ trait DaoTa {
         try {
             $conn = $this->getConnection();
             $query = $conn->prepare(
-                "UPDATE TABLE Users SET permission_id = 1
+                "UPDATE Users SET permission_id = 1
                  WHERE user_id = :userId"
             );
             $query->bindParam(":userId", $userId);
