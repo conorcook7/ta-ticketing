@@ -93,6 +93,17 @@ $(document).ready(function() {
     ]
   });
 
+  let availableTeachingAssistantsTable = $("#available-tas-table").DataTable({
+    ajax: ajaxPath + "available-tas-table-handler.php",
+    preDrawCallback: canRedrawTable,
+    columns: [
+      { data: "taName" },
+      { data: "taEmail" },
+      { data: "taTimeSlot" },
+      { data: "taCourse" }
+    ]
+  });
+
   // Initialize the generic data tables
   $("#dataTable").DataTable();
   $(".generic-data-table").DataTable();
@@ -131,6 +142,7 @@ $(document).ready(function() {
   userOpenTicketsTable.ajax.reload();
   userOpenTicketsTable.ajax.reload();
   userClosedTicketsTable.ajax.reload();
+  availableTeachingAssistantsTable.ajax.reload();
 
   /**
    * Reload the tables after every interval
@@ -143,6 +155,7 @@ $(document).ready(function() {
     userOpenTicketsTable.ajax.reload();
     userOpenTicketsTable.ajax.reload();
     userClosedTicketsTable.ajax.reload();
+    availableTeachingAssistantsTable.ajax.reload();
   }, 30 * 1000);
 
   /**

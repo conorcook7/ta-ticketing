@@ -4,8 +4,6 @@
     $page = 'user.php';
     
     require_once '../components/header.php';
-    require_once '../components/dao.php';
-    $dao = new Dao();
     ?>
 <div id="wrapper">
     <!-- Start of Sidebar -->
@@ -103,31 +101,15 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data_table generic-data-table" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered data_table" id="available-tas-table" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th class="center">TA Name</th>
                                         <th class="center description">TA Email</th>
-                                        <th class="center">TA TimeSlot</th>
+                                        <th class="center">TA Time Slot</th>
                                         <th class="center">TA Course</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                        $tas = $dao->getAvailableTeachingAssistants();
-                                        foreach($tas as $ta) {
-                                              $startTime = new DateTime($ta["start_time_past_midnight"]);
-                                              $endTime = new DateTime($ta["end_time_past_midnight"]);
-                                              $course = $dao->getAvailableCourseById($ta['available_course_id']);
-                                          ?>
-                                    <tr>
-                                        <td class="center"><?php echo htmlentities($ta['first_name']) . " " . htmlentities($ta['last_name']); ?></td>
-                                        <td class="center"><?php echo htmlentities($ta['email']); ?></td>
-                                        <td class="center"><?php echo $startTime->format("g:i A") . " - " . $endTime->format("g:i A"); ?></td>
-                                        <td class="center"><?php echo htmlentities($course['course_name']); ?></td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
                             </table>
                         </div>
                     </div>
