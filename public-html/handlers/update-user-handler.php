@@ -58,8 +58,6 @@
             }
         }
     }
-    // echo "<pre>" . print_r($_POST, 1) . "</pre>";
-    // echo isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id);
     header("Location: ../pages/admin.php?id=users");
     exit;
 ?>
