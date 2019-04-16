@@ -136,7 +136,6 @@ $(document).ready(function() {
    * Reload the tables after every interval
    */
   setInterval(function() {
-    console.log("updating");
     allTicketsTable.ajax.reload();
     closedTicketsTable.ajax.reload();
     openTicketsTable.ajax.reload(showClosingForm);
