@@ -37,7 +37,7 @@
                 <!-- Available Courses -->
                 <?php
                     $dao = new Dao();
-                    $tas = $dao->getTeachingAssistants(1);
+                    $tas = $dao->getTeachingAssistants(10);
                     foreach ($tas as $ta) {
                         $startTime = new DateTime($ta["start_time_past_midnight"]);
                         $endTime = new DateTime($ta["end_time_past_midnight"]);
