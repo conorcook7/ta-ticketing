@@ -126,7 +126,15 @@
 
                 // Check if the user is blacklisted
                 if ($dao->isBlacklisted($_SESSION["user"]["email"])) {
-                    $logger->logWarn(basename(__FILE__) . ": Blacklisted user is attempting to access the website.");
+                    $logger->logWarn(basename(__FILE__) . ": Blacklisted user {" . $_SESSION["user"]["user_id"] . "} is attempting to access the website.");
+                    $_SESSION["login-error"] = "You do not have permission to access the website. If this is a mistake, please contact the system administrator.";
+                    header("Location: " . generateUrl("/handlers/logout-handler.php"));
+                    exit();
+                }
+
+                // Check if the user is denied access
+                if (strtoupper($_SESSION["user"]["permission"]) == "DENIED") {
+                    $logger->logWarn(basename(__FILE__) . ": User {" . $_SESSION["user"]["user_id"] . "} with DENIED permissions is attempting to access the website.");
                     $_SESSION["login-error"] = "You do not have permission to access the website. If this is a mistake, please contact the system administrator.";
                     header("Location: " . generateUrl("/handlers/logout-handler.php"));
                     exit();

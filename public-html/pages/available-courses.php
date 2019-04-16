@@ -64,7 +64,7 @@
     <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
-<script src="../js/ajax/help/help-available-courses.js"></script>
+<script src="../js/ajax/available-courses.js"></script>
 <?php
     require_once "../components/scripts.php";
 ?>

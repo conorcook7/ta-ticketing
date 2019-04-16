@@ -4,6 +4,8 @@
     require_once "../../components/dao.php";
     require_once "../../components/server-functions.php";
 
+    $logger = getServerLogger();
+    
     // Check if it is an actual AJAX request
     if (!isset($_SERVER["HTTP_X_REQUESTED_WITH"]) || $_SERVER["HTTP_X_REQUESTED_WITH"] == ""){
         $logger->logWarn(basename(__FILE__) . ": User attempting to access handler page directly.");

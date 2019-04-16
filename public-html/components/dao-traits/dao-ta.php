@@ -51,13 +51,16 @@ trait DaoTa {
             $conn = $this->getConnection();
             if ($limit == NULL) {
                 $query = $conn->prepare(
-                    "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
-                    ON TA.user_id = U.user_id;"
+                    "SELECT * FROM Teaching_Assistants AS TA
+                    JOIN Users AS U ON TA.user_id = U.user_id
+                    JOIN Available_Courses AS AC ON TA.available_course_id = AC.available_course_id;"
                 );
             } else {
                 $query = $conn->prepare(
-                    "SELECT * FROM Teaching_Assistants AS TA JOIN Users AS U
-                    ON TA.user_id = U.user_id LIMIT :limit;"
+                    "SELECT * FROM Teaching_Assistants AS TA
+                    JOIN Users AS U ON TA.user_id = U.user_id
+                    JOIN Available_Courses AS AC ON TA.available_course_id = AC.available_course_id
+                    LIMIT :limit;"
                 );
                 $query->bindParam(":limit", $limit, PDO::PARAM_INT);
             }

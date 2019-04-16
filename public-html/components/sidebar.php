@@ -56,6 +56,14 @@
         </a>
     </li>
 
+    <!-- Courses -->
+    <li class="nav-item <?php if ($nav == 'teaching-assistants') { echo 'active'; }?>">
+        <a class="nav-link" href="<?php echo generateUrl('/pages/teaching-assistants.php');?>">
+            <i class="fas fa-fw fa-user-friends"></i>
+            <span class="LetterSpacing">Teaching Assistants</span>
+        </a>
+    </li>
+
     <!-- Help Dropdown -->
     <?php require_once "sidebar-menus/sidebar-help.php"; ?>
 
