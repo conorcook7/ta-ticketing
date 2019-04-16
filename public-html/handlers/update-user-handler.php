@@ -11,12 +11,16 @@
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
     $permissionID = $_POST["permissionID"];
+
+    // If delete option was selected
     if($permissionID == 0){
         if($dao->deleteUser($email) == TRUE){
             $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
         } else {
             $_SESSION["failure"] = "Failed to delete the user: " . $firstName . " " . $lastName;
         }
+    
+    // If the create new person option was selected
     } else if($user_id == -1){
         if($dao->createUser($email, $firstName, $lastName) == TRUE){
             if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
@@ -27,13 +31,20 @@
             $_SESSION["success"] = "Created the user: " . $firstName . " " . $lastName;
         } else {
             $_SESSION["failure"] = "Failed to create the user: " . $firstName . " " . $lastName;
-        }  
+        }
+    
+    // General case
     } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
+
+        // If the option was not a TA
         if($permissionID != 2){
             if($dao->isTeachingAssistant($user_id)) {
                 if (!$dao->deleteTeachingAssistant($user_id)) {
                     $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
                 }
+            }
+            if ($dao->isBlacklisted($email)) {
+
             }
             if(!isset($_SESSION["failure"]) && $dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
                 $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
@@ -49,8 +60,15 @@
                 } else {
                     $_SESSION["failure"] = "Unable to add email to the blacklist.";
                 }
+            } else if ($dao->isBlacklisted($email)) {
+                $dao->deleteBlacklistEntryByEmail($email);
             }
+        
+        // If the option was set to TA
         } else {
+            if ($dao->isBlacklisted($email)) {
+                $dao->deleteBlacklistEntryByEmail($email);
+            }
             if ($dao->isTeachingAssistant($user_id)) {
                 if ($dao->updateTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE) {
                     $_SESSION["success"] = "Updated teaching assistant: " . $firstName . " " . $lastName;
