@@ -13,7 +13,7 @@
       exit();
     
     } else {
-      header("Location: " . generateUrl("/auth/google-auth/google.php"));
+      header("Location: " . generateUrl("logged-out.php"));
       exit();
     }
     ?>
