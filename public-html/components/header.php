@@ -7,6 +7,7 @@
     $dao = new Dao();
     if (!isset($_SESSION["user"]) ||
             $dao->getOnlineStatus($_SESSION["user"]["email"]) == "OFFLINE") {
+        $_SESSION["login-error"] = "You are not authenticated";
         header("Location: " . generateUrl("/handlers/logout-handler.php"));
         exit();
     }

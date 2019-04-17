@@ -31,6 +31,10 @@
             require_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-admin.php";
 
+        } else if ($permission == "PROFESSOR") {
+            require_once "sidebar-menus/sidebar-user.php";
+            require_once "sidebar-menus/sidebar-admin.php";
+
         } else if ($permission == "TA") {
             require_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-ta.php";
@@ -39,6 +43,7 @@
             require_once "sidebar-menus/sidebar-user.php";
 
         } else {
+            $_SESSION["login-error"] = "Unable to get your permission for the website.";
             header("Location: " . generateUrl("/handlers/logout-handler.php"));
             exit();
         }
