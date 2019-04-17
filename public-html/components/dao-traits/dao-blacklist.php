@@ -95,8 +95,22 @@ trait DaoBlacklist {
                 $query->setFetchMode(PDO::FETCH_ASSOC);
                 $query->execute();
                 $email = $query->fetch()["email"];
+
+                // Get the permission id
+                $query = $conn->prepare(
+                    "SELECT permission_id FROM Permissions
+                    WHERE permission_name = 'USER'"
+                );
+                $query->setFetchMode(PDO::FETCH_ASSOC);
+                $query->execute();
+                $permissionId = $query->fetch()["permission_id"];
+
                 // Update the permissions of the email address
-                $query = $conn->prepare("UPDATE Users SET permission_id = 1 WHERE email = :email");
+                $query = $conn->prepare(
+                    "UPDATE Users SET permission_id = :permissionId
+                    WHERE email = :email"
+                );
+                $query->bindParam(":permissionId", $permissionId);
                 $query->bindParam(":email", $email);
                 $query->execute();
             }
@@ -125,8 +139,21 @@ trait DaoBlacklist {
         try {
             $conn = $this->getConnection();
             if ($resetPermissions) {
+                // Get the permission id
+                $query = $conn->prepare(
+                    "SELECT permission_id FROM Permissions
+                    WHERE permission_name = 'USER'"
+                );
+                $query->setFetchMode(PDO::FETCH_ASSOC);
+                $query->execute();
+                $permissionId = $query->fetch()["permission_id"];
+
                 // Update the permissions of the email address
-                $query = $conn->prepare("UPDATE Users SET permission_id = 1 WHERE email = :email");
+                $query = $conn->prepare(
+                    "UPDATE Users SET permission_id = :permissionId
+                    WHERE email = :email"
+                );
+                $query->bindParam(":permissionId", $permissionId);
                 $query->bindParam(":email", $email);
                 $query->execute();
             }
