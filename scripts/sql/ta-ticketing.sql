@@ -113,8 +113,9 @@ CREATE TABLE IF NOT EXISTS Blacklist (
 
 INSERT INTO Permissions VALUES (1, 'USER');
 INSERT INTO Permissions VALUES (2, 'TA');
-INSERT INTO Permissions VALUES (3, 'ADMIN');
-INSERT INTO Permissions VALUES (4, 'DENIED');
+INSERT INTO Permissions VALUES (3, 'PROFESSOR');
+INSERT INTO Permissions VALUES (4, 'ADMIN');
+INSERT INTO Permissions VALUES (5, 'DENIED');
 
 INSERT INTO Users VALUES (1, 3, 0, 'taticketing@boisestate.edu', 'TA Tticketing', 'Server', NOW(), NOW());
 
