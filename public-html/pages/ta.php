@@ -1,9 +1,11 @@
 <?php
     session_start();
+    require_once "../components/dao.php";
+    require_once "../components/server-functions.php";
     $nav = 'ta';
     $page = 'ta.php';
-      
-      if($_SESSION['user']['access_level'] >= 2){
+    $permission = getPermission();
+      if($permission == "TA" || $permission == "PROFESSOR" || $permission == "ADMIN"){
         if(isset($_GET['page'])){
           $_SESSION['ta-selection'] = $_GET['page'];
           $selection = $_SESSION['ta-selection'];
@@ -31,8 +33,6 @@
       }
     
       require_once "../components/header.php";
-      require_once "../components/dao.php";
-      require_once "../components/server-functions.php";
     
       try{
         $dao = new Dao();

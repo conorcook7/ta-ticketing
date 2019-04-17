@@ -26,15 +26,16 @@
     </div>
 
     <?php
-        if ($_SESSION["user"]["access_level"] == 3) {
+        $permission = getPermission();
+        if ($permission == "ADMIN") {
             require_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-admin.php";
 
-        } else if ($_SESSION["user"]["access_level"] == 2) {
+        } else if ($permission == "TA") {
             require_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-ta.php";
 
-        } else if ($_SESSION["user"]["access_level"] == 1) {
+        } else if ($permission == "USER") {
             require_once "sidebar-menus/sidebar-user.php";
 
         } else {

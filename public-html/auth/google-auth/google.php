@@ -110,7 +110,6 @@
                 $user = $dao->getUser($_SESSION["user"]["email"]);
                 $_SESSION["user"]["user_id"] = $user["user_id"];
                 $_SESSION["user"]["permission"] = $user["permission_name"];
-                $_SESSION["user"]["access_level"] = $user["permission_id"];
                 $_SESSION["user"]["online_since"] = new DateTime(
                     $user["update_date"],
                     new DateTimeZone("America/Boise")

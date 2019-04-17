@@ -1,12 +1,13 @@
 <?php
     require_once '../components/header.php';
-    require_once '../components/dao.php'; 
+    require_once '../components/dao.php';
+    require_once '../components/server-functions.php';
     $dao = new Dao();
     $page = 'admin.php';
     $nav = 'admin';
     
     // Setting the page for the navbar
-    if($_SESSION['user']['access_level'] >= 3){
+    if(getPermission() == "ADMIN"){
       if(isset($_GET['id'])){
         $_SESSION['admin-selection'] = $_GET['id'];
         $selection = $_SESSION['admin-selection'];
