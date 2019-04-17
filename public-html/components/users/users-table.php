@@ -48,7 +48,7 @@
                             <td><?php echo htmlspecialchars($user['first_name']); ?></td>
                             <td><?php echo htmlspecialchars($user['last_name']); ?></td>
                             <td><?php echo htmlspecialchars($user['email']); ?></td>
-                            <td><?php echo $user['permission_id']; ?></td>
+                            <td><?php echo strtoupper(htmlentities($user['permission_name'])); ?></td>
                             <td>
                                 <button type="submit" class="btn btn-block bg-warning text-gray-100">
                                     Update User

@@ -22,10 +22,6 @@
     >
         <div class="bg-white py-2 collapse-inner rounded">
             <a
-                class="collapse-item <?php if($nav == 'help' && $page == 'available-courses.php'){echo 'active';}?>"
-                href="<?php echo generateUrl('/pages/help/available-courses.php');?>"
-                >Available Courses</a>
-            <a
                 class="collapse-item <?php if($nav == 'help' && $page == 'faq.php'){echo 'active';}?>"
                 href="<?php echo generateUrl('/pages/help/faq.php');?>"
                 >FAQs</a>
@@ -36,7 +32,7 @@
             <a
                 class="collapse-item <?php if($nav == 'help' && $page == 'bug-report.php'){echo 'active';}?>"
                 href="<?php echo generateUrl('/pages/help/bug-report.php');?>"
-                >Report a problem</a>
+                >Report a Problem</a>
         </div>
     </div>
 </li>

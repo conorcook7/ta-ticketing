@@ -5,8 +5,9 @@
     require_once "../../components/dao.php";
     require_once "../../components/server-functions.php";
 
-    $logger = getServerLogger();
+    $logger = getServerLogger();    // Get the KLogger object
 
+    // Store the local IP address
     if (isset($_POST["local_ip"])) {
         $logger->logDebug("Setting local ip");
         $_SESSION["local_ip"] = isset($_POST["local_ip"]) ? $_POST["local_ip"] : "";
@@ -47,7 +48,7 @@
         } catch (Exception $e) {
             $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
             $_SESSION["login-error"] = "Unable to find Google account.";
-            header("Location: " . generateUrl("/pages/logged-out.php"));
+            header("Location: " . generateUrl("/handlers/logout-handler.php"));
             exit();
         }
 
@@ -68,8 +69,8 @@
                 $splitEmail = explode("@", $payload["email"]);
                 $emailDomain = $splitEmail[1];
                 if ($emailDomain != "u.boisestate.edu" && $emailDomain != "boisestate.edu") {
-                    $_SESSION["login-error"] = "You must use a <strong>Boise State</strong> email address. If this is a mistake you may contact the system admin.";
-                    header("Location: " . generateUrl("/pages/logged-out.php"));
+                    $_SESSION["login-error"] = "You must use a <strong class='text-gray-800'>Boise State</strong> email address. If this is a mistake, please contact the system administrator.";
+                    header("Location: " . generateUrl("/handlers/logout-handler.php"));
                     exit();
                 }
 
@@ -81,7 +82,7 @@
                 $_SESSION["user"]["picture"] = $payload["picture"];
                 $_SESSION["user"]["accessToken"] = $accessToken;
 
-                // Database setup for user
+                // Get a dao object
                 $dao = new Dao();
 
                 // If the user is not in the database
@@ -93,8 +94,8 @@
                     );
                     if (!$querySuccessful) {
                         $logger->logError(basename(__FILE__) . ": Unable to create user with dao method.");
-                        $_SESSION["login-error"] = "Unable to get your account. Please try again later.";
-                        header("Location: " . generateUrl("/pages/logged-out.php"));
+                        $_SESSION["login-error"] = "Unable to create your account. Please try again later.";
+                        header("Location: " . generateUrl("/handlers/logout-handler.php"));
                         exit();
                     }
                 }
@@ -114,6 +115,8 @@
                     $user["update_date"],
                     new DateTimeZone("America/Boise")
                 );
+
+                // Set the user to online
                 $_SESSION["user"]["online"] = "ONLINE";
                 
                 // Set the users computer name
@@ -121,7 +124,23 @@
                 $logger->logDebug(basename(__FILE__) . ": local IP: " . $localIP);
                 $_SESSION["user"]["computer_name"] = getComputerName($localIP);
 
-                // Redirect to the dashboard
+                // Check if the user is blacklisted
+                if ($dao->isBlacklisted($_SESSION["user"]["email"])) {
+                    $logger->logWarn(basename(__FILE__) . ": Blacklisted user {" . $_SESSION["user"]["user_id"] . "} is attempting to access the website.");
+                    $_SESSION["login-error"] = "You do not have permission to access the website. If this is a mistake, please contact the system administrator.";
+                    header("Location: " . generateUrl("/handlers/logout-handler.php"));
+                    exit();
+                }
+
+                // Check if the user is denied access
+                if (strtoupper($_SESSION["user"]["permission"]) == "DENIED") {
+                    $logger->logWarn(basename(__FILE__) . ": User {" . $_SESSION["user"]["user_id"] . "} with DENIED permissions is attempting to access the website.");
+                    $_SESSION["login-error"] = "You do not have permission to access the website. If this is a mistake, please contact the system administrator.";
+                    header("Location: " . generateUrl("/handlers/logout-handler.php"));
+                    exit();
+                }
+
+                // Redirect to the dashboard - Everything is OK
                 header("Location: ../../pages/" . strtolower($_SESSION["user"]["permission"]) . ".php");
                 exit();
             }
@@ -129,12 +148,12 @@
         } catch (Exception $e) {
             $logger->logError(basename(__FILE__) . ": " . $e->getMessage());
             $_SESSION["login-error"] = "Unable to get your account. Please try again later.";
-            header("Location: " . generateUrl("/pages/logged-out.php"));
+            header("Location: " . generateUrl("/handlers/logout-handler.php"));
             exit();
         }
 
     }
 
     $_SESSION["login-error"] = "Unable to authenticate your account. Please try again later.";
-    header("Location: " . generateUrl("/pages/logged-out.php"));
+    header("Location: " . generateUrl("/handlers/logout-handler.php"));
     exit();

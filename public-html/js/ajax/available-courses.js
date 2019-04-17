@@ -11,9 +11,9 @@ $(document).ready(function() {
         $(".container-fluid").append(
           `<div class="card shadow mb-4 ac">
                   <div class="card-header py-3">
-                    <h1 class="h5 m-0 font-weight-bold text-primary">` +
-            courses[i]["course_name"].toUpperCase() +
-            `   </h1>
+                      <span class="h5 m-0 font-weight-bold text-primary">` +
+                      courses[i]["course_number"].toUpperCase() + ` - ` + courses[i]["course_name"].toUpperCase() +
+            `         </span>
                   </div>
                 <div class="card-body">
                 <p>` +

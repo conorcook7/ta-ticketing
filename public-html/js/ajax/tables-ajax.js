@@ -7,9 +7,12 @@ $(document).ready(function() {
   }
   ajaxPath += "handlers/ajax/";
 
-  // All of the tables ajax calls here
+  /**
+   * Define all of the table AJAX calls
+   */
   let allTicketsTable = $("#all-tickets-table").DataTable({
     ajax: ajaxPath + "all-tickets-table-handler.php",
+    preDrawCallback: canRedrawTable,
     columns: [
       { data: "id" },
       { data: "studentName" },
@@ -23,6 +26,7 @@ $(document).ready(function() {
   // All of the tables ajax calls here
   let closedTicketsTable = $("#closed-tickets-table").DataTable({
     ajax: ajaxPath + "closed-tickets-table-handler.php",
+    preDrawCallback: canRedrawTable,
     columns: [
       { data: "studentName" },
       { data: "teachingAssistant" },
@@ -36,6 +40,7 @@ $(document).ready(function() {
   // All of the tables ajax calls here
   let openTicketsTable = $("#open-tickets-table").DataTable({
     ajax: ajaxPath + "open-tickets-table-handler.php",
+    preDrawCallback: canRedrawTable,
     columns: [
       { data: "queue" },
       { data: "studentName" },
@@ -48,6 +53,7 @@ $(document).ready(function() {
 
   let taOpenTicketsTable = $("#ta-open-tickets-table").DataTable({
     ajax: ajaxPath + "ta-open-tickets-table-handler.php",
+    preDrawCallback: canRedrawTable,
     columns: [
       { data: "queue" },
       { data: "studentName" },
@@ -58,73 +64,104 @@ $(document).ready(function() {
     ]
   });
 
+  // Student Dashboard
+  let userOpenTicketsTable = $("#user-open-tickets-table").DataTable({
+    ajax: ajaxPath + "users-open-tickets-table-handler.php",
+    preDrawCallback: canRedrawTable,
+    columns: [
+      { data: "queue" },
+      { data: "node" },
+      { data: "courseName" },
+      { data: "queueTime" },
+      { data: "ticketDescription" },
+      { data: "action" }
+    ]
+  });
+
+  let userClosedTicketsTable = $("#user-closed-tickets-table").DataTable({
+    ajax: ajaxPath + "users-closed-tickets-table-handler.php",
+    preDrawCallback: canRedrawTable,
+    columns: [
+      { data: "ticketNumber" },
+      { data: "ticketCreator" },
+      { data: "ticketCloser" },
+      { data: "courseName" },
+      { data: "dateSolved" },
+      { data: "ticketDescription" },
+      { data: "closingDescription" },
+      { data: "action" }
+    ]
+  });
+
+  let availableTeachingAssistantsTable = $("#available-tas-table").DataTable({
+    ajax: ajaxPath + "available-tas-table-handler.php",
+    preDrawCallback: canRedrawTable,
+    columns: [
+      { data: "taName" },
+      { data: "taEmail" },
+      { data: "taTimeSlot" },
+      { data: "taCourse" }
+    ]
+  });
+
   // Initialize the generic data tables
   $("#dataTable").DataTable();
   $(".generic-data-table").DataTable();
 
-  // Get the description textarea
+  /**
+   * Closing description form for TA/Admin tables
+   */
   let description = $("#closing-description");
-
   // Set the max character for the character counter
   $("#max-char-count").html(description.attr("maxlength"));
-
   // Set the character counter to update when the description is changed
   description.on("change keyup paste mousedown", function() {
     $("#char-count").html($(this).val().length);
   });
-
   // Setup the form toggle display
   let formDiv = $("#toggle-close-ticket"); // Get the closing form with jQuery
   formDiv.css({ display: "none" }); // Hide the form initially
-
   // Hide the form on window click
   $(window).on("click", function() {
     formDiv.css({ display: "none" });
     $("#my-open-ticket-id").val(null);
     $("#my-closer-user-id").val(null);
   });
-
   // Stop the form from hiding if the form is being clicked
   formDiv.on("click", function(event) {
     event.stopPropagation();
   });
 
-  // Reload the data for all tables
+  /**
+   * Reload the data for all tables
+   */
   allTicketsTable.ajax.reload();
   closedTicketsTable.ajax.reload();
+  openTicketsTable.ajax.reload(showClosingForm);
+  taOpenTicketsTable.ajax.reload(showClosingForm);
+  userOpenTicketsTable.ajax.reload();
+  userOpenTicketsTable.ajax.reload();
+  userClosedTicketsTable.ajax.reload();
+  availableTeachingAssistantsTable.ajax.reload();
 
-  // Reload all open tickets table
-  openTicketsTable.ajax.reload(callbackOpenTicketsTable);
   /**
-   * Callback function for recursively updating the "All Open Tickets" table.
+   * Reload the tables after every interval
    */
-  function callbackOpenTicketsTable() {
-    // Toggle the closing form
-    toggleForm();
-    // Reload 30 seconds after it has finished loading
-    setTimeout(function() {
-      openTicketsTable.ajax.reload(callbackOpenTicketsTable);
-    }, 30 * 1000);
-  }
-
-  // Reload the My Open Tickets table for TAs
-  taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
-  /**
-   * Callback function for recursively updating the "My Open Tickets" table for TAs
-   */
-  function callbackTaOpenTicketsTable() {
-    // Toggle the closing form
-    toggleForm();
-    // Reload 30 seconds after it has finished loading
-    setTimeout(function() {
-      taOpenTicketsTable.ajax.reload(callbackTaOpenTicketsTable);
-    }, 30 * 1000);
-  }
+  setInterval(function() {
+    allTicketsTable.ajax.reload();
+    closedTicketsTable.ajax.reload();
+    openTicketsTable.ajax.reload(showClosingForm);
+    taOpenTicketsTable.ajax.reload(showClosingForm);
+    userOpenTicketsTable.ajax.reload();
+    userOpenTicketsTable.ajax.reload();
+    userClosedTicketsTable.ajax.reload();
+    availableTeachingAssistantsTable.ajax.reload();
+  }, 30 * 1000);
 
   /**
    * Function to toggle the form based on the buttons in the class
    */
-  function toggleForm() {
+  function showClosingForm() {
     $(".toggle-close-form").on("click", function(event) {
       event.stopPropagation();
       $("#toggle-close-ticket").css({ display: "" });
@@ -135,5 +172,19 @@ $(document).ready(function() {
       $("#closer-user-id").val(closerUserId);
       $("html, body").animate({ scrollTop: 0 }, "slow");
     });
+  }
+
+  /**
+   * Do not allow the tables to be redrawn if a modal is open
+   */
+  function canRedrawTable() {
+    let modals = document.getElementsByClassName("modal");
+    for (let i = 0; i < modals.length; i++) {
+      let modal = modals[i];
+      if (modals[i].attributes.class.value.includes("show") === true) {
+        return false;
+      }
+    }
+    return true;
   }
 });

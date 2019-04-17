@@ -23,7 +23,7 @@
                     if ($permission == "ADMIN") {
                     ?>
                 <div class="row">
-                    <div class="col-xs-12 ">
+                    <div class="col-xs-12">
                         <nav class="mb-4">
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a
@@ -57,14 +57,16 @@
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <?php require_once "how-to/how-to-admin.php"; ?>
+                            <?php require_once "how-to/how-to-ta.php"; ?>
+                            <?php require_once "how-to/how-to-user.php"; ?>
                         </div>
                     </div>
                 </div>
                 <?php  } else if ($permission == "TA") { ?>
                 <div class="row">
-                    <div class="col-xs-12 ">
+                    <div class="col-xs-12">
                         <nav class="mb-4">
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a
                                     class="nav-item nav-link active"
                                     id="nav-how-to-ta-tab"
@@ -87,6 +89,7 @@
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <?php require_once "how-to/how-to-ta.php"; ?>
+                            <?php require_once "how-to/how-to-user.php"; ?>
                         </div>
                     </div>
                 </div>

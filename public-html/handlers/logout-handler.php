@@ -31,8 +31,7 @@
     }
 
     // Unset the user
-    session_unset();
-    session_destroy();
+    unset($_SESSION["user"]);
 
     // Redirect to the login page
     header("Location: ../pages/logged-out.php");

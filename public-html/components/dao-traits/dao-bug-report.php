@@ -32,7 +32,7 @@ trait DaoBugReport {
             return $this->FAILURE;
         }
         try {
-            // Attempt to send the email to all admins
+            // Get all of the admin email addresses
             $query = $conn->prepare(
                 "SELECT email FROM Users
                 JOIN Permissions ON Users.permission_id = Permissions.permission_id
@@ -43,22 +43,36 @@ trait DaoBugReport {
             $adminEmails = $query->fetchAll();
             $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Obtained all of the admin emails");
 
+            // Get the user's information that generated the bug report
+            $query = $conn->prepare("SELECT first_name, last_name, email FROM Users WHERE user_id = :userId;");
+            $query->bindParam(":userId", $userId);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $creator = $query->fetch();
+
             // Create the message to send
             if(!empty($adminEmails)) {
                 $to = $adminEmails[0]["email"];
                 $subject = "TA Ticketing Bug Report";
-                $message = "Hello!\n\nA new bug report was just created!\n\nTitle: " . $title . "\n\nDescription:\n" . $description . "\n\n--TA Ticketing Server";
-                $message = wordwrap($message, 70);
+                $message = "Hello!\n\n" . htmlentities($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!\n\n";
+                $message .= "Author's Email: " . htmlentities($creator["email"]) . "\n\n";
+                $message .= "Title: " . $title . "\n\nDescription:\n" . $description . "\n\n\n";
+                $message .= "This is an automated message sent by the TA Ticketing Service at Boise State University.";
                 $headers = "From: no-reply@taticketing.boisestate.edu" . "\n" . "CC: ";
                 for ($i = 1; $i < count($adminEmails); $i++) {
                     $headers .= $adminEmails[$i]["email"] . " ";
                 }
+
+                // Send the email to all admins (including the taticketing@boisestate.edu email account)
                 $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
                 $sent = mail($to, $subject, $message, $headers);
+
+                // If the email was sent successfully from the server
+                // There are no guarantees that it reaches its destination
                 if ($sent) {
                     $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Email sent to all admins");
                 } else {
-                    $this->logger->logWarning(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Unable to send email to all admins");
+                    $this->logger->logWarn(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Unable to send email to all admins");
                 }
             }
             

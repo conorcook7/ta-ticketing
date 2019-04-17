@@ -5,6 +5,7 @@
     $page = 'admin.php';
     $nav = 'admin';
     
+    // Setting the page for the navbar
     if($_SESSION['user']['access_level'] >= 3){
       if(isset($_GET['id'])){
         $_SESSION['admin-selection'] = $_GET['id'];
@@ -27,6 +28,8 @@
             $page = 'faq.php';
           } else if ($selection == 'bug-reports') {
             $page = 'bug-reports.php';
+          } else if ($selection == 'blacklist') {
+            $page = 'blacklist.php';
           }
       } else {
         $_SESSION['admin-selection'] = 'DEFAULT';
@@ -86,6 +89,8 @@
                   include_once '../components/users/faq.php';
                 } elseif ($selection == 'bug-reports') {
                   include_once '../components/users/bug-reports.php';
+                } elseif ($selection == 'blacklist') {
+                  include_once '../components/users/blacklist.php';
                 }
                 ?>
         </div>
@@ -94,6 +99,7 @@
     <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
+<script src="../js/admin.js"></script>
 <?php
     require_once '../components/logout-modal.php';
     require_once '../components/scripts.php';

@@ -3,7 +3,7 @@
 require_once 'KLogger.php';
 
 // Require all of the dao traits
-
+require_once 'dao-traits/dao-blacklist.php';
 require_once 'dao-traits/dao-bug-report.php';
 require_once 'dao-traits/dao-courses.php';
 require_once 'dao-traits/dao-faq.php';
@@ -35,6 +35,7 @@ class Dao {
     protected $logger;
 
     // Use all of the dao traits
+    use DaoBlacklist;
     use DaoBugReport;
     use DaoCourses;
     use DaoFaq;
@@ -62,8 +63,6 @@ class Dao {
         try{
             $conn = new PDO("mysql:host=localhost;dbname={$this->db}", $this->user, $this->pass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            // This might not be needed
-            // $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $this->logger->logDebug("Established a database connection.");
             return $conn;
         } catch (Exception $e) {
