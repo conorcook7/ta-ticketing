@@ -4,12 +4,12 @@
     $dao = new Dao();
 
     // Get the Admin by the ID
-    $admin_id = $_SESSION['user']['user_id'];
-    $admin = $dao->getUserById($admin_id);
+    $originUserId = $_SESSION['user']['user_id'];
+    $originUser = $dao->getUserById($originUserId);
 
     // Get the user by the ID
-    $user_id = $_POST["userID"];
-    $user = $dao->getUserById($user_id);
+    $targetUserId = $_POST["userID"];
+    $targetUser = $dao->getUserById($targetUserId);
 
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
@@ -21,36 +21,38 @@
     $permissionName = $permissionID == 0 ? "DELETE" : $dao->getPermissionByID($permissionID);
 
     // Only check if the person updating is not an admin
-    if(strtoupper($admin["permission_name"]) != "ADMIN") {
+    if(strtoupper($originUser["permission_name"]) != "ADMIN") {
         //compares users to ensure only a user that has power over the other is updating.
-        if ($admin["permission_id"] <= $user["permission_id"]) {
+        if ($originUser["permission_id"] <= $targetUser["permission_id"]) {
             $_SESSION["failure"] = "You do not have permission to update that user.";
             header("Location: ../pages/professor.php?page=users");
             exit;
         }
-        
         // Checking that the professor does not set a user higher than themselves
-        if ($user["permission_id"] <= $permissionID) {
-            $_SESSION["failure"] = "You may only set the user's permission to one that is lower than your current permission.";
+        if ($originUser["permission_id"] <= $permissionID) {
+            $_SESSION["failure"] = "You may only set the user's permission to one that is lower than your current permission." . $originUser["permission_id"] . " " .$permissionID;
             header("Location: ../pages/professor.php?page=users");
             exit;
         }
-    }
-
-    
+    } 
 
     // If delete option was selected
     if($permissionName == "DELETE"){
-        if($dao->deleteUser($email) == TRUE){
-            $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
+        // Restict delete to admins only
+        if (strtoupper($originUser["permission_name"]) == "ADMIN") {
+            if($dao->deleteUser($email) == TRUE){
+                $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
+            } else {
+                $_SESSION["failure"] = "Failed to delete the user: " . $firstName . " " . $lastName;
+            }
         } else {
-            $_SESSION["failure"] = "Failed to delete the user: " . $firstName . " " . $lastName;
+            $_SESSION["failure"] = "You do not have permission to delete users.";
         }
     
     // If the create new person option was selected
-    } else if($user_id == -1){
+    } else if($targetUserId == -1){
         if($dao->createUser($email, $firstName, $lastName) == TRUE){
-            if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
+            if($dao->updateUser($targetUserId, $firstName, $lastName, $email, $permissionID, $originUserId) == TRUE){
                 $_SESSION["success"] = "Created the user: " . $firstName . " " . $lastName;
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
@@ -61,22 +63,22 @@
         }
     
     // General case
-    } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
+    } else if(isset($targetUserId, $firstName, $lastName, $email, $permissionID, $originUserId)) {
 
         // If the option was not a TA
         if($permissionName != "TA"){
-            if($dao->isTeachingAssistant($user_id)) {
-                if (!$dao->deleteTeachingAssistant($user_id)) {
+            if($dao->isTeachingAssistant($targetUserId)) {
+                if (!$dao->deleteTeachingAssistant($targetUserId)) {
                     $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
                 }
             }
-            if(!isset($_SESSION["failure"]) && $dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
+            if(!isset($_SESSION["failure"]) && $dao->updateUser($targetUserId, $firstName, $lastName, $email, $permissionID, $originUserId) == TRUE){
                 $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
             } 
             if($permissionName == "DENIED"){
-                $created = $dao->createBlacklistEntry($admin_id, $email);
+                $created = $dao->createBlacklistEntry($originUserId, $email);
                 if ($created && isset($_SESSION["success"])) {
                     $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName . " and blacklisted them.";
                 } elseif ($created) {
@@ -93,15 +95,15 @@
             if ($dao->isBlacklisted($email)) {
                 $dao->deleteBlacklistEntryByEmail($email);
             }
-            if ($dao->isTeachingAssistant($user_id)) {
-                if ($dao->updateTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE) {
+            if ($dao->isTeachingAssistant($targetUserId)) {
+                if ($dao->updateTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE) {
                     $_SESSION["success"] = "Updated teaching assistant: " . $firstName . " " . $lastName;
                 } else {
                     $_SESSION["failure"] = "Failed to update the teaching assistant: " . $firstName . " " . $lastName;
                 } 
                 
             } else {
-                if($dao->createTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE){
+                if($dao->createTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE){
                     $_SESSION["success"] = "Created teaching assistant: " . $firstName . " " . $lastName;
                 } else {
                     $_SESSION["failure"] = "Failed to create the teaching assistant: " . $firstName . " " . $lastName;
@@ -109,7 +111,7 @@
             }
         }
     }
-    $page = $admin["permission_name"] == "ADMIN" ? "admin.php?id" : "professor.php?page";
+    $page = $originUser["permission_name"] == "ADMIN" ? "admin.php?id" : "professor.php?page";
     header("Location: ../pages/" . $page . "=users");
     exit;
 ?>
