@@ -12,12 +12,12 @@
     $endTime = $_POST["endTime"];
     $permissionID = $_POST["permissionID"];
 
-    if(getUserById($admin_id)["permission_id"] < getUserById($user_id)["permission_id"]){
+    //compares users to ensure only a user that has power over the other is updating.
+    if($dao->getUserById($admin_id)["permission_id"] < $dao->getUserById($user_id)["permission_id"]){
         $_SESSION["failure"] = "You are too weak to update that user (They outrank you)";
         header("Location: ../pages/admin.php?id=users");
         exit;
     }
-
 
     // If delete option was selected
     if($permissionID == 0){
