@@ -30,7 +30,11 @@
         }
         // Checking that the professor does not set a user higher than themselves
         if ($originUser["permission_id"] <= $permissionID) {
-            $_SESSION["failure"] = "You may only set the user's permission to one that is lower than your current permission.";
+            if ($permissionName == "DENIED") {
+                $_SESSION["failure"] = "You do not have permission to blacklist users.";
+            } else {
+                $_SESSION["failure"] = "You do not have permission to set the user's permission to: " . $permissionName;
+            }
             header("Location: ../pages/professor.php?page=users");
             exit;
         }
@@ -67,24 +71,28 @@
 
         // If the option was not a TA
         if($permissionName != "TA"){
+            // Remove the user from TAs
             if($dao->isTeachingAssistant($targetUserId)) {
                 if (!$dao->deleteTeachingAssistant($targetUserId)) {
                     $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
                 }
             }
+            // Attempt to update the user
             if(!isset($_SESSION["failure"]) && $dao->updateUser($targetUserId, $targetFirstName, $targetLastName, $targetEmail, $permissionID, $originUserId) == TRUE){
                 $_SESSION["success"] = "Updated the user: " . $targetFirstName . " " . $targetLastName;
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
-            } 
+            }
+            // Blacklist the user if permission is denied
             if($permissionName == "DENIED"){
-                $created = $dao->createBlacklistEntry($originUserId, $targetEmail);
-                if ($created && isset($_SESSION["success"])) {
-                    $_SESSION["success"] = "Updated the user: " . $targetFirstName . " " . $targetLastName . " and blacklisted them.";
-                } elseif ($created) {
-                    $_SESSION["success"] = "Email was added to the blacklist.";
+                if (strtoupper($originUser["permission_name"]) == "ADMIN") {
+                    if ($dao->createBlacklistEntry($originUserId, $targetEmail)) {
+                        $_SESSION["success"] = "Updated and blacklisted the user: " . $targetFirstName . " " . $targetLastName;
+                    } else {
+                        $_SESSION["failure"] = "Unable to add email to the blacklist.";
+                    }
                 } else {
-                    $_SESSION["failure"] = "Unable to add email to the blacklist.";
+                    $_SESSION["failure"] = "You do not have the permission to blacklist users.";
                 }
             } else if ($dao->isBlacklisted($targetEmail)) {
                 $dao->deleteBlacklistEntryByEmail($targetEmail);
