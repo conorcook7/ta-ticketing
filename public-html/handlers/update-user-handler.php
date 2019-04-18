@@ -15,7 +15,7 @@
     //compares users to ensure only a user that has power over the other is updating.
     if($dao->getUserById($admin_id)["permission_id"] < $dao->getUserById($user_id)["permission_id"]){
         $_SESSION["failure"] = "You are too weak to update that user (They outrank you)";
-        header("Location: ../pages/admin.php?id=users");
+        header("Location: ../pages/professor.php?page=users");
         exit;
     }
 
