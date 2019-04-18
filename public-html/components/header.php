@@ -11,7 +11,7 @@
     
     $dao = new Dao();
     if (!isset($_SESSION["user"])) {
-        $_SESSION["login-error"] = "Unable to authenticate.";
+        $_SESSION["login-error"] = "You were logged out.";
         header("Location: " . generateUrl("/handlers/logout-handler.php"));
         exit();
     }

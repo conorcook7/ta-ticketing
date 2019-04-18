@@ -23,7 +23,7 @@ $(document).ready(function() {
   }
 
   // On window close, reload, or back.
-  window.addEventListener("beforeunload unload", function(event) {
+  $(window).on("unload beforeunload", function(event) {
     sendClientUpdate(true);
   });
 
