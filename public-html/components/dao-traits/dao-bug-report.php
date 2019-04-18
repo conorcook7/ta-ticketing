@@ -69,11 +69,11 @@ trait DaoBugReport {
                 // Create the general message
                 $message = "<html><body>";
 
-                $message .= "<p>Hello</p><p>" . htmlentities($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!</p>";
+                $message .= "<p>Hello,</p><p>" . htmlentities($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!</p>";
                 $message .= "<p><strong>Author's Email:</strong> " . htmlentities($creator["email"]) . "</p>";
                 $message .= "<div><strong>Title: </strong>" . $title . "</div><div><strong>Description:</strong></div><div><p>" . $description . "</div></p>";
-                $message .= "<p>This is an automated message sent by the TA Ticketing Service at Boise State University.</p>";
-                $message .= "<p>TA Ticketing &copy; Boise State University<p>";
+                $message .= "<div><p>This is an automated message sent by the TA Ticketing Service at Boise State University.</p>";
+                $message .= "<p>TA Ticketing &copy; Boise State University<p></div>";
 
                 $message .= "</body></html>";
                 
