@@ -42,10 +42,10 @@ trait DaoPermissions {
             $query->execute();
             $permissionName = $query->fetch()["permission_name"];
             $permissionName = strtoupper($permissionName);
-            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Obtained permission levels");
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Obtained permission name");
             return $permissionName;
         } catch (Exception $e) {
-            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get permission levels");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get permission name");
             $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
         }
