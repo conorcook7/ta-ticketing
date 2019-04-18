@@ -20,19 +20,24 @@
     $permissionID = $_POST["permissionID"];
     $permissionName = $permissionID == 0 ? "DELETE" : $dao->getPermissionByID($permissionID);
 
-    //compares users to ensure only a user that has power over the other is updating.
-    if(strtoupper($admin["permission_name"]) != "ADMIN" && $admin["permission_id"] <= $user["permission_id"]){
-        $_SESSION["failure"] = "You do not have permission to update that user.";
-        header("Location: ../pages/professor.php?page=users");
-        exit;
-    }
-
-    // Checking that the professor does not set a user higher than themselves
-    if (strtoupper($admin["permission_name"]) != "ADMIN" && $permissionID <= $user["permission_id"]) {
+    // Only check if the person updating is not an admin
+    if(strtoupper($admin["permission_name"]) != "ADMIN") {
+        //compares users to ensure only a user that has power over the other is updating.
+        if ($admin["permission_id"] <= $user["permission_id"]) {
+            $_SESSION["failure"] = "You do not have permission to update that user.";
+            header("Location: ../pages/professor.php?page=users");
+            exit;
+        }
+        
+        // Checking that the professor does not set a user higher than themselves
+        if ($user["permission_id"] <= $permissionID) {
         $_SESSION["failure"] = "You may only set the user's permission to one that is lower than your current permission.";
         header("Location: ../pages/professor.php?page=users");
         exit;
     }
+    }
+
+    
 
     // If delete option was selected
     if($permissionName == "DELETE"){
