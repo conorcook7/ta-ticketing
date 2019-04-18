@@ -58,7 +58,7 @@
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
             } 
-            if($permissionID == 4){
+            if($permissionID == 5){
                 $created = $dao->createBlacklistEntry($admin_id, $email);
                 if ($created && isset($_SESSION["success"])) {
                     $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName . " and blacklisted them.";
