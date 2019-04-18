@@ -56,9 +56,9 @@
                             </div>
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <?php require_once "how-to/how-to-admin.php"; ?>
-                            <?php require_once "how-to/how-to-ta.php"; ?>
-                            <?php require_once "how-to/how-to-user.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-admin.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-ta.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-user.php"; ?>
                         </div>
                     </div>
                 </div>
@@ -88,12 +88,12 @@
                             </div>
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <?php require_once "how-to/how-to-ta.php"; ?>
-                            <?php require_once "how-to/how-to-user.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-ta.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-user.php"; ?>
                         </div>
                     </div>
                 </div>
-                <?php   } else { require_once "how-to/how-to-user.php"; } ?>
+                <?php   } else { require_once "../../components/how-to/how-to-user.php"; } ?>
             </div>
             <!-- /.container-fluid -->
         </div>

@@ -1,10 +1,3 @@
-<?php
-    session_start();
-    require_once '../../components/header.php';
-    $page = 'how-to-user.php';
-    $nav = 'help';
-    $permimssion = strtoupper($_SESSION["user"]["permission"]);
-?>
 <div class="tab-pane fade <?php if ($permission == 'USER') {echo 'active show';} ?>" id="nav-how-to-user" role="tabpanel" aria-labelledby="nav-how-to-user-tab">
 
     <!-- Create a ticket -->
