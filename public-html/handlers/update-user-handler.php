@@ -30,7 +30,7 @@
         }
         // Checking that the professor does not set a user higher than themselves
         if ($originUser["permission_id"] <= $permissionID) {
-            $_SESSION["failure"] = "You may only set the user's permission to one that is lower than your current permission." . $originUser["permission_id"] . " " .$permissionID;
+            $_SESSION["failure"] = "You may only set the user's permission to one that is lower than your current permission.";
             header("Location: ../pages/professor.php?page=users");
             exit;
         }
