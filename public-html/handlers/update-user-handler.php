@@ -21,7 +21,7 @@
     }
 
     // If delete option was selected
-    if($permissionID == "DELETE"){
+    if($permissionName == "DELETE"){
         if($dao->deleteUser($email) == TRUE){
             $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
         } else {
@@ -45,7 +45,7 @@
     } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
 
         // If the option was not a TA
-        if($permissionID != "TA"){
+        if($permissionName != "TA"){
             if($dao->isTeachingAssistant($user_id)) {
                 if (!$dao->deleteTeachingAssistant($user_id)) {
                     $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
@@ -59,7 +59,7 @@
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
             } 
-            if($permissionID == "DENIED"){
+            if($permissionName == "DENIED"){
                 $created = $dao->createBlacklistEntry($admin_id, $email);
                 if ($created && isset($_SESSION["success"])) {
                     $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName . " and blacklisted them.";
