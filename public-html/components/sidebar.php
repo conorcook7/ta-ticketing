@@ -32,8 +32,7 @@
             require_once "sidebar-menus/sidebar-admin.php";
 
         } else if ($permission == "PROFESSOR") {
-            require_once "sidebar-menus/sidebar-user.php";
-            require_once "sidebar-menus/sidebar-admin.php";
+            require_once "sidebar-menus/sidebar-professor.php";
 
         } else if ($permission == "TA") {
             require_once "sidebar-menus/sidebar-user.php";
