@@ -148,14 +148,16 @@ $(document).ready(function() {
    * Reload the tables after every interval
    */
   setInterval(function() {
+    userOpenTicketsTable.ajax.reload();
+    taOpenTicketsTable.ajax.reload(showClosingForm);
+    availableTeachingAssistantsTable.ajax.reload();
+  }, 15 * 1000);
+
+  setInterval(function() {
     allTicketsTable.ajax.reload();
     closedTicketsTable.ajax.reload();
     openTicketsTable.ajax.reload(showClosingForm);
-    taOpenTicketsTable.ajax.reload(showClosingForm);
-    userOpenTicketsTable.ajax.reload();
-    userOpenTicketsTable.ajax.reload();
     userClosedTicketsTable.ajax.reload();
-    availableTeachingAssistantsTable.ajax.reload();
   }, 30 * 1000);
 
   /**
