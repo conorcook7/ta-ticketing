@@ -93,6 +93,7 @@
             }
         }
     }
-    header("Location: ../pages/admin.php?id=users");
+    $page = $permissionName == "ADMIN" ? "admin.php?id" : "professor.php?page";
+    header("Location: ../pages/" . $page . "id=users");
     exit;
 ?>
