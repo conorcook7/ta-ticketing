@@ -11,9 +11,9 @@
     $targetUserId = $_POST["userID"];
     $targetUser = $dao->getUserById($targetUserId);
 
-    $firstName = $_POST["firstName"];
-    $lastName = $_POST["lastName"];
-    $email = $_POST["userEmail"];
+    $targetFirstName = $_POST["firstName"];
+    $targetLastName = $_POST["lastName"];
+    $targetEmail = $_POST["userEmail"];
     $courseId = $_POST["courseId"];
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
@@ -40,10 +40,10 @@
     if($permissionName == "DELETE"){
         // Restict delete to admins only
         if (strtoupper($originUser["permission_name"]) == "ADMIN") {
-            if($dao->deleteUser($email) == TRUE){
-                $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
+            if($dao->deleteUser($targetEmail) == TRUE){
+                $_SESSION["success"] = "Deleted the user: " . $targetFirstName . " " . $targetLastName;
             } else {
-                $_SESSION["failure"] = "Failed to delete the user: " . $firstName . " " . $lastName;
+                $_SESSION["failure"] = "Failed to delete the user: " . $targetFirstName . " " . $targetLastName;
             }
         } else {
             $_SESSION["failure"] = "You do not have permission to delete users.";
@@ -51,62 +51,62 @@
     
     // If the create new person option was selected
     } else if($targetUserId == -1){
-        if($dao->createUser($email, $firstName, $lastName) == TRUE){
-            if($dao->updateUser($targetUserId, $firstName, $lastName, $email, $permissionID, $originUserId) == TRUE){
-                $_SESSION["success"] = "Created the user: " . $firstName . " " . $lastName;
+        if($dao->createUser($targetEmail, $targetFirstName, $targetLastName) == TRUE){
+            if($dao->updateUser($targetUserId, $targetFirstName, $targetLastName, $targetEmail, $permissionID, $originUserId) == TRUE){
+                $_SESSION["success"] = "Created the user: " . $targetFirstName . " " . $targetLastName;
             } else {
-                $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
+                $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
             }
-            $_SESSION["success"] = "Created the user: " . $firstName . " " . $lastName;
+            $_SESSION["success"] = "Created the user: " . $targetFirstName . " " . $targetLastName;
         } else {
-            $_SESSION["failure"] = "Failed to create the user: " . $firstName . " " . $lastName;
+            $_SESSION["failure"] = "Failed to create the user: " . $targetFirstName . " " . $targetLastName;
         }
     
     // General case
-    } else if(isset($targetUserId, $firstName, $lastName, $email, $permissionID, $originUserId)) {
+    } else if(isset($targetUserId, $targetFirstName, $targetLastName, $targetEmail, $permissionID, $originUserId)) {
 
         // If the option was not a TA
         if($permissionName != "TA"){
             if($dao->isTeachingAssistant($targetUserId)) {
                 if (!$dao->deleteTeachingAssistant($targetUserId)) {
-                    $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
+                    $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
                 }
             }
-            if(!isset($_SESSION["failure"]) && $dao->updateUser($targetUserId, $firstName, $lastName, $email, $permissionID, $originUserId) == TRUE){
-                $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
+            if(!isset($_SESSION["failure"]) && $dao->updateUser($targetUserId, $targetFirstName, $targetLastName, $targetEmail, $permissionID, $originUserId) == TRUE){
+                $_SESSION["success"] = "Updated the user: " . $targetFirstName . " " . $targetLastName;
             } else {
-                $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
+                $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
             } 
             if($permissionName == "DENIED"){
-                $created = $dao->createBlacklistEntry($originUserId, $email);
+                $created = $dao->createBlacklistEntry($originUserId, $targetEmail);
                 if ($created && isset($_SESSION["success"])) {
-                    $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName . " and blacklisted them.";
+                    $_SESSION["success"] = "Updated the user: " . $targetFirstName . " " . $targetLastName . " and blacklisted them.";
                 } elseif ($created) {
                     $_SESSION["success"] = "Email was added to the blacklist.";
                 } else {
                     $_SESSION["failure"] = "Unable to add email to the blacklist.";
                 }
-            } else if ($dao->isBlacklisted($email)) {
-                $dao->deleteBlacklistEntryByEmail($email);
+            } else if ($dao->isBlacklisted($targetEmail)) {
+                $dao->deleteBlacklistEntryByEmail($targetEmail);
             }
         
         // If the option was set to TA
         } else {
-            if ($dao->isBlacklisted($email)) {
-                $dao->deleteBlacklistEntryByEmail($email);
+            if ($dao->isBlacklisted($targetEmail)) {
+                $dao->deleteBlacklistEntryByEmail($targetEmail);
             }
             if ($dao->isTeachingAssistant($targetUserId)) {
                 if ($dao->updateTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE) {
-                    $_SESSION["success"] = "Updated teaching assistant: " . $firstName . " " . $lastName;
+                    $_SESSION["success"] = "Updated teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } else {
-                    $_SESSION["failure"] = "Failed to update the teaching assistant: " . $firstName . " " . $lastName;
+                    $_SESSION["failure"] = "Failed to update the teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } 
                 
             } else {
                 if($dao->createTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE){
-                    $_SESSION["success"] = "Created teaching assistant: " . $firstName . " " . $lastName;
+                    $_SESSION["success"] = "Created teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } else {
-                    $_SESSION["failure"] = "Failed to create the teaching assistant: " . $firstName . " " . $lastName;
+                    $_SESSION["failure"] = "Failed to create the teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } 
             }
         }
