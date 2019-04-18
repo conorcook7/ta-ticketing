@@ -20,7 +20,7 @@
                 <?php
                     $permission = strtoupper($_SESSION["user"]["permission"]);
                     
-                    if ($permission == "ADMIN") {
+                    if ($permission == "ADMIN" || $permission == "PROFESSOR") {
                     ?>
                 <div class="row">
                     <div class="col-xs-12">
