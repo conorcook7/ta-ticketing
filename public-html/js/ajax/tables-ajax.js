@@ -1,3 +1,8 @@
+/*!
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
 $(document).ready(function() {
   // Figure out relative pathing
   let numPaths = window.location.pathname.split("/").length - 1;

@@ -1,3 +1,8 @@
+/*!
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
 $(document).ready(function() {
   $.ajax({
     url:
@@ -12,7 +17,9 @@ $(document).ready(function() {
           `<div class="card shadow mb-4 ac">
                   <div class="card-header py-3">
                       <span class="h5 m-0 font-weight-bold text-primary">` +
-                      courses[i]["course_number"].toUpperCase() + ` - ` + courses[i]["course_name"].toUpperCase() +
+            courses[i]["course_number"].toUpperCase() +
+            ` - ` +
+            courses[i]["course_name"].toUpperCase() +
             `         </span>
                   </div>
                 <div class="card-body">
