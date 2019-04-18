@@ -55,19 +55,11 @@
             <!-- Topbar -->
             <?php include_once '../components/topbar.php'; ?>
             <!-- End of Topbar -->
-            <?php if (isset($_SESSION["success"])){ ?>
-            <div class="alert alert-success">
-                <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
-            </div>
-            <?php } elseif (isset($_SESSION["failure"])) { ?>
-            <div class="alert alert-danger">
-                <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
-            </div>
-            <?php }
-                unset($_SESSION["failure"]);
-                unset($_SESSION["success"]);
-                ?>
             <?php
+                // Add the alert message
+                require_once "../components/success-failure-alert.php";
+
+                // Include the correct page
                 $selection = $_SESSION['admin-selection'];
                 if ($selection == 'DEFAULT' || $selection == 'users'){
                   include_once '../components/users/users-table.php';
@@ -90,7 +82,7 @@
                 } else if ($selection == 'blacklist') {
                   include_once '../components/users/blacklist.php';
                 }
-                ?>
+            ?>
         </div>
         <?php require_once '../components/footer.php';?>
     </div>

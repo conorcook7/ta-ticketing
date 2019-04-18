@@ -20,6 +20,7 @@
         <!-- Topbar -->
         <?php include_once '../../components/topbar.php'; ?>
         <!-- End of Topbar -->
+        <?php require_once "../../components/success-failure-alert.php"; ?>
       
         <!-- Main Content -->
         <div id="content">
@@ -33,18 +34,6 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text"><i class="fas fa-exclamation-circle"></i> Reporting an issue will notify all of the website administrators via email.</p>
-                            <?php if (isset($_SESSION["success"])){ ?>
-                            <div class="alert alert-success">
-                                <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
-                            </div>
-                            <?php } elseif (isset($_SESSION["failure"])) { ?>
-                            <div class="alert alert-danger">
-                                <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
-                            </div>
-                            <?php }
-                                unset($_SESSION["failure"]);
-                                unset($_SESSION["success"]);
-                                ?>
                             <form id="bug-form" method="POST" action="../../handlers/bug-report-handler.php">
                                 <label for="title">Issue</label>
                                 <div class="form-group w-50">

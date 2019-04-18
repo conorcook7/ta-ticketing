@@ -17,21 +17,11 @@
         <div id="content">
 
             <!-- Topbar -->
-            <?php include_once '../components/topbar.php'; ?>
+            <?php
+                require_once '../components/topbar.php';
+                require_once "../components/success-failure-alert.php";
+            ?>
             <!-- End of Topbar -->
-
-            <?php if (isset($_SESSION["success"])){ ?>
-            <div class="alert alert-success">
-                <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
-            </div>
-            <?php } elseif (isset($_SESSION["failure"])) { ?>
-            <div class="alert alert-danger">
-                <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
-            </div>
-            <?php }
-                unset($_SESSION["failure"]);
-                unset($_SESSION["success"]);
-                ?>
             <div class="container-fluid">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">

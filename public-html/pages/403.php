@@ -14,19 +14,10 @@
 <div id="wrapper" class="h-100">
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column h-100">
-        <?php require_once "../components/topbar.php"; ?>
-        <?php if (isset($_SESSION["success"])){ ?>
-        <div class="alert alert-success">
-            <strong>Success!</strong> <?php echo $_SESSION["success"]; ?>
-        </div>
-        <?php } elseif (isset($_SESSION["failure"])) { ?>
-        <div class="alert alert-danger">
-            <strong>Failure!</strong> <?php echo $_SESSION["failure"]; ?>
-        </div>
-        <?php }
-            unset($_SESSION["failure"]);
-            unset($_SESSION["success"]);
-            ?>
+        <?php
+            require_once "../components/topbar.php";
+            require_once "../components/success-failure-alert.php";
+        ?>
         <!-- 403 Error Text -->
         <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
             <div class="error mx-auto" data-text="403">403</div>
