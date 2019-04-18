@@ -58,9 +58,6 @@
                     $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
                 }
             }
-            if ($dao->isBlacklisted($email)) {
-
-            }
             if(!isset($_SESSION["failure"]) && $dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
                 $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
             } else {
