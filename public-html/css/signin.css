@@ -1,3 +1,7 @@
+/**
+  * Copyright 2019 Boise State University
+  * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+  */
 html,
 body {
   height: 100%;
@@ -47,12 +51,12 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-#please-sign{
-    color: #11327c;
-    letter-spacing: 2px;
-    font-weight: 600;
+#please-sign {
+  color: #11327c;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
-.panel{
+.panel {
   background: rgba(255, 255, 255, 0.7);
   margin: auto;
   width: 35%;
@@ -60,10 +64,11 @@ body {
   border-radius: 25px;
 }
 @media only screen and (max-width: 600px) {
-  .panel{
+  .panel {
     min-width: 300px;
   }
-  .image{
-    position:relative; left:-15px;
+  .image {
+    position: relative;
+    left: -15px;
   }
 }
