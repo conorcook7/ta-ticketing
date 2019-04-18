@@ -2,20 +2,27 @@
     session_start();
     require_once "../components/dao.php";
     $dao = new Dao();
+
+    // Get the Admin by the ID
     $admin_id = $_SESSION['user']['user_id'];
+    $admin = $dao->getUserById($admin_id);
+
+    // Get the user by the ID
     $user_id = $_POST["userID"];
+    $user = $dao->getUserById($user_id);
+
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
     $email = $_POST["userEmail"];
     $courseId = $_POST["courseId"];
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
-    $permissionID = $_POST["permissionID"];       
+    $permissionID = $_POST["permissionID"];
     $permissionName = $permissionID == 0 ? "DELETE" : $dao->getPermissionByID($permissionID);
 
     //compares users to ensure only a user that has power over the other is updating.
-    if($dao->getUserById($admin_id)["permission_id"] < $dao->getUserById($user_id)["permission_id"]){
-        $_SESSION["failure"] = "You are too weak to update that user (They outrank you)";
+    if(strtoupper($admin["permission_name"]) != "ADMIN" && $admin["permission_id"] <= $user["permission_id"]){
+        $_SESSION["failure"] = "You do not have permission to update that user.";
         header("Location: ../pages/professor.php?page=users");
         exit;
     }
@@ -93,7 +100,7 @@
             }
         }
     }
-    $page = $permissionName == "ADMIN" ? "admin.php?id" : "professor.php?page";
+    $page = $admin["permission_name"] == "ADMIN" ? "admin.php?id" : "professor.php?page";
     header("Location: ../pages/" . $page . "=users");
     exit;
 ?>
