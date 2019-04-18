@@ -8,8 +8,8 @@
     
     // Setting the page for the navbar
     if(getPermission() == "PROFESSOR"){
-      if(isset($_GET['id'])){
-        $_SESSION['admin-selection'] = $_GET['id'];
+      if(isset($_GET['page'])){
+        $_SESSION['admin-selection'] = $_GET['page'];
         $selection = $_SESSION['admin-selection'];
           if ($selection == 'DEFAULT' || $selection == 'users'){
               $page = 'users-table.php';
@@ -38,7 +38,7 @@
     } else {
       $_SESSION['admin-selection'] = 'UNNAUTHORIZED';
     }
-    unset($_GET['id']);
+    unset($_GET['page']);
     ?>
 <div id="wrapper">
     <!-- Start of Sidebar -->
