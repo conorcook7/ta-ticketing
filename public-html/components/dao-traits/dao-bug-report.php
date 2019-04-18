@@ -52,17 +52,22 @@ trait DaoBugReport {
 
             // Create the message to send
             if(!empty($adminEmails)) {
+                // Assign the person receiving the email
                 $to = $adminEmails[0]["email"];
+                // Create a subject line
                 $subject = "TA Ticketing Bug Report";
+                // Create the general message
                 $message = "Hello!\n\n" . htmlentities($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!\n\n";
                 $message .= "Author's Email: " . htmlentities($creator["email"]) . "\n\n";
                 $message .= "Title: " . $title . "\n\nDescription:\n" . $description . "\n\n\n";
                 $message .= "This is an automated message sent by the TA Ticketing Service at Boise State University.\n";
                 $message .= "TA Ticketing &copy; Boise State University";
+                // Create header to the email
                 $headers = "From: no-reply@taticketing.boisestate.edu" . "\n" . "CC: ";
                 for ($i = 1; $i < count($adminEmails); $i++) {
                     $headers .= $adminEmails[$i]["email"] . " ";
                 }
+                $header .= "\nContent-Type: text/html; charset=utf-8";
 
                 // Send the email to all admins (including the taticketing@boisestate.edu email account)
                 $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
