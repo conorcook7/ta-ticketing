@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+    
 
 /**
  * Blacklist trait to deal with users. The blacklist is going to deal with

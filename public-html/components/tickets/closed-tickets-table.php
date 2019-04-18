@@ -1,4 +1,11 @@
-<?php $page = "closed-tickets-table.php";?>
+<?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+
+    $page = "closed-tickets-table.php";
+?>
 <div class="container-fluid">
     <!-- All Closed Tickets Table -->
     <div class="card shadow mb-4">

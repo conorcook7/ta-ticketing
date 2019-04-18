@@ -1,5 +1,12 @@
-<?php $page = "open-tickets-table.php"; 
-    $my_ta_id = $_SESSION["user"]["user_id"];?>
+<?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+    
+     $page = "open-tickets-table.php"; 
+    $my_ta_id = $_SESSION["user"]["user_id"];
+?>
 <div id="toggle-close-ticket" class="p-4 mb-4" style="display: none">
     <form method="POST" id="close-ticket-form" action="../handlers/ticket-handler.php">
         <input id="open-ticket-id" type="hidden" name="open_ticket_id" value="" />

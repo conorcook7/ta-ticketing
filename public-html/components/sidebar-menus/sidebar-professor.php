@@ -1,3 +1,9 @@
+<?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+?>
 <!-- professor Pages-->
 <!-- View Users Navbar Item -->
 <li class="nav-item <?php if ($page == 'users-table.php' || $page == 'professor.php') { echo 'active'; }?>">

@@ -1,5 +1,10 @@
 <?php
 /**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
+/**
  * Teaching Assistants trait to contain the dao functions.
  * 
  * Traits are used to abstract the functions out of a class. The class can

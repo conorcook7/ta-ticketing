@@ -1,4 +1,11 @@
-<?php $page = "update-users.php"; ?>
+<?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+
+    $page = "update-users.php";
+?>
 <div class="container-fluid">
     <?php if (isset($_SESSION["success"])){ ?>
         <div class="alert alert-success">

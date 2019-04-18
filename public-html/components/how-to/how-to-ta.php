@@ -1,3 +1,9 @@
+<?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+?>
 <div class="tab-pane fade <?php if ($permission == 'TA') {echo 'active show';} ?>" id="nav-how-to-ta" role="tabpanel" aria-labelledby="nav-how-to-ta-tab">
     <!-- Close a ticket -->
     <div class="card shadow mb-4">

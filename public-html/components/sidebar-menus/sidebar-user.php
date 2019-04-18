@@ -1,3 +1,9 @@
+<?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+?>
 <!-- User Pages -->
 <li class="nav-item <?php if ($page == 'user.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/user.php');?>">

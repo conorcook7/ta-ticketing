@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
 
 /**
  * Generates a url with the current protocol and host. It then appends
