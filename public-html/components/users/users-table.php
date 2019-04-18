@@ -1,4 +1,7 @@
-<?php $page = "users-table.php"; ?>
+<?php
+    session_start();
+    $page = "users-table.php";
+?>
 <div class="container-fluid">
         <div>
           <?php if (isset($_SESSION["success"])){ ?>
@@ -34,11 +37,12 @@
                   </thead>
                   <tbody>
                   <?php 
-                    $users = $dao->getUsers();
-                    foreach($users as $user) { 
+                      $page = strtoupper($_SESSION["user"]["permission"]) == "ADMIN" ? "admin.php?id" : "professor.php?page";
+                      $users = $dao->getUsers();
+                      foreach($users as $user) {
                   ?>
                         <tr>
-                        <form method="POST" action="../pages/admin.php?id=users-form">
+                        <form method="POST" action="../pages/<?php echo $page; ?>=users-form">
                             <input type="hidden" name="firstName" value="<?php echo htmlspecialchars($user['first_name']); ?>"/>
                             <input type="hidden" name="lastName" value="<?php echo htmlspecialchars($user['last_name']); ?>"/>
                             <input type="hidden" name="email" value="<?php echo htmlspecialchars($user['email']); ?>"/>
