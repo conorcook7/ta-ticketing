@@ -39,22 +39,6 @@
     </a>
 </li>
 
-<!-- Blacklist Navbar Item -->
-<li class="nav-item <?php if ($page == 'blacklist.php') { echo 'active'; }?>">
-    <a class="nav-link" href="<?php echo generateUrl('/pages/professor.php?page=blacklist');?>">
-        <i class="fas fa-fw fa-ban"></i>
-        <span class="LetterSpacing">View Email Blacklist</span>
-    </a>
-</li>
-
-<!-- View Bug Reports Navbar Item -->
-<li class="nav-item <?php if ($nav == 'professor' && $page == 'bug-reports.php') { echo 'active'; }?>">
-    <a class="nav-link" href="<?php echo generateUrl('/pages/professor.php?page=bug-reports');?>">
-        <i class="fas fa-fw fa-bug"></i>
-        <span class="LetterSpacing">View Bug Reports</span>
-    </a>
-</li>
-
 <!-- Create/Delete Classes Navbar Item -->
 <li class="nav-item <?php if ($page == 'classes.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/professor.php?page=classes');?>">
@@ -68,14 +52,6 @@
     <a class="nav-link" href="<?php echo generateUrl('/pages/professor.php?page=users-form');?>">
         <i class="fas fa-fw fa-user-cog"></i>
         <span class="LetterSpacing">Update/Create User</span>
-    </a>
-</li>
-
-<!-- Create/Delete Navbar Item -->
-<li class="nav-item <?php if ($nav == 'professor' && $page == 'faq.php') { echo 'active'; }?>">
-    <a class="nav-link" href="<?php echo generateUrl('/pages/professor.php?page=faq');?>">
-        <i class="fas fa-fw fa-question-circle"></i>
-        <span class="LetterSpacing">Create/Delete FAQs</span>
     </a>
 </li>
 <!-- End professor Pages -->

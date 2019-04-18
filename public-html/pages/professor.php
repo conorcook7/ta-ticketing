@@ -25,12 +25,6 @@
             $page = 'classes.php';
           } else if ($selection == 'users-form'){
             $page = 'update-users.php';
-          } else if ($selection == 'faq'){
-            $page = 'faq.php';
-          } else if ($selection == 'bug-reports') {
-            $page = 'bug-reports.php';
-          } else if ($selection == 'blacklist') {
-            $page = 'blacklist.php';
           }
       } else {
         $_SESSION['admin-selection'] = 'DEFAULT';
