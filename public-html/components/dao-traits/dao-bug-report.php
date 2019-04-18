@@ -54,14 +54,10 @@ trait DaoBugReport {
             if(!empty($adminEmails)) {
                 // Assign the person receiving the email
                 $to = $adminEmails[0]["email"];
+
                 // Create a subject line
                 $subject = "TA Ticketing Bug Report";
-                // Create the general message
-                $message = "Hello!\r\n\r\n" . strip_tags($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!\r\n\r\n";
-                $message .= "Author's Email: " . strip_tags($creator["email"]) . "\r\n\r\n";
-                $message .= "Title: " . $title . "\r\n\r\nDescription:\r\n" . $description . "\r\n\r\n\r\n";
-                $message .= "This is an automated message sent by the TA Ticketing Service at Boise State University.\r\n";
-                $message .= "TA Ticketing &copy; Boise State University";
+
                 // Create header to the email
                 $headers = "From: no-reply@taticketing.boisestate.edu" . "\r\n" . "CC: ";
                 for ($i = 1; $i < count($adminEmails); $i++) {
@@ -69,6 +65,18 @@ trait DaoBugReport {
                 }
                 $headers .= "\r\nMIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+
+                // Create the general message
+                $message = "<html><body>";
+
+                $message .= "<p>Hello</p><p>" . strip_tags($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!</p>";
+                $message .= "<p><strong>Author's Email:</strong> " . strip_tags($creator["email"]) . "</p>";
+                $message .= "<div><strong>Title: </strong>" . $title . "</div><div><strong>Description:</strong></div><div><p>" . $description . "</div></p>";
+                $message .= "<p>This is an automated message sent by the TA Ticketing Service at Boise State University.</p>";
+                $message .= "<p>TA Ticketing &copy; Boise State University<p>";
+
+                $message .= "</body></html>";
+                
 
                 // Send the email to all admins (including the taticketing@boisestate.edu email account)
                 $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": " . "Attempting to send the email");
