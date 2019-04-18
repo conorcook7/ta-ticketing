@@ -145,7 +145,7 @@ $(document).ready(function() {
   availableTeachingAssistantsTable.ajax.reload();
 
   /**
-   * Reload the tables after every interval
+   * Reload the open ticket tables after every interval
    */
   setInterval(function() {
     userOpenTicketsTable.ajax.reload();
@@ -153,6 +153,9 @@ $(document).ready(function() {
     availableTeachingAssistantsTable.ajax.reload();
   }, 15 * 1000);
 
+  /**
+   * Reload the other tables after every interval
+   */
   setInterval(function() {
     allTicketsTable.ajax.reload();
     closedTicketsTable.ajax.reload();
