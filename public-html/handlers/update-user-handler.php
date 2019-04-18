@@ -33,7 +33,7 @@
             if ($permissionName == "DENIED") {
                 $_SESSION["failure"] = "You do not have permission to blacklist users.";
             } else {
-                $_SESSION["failure"] = "You do not have permission to set the user's permission to: " . $permissionName;
+                $_SESSION["failure"] = "You do not have permission to set the user's permission to: " . strtolower($permissionName);
             }
             header("Location: ../pages/professor.php?page=users");
             exit;
