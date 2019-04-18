@@ -10,7 +10,8 @@
     $courseId = $_POST["courseId"];
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
-    $permissionID = $_POST["permissionID"];
+    $permissionID = $_POST["permissionID"];       
+    $permissionName = $permissionID == 0 ? "DELETE" : $dao->getPermissionByID($permissionID);
 
     //compares users to ensure only a user that has power over the other is updating.
     if($dao->getUserById($admin_id)["permission_id"] < $dao->getUserById($user_id)["permission_id"]){
@@ -20,7 +21,7 @@
     }
 
     // If delete option was selected
-    if($permissionID == 0){
+    if($permissionID == "DELETE"){
         if($dao->deleteUser($email) == TRUE){
             $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
         } else {
@@ -44,7 +45,7 @@
     } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
 
         // If the option was not a TA
-        if($permissionID != 2){
+        if($permissionID != "TA"){
             if($dao->isTeachingAssistant($user_id)) {
                 if (!$dao->deleteTeachingAssistant($user_id)) {
                     $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
@@ -58,7 +59,7 @@
             } else {
                 $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
             } 
-            if($permissionID == 5){
+            if($permissionID == "DENIED"){
                 $created = $dao->createBlacklistEntry($admin_id, $email);
                 if ($created && isset($_SESSION["success"])) {
                     $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName . " and blacklisted them.";
