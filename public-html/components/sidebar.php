@@ -28,14 +28,15 @@
     <?php
         $permission = getPermission();
         if ($permission == "ADMIN") {
-            require_once "sidebar-menus/sidebar-user.php";
+            include_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-admin.php";
 
         } else if ($permission == "PROFESSOR") {
+            include_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-professor.php";
 
         } else if ($permission == "TA") {
-            require_once "sidebar-menus/sidebar-user.php";
+            include_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-ta.php";
 
         } else if ($permission == "USER") {
