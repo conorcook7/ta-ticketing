@@ -57,7 +57,8 @@ trait DaoBugReport {
                 $message = "Hello!\n\n" . htmlentities($creator["first_name"] . " " . $creator["last_name"]) . " just created a new bug report!\n\n";
                 $message .= "Author's Email: " . htmlentities($creator["email"]) . "\n\n";
                 $message .= "Title: " . $title . "\n\nDescription:\n" . $description . "\n\n\n";
-                $message .= "This is an automated message sent by the TA Ticketing Service at Boise State University.";
+                $message .= "This is an automated message sent by the TA Ticketing Service at Boise State University.\n";
+                $message .= "TA Ticketing &copy; Boise State University";
                 $headers = "From: no-reply@taticketing.boisestate.edu" . "\n" . "CC: ";
                 for ($i = 1; $i < count($adminEmails); $i++) {
                     $headers .= $adminEmails[$i]["email"] . " ";
