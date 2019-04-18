@@ -27,6 +27,13 @@
         exit;
     }
 
+    // Checking that the professor does not set a user higher than themselves
+    if (strtoupper($admin["permission_name"]) != "ADMIN" && $permissionID <= $user["permission_id"]) {
+        $_SESSION["failure"] = "You may only set the user's permission to one that is lower than your current permission.";
+        header("Location: ../pages/professor.php?page=users");
+        exit;
+    }
+
     // If delete option was selected
     if($permissionName == "DELETE"){
         if($dao->deleteUser($email) == TRUE){
