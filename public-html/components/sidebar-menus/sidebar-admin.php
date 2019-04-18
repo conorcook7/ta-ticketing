@@ -48,7 +48,7 @@
 </li>
 
 <!-- View Bug Reports Navbar Item -->
-<li class="nav-item <?php if ($nav == 'admin' && $page == 'bug-reports.php') { echo 'active'; }?>">
+<li class="nav-item <?php if ($nav == 'admin' && $page == 'bug-reports-table.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=bug-reports');?>">
         <i class="fas fa-fw fa-bug"></i>
         <span class="LetterSpacing">View Bug Reports</span>

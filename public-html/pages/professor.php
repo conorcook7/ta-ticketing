@@ -1,5 +1,4 @@
 <?php
-    require_once '../components/header.php';
     require_once '../components/dao.php';
     require_once '../components/server-functions.php';
     $dao = new Dao();
@@ -9,8 +8,8 @@
     // Setting the page for the navbar
     if(getPermission() == "PROFESSOR"){
       if(isset($_GET['page'])){
-        $_SESSION['admin-selection'] = $_GET['page'];
-        $selection = $_SESSION['admin-selection'];
+        $_SESSION['professor-selection'] = $_GET['page'];
+        $selection = $_SESSION['professor-selection'];
           if ($selection == 'DEFAULT' || $selection == 'users'){
               $page = 'users-table.php';
           } else if ($selection == 'online-users'){
@@ -25,14 +24,19 @@
             $page = 'classes.php';
           } else if ($selection == 'users-form'){
             $page = 'update-users.php';
+          } else {
+              header("Location: 404.php");
+              exit();
           }
       } else {
-        $_SESSION['admin-selection'] = 'DEFAULT';
+        $_SESSION['professor-selection'] = 'DEFAULT';
       }
     } else {
-      $_SESSION['admin-selection'] = 'UNNAUTHORIZED';
+      header("Location: 403.php");
+      exit();
     }
     unset($_GET['page']);
+    require_once '../components/header.php';
     ?>
 <div id="wrapper">
     <!-- Start of Sidebar -->
@@ -58,34 +62,21 @@
                 unset($_SESSION["success"]);
                 ?>
             <?php
-                $selection = $_SESSION['admin-selection'];
-                if ($selection == 'UNNAUTHORIZED'){ ?>
-            <div class="d-flex flex-column justify-content-center text-center p-4 h-100">
-                <div class="error mx-auto" data-text="403">403</div>
-                <p class="lead text-gray-800 mb-5">Permission Denied</p>
-                <a href="<?php echo generateUrl('/pages/') . strtolower($_SESSION['user']['permission']) . '.php'; ?>">&larr; Back to Dashboard</a>
-            </div>
-            <?php
-                } elseif ($selection == 'DEFAULT' || $selection == 'users'){
+                $selection = $_SESSION['professor-selection'];
+                if ($selection == 'DEFAULT' || $selection == 'users'){
                   include_once '../components/users/users-table.php';
-                } elseif ($selection == 'online-users'){
+                } else if ($selection == 'online-users'){
                   include_once '../components/users/online-users-table.php';
-                } elseif ($selection == 'tickets'){
+                } else if ($selection == 'tickets'){
                   include_once '../components/tickets/tickets-table.php';
-                } elseif ($selection == 'open-tickets'){
+                } else if ($selection == 'open-tickets'){
                   include_once '../components/tickets/open-tickets-table.php';
-                } elseif ($selection == 'closed-tickets'){
+                } else if ($selection == 'closed-tickets'){
                   include_once '../components/tickets/closed-tickets-table.php';
-                } elseif ($selection == 'classes'){
+                } else if ($selection == 'classes'){
                   include_once '../components/users/classes.php';
-                } elseif ($selection == 'users-form'){
+                } else if ($selection == 'users-form'){
                   include_once '../components/users/update-users.php';
-                } elseif ($selection == 'faq'){
-                  include_once '../components/users/faq.php';
-                } elseif ($selection == 'bug-reports') {
-                  include_once '../components/users/bug-reports.php';
-                } elseif ($selection == 'blacklist') {
-                  include_once '../components/users/blacklist.php';
                 }
                 ?>
         </div>

@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $page = "bug-reports.php"; 
+    $page = "bug-reports-table.php";
 ?>
 <?php if (isset($_SESSION["bug-report-success"])){ ?>
     <div class="alert alert-success mx-4">

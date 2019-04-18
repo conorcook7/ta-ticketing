@@ -3,13 +3,6 @@
 session_start();
 $page = 'blacklist.php';
 
-// Check if the user is an admin
-$permission = strtoupper($_SESSION["user"]["permission"]);
-if ($permission != "ADMIN" && $permission != "ADMINISTRATOR") {
-    header("Location: 403.php");
-    exit();
-}
-
 // If the success/failure alert was triggered
 if (isset($_SESSION["blacklist-success"])){ ?>
     <div class="alert alert-success mx-4">
