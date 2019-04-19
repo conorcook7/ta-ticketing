@@ -11,11 +11,6 @@ $(document).ready(function() {
   let blacklistEmail = $("#blacklist-email");
   let blacklistSubmit = $("#blacklist-submit");
 
-  // Hide the form on window click
-  $("#content, #content-wrapper").on("click", function() {
-    blacklist.css({ display: "none" });
-  });
-
   // Keep form from hiding
   blacklist.on("click", function(event) {
     event.stopPropagation();
@@ -111,4 +106,42 @@ $(document).ready(function() {
       taDiv.css({ display: "none" });
     }
   }
+
+  /**
+   * This section will handle the bug report resolve div
+   */
+  let bugReportsDiv = $("#bug-reports-div");
+  let bugReportIdInput = $("#bug-report-id");
+  let bugReportTitleInput = $("#bug-report-title");
+
+  // If the resolve button is clicked
+  $(".bug-report-resolve-btn").on("click", function(event) {
+    event.stopPropagation();
+    bugReportsDiv.css({ display: "" });
+    let row = event.target.parentElement.parentElement;
+    let id = row.children[0].innerHTML;
+    let user = row.children[1].innerHTML;
+    let title = row.children[2].innerHTML;
+    bugReportIdInput.val(id);
+    bugReportTitleInput.val(title);
+    $("#resolve-id").html(id);
+    $("#resolve-user").html(user);
+    $("#resolve-title").html(title);
+  });
+
+  // If the cancel button is clicked
+  $("#resolve-cancel").on("click", function(event) {
+    bugReportsDiv.css({ display: "none" });
+    $("#resolve-description").val("");
+  });
+
+  // Keep the div open if clicked
+  bugReportsDiv.on("click", function(event) {
+    event.stopPropagation();
+  });
+
+  // Hide all forms on window click
+  $("#content, #content-wrapper").on("click", function() {
+    blacklist.css({ display: "none" });
+  });
 });

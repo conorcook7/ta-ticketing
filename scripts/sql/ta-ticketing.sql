@@ -92,13 +92,17 @@ CREATE TABLE IF NOT EXISTS Frequently_Asked_Questions (
 
 CREATE TABLE IF NOT EXISTS Bug_Reports (
     bug_report_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-    user_id BIGINT UNSIGNED NOT NULL,
+    creator_user_id BIGINT UNSIGNED NOT NULL,
+    closer_user_id BIGINT UNSIGNED DEFAULT NULL,
+    active TINYINT NOT NULL DEFAULT 1,
     title TEXT NOT NULL,
     description TEXT,
+    closing_description TEXT,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FULLTEXT (title),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (closer_user_id) REFERENCES Users(user_id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Blacklist (
