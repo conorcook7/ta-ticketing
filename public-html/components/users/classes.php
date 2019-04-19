@@ -29,15 +29,15 @@
     <legend class="border-bottom mb-4">Create Class</legend>
     <div class="form-group">
         <label for="courseName">Course Name</label>
-        <input type="text" class="form-control" id="courseName"  name="courseName" <?php echo (isset($_POST["courseName"]) ? "value=\"" . $_POST["courseName"] : "placeholder=\"Computer Science 1");?>" required="true">
+        <input type="text" class="form-control" id="courseName"  name="courseName" <?php echo (isset($_POST["courseName"]) ? "value=\"" . $_POST["courseName"] : "placeholder=\"Example: Computer Science 1");?>" required="true">
     </div>
     <div class="form-group">
         <label for="courseNumber">Course Number</label>
-        <input type="text" class="form-control" id="courseNumber" name="courseNumber" <?php echo (isset($_POST["courseNumber"]) ? "value=\"" . $_POST["courseNumber"] : "placeholder=\"CS121");?>" required="true">
+        <input type="text" class="form-control" id="courseNumber" name="courseNumber" <?php echo (isset($_POST["courseNumber"]) ? "value=\"" . $_POST["courseNumber"] : "placeholder=\"Example: CS121");?>" required="true">
     </div>
     <div class="form-group">
         <label for="courseDescription">Course Description</label>
-        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" placeholder="Introduction to Java Programming"><?php
+        <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3" placeholder="Example: Introduction to Java Programming"><?php
         if(isset($_POST["courseDescription"])){
             echo htmlspecialchars($_POST["courseDescription"]);
         }
