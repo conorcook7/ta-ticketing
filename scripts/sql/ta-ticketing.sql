@@ -134,3 +134,9 @@ CREATE EVENT IF NOT EXISTS Delete_Old_Tickets
     DO
         DELETE FROM Closed_Tickets
         WHERE DATE_ADD(update_date, INTERVAL 1 YEAR) < NOW();
+
+CREATE EVENT IF NOT EXISTS Delete_Old_Bug_Reports
+    ON SCHEDULE EVERY 7 DAY
+    DO
+        DELETE FROM Bug_Reports
+        WHERE DATE_ADD(update_date, INTERVAL 1 YEAR) < NOW();
