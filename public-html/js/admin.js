@@ -173,7 +173,9 @@ $(document).ready(function() {
         if (upperCaseHTML === "CREATE USER") {
           userIDInput.val("-1");
         } else {
-          userIDInput.val(row.children[0].innerHTML);
+          if (row !== null) {
+            userIDInput.val(row.children[0].innerHTML);
+          }
         }
 
         // Update the text and color of the submit button
@@ -185,7 +187,6 @@ $(document).ready(function() {
   });
 
   $(".update-user-btn").on("click", function(event) {
-    event.stopPropagation(); // Stop the div from hiding
     updateUserDiv.css({ display: "" }); // Display the div
 
     // Get the row contents
@@ -255,8 +256,8 @@ $(document).ready(function() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
   });
 
+  // Add user button was pressed
   $("#user-add-btn").on("click", function(event) {
-    event.stopPropagation(); // Stop the div from hiding
     updateUserDiv.css({ display: "" }); // Display the div
 
     // Decide the permission to display
@@ -277,19 +278,21 @@ $(document).ready(function() {
     // Update the field values
     firstNameInput.val("");
     firstNameInput.attr({ value: "" });
+    firstNameInput.attr({ placeholder: "Example: John" });
+
     lastNameInput.val("");
     lastNameInput.attr({ value: "" });
+    lastNameInput.attr({ placeholder: "Example: Doe" });
+
     emailInput.val("");
     emailInput.attr({ value: "" });
+    emailInput.attr({ placeholder: "Example: JohnDoe@example.com" });
+
     userIDInput.val("-1");
     userIDInput.attr({ value: "-1" });
 
     // Update the text and color of the submit button
-    let submitButton = $("#update-submit");
-    submitButton.removeClass("btn-primary");
-    submitButton.removeClass("btn-danger");
-    submitButton.addClass("btn-success");
-    submitButton.html("Add User");
+    styleUpdateButton();
 
     // Scroll to top
     $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -308,6 +311,7 @@ $(document).ready(function() {
     for (let i = 0; i < permissionOptions.length; i++) {
       if (permissionOptions[i].getAttribute("selected") === "selected") {
         upperCaseHTML = permissionOptions[i].innerHTML.toUpperCase();
+        break;
       }
     }
 
