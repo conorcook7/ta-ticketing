@@ -27,8 +27,6 @@
             $page = 'closed-tickets-table.php';
           } else if ($selection == 'classes'){
             $page = 'classes.php';
-          } else if ($selection == 'users-form'){
-            $page = 'update-users.php';
           } else if ($selection == 'faq'){
             $page = 'faq.php';
           } else if ($selection == 'bug-reports') {
@@ -78,8 +76,6 @@
                   include_once '../components/tickets/closed-tickets-table.php';
                 } else if ($selection == 'classes'){
                   include_once '../components/users/classes.php';
-                } else if ($selection == 'users-form'){
-                  include_once '../components/users/update-users.php';
                 } else if ($selection == 'faq'){
                   include_once '../components/users/faq.php';
                 } else if ($selection == 'bug-reports') {
