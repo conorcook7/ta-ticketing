@@ -177,25 +177,7 @@ $(document).ready(function() {
         }
 
         // Update the text and color of the submit button
-        let submitButton = $("#update-submit");
-
-        if (upperCaseHTML === "DELETE USER") {
-          // update the button
-          submitButton.removeClass("btn-primary");
-          submitButton.removeClass("btn-success");
-          submitButton.addClass("btn-danger");
-          submitButton.html("Delete User");
-        } else if (upperCaseHTML === "CREATE USER") {
-          submitButton.removeClass("btn-primary");
-          submitButton.removeClass("btn-danger");
-          submitButton.addClass("btn-success");
-          submitButton.html("Add User");
-        } else {
-          submitButton.removeClass("btn-success");
-          submitButton.removeClass("btn-danger");
-          submitButton.addClass("btn-primary");
-          submitButton.html("Finish Editing");
-        }
+        styleUpdateButton();
       } else {
         permissionOptions[i].removeAttribute("selected");
       }
@@ -266,6 +248,9 @@ $(document).ready(function() {
     userIDInput.val(userId);
     userIDInput.attr({ value: userId });
 
+    // Update the button style
+    styleUpdateButton();
+
     // Scroll to top
     $("html, body").animate({ scrollTop: 0 }, "slow");
   });
@@ -313,6 +298,29 @@ $(document).ready(function() {
   $("#update-cancel").on("click", function(event) {
     updateUserDiv.css({ display: "none" });
   });
+
+  function styleUpdateButton() {
+    // Update the text and color of the submit button
+    let submitButton = $("#update-submit");
+
+    if (upperCaseHTML === "DELETE USER") {
+      // update the button
+      submitButton.removeClass("btn-primary");
+      submitButton.removeClass("btn-success");
+      submitButton.addClass("btn-danger");
+      submitButton.html("Delete User");
+    } else if (upperCaseHTML === "CREATE USER") {
+      submitButton.removeClass("btn-primary");
+      submitButton.removeClass("btn-danger");
+      submitButton.addClass("btn-success");
+      submitButton.html("Add User");
+    } else {
+      submitButton.removeClass("btn-success");
+      submitButton.removeClass("btn-danger");
+      submitButton.addClass("btn-primary");
+      submitButton.html("Finish Editing");
+    }
+  }
 
   // KEEP AT THE BOTTOM
   // Hide all forms on window click
