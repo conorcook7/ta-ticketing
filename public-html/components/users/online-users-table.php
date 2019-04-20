@@ -73,7 +73,14 @@
         <!-- All Users Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Online Users</h6>
+              <div class="d-sm-flex justify-content-between align-items-center">
+                  <h6 class="m-0 font-weight-bold text-primary">Online Users</h6>
+                  <span>
+                      <button type="button" id="user-add-btn" class="btn btn-success">
+                          <i class="fas fa-plus-square fa-xl text-white pr-2"></i>Add User
+                      </button>
+                  </span>
+              </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
