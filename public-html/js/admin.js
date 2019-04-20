@@ -336,8 +336,11 @@ $(document).ready(function() {
   }
 
   // KEEP AT THE BOTTOM
-  // Hide all forms on window click
-  $("#content, #content-wrapper").on("click", function() {
+  // Hide all forms when cancel clicked
+  $(".hide-form").on("click", function(event) {
+    taDiv.css({ display: "none" });
     blacklist.css({ display: "none" });
+    updateUserDiv.css({ display: "none" });
+    bugReportsDiv.css({ display: "none" });
   });
 });
