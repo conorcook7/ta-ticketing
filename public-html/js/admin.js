@@ -302,7 +302,16 @@ $(document).ready(function() {
   function styleUpdateButton() {
     // Update the text and color of the submit button
     let submitButton = $("#update-submit");
+    let permissionOptions = permissionIDInput.children();
+    let upperCaseHTML = null;
 
+    for (let i = 0; i < permissionOptions.length; i++) {
+      if (permissionOptions[i].getAttribute("selected") === "selected") {
+        upperCaseHTML = permissionOptions[i].innerHTML.toUpperCase();
+      }
+    }
+
+    // Update the button
     if (upperCaseHTML === "DELETE USER") {
       // update the button
       submitButton.removeClass("btn-primary");
