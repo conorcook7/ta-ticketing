@@ -69,14 +69,6 @@
     </a>
 </li>
 
-<!-- Update/Create User Navbar Item -->
-<li class="nav-item <?php if ($page == 'update-users.php') { echo 'active'; }?>">
-    <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users-form');?>">
-        <i class="fas fa-fw fa-user-cog"></i>
-        <span class="LetterSpacing">Update/Create User</span>
-    </a>
-</li>
-
 <!-- Create/Delete Navbar Item -->
 <li class="nav-item <?php if ($nav == 'admin' && $page == 'faq.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=faq');?>">

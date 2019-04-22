@@ -126,5 +126,4 @@
     }
     $page = $originUser["permission_name"] == "ADMIN" ? "admin.php?id" : "professor.php?page";
     header("Location: ../pages/" . $page . "=users");
-    exit;
-?>
+    exit();

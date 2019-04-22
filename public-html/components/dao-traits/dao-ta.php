@@ -46,6 +46,64 @@ trait DaoTa {
     }
 
     /**
+     * Return the teaching assistant information
+     * 
+     * @param $userId - The user id of the teaching assitant to search for
+     * @return $info - The associative array of teaching assitant info
+     */
+    public function getTeachingAssistantById($userId) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT * FROM Teaching_Assistants AS TA
+                JOIN Users AS U ON TA.user_id = U.user_id
+                JOIN Available_Courses AS AC ON TA.available_course_id = AC.available_course_id
+                WHERE TA.user_id = :userId;"
+            );
+            $query->bindParam(":userId", $userId);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query complete");
+            $teachingAssistant = $query->fetch();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch TA Complete");
+            return $teachingAssistant;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get TA");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Return the teaching assistant information
+     * 
+     * @param $email - The user id of the teaching assitant to search for
+     * @return $info - The associative array of teaching assitant info
+     */
+    public function getTeachingAssistantByEmail($email) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT * FROM Teaching_Assistants AS TA
+                JOIN Users AS U ON TA.user_id = U.user_id
+                JOIN Available_Courses AS AC ON TA.available_course_id = AC.available_course_id
+                WHERE U.email = :email"
+            );
+            $query->bindParam(":email", $email);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query complete");
+            $teachingAssistant = $query->fetch();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch TA Complete");
+            return $teachingAssistant;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get TA");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
      * Returns all of the teaching assistants with information about them.
      * 
      * @param $limit - (optional) A limit to the number of teaching assistants to return.

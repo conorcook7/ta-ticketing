@@ -197,4 +197,9 @@ $(document).ready(function() {
     }
     return true;
   }
+
+  $(".hide-form").on("click", function(event) {
+    formDiv.css({ display: "none" });
+    description.val("");
+  });
 });

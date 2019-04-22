@@ -28,7 +28,8 @@
             <span id="max-char-count">500</span>
         </div>
         <div class="d-flex justify-content-start w-50">
-            <button type="submit" class="btn btn-danger">Finish Closing</button>
+            <button type="submit" class="btn btn-primary mr-2">Finish Closing</button>
+            <button type="button" class="btn btn-danger hide-form">Cancel</button>
         </div>
     </form>
 </div>

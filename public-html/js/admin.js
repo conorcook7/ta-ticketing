@@ -140,8 +140,207 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
-  // Hide all forms on window click
-  $("#content, #content-wrapper").on("click", function() {
+  /**
+   * This section will handle the user update div
+   */
+  let updateUserDiv = $("#update-user-div");
+  let firstNameInput = $("#update-first-name");
+  let lastNameInput = $("#update-last-name");
+  let emailInput = $("#update-email");
+  let permissionIDInput = $("#update-permission-id");
+  let userIDInput = $("#update-user-id");
+  let row = null;
+
+  updateUserDiv.on("click", function(event) {
+    event.stopPropagation();
+  });
+
+  // Hide/Unhide the TA div
+  permissionIDInput.on("change", function(event) {
+    let permissionId = event.target.value;
+    let permissionOptions = permissionIDInput.children();
+    for (let i = 0; i < permissionOptions.length; i++) {
+      let upperCaseHTML = permissionOptions[i].innerHTML.toUpperCase();
+      if (permissionOptions[i].value === permissionId) {
+        permissionOptions[i].setAttribute("selected", "selected");
+        if (upperCaseHTML === "TA") {
+          $("#ta-creation").css({ display: "" });
+        } else {
+          $("#ta-creation").css({ display: "none" });
+        }
+
+        // Update data if create user
+        if (upperCaseHTML === "CREATE USER") {
+          userIDInput.val("-1");
+        } else {
+          if (row !== null) {
+            userIDInput.val(row.children[0].innerHTML);
+          }
+        }
+
+        // Update the text and color of the submit button
+        styleUpdateButton();
+      } else {
+        permissionOptions[i].removeAttribute("selected");
+      }
+    }
+  });
+
+  $(".update-user-btn").on("click", function(event) {
+    updateUserDiv.css({ display: "" }); // Display the div
+
+    // Get the row contents
+    row = event.target.parentElement.parentElement;
+    let userId = row.children[0].innerHTML;
+    let firstName = row.children[1].innerHTML;
+    let lastName = row.children[2].innerHTML;
+    let email = row.children[3].innerHTML;
+    let permission = row.children[4].innerHTML;
+
+    // Decide the permission to display
+    let permissionOptions = permissionIDInput.children();
+    for (let i = 0; i < permissionOptions.length; i++) {
+      if (permissionOptions[i].innerHTML == permission) {
+        permissionOptions[i].setAttribute("selected", "selected");
+        if (permissionOptions[i].innerHTML.toUpperCase() === "TA") {
+          $("#ta-creation").css({ display: "" });
+          $.ajax({
+            url: window.location.origin + "/handlers/ajax/get-ta-info.php",
+            type: "GET",
+            data: {
+              taID: userId
+            },
+            success: function(json) {
+              $("#startTime").val(json["startTime"]);
+              $("#startTime").attr({ value: json["startTime"] });
+              $("#endTime").val(json["endTime"]);
+              $("#endTime").attr({ value: json["endTime"] });
+              let courses = $("#courseId").children();
+              for (let i = 0; i < courses.length; i++) {
+                if (courses[i].value === json["courseId"]) {
+                  courses[i].setAttribute("selected", "selected");
+                } else {
+                  courses[i].removeAttribute("selected");
+                }
+              }
+            }
+          });
+        } else {
+          $("#ta-creation").css({ display: "none" });
+        }
+      } else {
+        permissionOptions[i].removeAttribute("selected");
+      }
+    }
+
+    // Update the field values
+    firstNameInput.val(firstName);
+    firstNameInput.attr({ value: firstName });
+    firstNameInput.attr({ placeholder: "Previously: " + firstName });
+
+    lastNameInput.val(lastName);
+    lastNameInput.attr({ value: lastName });
+    lastNameInput.attr({ placeholder: "Previously: " + lastName });
+
+    emailInput.val(email);
+    emailInput.attr({ value: email });
+    emailInput.attr({ placeholder: "Previously: " + email });
+
+    userIDInput.val(userId);
+    userIDInput.attr({ value: userId });
+
+    // Update the button style
+    styleUpdateButton();
+
+    // Scroll to top
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  });
+
+  // Add user button was pressed
+  $("#user-add-btn").on("click", function(event) {
+    updateUserDiv.css({ display: "" }); // Display the div
+
+    // Decide the permission to display
+    let permissionOptions = permissionIDInput.children();
+    for (let i = 0; i < permissionOptions.length; i++) {
+      if (permissionOptions[i].innerHTML.toUpperCase() === "CREATE USER") {
+        permissionOptions[i].setAttribute("selected", "selected");
+        if (permissionOptions[i].innerHTML.toUpperCase() === "TA") {
+          $("#ta-creation").css({ display: "" });
+        } else {
+          $("#ta-creation").css({ display: "none" });
+        }
+      } else {
+        permissionOptions[i].removeAttribute("selected");
+      }
+    }
+
+    // Update the field values
+    firstNameInput.val("");
+    firstNameInput.attr({ value: "" });
+    firstNameInput.attr({ placeholder: "Example: John" });
+
+    lastNameInput.val("");
+    lastNameInput.attr({ value: "" });
+    lastNameInput.attr({ placeholder: "Example: Doe" });
+
+    emailInput.val("");
+    emailInput.attr({ value: "" });
+    emailInput.attr({ placeholder: "Example: JohnDoe@example.com" });
+
+    userIDInput.val("-1");
+    userIDInput.attr({ value: "-1" });
+
+    // Update the text and color of the submit button
+    styleUpdateButton();
+
+    // Scroll to top
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  });
+
+  $("#update-cancel").on("click", function(event) {
+    updateUserDiv.css({ display: "none" });
+  });
+
+  function styleUpdateButton() {
+    // Update the text and color of the submit button
+    let submitButton = $("#update-submit");
+    let permissionOptions = permissionIDInput.children();
+    let upperCaseHTML = null;
+
+    for (let i = 0; i < permissionOptions.length; i++) {
+      if (permissionOptions[i].getAttribute("selected") === "selected") {
+        upperCaseHTML = permissionOptions[i].innerHTML.toUpperCase();
+        break;
+      }
+    }
+
+    // Update the button
+    if (upperCaseHTML === "DELETE USER") {
+      // update the button
+      submitButton.removeClass("btn-primary");
+      submitButton.removeClass("btn-success");
+      submitButton.addClass("btn-danger");
+      submitButton.html("Delete User");
+    } else if (upperCaseHTML === "CREATE USER") {
+      submitButton.removeClass("btn-primary");
+      submitButton.removeClass("btn-danger");
+      submitButton.addClass("btn-success");
+      submitButton.html("Add User");
+    } else {
+      submitButton.removeClass("btn-success");
+      submitButton.removeClass("btn-danger");
+      submitButton.addClass("btn-primary");
+      submitButton.html("Finish Editing");
+    }
+  }
+
+  // KEEP AT THE BOTTOM
+  // Hide all forms when cancel clicked
+  $(".hide-form").on("click", function(event) {
+    taDiv.css({ display: "none" });
     blacklist.css({ display: "none" });
+    updateUserDiv.css({ display: "none" });
+    bugReportsDiv.css({ display: "none" });
   });
 });
