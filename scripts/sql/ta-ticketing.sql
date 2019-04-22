@@ -124,10 +124,10 @@ INSERT INTO Permissions VALUES (5, 'DENIED');
 INSERT INTO Users VALUES (1, 4, 0, 'taticketing@boisestate.edu', 'TA Tticketing', 'Server', NOW(), NOW());
 
 CREATE EVENT IF NOT EXISTS Logout
-    ON SCHEDULE EVERY 1 MINUTE
+    ON SCHEDULE EVERY 15 MINUTE
     DO
         UPDATE Users SET online = 0
-        WHERE online = 2 AND DATE_ADD(update_date, INTERVAL 30 MINUTE) < NOW();
+        WHERE DATE_ADD(update_date, INTERVAL 30 MINUTE) < NOW();
 
 CREATE EVENT IF NOT EXISTS Delete_Old_Tickets
     ON SCHEDULE EVERY 1 DAY

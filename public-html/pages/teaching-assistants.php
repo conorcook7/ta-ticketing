@@ -30,7 +30,7 @@
         <div id="content">
 
             <!-- Begin Page Content -->
-            <div class="container-fluid p-4">
+            <div class="container-fluid p-4 h-100">
 
                 <!-- Available Courses heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4 border-bottom">
@@ -43,10 +43,11 @@
                 <?php
                     $dao = new Dao();
                     $tas = $dao->getTeachingAssistants(10);
-                    foreach ($tas as $ta) {
-                        $startTime = new DateTime($ta["start_time_past_midnight"]);
-                        $endTime = new DateTime($ta["end_time_past_midnight"]);
-                        $createDate = new DateTime($ta["create_date"]);
+                    if (count($tas) > 0) {
+                        foreach ($tas as $ta) {
+                            $startTime = new DateTime($ta["start_time_past_midnight"]);
+                            $endTime = new DateTime($ta["end_time_past_midnight"]);
+                            $createDate = new DateTime($ta["create_date"]);
                 ?>
                 <div class="card shadow mb-4 ta">
                     <div class="card-header py-3">
@@ -74,7 +75,16 @@
                         </div>
                     </div>
                 </div>
-                <?php } ?>
+                <?php
+                        }
+                    } else {
+                        echo '
+                        <div class="flex-column d-flex justify-content-center h-50">
+                            <div class="h3 text-gray-800 text-center">There are no TAs at this time.</div>
+                            <div class="h3 text-gray-600 text-center">Sorry for the inconvenience!</div>
+                        </div>';
+                    }
+                ?>
             </div>
             <!-- /.container-fluid -->
         </div>
