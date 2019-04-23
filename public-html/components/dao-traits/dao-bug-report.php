@@ -57,8 +57,16 @@ trait DaoBugReport {
             $query->execute();
             $creator = $query->fetch();
 
+            // Get the person creating the bug report
+            $query = $conn->prepare("SELECT email FROM Users WHERE user_id = :userId;");
+            $query->bindParam(":userId", $userId);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $creatorEmail = $query->fetch();
+            $creatorEmail = isset($creatorEmail["email"]) ? $creatorEmail["email"] : "";
+
             // Create the message to send
-            if(!empty($adminEmails)) {
+            if(!empty($adminEmails) && $creatorEamil != "") {
                 // Assign the person receiving the email
                 $to = $adminEmails[0]["email"];
 
@@ -70,6 +78,7 @@ trait DaoBugReport {
                 for ($i = 1; $i < count($adminEmails); $i++) {
                     $headers .= $adminEmails[$i]["email"] . " ";
                 }
+                $headers .= $creatorEamil . " ";
                 $headers .= "\r\nMIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=utf-8\r\n";
 
