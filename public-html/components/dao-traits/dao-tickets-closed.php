@@ -131,11 +131,12 @@ trait DaoTicketsClosed {
 
             // Insert the ticket data into the open tickets table.
             $query = $conn->prepare(
-                "INSERT INTO Open_Tickets (available_course_id, creator_user_id,
+                "INSERT INTO Open_Tickets (open_ticket_id, available_course_id, creator_user_id,
                 node_number, opener_user_id, description, room_number) VALUES (
-                :availableCourseId, :userId, :nodeNumber, :openerUserId,
+                :openTicketId, :availableCourseId, :userId, :nodeNumber, :openerUserId,
                 :description, :roomNumber);"
             );
+            $query->bindParam(":openTicketId", $closedTicketId);
             $query->bindParam(":availableCourseId", $ticket["available_course_id"]);
             $query->bindParam(":userId", $ticket["creator_user_id"]);
             $nodeNumber = ($computerName == NULL) ? $ticket["node_number"] : $computerName;
