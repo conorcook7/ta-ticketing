@@ -1,4 +1,10 @@
-<?php $page = "my-ta-tickets.php";
+<?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+    
+    $page = "my-ta-tickets.php";
     session_start();
     require_once "../../components/server-functions.php";
     require_once "../../components/dao.php";

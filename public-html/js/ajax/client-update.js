@@ -1,3 +1,8 @@
+/*!
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
 $(document).ready(function() {
   // Update function
   function sendClientUpdate(unload) {
@@ -18,7 +23,7 @@ $(document).ready(function() {
   }
 
   // On window close, reload, or back.
-  window.addEventListener("beforeunload", function(event) {
+  $(window).on("unload beforeunload", function(event) {
     sendClientUpdate(true);
   });
 

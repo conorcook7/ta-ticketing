@@ -1,3 +1,8 @@
+/*!
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
 $(document).ready(function() {
   // Figure out relative pathing
   let numPaths = window.location.pathname.split("/").length - 1;
@@ -145,17 +150,22 @@ $(document).ready(function() {
   availableTeachingAssistantsTable.ajax.reload();
 
   /**
-   * Reload the tables after every interval
+   * Reload the open ticket tables after every interval
+   */
+  setInterval(function() {
+    userOpenTicketsTable.ajax.reload();
+    taOpenTicketsTable.ajax.reload(showClosingForm);
+    availableTeachingAssistantsTable.ajax.reload();
+  }, 15 * 1000);
+
+  /**
+   * Reload the other tables after every interval
    */
   setInterval(function() {
     allTicketsTable.ajax.reload();
     closedTicketsTable.ajax.reload();
     openTicketsTable.ajax.reload(showClosingForm);
-    taOpenTicketsTable.ajax.reload(showClosingForm);
-    userOpenTicketsTable.ajax.reload();
-    userOpenTicketsTable.ajax.reload();
     userClosedTicketsTable.ajax.reload();
-    availableTeachingAssistantsTable.ajax.reload();
   }, 30 * 1000);
 
   /**
@@ -187,4 +197,9 @@ $(document).ready(function() {
     }
     return true;
   }
+
+  $(".hide-form").on("click", function(event) {
+    formDiv.css({ display: "none" });
+    description.val("");
+  });
 });

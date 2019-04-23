@@ -1,4 +1,9 @@
 <?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+    
     session_start();
     $page = "how-to.php";
     $nav = "help";
@@ -20,7 +25,7 @@
                 <?php
                     $permission = strtoupper($_SESSION["user"]["permission"]);
                     
-                    if ($permission == "ADMIN") {
+                    if ($permission == "ADMIN" || $permission == "PROFESSOR") {
                     ?>
                 <div class="row">
                     <div class="col-xs-12">
@@ -56,9 +61,9 @@
                             </div>
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <?php require_once "how-to/how-to-admin.php"; ?>
-                            <?php require_once "how-to/how-to-ta.php"; ?>
-                            <?php require_once "how-to/how-to-user.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-admin.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-ta.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-user.php"; ?>
                         </div>
                     </div>
                 </div>
@@ -88,12 +93,12 @@
                             </div>
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <?php require_once "how-to/how-to-ta.php"; ?>
-                            <?php require_once "how-to/how-to-user.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-ta.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-user.php"; ?>
                         </div>
                     </div>
                 </div>
-                <?php   } else { require_once "how-to/how-to-user.php"; } ?>
+                <?php   } else { require_once "../../components/how-to/how-to-user.php"; } ?>
             </div>
             <!-- /.container-fluid -->
         </div>

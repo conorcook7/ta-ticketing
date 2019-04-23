@@ -1,3 +1,9 @@
+<?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+?>
 <!-- Admin Pages-->
 <!-- View Users Navbar Item -->
 <li class="nav-item <?php if ($page == 'users-table.php' || $page == 'admin.php') { echo 'active'; }?>">
@@ -48,7 +54,7 @@
 </li>
 
 <!-- View Bug Reports Navbar Item -->
-<li class="nav-item <?php if ($nav == 'admin' && $page == 'bug-reports.php') { echo 'active'; }?>">
+<li class="nav-item <?php if ($nav == 'admin' && $page == 'bug-reports-table.php') { echo 'active'; }?>">
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=bug-reports');?>">
         <i class="fas fa-fw fa-bug"></i>
         <span class="LetterSpacing">View Bug Reports</span>
@@ -60,14 +66,6 @@
     <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=classes');?>">
         <i class="fas fa-fw fa-chalkboard-teacher"></i>
         <span class="LetterSpacing">Create/Delete Classes</span>
-    </a>
-</li>
-
-<!-- Update/Create User Navbar Item -->
-<li class="nav-item <?php if ($page == 'update-users.php') { echo 'active'; }?>">
-    <a class="nav-link" href="<?php echo generateUrl('/pages/admin.php?id=users-form');?>">
-        <i class="fas fa-fw fa-user-cog"></i>
-        <span class="LetterSpacing">Update/Create User</span>
     </a>
 </li>
 

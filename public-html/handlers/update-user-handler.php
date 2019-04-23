@@ -1,72 +1,129 @@
 <?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+    
     session_start();
     require_once "../components/dao.php";
     $dao = new Dao();
-    $admin_id = $_SESSION['user']['user_id'];
-    $user_id = $_POST["userID"];
-    $firstName = $_POST["firstName"];
-    $lastName = $_POST["lastName"];
-    $email = $_POST["userEmail"];
+
+    // Get the Admin by the ID
+    $originUserId = $_SESSION['user']['user_id'];
+    $originUser = $dao->getUserById($originUserId);
+
+    // Get the user by the ID
+    $targetUserId = $_POST["userID"];
+    $targetUser = $dao->getUserById($targetUserId);
+
+    $targetFirstName = $_POST["firstName"];
+    $targetLastName = $_POST["lastName"];
+    $targetEmail = $_POST["userEmail"];
     $courseId = $_POST["courseId"];
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
     $permissionID = $_POST["permissionID"];
-    if($permissionID == 0){
-        if($dao->deleteUser($email) == TRUE){
-            $_SESSION["success"] = "Deleted the user: " . $firstName . " " . $lastName;
-        } else {
-            $_SESSION["failure"] = "Failed to delete the user: " . $firstName . " " . $lastName;
+    $permissionName = $permissionID == 0 ? "DELETE" : $dao->getPermissionByID($permissionID);
+
+    // Only check if the person updating is not an admin
+    if(strtoupper($originUser["permission_name"]) != "ADMIN") {
+        //compares users to ensure only a user that has power over the other is updating.
+        if ($originUser["permission_id"] <= $targetUser["permission_id"]) {
+            $_SESSION["failure"] = "You do not have permission to update that user.";
+            header("Location: ../pages/professor.php?page=users");
+            exit;
         }
-    } else if($user_id == -1){
-        if($dao->createUser($email, $firstName, $lastName) == TRUE){
-            if($dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
-                $_SESSION["success"] = "Created the user: " . $firstName . " " . $lastName;
+        // Checking that the professor does not set a user higher than themselves
+        if ($originUser["permission_id"] <= $permissionID) {
+            if ($permissionName == "DENIED") {
+                $_SESSION["failure"] = "You do not have permission to blacklist users.";
             } else {
-                $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
+                $_SESSION["failure"] = "You do not have permission to set the user's permission to: " . strtolower($permissionName);
             }
-            $_SESSION["success"] = "Created the user: " . $firstName . " " . $lastName;
-        } else {
-            $_SESSION["failure"] = "Failed to create the user: " . $firstName . " " . $lastName;
-        }  
-    } else if(isset($user_id, $firstName, $lastName, $email, $permissionID, $admin_id)) {
-        if($permissionID != 2){
-            if($dao->isTeachingAssistant($user_id)) {
-                if (!$dao->deleteTeachingAssistant($user_id)) {
-                    $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
-                }
-            }
-            if(!isset($_SESSION["failure"]) && $dao->updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id) == TRUE){
-                $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName;
+            header("Location: ../pages/professor.php?page=users");
+            exit;
+        }
+    } 
+
+    // If delete option was selected
+    if($permissionName == "DELETE"){
+        // Restict delete to admins only
+        if (strtoupper($originUser["permission_name"]) == "ADMIN") {
+            if($dao->deleteUser($targetEmail) == TRUE){
+                $_SESSION["success"] = "Deleted the user: " . $targetFirstName . " " . $targetLastName;
             } else {
-                $_SESSION["failure"] = "Failed to update the user: " . $firstName . " " . $lastName;
-            } 
-            if($permissionID == 4){
-                $created = $dao->createBlacklistEntry($admin_id, $email);
-                if ($created && isset($_SESSION["success"])) {
-                    $_SESSION["success"] = "Updated the user: " . $firstName . " " . $lastName . " and blacklisted them.";
-                } elseif ($created) {
-                    $_SESSION["success"] = "Email was added to the blacklist.";
-                } else {
-                    $_SESSION["failure"] = "Unable to add email to the blacklist.";
-                }
+                $_SESSION["failure"] = "Failed to delete the user: " . $targetFirstName . " " . $targetLastName;
             }
         } else {
-            if ($dao->isTeachingAssistant($user_id)) {
-                if ($dao->updateTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE) {
-                    $_SESSION["success"] = "Updated teaching assistant: " . $firstName . " " . $lastName;
+            $_SESSION["failure"] = "You do not have permission to delete users.";
+        }
+    
+    // If the create new person option was selected
+    } else if($targetUserId == -1){
+        if($dao->createUser($targetEmail, $targetFirstName, $targetLastName) == TRUE){
+            if($dao->updateUser($targetUserId, $targetFirstName, $targetLastName, $targetEmail, $permissionID, $originUserId) == TRUE){
+                $_SESSION["success"] = "Created the user: " . $targetFirstName . " " . $targetLastName;
+            } else {
+                $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
+            }
+            $_SESSION["success"] = "Created the user: " . $targetFirstName . " " . $targetLastName;
+        } else {
+            $_SESSION["failure"] = "Failed to create the user: " . $targetFirstName . " " . $targetLastName;
+        }
+    
+    // General case
+    } else if(isset($targetUserId, $targetFirstName, $targetLastName, $targetEmail, $permissionID, $originUserId)) {
+
+        // If the option was not a TA
+        if($permissionName != "TA"){
+            // Remove the user from TAs
+            if($dao->isTeachingAssistant($targetUserId)) {
+                if (!$dao->deleteTeachingAssistant($targetUserId)) {
+                    $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
+                }
+            }
+            // Attempt to update the user
+            if(!isset($_SESSION["failure"]) && $dao->updateUser($targetUserId, $targetFirstName, $targetLastName, $targetEmail, $permissionID, $originUserId) == TRUE){
+                $_SESSION["success"] = "Updated the user: " . $targetFirstName . " " . $targetLastName;
+            } else {
+                $_SESSION["failure"] = "Failed to update the user: " . $targetFirstName . " " . $targetLastName;
+            }
+            // Blacklist the user if permission is denied
+            if($permissionName == "DENIED"){
+                if (strtoupper($originUser["permission_name"]) == "ADMIN") {
+                    if ($dao->createBlacklistEntry($originUserId, $targetEmail)) {
+                        $_SESSION["success"] = "Updated and blacklisted the user: " . $targetFirstName . " " . $targetLastName;
+                    } else {
+                        $_SESSION["failure"] = "Unable to add email to the blacklist.";
+                    }
                 } else {
-                    $_SESSION["failure"] = "Failed to update the teaching assistant: " . $firstName . " " . $lastName;
+                    $_SESSION["failure"] = "You do not have the permission to blacklist users.";
+                }
+            } else if ($dao->isBlacklisted($targetEmail)) {
+                $dao->deleteBlacklistEntryByEmail($targetEmail);
+            }
+        
+        // If the option was set to TA
+        } else {
+            if ($dao->isBlacklisted($targetEmail)) {
+                $dao->deleteBlacklistEntryByEmail($targetEmail);
+            }
+            if ($dao->isTeachingAssistant($targetUserId)) {
+                if ($dao->updateTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE) {
+                    $_SESSION["success"] = "Updated teaching assistant: " . $targetFirstName . " " . $targetLastName;
+                } else {
+                    $_SESSION["failure"] = "Failed to update the teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } 
                 
             } else {
-                if($dao->createTeachingAssistant($user_id, $courseId, $startTime, $endTime) == TRUE){
-                    $_SESSION["success"] = "Created teaching assistant: " . $firstName . " " . $lastName;
+                if($dao->createTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE){
+                    $_SESSION["success"] = "Created teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } else {
-                    $_SESSION["failure"] = "Failed to create the teaching assistant: " . $firstName . " " . $lastName;
+                    $_SESSION["failure"] = "Failed to create the teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } 
             }
         }
     }
-    header("Location: ../pages/admin.php?id=users");
-    exit;
-?>
+    $page = $originUser["permission_name"] == "ADMIN" ? "admin.php?id" : "professor.php?page";
+    header("Location: ../pages/" . $page . "=users");
+    exit();

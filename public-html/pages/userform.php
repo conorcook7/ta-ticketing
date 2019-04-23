@@ -1,4 +1,9 @@
 <?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+    
     require_once '../components/header.php';
     require_once '../components/dao.php';
     $dao = new Dao();
@@ -22,11 +27,11 @@
                 </div>
                 <form method = "POST" action = "../handlers/user-form-handler.php">
                     <div class="card-body">
-                        <select class="form-control"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseName'>
+                        <select class="form-control"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name = 'courseID'>
                             <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                 <?php $courses = $dao->getAvailableCourses();
                                     foreach($courses as $course){ ?>
-                                <option value = "<?php echo htmlentities($course['course_name']) ?>"> <?php echo strtoupper(htmlentities($course['course_name'])); ?> </option>
+                                <option value = "<?php echo $course['available_course_id']?>"> <?php echo strtoupper(htmlentities($course['course_number'] . " - " . $course['course_name'])); ?> </option>
                                 <?php } ?>
                             </div>
                         </select>

@@ -1,4 +1,9 @@
 <?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+    
     session_start();
     
     require_once "../components/server-functions.php";
@@ -10,7 +15,7 @@
     
     // If the user does not have a session
     } else {
-      header("Location: " . generateUrl("/auth/google-auth/google.php"));
+      header("Location: " . generateUrl("logged-out.php"));
       exit();
     }
 ?>

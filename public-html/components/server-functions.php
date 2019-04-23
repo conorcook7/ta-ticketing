@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
 
 /**
  * Generates a url with the current protocol and host. It then appends
@@ -120,9 +125,17 @@ function updateSession($userId) {
     if (isset($user["permission_name"])) {
         $_SESSION["user"]["permission"] = $user["permission_name"];
     }
-    if (isset($user["permission_id"])) {
-        $_SESSION["user"]["access_level"] = $user["permission_id"];
-    }
+}
+
+/**
+ * Get the current user's permission name
+ * 
+ * @return $permission - The upper case version of the permission
+ */
+function getPermission() {
+    session_start();
+    $permission = isset($_SESSION["user"]["permission"]) ? strtoupper($_SESSION["user"]["permission"]) : NULL;
+    return $permission;
 }
 
 /**

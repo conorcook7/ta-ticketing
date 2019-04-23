@@ -1,5 +1,10 @@
 <?php
 /**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
+/**
  * Open tickets trait to contain the dao functions for the open tickets.
  * 
  * Traits are used to abstract the functions out of a class. The class can

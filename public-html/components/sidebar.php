@@ -1,4 +1,9 @@
 <?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+
     session_start();
     require_once "server-functions.php";
 ?>
@@ -26,18 +31,24 @@
     </div>
 
     <?php
-        if ($_SESSION["user"]["access_level"] == 3) {
-            require_once "sidebar-menus/sidebar-user.php";
+        $permission = getPermission();
+        if ($permission == "ADMIN") {
+            include_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-admin.php";
 
-        } else if ($_SESSION["user"]["access_level"] == 2) {
-            require_once "sidebar-menus/sidebar-user.php";
+        } else if ($permission == "PROFESSOR") {
+            include_once "sidebar-menus/sidebar-user.php";
+            require_once "sidebar-menus/sidebar-professor.php";
+
+        } else if ($permission == "TA") {
+            include_once "sidebar-menus/sidebar-user.php";
             require_once "sidebar-menus/sidebar-ta.php";
 
-        } else if ($_SESSION["user"]["access_level"] == 1) {
+        } else if ($permission == "USER") {
             require_once "sidebar-menus/sidebar-user.php";
 
         } else {
+            $_SESSION["login-error"] = "Unable to get your permission for the website.";
             header("Location: " . generateUrl("/handlers/logout-handler.php"));
             exit();
         }

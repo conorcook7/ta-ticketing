@@ -1,5 +1,10 @@
 <?php
 /**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
+/**
  * Teaching Assistants trait to contain the dao functions.
  * 
  * Traits are used to abstract the functions out of a class. The class can
@@ -37,6 +42,64 @@ trait DaoTa {
             $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to verify if user is a TA");
             $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
             return NULL;
+        }
+    }
+
+    /**
+     * Return the teaching assistant information
+     * 
+     * @param $userId - The user id of the teaching assitant to search for
+     * @return $info - The associative array of teaching assitant info
+     */
+    public function getTeachingAssistantById($userId) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT * FROM Teaching_Assistants AS TA
+                JOIN Users AS U ON TA.user_id = U.user_id
+                JOIN Available_Courses AS AC ON TA.available_course_id = AC.available_course_id
+                WHERE TA.user_id = :userId;"
+            );
+            $query->bindParam(":userId", $userId);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query complete");
+            $teachingAssistant = $query->fetch();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch TA Complete");
+            return $teachingAssistant;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get TA");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
+        }
+    }
+
+    /**
+     * Return the teaching assistant information
+     * 
+     * @param $email - The user id of the teaching assitant to search for
+     * @return $info - The associative array of teaching assitant info
+     */
+    public function getTeachingAssistantByEmail($email) {
+        try {
+            $conn = $this->getConnection();
+            $query = $conn->prepare(
+                "SELECT * FROM Teaching_Assistants AS TA
+                JOIN Users AS U ON TA.user_id = U.user_id
+                JOIN Available_Courses AS AC ON TA.available_course_id = AC.available_course_id
+                WHERE U.email = :email"
+            );
+            $query->bindParam(":email", $email);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Query complete");
+            $teachingAssistant = $query->fetch();
+            $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Fetch TA Complete");
+            return $teachingAssistant;
+        } catch (Exception $e) {
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): Unable to get TA");
+            $this->logger->logError(basename(__FILE__) . ":" . __FUNCTION__ . "(): " . $e->getMessage());
+            return $this->FAILURE;
         }
     }
 

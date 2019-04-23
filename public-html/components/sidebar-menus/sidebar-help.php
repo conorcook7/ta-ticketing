@@ -1,6 +1,11 @@
 <?php
-    session_start();
-    ?>
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+
+session_start();
+?>
 <!-- Help Page -->
 <li class="nav-item <?php echo ($nav == 'help') ? 'active' : ''; ?>">
     <a

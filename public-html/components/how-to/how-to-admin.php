@@ -1,11 +1,9 @@
 <?php
-    session_start();
-    
-    if (strtoupper($_SESSION["user"]["permission"]) != "ADMIN") {
-        header("Location: ../403.php");
-        exit();
-    }
-    ?>
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
+?>
 <div class="tab-pane fade show active" id="nav-how-to-admin" role="tabpanel" aria-labelledby="nav-how-to-admin-tab">
     <!-- Update a user -->
     <div class="card shadow mb-4">

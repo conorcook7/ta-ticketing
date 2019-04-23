@@ -7,14 +7,14 @@
     require_once '../components/dao.php';
     require_once '../components/server-functions.php';
     $dao = new Dao();
-    $page = 'admin.php';
-    $nav = 'admin';
+    $page = 'professor.php';
+    $nav = 'professor';
     
     // Setting the page for the navbar
-    if(getPermission() == "ADMIN"){
-      if(isset($_GET['id'])){
-        $_SESSION['admin-selection'] = $_GET['id'];
-        $selection = $_SESSION['admin-selection'];
+    if(getPermission() == "PROFESSOR"){
+      if(isset($_GET['page'])){
+        $_SESSION['professor-selection'] = $_GET['page'];
+        $selection = $_SESSION['professor-selection'];
           if ($selection == 'DEFAULT' || $selection == 'users'){
               $page = 'users-table.php';
           } else if ($selection == 'online-users'){
@@ -27,24 +27,20 @@
             $page = 'closed-tickets-table.php';
           } else if ($selection == 'classes'){
             $page = 'classes.php';
-          } else if ($selection == 'faq'){
-            $page = 'faq.php';
-          } else if ($selection == 'bug-reports') {
-            $page = 'bug-reports-table.php';
-          } else if ($selection == 'blacklist') {
-            $page = 'blacklist.php';
+          } else if ($selection == 'users-form'){
+            $page = 'update-users.php';
           } else {
               header("Location: 404.php");
               exit();
           }
       } else {
-        $_SESSION['admin-selection'] = 'DEFAULT';
+        $_SESSION['professor-selection'] = 'DEFAULT';
       }
     } else {
-        header("Location: 403.php");
-        exit();
+      header("Location: 403.php");
+      exit();
     }
-    unset($_GET['id']);
+    unset($_GET['page']);
     require_once '../components/header.php';
     ?>
 <div id="wrapper">
@@ -59,11 +55,11 @@
             <?php include_once '../components/topbar.php'; ?>
             <!-- End of Topbar -->
             <?php
-                // Add the alert message
+                // Require the success/failure
                 require_once "../components/success-failure-alert.php";
 
                 // Include the correct page
-                $selection = $_SESSION['admin-selection'];
+                $selection = $_SESSION['professor-selection'];
                 if ($selection == 'DEFAULT' || $selection == 'users'){
                   include_once '../components/users/users-table.php';
                 } else if ($selection == 'online-users'){
@@ -76,21 +72,17 @@
                   include_once '../components/tickets/closed-tickets-table.php';
                 } else if ($selection == 'classes'){
                   include_once '../components/users/classes.php';
-                } else if ($selection == 'faq'){
-                  include_once '../components/users/faq.php';
-                } else if ($selection == 'bug-reports') {
-                  include_once '../components/users/bug-reports-table.php';
-                } else if ($selection == 'blacklist') {
-                  include_once '../components/users/blacklist.php';
+                } else if ($selection == 'users-form'){
+                  include_once '../components/users/update-users.php';
                 }
-            ?>
+                ?>
         </div>
         <?php require_once '../components/footer.php';?>
     </div>
     <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
-<script src="../js/admin.js"></script>
+<script src="../js/professor.js"></script>
 <?php
     require_once '../components/logout-modal.php';
     require_once '../components/scripts.php';

@@ -1,4 +1,9 @@
 <?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+    
     require_once "../components/header.php";
     ?>
 <div class="container">

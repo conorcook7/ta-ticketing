@@ -1,6 +1,11 @@
-<?php 
+<?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+
     session_start();
-    $page = "bug-reports.php"; 
+    $page = "bug-reports-table.php";
 ?>
 <?php if (isset($_SESSION["bug-report-success"])){ ?>
     <div class="alert alert-success mx-4">
@@ -14,6 +19,29 @@
     unset($_SESSION["bug-report-failure"]);
     unset($_SESSION["bug-report-success"]);
 ?>
+
+<!-- Bug Report Closing Form -->
+<div id="bug-reports-div" class="px-4 mb-4" style="display: none">
+    <form method="POST" action="../handlers/resolve-bug-report-handler.php">
+        <input type="hidden" name="bugReportId" id="bug-report-id" value="" />
+        <input type="hidden" name="bugReportTitle" id="bug-report-title" value="" />
+        <div>Bug Report ID: <span id="resolve-id"></span></div>
+        <div>Bug Report Creator: <span id="resolve-user">No User</span></div>
+        <div>Bug Report Title: <span id="resolve-title">No User</span></div>
+        <label id="resolve-description-label" class="mt-4" for="closing-description">Closing Description</label>
+        <textarea
+            id="resolve-description"
+            class="form-control w-50"
+            name="resolveDescription"
+            placeholder="What did you help solve?"
+            maxlength=512
+            rows=3
+            required="true"></textarea>
+        <button type="submit" id="resolve-submit" class="btn btn-primary my-2">Finish Resolving</button>
+        <button type="button" id="resolve-cancel" class="btn btn-danger my-2">Cancel</button>
+    </form>
+</div>
+
 <div class="container-fluid mt-4">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -25,7 +53,7 @@
                     <thead>
                         <tr>
                             <th class="center">ID</th>
-                            <th class="center">Creator</th>
+                            <th class="center">Created By</th>
                             <th class="center">Issue</th>
                             <th class="center">Description</th>
                             <th class="center">Delete</th>
@@ -66,45 +94,7 @@
                                 </div>
                             </td>
                             <td>
-                                <button
-                                    type="button"
-                                    class="btn btn-block bg-success text-gray-100"
-                                    data-toggle="modal"
-                                    data-target="<?php echo "#confirmModalReOpen" . $bugReport["bug_report_id"]; ?>"
-                                >Resolve</button>
-                                <div
-                                    class="modal fade"
-                                    id="<?php echo "confirmModalReOpen" . $bugReport["bug_report_id"]; ?>"
-                                    tabindex="-1"
-                                    role="dialog"
-                                    aria-labelledby="exampleModalCenterTitle"
-                                    aria-hidden="true"
-                                >
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Please Confirm</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Bug Report: <strong><?php echo htmlentities($bugReport["title"]); ?></strong></p>
-                                                <p>Are you sure you want to resolve this bug report?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form method="POST" action="../handlers/delete-bug-report-handler.php">
-                                                    <input type="hidden" name="bugReportId" value="<?php echo $bugReport["bug_report_id"]; ?>" />
-                                                    <input type="hidden" name="bugReportTitle" value="<?php echo htmlentities($bugReport["title"]); ?>" />
-                                                    <button type="submit" class="btn btn-success">
-                                                        Confirm
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button type="button" id="resolve-button" class="btn btn-block bg-success text-gray-100 bug-report-resolve-btn">Resolve</button>   
                             </td>
                         </tr>
                     <?php } ?>

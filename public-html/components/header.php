@@ -1,12 +1,17 @@
-<?php 
+<?php
+    /**
+     * Copyright 2019 Boise State University
+     * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+     */
+
     session_start();
     
     require_once "server-functions.php";
     require_once "dao.php";
     
     $dao = new Dao();
-    if (!isset($_SESSION["user"]) ||
-            $dao->getOnlineStatus($_SESSION["user"]["email"]) == "OFFLINE") {
+    if (!isset($_SESSION["user"])) {
+        $_SESSION["login-error"] = "You were logged out.";
         header("Location: " . generateUrl("/handlers/logout-handler.php"));
         exit();
     }

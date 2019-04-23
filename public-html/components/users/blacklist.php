@@ -1,14 +1,11 @@
 <?php
+/**
+ * Copyright 2019 Boise State University
+ * Licensed under MIT (https://github.com/BoiseState/ta-ticketing/blob/master/LICENSE)
+ */
 
 session_start();
 $page = 'blacklist.php';
-
-// Check if the user is an admin
-$permission = strtoupper($_SESSION["user"]["permission"]);
-if ($permission != "ADMIN" && $permission != "ADMINISTRATOR") {
-    header("Location: 403.php");
-    exit();
-}
 
 // If the success/failure alert was triggered
 if (isset($_SESSION["blacklist-success"])){ ?>
@@ -30,7 +27,10 @@ if (isset($_SESSION["blacklist-success"])){ ?>
         <input type="hidden" id="blacklist-id" name="blacklistId" />
         <label id="blacklist-label" for="blacklistEmail">Email to blacklist</label>
         <input type="email" id="blacklist-email" class="form-control w-50" name="blacklistEmail" placeholder="Type email here..." maxlength=512 required="true" />
-        <button type="submit" id="blacklist-submit" class="btn btn-primary my-2">Add Email</button>
+        <div class="d-flex justify-content-start w-50">
+            <button type="submit" id="blacklist-submit" class="btn btn-primary my-2 mr-2">Add Email</button>
+            <button type="button" class="btn btn-danger my-2 hide-form">Cancel</button>
+        </div>
     </form>
 </div>
 
