@@ -20,8 +20,6 @@
     $targetLastName = $_POST["lastName"];
     $targetEmail = $_POST["userEmail"];
     $courseId = $_POST["courseId"];
-    $startTime = $_POST["startTime"];
-    $endTime = $_POST["endTime"];
     $permissionID = $_POST["permissionID"];
     $permissionName = $permissionID == 0 ? "DELETE" : $dao->getPermissionByID($permissionID);
 
@@ -109,14 +107,14 @@
                 $dao->deleteBlacklistEntryByEmail($targetEmail);
             }
             if ($dao->isTeachingAssistant($targetUserId)) {
-                if ($dao->updateTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE) {
+                if ($dao->updateTeachingAssistant($targetUserId, $courseId) == TRUE) {
                     $_SESSION["success"] = "Updated teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } else {
                     $_SESSION["failure"] = "Failed to update the teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } 
                 
             } else {
-                if($dao->createTeachingAssistant($targetUserId, $courseId, $startTime, $endTime) == TRUE){
+                if($dao->createTeachingAssistant($targetUserId, $courseId) == TRUE){
                     $_SESSION["success"] = "Created teaching assistant: " . $targetFirstName . " " . $targetLastName;
                 } else {
                     $_SESSION["failure"] = "Failed to create the teaching assistant: " . $targetFirstName . " " . $targetLastName;

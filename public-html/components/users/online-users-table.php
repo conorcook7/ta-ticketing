@@ -39,14 +39,6 @@
         </div>
         <div id="ta-creation">
             <div class="form-group">
-                <label for="startTime">Start Time</label>
-                <input type="time" class="form-control" id="startTime" name="startTime" value="09:00">
-            </div>
-            <div class="form-group">
-                <label for="endTime">End Time</label>
-                <input type="time" class="form-control" id="endTime" name="endTime" value="17:00">
-            </div>
-            <div class="form-group">
                 <label for="courseName">Course</label>
                 <select class="form-control" id="courseId" name="courseId">
                     <?php

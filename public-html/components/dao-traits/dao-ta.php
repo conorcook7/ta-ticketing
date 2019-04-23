@@ -149,20 +149,39 @@ trait DaoTa {
      * @param $endTime - The end time past midnight for the TA to stop work.
      * @return Returns TRUE if the creation was successful, else FALSE.
      */
-    public function createTeachingAssistant($userId, $courseId, $startTime, $endTime) {
+    public function createTeachingAssistant($userId, $courseId, $startTime=NULL, $endTime=NULL) {
         try {
             $conn = $this->getConnection();
 
-            // Create the TA row 
-            $query = $conn->prepare(
-                "INSERT INTO Teaching_Assistants (user_id, available_course_id,
-                start_time_past_midnight, end_time_past_midnight) VALUES (
-                :userId, :courseId, :startTime, :endTime)"
-            );
+            // Add the fields to insert into
+            $query = "INSERT INTO Teaching_Assistants (user_id, available_course_id";
+            if ($startTime != NULL) {
+                $query .= ", start_time_past_midnight";
+            }
+            if ($endTime != NULL) {
+                $query .= ", end_time_past_midnight";
+            }
+
+            // Add the parameter bindings
+            $query .= ") VALUES (:userId, :courseId";
+            if ($startTime != NULL) {
+                $query .= ", :startTime";
+            }
+            if ($endTime != NULL) {
+                $query .= ", :endTime";
+            }
+            $query .= ");";
+
+            // Create the query
+            $query = $conn->prepare($query);
             $query->bindParam(":userId", $userId);
             $query->bindParam(":courseId", $courseId);
-            $query->bindParam(":startTime", $startTime);
-            $query->bindParam(":endTime", $endTime);
+            if ($startTime != NULL) {
+                $query->bindParam(":startTime", $startTime);
+            }
+            if ($endTime != NULL) {
+                $query->bindParam(":endTime", $endTime);
+            }
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): TA was created");
 
@@ -191,20 +210,29 @@ trait DaoTa {
      * @param $endTime - The end time past midnight for the TA to stop work.
      * @return Returns TRUE if the creation was successful, else FALSE.
      */
-    public function updateTeachingAssistant($userId, $courseId, $startTime, $endTime) {
+    public function updateTeachingAssistant($userId, $courseId, $startTime=NULL, $endTime=NULL) {
         try {
             $conn = $this->getConnection();
 
-            // Create the TA row 
-            $query = $conn->prepare(
-                "UPDATE Teaching_Assistants SET available_course_id = :courseId,
-                start_time_past_midnight = :startTime, end_time_past_midnight = :endTime
-                WHERE user_id = :userId;"
-            );
+            // Add the fields to insert into
+            $query = "UPDATE Teaching_Assistants SET user_id = :userId, available_course_id = :courseId";
+            if ($startTime != NULL) {
+                $query .= ", start_time_past_midnight = :startTime";
+            }
+            if ($endTime != NULL) {
+                $query .= ", end_time_past_midnight = :endTime";
+            }
+
+            // Create the query
+            $query = $conn->prepare($query);
             $query->bindParam(":userId", $userId);
             $query->bindParam(":courseId", $courseId);
-            $query->bindParam(":startTime", $startTime);
-            $query->bindParam(":endTime", $endTime);
+            if ($startTime != NULL) {
+                $query->bindParam(":startTime", $startTime);
+            }
+            if ($endTime != NULL) {
+                $query->bindParam(":endTime", $endTime);
+            }
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): TA was updated");
             return $this->SUCCESS;
