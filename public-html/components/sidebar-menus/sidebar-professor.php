@@ -52,12 +52,4 @@
         <span class="LetterSpacing">Create/Delete Classes</span>
     </a>
 </li>
-
-<!-- Update/Create User Navbar Item -->
-<li class="nav-item <?php if ($page == 'update-users.php') { echo 'active'; }?>">
-    <a class="nav-link" href="<?php echo generateUrl('/pages/professor.php?page=users-form');?>">
-        <i class="fas fa-fw fa-user-cog"></i>
-        <span class="LetterSpacing">Update/Create User</span>
-    </a>
-</li>
 <!-- End professor Pages -->
