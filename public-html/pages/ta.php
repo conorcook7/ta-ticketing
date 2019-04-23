@@ -89,12 +89,9 @@
                     ?>
             </div>
             <!-- End Page Content -->
-
-            <!-- Footer -->
-            <?php include_once '../components/footer.php' ?>
-            
         </div>
         <!-- End of Main Content -->
+        <?php include_once '../components/footer.php' ?>
     </div>
     <!-- End of Content Wrapper -->
 </div>
