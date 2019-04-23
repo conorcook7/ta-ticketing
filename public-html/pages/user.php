@@ -101,7 +101,6 @@
                                     <tr>
                                         <th class="center">TA Name</th>
                                         <th class="center description">TA Email</th>
-                                        <th class="center">TA Time Slot</th>
                                         <th class="center">TA Course</th>
                                     </tr>
                                 </thead>

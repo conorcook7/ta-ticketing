@@ -101,12 +101,7 @@ $(document).ready(function() {
   let availableTeachingAssistantsTable = $("#available-tas-table").DataTable({
     ajax: ajaxPath + "available-tas-table-handler.php",
     preDrawCallback: canRedrawTable,
-    columns: [
-      { data: "taName" },
-      { data: "taEmail" },
-      { data: "taTimeSlot" },
-      { data: "taCourse" }
-    ]
+    columns: [{ data: "taName" }, { data: "taEmail" }, { data: "taCourse" }]
   });
 
   // Initialize the generic data tables
