@@ -30,11 +30,7 @@ $(document).ready(function() {
                     <span class="text-gray-600">Contact: </span>` +
             TAs[i]["email"] +
             `</div>
-                <div class="h5 text-gray-800">
-                    <span class="text-gray-600">Usual Schedule: </span>` +
-            TAs[i]["schedule"] +
-            `</div>
-                <div class="h5 text-gray-800">
+            <div class="h5 text-gray-800">
                     <span class="text-gray-600">Course: </span>` +
             TAs[i]["course_name"] +
             `<p class="my-4 mx-4">` +

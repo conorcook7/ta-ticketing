@@ -45,8 +45,6 @@
                     $tas = $dao->getTeachingAssistants(10);
                     if (count($tas) > 0) {
                         foreach ($tas as $ta) {
-                            $startTime = new DateTime($ta["start_time_past_midnight"]);
-                            $endTime = new DateTime($ta["end_time_past_midnight"]);
                             $createDate = new DateTime($ta["create_date"]);
                 ?>
                 <div class="card shadow mb-4 ta">
@@ -59,10 +57,6 @@
                     <div class="card-body">
                         <div class="h5 text-gray-800">
                             <span class="text-gray-600">Contact: </span><?php echo htmlentities($ta["email"]); ?>
-                        </div>
-                        <div class="h5 text-gray-800">
-                            <span class="text-gray-600">Usual Schedule: </span>
-                            <?php echo $startTime->format("g:i A") . " - " . $endTime->format("g:i A"); ?>
                         </div>
                         <div class="h5 text-gray-800">
                             <span class="text-gray-600">Course: </span><?php echo htmlentities($ta["course_name"]); ?>

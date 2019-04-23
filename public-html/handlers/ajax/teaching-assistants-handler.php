@@ -23,15 +23,12 @@
 
     foreach ($teachingAssistants as $ta) {
         // Create the dates
-        $startTime = new DateTime($ta["start_time_past_midnight"]);
-        $endTime = new DateTime($ta["end_time_past_midnight"]);
         $createDate = new DateTime($ta["create_date"]);
 
         // Get the attributes
         $cleanTA["name"] = htmlentities($ta["first_name"] . " " . $ta["last_name"]);
         $cleanTA["course_number"] = htmlentities($ta["course_number"]);
         $cleanTA["email"] = htmlentities($ta["email"]);
-        $cleanTA["schedule"] = $startTime->format("g:i A") . " - " . $endTime->format("g:i A");
         $cleanTA["course_name"] = htmlentities($ta["course_name"]);
         $cleanTA["course_description"] = htmlentities($ta["course_description"]);
         $cleanTA["create_date"] = $createDate->format("F jS Y");
