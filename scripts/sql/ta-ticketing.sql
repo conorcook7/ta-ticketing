@@ -122,7 +122,7 @@ INSERT INTO Permissions VALUES (3, 'PROFESSOR');
 INSERT INTO Permissions VALUES (4, 'ADMIN');
 INSERT INTO Permissions VALUES (5, 'DENIED');
 
-INSERT INTO Users VALUES (1, 4, 0, 'taticketing@boisestate.edu', 'TA Tticketing', 'Server', NOW(), NOW());
+INSERT INTO Users VALUES (1, 4, 0, 'taticketing@boisestate.edu', NULL, 'TA Tticketing', 'Server', NOW(), NOW());
 
 CREATE EVENT IF NOT EXISTS Logout
     ON SCHEDULE EVERY 15 MINUTE
