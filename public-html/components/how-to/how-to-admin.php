@@ -61,15 +61,15 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2 mb-4">
                                     <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Step 3</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Add/Update User Button</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Finish Editing Button</div>
                                 </div>
                                 <div class="col-auto">
-                                    <span class="btn-sm btn-primary disabled">Add/Update User</span>
+                                    <span class="btn-sm btn-primary disabled">Finish Editing</span>
                                 </div>
                             </div>
                             <p>
                                 Once you have updated the information about the user, you may then click the
-                                <strong class="text-gray-800">Add/Update User Button</strong> at the bottom.
+                                <strong class="text-gray-800">Finish Editing</strong> button at the bottom.
                                 This will check if the user email exists, upon finding a valid user it will then
                                 update his/her information.
                             </p>

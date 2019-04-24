@@ -25,7 +25,7 @@
                 <?php
                     $permission = strtoupper($_SESSION["user"]["permission"]);
                     
-                    if ($permission == "ADMIN" || $permission == "PROFESSOR") {
+                    if ($permission == "ADMIN") {
                     ?>
                 <div class="row">
                     <div class="col-xs-12">
@@ -40,6 +40,15 @@
                                     aria-controls="nav-how-to-admin"
                                     aria-selected="true"
                                     >Admin</a>
+                                <a
+                                    class="nav-item nav-link"
+                                    id="nav-how-to-professor-tab"
+                                    data-toggle="tab"
+                                    href="#nav-how-to-professor"
+                                    role="tab"
+                                    aria-controls="nav-how-to-professor"
+                                    aria-selected="true"
+                                    >Professor</a>
                                 <a
                                     class="nav-item nav-link"
                                     id="nav-how-to-ta-tab"
@@ -62,6 +71,48 @@
                         </nav>
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <?php require_once "../../components/how-to/how-to-admin.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-professor.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-ta.php"; ?>
+                            <?php require_once "../../components/how-to/how-to-user.php"; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } else if ($permission == "PROFESSOR") { ?>
+                    <div class="row">
+                    <div class="col-xs-12">
+                        <nav class="mb-4">
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a
+                                    class="nav-item nav-link active"
+                                    id="nav-how-to-professor-tab"
+                                    data-toggle="tab"
+                                    href="#nav-how-to-professor"
+                                    role="tab"
+                                    aria-controls="nav-how-to-professor"
+                                    aria-selected="true"
+                                    >Professor</a>
+                                <a
+                                    class="nav-item nav-link"
+                                    id="nav-how-to-ta-tab"
+                                    data-toggle="tab"
+                                    href="#nav-how-to-ta"
+                                    role="tab"
+                                    aria-controls="nav-how-to-ta"
+                                    aria-selected="false"
+                                    >Teaching Assistant</a>
+                                <a
+                                    class="nav-item nav-link"
+                                    id="nav-how-to-user-tab"
+                                    data-toggle="tab"
+                                    href="#nav-how-to-user"
+                                    role="tab"
+                                    aria-controls="nav-how-to-user"
+                                    aria-selected="false"
+                                    >User</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <?php require_once "../../components/how-to/how-to-professor.php"; ?>
                             <?php require_once "../../components/how-to/how-to-ta.php"; ?>
                             <?php require_once "../../components/how-to/how-to-user.php"; ?>
                         </div>
