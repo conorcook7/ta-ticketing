@@ -13,10 +13,11 @@ $(document).ready(function() {
     success: function(courses) {
       let numLoadedCourses = $(".card").length;
       for (let i = numLoadedCourses; i < courses.length; i++) {
+        console.log(courses[i]["ta_schedule_URL"]);
         let URLDiv =
           courses[i]["ta_schedule_URL"] == ""
             ? ""
-            : `<span class='h5 m-0'>"
+            : `<span class='h5 m-0'>
                     <a
                         class='btn btn-primary text-white'
                         target='_blank'

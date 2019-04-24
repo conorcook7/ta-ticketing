@@ -25,7 +25,7 @@
         $cleanCourse["course_name"] = htmlentities($course["course_name"]);
         $cleanCourse["course_description"] = htmlentities($course["course_description"]);
         $cleanCourse["course_number"] = htmlentities($course["course_number"]);
-        $cleanCourse["ta_schedule_URL"] = htmlentities($course["ta_Schedule_URL"]);
+        $cleanCourse["ta_schedule_URL"] = htmlentities($course["ta_schedule_URL"]);
         $cleanCourses[] = $cleanCourse;
     }
     
