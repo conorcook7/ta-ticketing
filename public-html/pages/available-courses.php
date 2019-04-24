@@ -44,20 +44,29 @@
                     $dao = new Dao();
                     $courses = $dao->getAvailableCourses(10);
                     foreach ($courses as $course) {
-                    ?>
+                ?>
                 <div class="card shadow mb-4 ac">
                     <div class="card-header py-3">
-                        <span class="h5 m-0 font-weight-bold text-primary">
-                            <?php echo strtoupper(htmlentities($course["course_number"] . " - " . $course["course_name"])); ?>
-                        </span>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 m-0 font-weight-bold text-primary">
+                                <?php echo strtoupper(htmlentities($course["course_number"] . " - " . $course["course_name"])); ?>
+                            </span>
+                            <?php if ($course["ta_schedule_URL"] != NULL) { ?>
+                            <span class="h5 m-0">
+                                <a
+                                    class="btn btn-primary text-white"
+                                    target="_blank"
+                                    href="<?php echo htmlentities($course['ta_schedule_URL']); ?>"
+                                >View Lab Schedule</a>
+                            </span>
+                            <?php } ?>
+                        </div>
                     </div>
                     <div class="card-body">
                         <p><?php echo $course["course_description"]; ?></p>
                     </div>
                 </div>
-                <?php
-                    }
-                    ?>
+                <?php } ?>
             </div>
             <!-- /.container-fluid -->
         </div>

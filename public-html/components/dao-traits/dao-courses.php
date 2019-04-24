@@ -13,22 +13,27 @@
 trait DaoCourses {
 
     /**
-     * Create a user if they do not exist in the database.
+     * Create the course in the database
      * 
+     * @param $id - The course ID that will be updated
+     * @param $name - The name of the course
+     * @param $number - The number of the course (i.e., CS121)
      * @param $email - The email address of the user to create.
-     * @param $firstName - The first name of the user if given, else NULL.
-     * @param $lastName - The last name of the user if given, else NULL.
+     * @param $description - The description for the course
+     * @param $taScheduleURL - The URL to the calendar for the TA times
      * @return Returns TRUE if the user was created, else FALSE
      */
-    public function createCourse($name, $number, $description) {
+    public function createCourse($name, $number, $description, $taScheduleURL) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "INSERT INTO Available_Courses (course_name, course_number, course_description) " .
-            "VALUES (:name, :number, :description);"
+            "INSERT INTO Available_Courses (
+                course_name, course_number, course_description, ta_schedule_URL)
+            VALUES (:name, :number, :description, :taScheduleURL);"
         );
         $query->bindParam(":name", $name);
         $query->bindParam(":number", $number);
         $query->bindParam(":description", $description);
+        $query->bindParam(":taScheduleURL", $taScheduleURL);
         try {
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): create course successful");
@@ -41,24 +46,30 @@ trait DaoCourses {
     }
 
     /**
-     * Create a user if they do not exist in the database.
+     * Update the course in the database
      * 
      * @param $id - The course ID that will be updated
+     * @param $name - The name of the course
+     * @param $number - The number of the course (i.e., CS121)
      * @param $email - The email address of the user to create.
-     * @param $firstName - The first name of the user if given, else NULL.
-     * @param $lastName - The last name of the user if given, else NULL.
+     * @param $description - The description for the course
+     * @param $taScheduleURL - The URL to the calendar for the TA times
      * @return Returns TRUE if the user was created, else FALSE
      */
-    public function updateCourse($id, $name, $number, $description) {
+    public function updateCourse($id, $name, $number, $description, $taScheduleURL) {
         $conn = $this->getConnection();
         $query = $conn->prepare(
-            "UPDATE Available_Courses " .
-            "SET course_name=:name, course_number=:number, course_description=:description " .
-            "WHERE available_course_id = :id"
+            "UPDATE Available_Courses SET
+                course_name = :name,
+                course_number = :number,
+                course_description = :description,
+                ta_schedule_URL = :taScheduleURL
+            WHERE available_course_id = :id"
         );
         $query->bindParam(":name", $name);
         $query->bindParam(":number", $number);
         $query->bindParam(":description", $description);
+        $query->bindParam(":taScheduleURL", $taScheduleURL);
         $query->bindParam(":id", $id);
         try {
             $query->execute();

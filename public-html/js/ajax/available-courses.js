@@ -13,15 +13,31 @@ $(document).ready(function() {
     success: function(courses) {
       let numLoadedCourses = $(".card").length;
       for (let i = numLoadedCourses; i < courses.length; i++) {
+        let URLDiv =
+          courses[i]["ta_schedule_URL"] == ""
+            ? ""
+            : `<span class='h5 m-0'>"
+                    <a
+                        class='btn btn-primary text-white'
+                        target='_blank'
+                        href='` +
+              courses[i]["ta_schedule_URL"] +
+              `'
+                    >View Lab Schedule</a>
+                </span>`;
         $(".container-fluid").append(
           `<div class="card shadow mb-4 ac">
                   <div class="card-header py-3">
-                      <span class="h5 m-0 font-weight-bold text-primary">` +
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 m-0 font-weight-bold text-primary">` +
             courses[i]["course_number"].toUpperCase() +
             ` - ` +
             courses[i]["course_name"].toUpperCase() +
-            `         </span>
-                  </div>
+            `</span>` +
+            URLDiv +
+            `
+                    </div>
+                </div>
                 <div class="card-body">
                 <p>` +
             courses[i]["course_description"] +
