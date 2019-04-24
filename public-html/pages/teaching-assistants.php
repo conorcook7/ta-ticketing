@@ -55,21 +55,21 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row">
+                        <div class="d-flex align-items-center">
                             <?php if($ta["image_URL"] != NULL) { ?>
-                            <div class="mx-4">
                                 <img src="<?php echo htmlentities($ta["image_URL"]); ?>" class="rounded-circle"/>
-                            </div>
                             <?php } ?>
-                            <div class="mx-2">
+                            <div class="ml-4 mt-2 d-inline-block">
                                 <div class="h5 text-gray-800">
                                     <span class="text-gray-600">Contact: </span><?php echo htmlentities($ta["email"]); ?>
                                 </div>
                                 <div class="h5 text-gray-800">
                                     <span class="text-gray-600">Course: </span><?php echo htmlentities($ta["course_name"]); ?>
-                                    <p class="my-4 mx-4"><?php echo htmlentities($ta["course_description"]); ?></p>
                                 </div>
                             </div>
+                        </div>
+                        <div class="h5 text-gray-800">
+                            <p class="my-4 mx-2"><?php echo htmlentities($ta["course_description"]); ?></p>
                         </div>
                     </div>
                     <div class="card-footer">

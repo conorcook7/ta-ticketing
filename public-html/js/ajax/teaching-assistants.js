@@ -17,9 +17,7 @@ $(document).ready(function() {
         let imageDiv =
           TAs[i]["image_URL"] == ""
             ? ""
-            : '<div class="mx-4"><image src="' +
-              TAs[i]["image_URL"] +
-              '" class="rounded-circle" /></div>';
+            : '<img src="' + TAs[i]["image_URL"] + '" class="rounded-circle"/>';
         $(".container-fluid").append(
           `
             <div class="card shadow mb-4 ta">
@@ -34,9 +32,9 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">` +
+                    <div class="d-flex align-items-center">` +
             imageDiv +
-            `<div class="mx-2">
+            `<div class="ml-4 mt-2 d-inline-block">
                             <div class="h5 text-gray-800">
                                 <span class="text-gray-600">Contact: </span>` +
             TAs[i]["email"] +
@@ -44,10 +42,12 @@ $(document).ready(function() {
                             <div class="h5 text-gray-800">
                                 <span class="text-gray-600">Course: </span>` +
             TAs[i]["course_name"] +
-            `<p class="my-4 mx-4">` +
+            `</div>
+                        </div>
+                        <div class="h5 text-gray-800">
+                            <p class="my-4 mx-2">` +
             TAs[i]["course_description"] +
             `</p>
-                            </div>
                         </div>
                     </div>
                 </div>
