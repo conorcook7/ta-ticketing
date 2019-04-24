@@ -103,20 +103,53 @@ trait DaoUsers {
      * @param $email - The email address of the user to create.
      * @param $firstName - The first name of the user if given, else NULL.
      * @param $lastName - The last name of the user if given, else NULL.
+     * @param $imageURL - The image URL from Google if given, else NULL.
      * @return Returns TRUE if the user was created, else FALSE
      */
-    public function createUser($email, $firstName=NULL, $lastName=NULL) {
+    public function createUser($email, $firstName=NULL, $lastName=NULL, $imageURL=NULL) {
         try {
             $exists = $this->userExists($email);
             if (!$exists) {
                 $conn = $this->getConnection();
-                $query = $conn->prepare(
-                    "INSERT INTO Users (email, first_name, last_name) " .
-                    "VALUES (:email, :firstName, :lastName);"
-                );
+
+                // Build the query
+                $query = "INSERT INTO Users (email";
+                if ($firstName != NULL) {
+                    $query .= ", first_name";
+                }
+                if ($lastName != NULL) {
+                    $query .= ", last_name";
+                }
+                if ($imageURL != NULL) {
+                    $query .= ", image_URL";
+                }
+                $query .= ") VALUES (";
+
+                // Add in the parameter bindings
+                $query .= ":email";
+                if ($firstName != NULL) {
+                    $query .= ", :firstName";
+                }
+                if ($lastName != NULL) {
+                    $query .= ":lastName";
+                }
+                if ($imageURL != NULL) {
+                    $query .= ":imageURL";
+                }
+                $query .= ");";
+
+                // Bind the parameters
+                $query = $conn->prepare($query);
                 $query->bindParam(":email", $email);
-                $query->bindParam(":firstName", $firstName);
-                $query->bindParam(":lastName", $lastName);
+                if ($firstName != NULL) {
+                    $query->bindParam(":firstName", $firstName);
+                }
+                if ($lastName != NULL) {
+                    $query->bindParam(":lastName", $lastName);
+                }
+                if ($imageURL != NULL) {
+                    $query->bindParam(":imageURL", $imageURL);
+                }
                 $query->execute();
                 $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Create user successful");
                 return $this->SUCCESS;
@@ -162,22 +195,27 @@ trait DaoUsers {
      * 
      * @return Returns TRUE if the user was updated, else FALSE.
      */
-    public function updateUser($user_id, $firstName, $lastName, $email, $permissionID, $admin_id){
+    public function updateUser($userId, $firstName, $lastName, $email, $permissionID, $admin_id, $imageURL=NULL){
         try {
             $conn = $this->getConnection();
-            $query = $conn->prepare(
-                "UPDATE Users SET 
-                    email = :email,
-                    first_name = :first_name, 
-                    last_name = :last_name,
-                    permission_id = :permission_id
-                    WHERE user_id = :user_id;"
-            );
-            $query->bindParam(":user_id", $user_id);
+            $query = "UPDATE Users SET
+                        email = :email,
+                        first_name = :firstName,
+                        last_name = :lastName,
+                        permission_id = :permissionId";
+            if ($imageURL != NULL) {
+                $query .= ", image_URL = :imageURL";
+            }
+            $query .= " WHERE user_id = :userId";
+            $query = $conn->prepare($query);
+            $query->bindParam(":userId", $userId);
             $query->bindParam(":email", $email);
-            $query->bindParam(":first_name", $firstName);
-            $query->bindParam(":last_name", $lastName);
-            $query->bindParam(":permission_id", $permissionID);
+            $query->bindParam(":firstName", $firstName);
+            $query->bindParam(":lastName", $lastName);
+            $query->bindParam(":permissionId", $permissionID);
+            if ($imageURL != NULL) {
+                $query->bindParam(":imageURL", $imageURL);
+            }
             $query->execute();
             $this->logger->logDebug(basename(__FILE__) . ":" . __FUNCTION__ . "(): Admin: " . $admin_id . " has Updated User " . $user_id);
             return $this->SUCCESS;

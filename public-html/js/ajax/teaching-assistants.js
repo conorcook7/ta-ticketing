@@ -13,39 +13,52 @@ $(document).ready(function() {
     success: function(TAs) {
       let numLoadedTAs = $(".card").length;
       for (let i = numLoadedTAs; i < TAs.length; i++) {
+        console.log(TAs[i]["image_URL"]);
+        let imageDiv =
+          TAs[i]["image_URL"] == ""
+            ? ""
+            : '<div class="mx-4"><image src="' +
+              TAs[i]["image_URL"] +
+              '" class="rounded-circle" /></div>';
         $(".container-fluid").append(
-          `<div class="card shadow mb-4 ta">
-            <div class="card-header py-3">
-                <div class="d-flex justify-content-between mr-4">
-                    <span class="h4 m-0 font-weight-bold text-primary">` +
+          `
+            <div class="card shadow mb-4 ta">
+                <div class="card-header py-3">
+                    <div class="d-flex justify-content-between mr-4">
+                        <span class="h4 m-0 font-weight-bold text-primary">` +
             TAs[i]["name"] +
             `</span>
-                    <span class="h4 m-0 font-weight-bold text-primary">` +
+                        <span class="h4 m-0 font-weight-bold text-primary">` +
             TAs[i]["course_number"] +
             `</span>
+                    </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="h5 text-gray-800">
-                    <span class="text-gray-600">Contact: </span>` +
+                <div class="card-body">
+                    <div class="row">` +
+            imageDiv +
+            `<div class="mx-2">
+                            <div class="h5 text-gray-800">
+                                <span class="text-gray-600">Contact: </span>` +
             TAs[i]["email"] +
             `</div>
-            <div class="h5 text-gray-800">
-                    <span class="text-gray-600">Course: </span>` +
+                            <div class="h5 text-gray-800">
+                                <span class="text-gray-600">Course: </span>` +
             TAs[i]["course_name"] +
             `<p class="my-4 mx-4">` +
             TAs[i]["course_description"] +
             `</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <div class="text-gray-800">
-                    <p class="text-right text-gray-600">TA Since: ` +
+                <div class="card-footer">
+                    <div class="text-gray-800">
+                        <p class="text-right text-gray-600">TA Since: ` +
             TAs[i]["create_date"] +
             `</p>
+                    </div>
                 </div>
             </div>
-        </div>
         `
         );
       }

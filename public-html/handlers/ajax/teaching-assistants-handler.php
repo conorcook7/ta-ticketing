@@ -29,6 +29,7 @@
         $cleanTA["name"] = htmlentities($ta["first_name"] . " " . $ta["last_name"]);
         $cleanTA["course_number"] = htmlentities($ta["course_number"]);
         $cleanTA["email"] = htmlentities($ta["email"]);
+        $cleanTA["image_URL"] = htmlentities($ta["image_URL"]);
         $cleanTA["course_name"] = htmlentities($ta["course_name"]);
         $cleanTA["course_description"] = htmlentities($ta["course_description"]);
         $cleanTA["create_date"] = $createDate->format("F jS Y");

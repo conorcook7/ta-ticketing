@@ -95,14 +95,17 @@
                     $querySuccessful = $dao->createUser(
                         $_SESSION["user"]["email"],
                         $_SESSION["user"]["given_name"],
-                        $_SESSION["user"]["family_name"]
+                        $_SESSION["user"]["family_name"],
+                        $_SESSION["user"]["picture"]
                     );
                     if (!$querySuccessful) {
                         $logger->logError(basename(__FILE__) . ": Unable to create user with dao method.");
-                        $_SESSION["login-error"] = "Unable to create your account. Please try again later.";
+                        $_SESSION["login-error"] = "Unable to create your account. Please try again.";
                         header("Location: " . generateUrl("/handlers/logout-handler.php"));
                         exit();
                     }
+                } else {
+                    
                 }
                 
                 // Set the user to online
@@ -119,6 +122,23 @@
                     $user["update_date"],
                     new DateTimeZone("America/Boise")
                 );
+
+                // Update the user
+                $querySuccessful = $dao->updateUser(
+                    $_SESSION["user"]["user_id"],
+                    $_SESSION["user"]["given_name"],
+                    $_SESSION["user"]["family_name"],
+                    $_SESSION["user"]["email"],
+                    $user["permission_id"],
+                    1,                                  // 1 represents the TA Ticketing Server
+                    $_SESSION["user"]["picture"]
+                );
+                if (!$querySuccessful) {
+                    $logger->logError(basename(__FILE__) . ": Unable to update user with dao method.");
+                    $_SESSION["login-error"] = "Unable to update your account. Please try again.";
+                    header("Location: " . generateUrl("/handlers/logout-handler.php"));
+                    exit();
+                }
 
                 // Set the user to online
                 $_SESSION["user"]["online"] = "ONLINE";
