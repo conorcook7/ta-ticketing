@@ -131,10 +131,10 @@ trait DaoUsers {
                     $query .= ", :firstName";
                 }
                 if ($lastName != NULL) {
-                    $query .= ":lastName";
+                    $query .= ", :lastName";
                 }
                 if ($imageURL != NULL) {
-                    $query .= ":imageURL";
+                    $query .= ", :imageURL";
                 }
                 $query .= ");";
 
