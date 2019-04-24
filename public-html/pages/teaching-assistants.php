@@ -57,9 +57,9 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <?php if($ta["image_URL"] != NULL) { ?>
-                                <img src="<?php echo htmlentities($ta["image_URL"]); ?>" class="rounded-circle"/>
+                                <img src="<?php echo htmlentities($ta["image_URL"]); ?>" class="rounded-circle ml-2 mr-4"/>
                             <?php } ?>
-                            <div class="ml-4 mt-2 d-inline-block">
+                            <div class="ml-2 mt-2 d-inline-block">
                                 <div class="h5 text-gray-800">
                                     <span class="text-gray-600">Contact: </span><?php echo htmlentities($ta["email"]); ?>
                                 </div>
