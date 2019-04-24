@@ -33,10 +33,10 @@ foreach ($allowed_ips as $allow) {
     }
 }
 
-if (!$allowed) {
-    header('HTTP/1.1 404 Not Found');
-    exit;
-}
+// if (!$allowed) {
+//     header('HTTP/1.1 404 Not Found');
+//     exit;
+// }
 
 flush();
 
