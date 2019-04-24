@@ -238,6 +238,16 @@ trait DaoBugReport {
             $closer = $query->fetch();
             $this->logger->logDebug(basename(__FILE__) . ": " . __FUNCTION__ . ": Obtained the closing user");
 
+            // Get the admins
+            $query = $conn->prepare(
+                "SELECT email FROM Users AS U
+                JOIN Permissions AS P ON U.permission_id = P.permission_id
+                WHERE P.permission_name = 'ADMIN';"
+            );
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            $adminEmails = $query->fetchAll();
+
             // Create the message to send
             if($closedBugReport && $creatorEmail != "" && !empty($closer)) {
                 // Assign the person receiving the email
@@ -247,8 +257,11 @@ trait DaoBugReport {
                 $subject = "TA Ticketing Bug Report Resolved";
 
                 // Create header to the email
-                $headers = "From: no-reply@taticketing.boisestate.edu" . "\r\n";
-                $headers .= "MIME-Version: 1.0\r\n";
+                $headers = "From: no-reply@taticketing.boisestate.edu" . "\r\n CC: ";
+                for ($i = 1; $i < count($adminEmails); $i++) {
+                    $headers .= $adminEmails[$i]["email"] . " ";
+                }
+                $headers .= "\r\nMIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=utf-8\r\n";
 
                 // Create the general message
@@ -257,6 +270,7 @@ trait DaoBugReport {
                 $message .= "<p>Hello,</p><p>" . htmlentities($closer["first_name"] . " " . $closer["last_name"]) . " just closed your bug report!</p>";
                 $message .= "<p><strong>Author's Email:</strong> " . htmlentities($closer["email"]) . "</p>";
                 $message .= "<div><strong>Title: </strong>" . htmlentities($title) . "</div>";
+                $message .= "<div>" . htmlentities($description) . "</div>";
                 $message .= "<p><em>This is an automated message sent by the TA Ticketing Service at Boise State University.</em></p>";
                 $message .= "<p>TA Ticketing &copy; Boise State University<p>";
 
